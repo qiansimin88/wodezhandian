@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	var arr=[21,25,877,24,204,51,34,4,43]
+	var iMin=1000000;
+	var iIndex=0;
+	for (var i=0;i<arr.length;i++)
+	{                                     //运用for循环让arr中的每一个i与之前随便设置的一个值比较，只要比他小，。就让iMIn= 这个I，循环过后iMIN就		                                            是最小值了。
+		if(arr[i]<iMin)
+		{
+			iMin=arr[i]	                  //主题思想就是设置两个任意变量，通过和arr[i]的比较进行循环，并且赋值，最后弹出最小值和索引位置。
+			iIndex=i;
+		}
+	
+	}
+		alert('最小值：'+iMin+'位置是在'+iIndex)	   //alert要放在 for循环结束后。放在里面就不对了。
+		document.getElementById('nhson')
+	/*arr.sort(function(n1,n2){
+		return n1-n2	
+	})
+	alert(arr[0])*/
+</script>
+</head>
+
+<body>
+</body>
+</html>

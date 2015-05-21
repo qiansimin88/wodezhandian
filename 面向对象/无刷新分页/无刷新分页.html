@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<style>
+		#pages>a {margin:0 25px;display: inline-block;}
+		a.currentActive {color:red;}
+	</style>
+	<script>
+	
+	//模拟本地数据   用数组包裹JSON
+	
+	var data = [];
+	
+	for (var i=0;i<348;i++) {
+		
+		data.push({
+			
+			name : '周杰伦'+i,
+			
+			pid : i ,
+			
+			add :  '杭州市'+i+'号'
+			
+		});
+		
+	};
+	
+	//console.log(data)
+	
+	/*----------------------------------我是羞答答的分割线---------------------------------------------*/
+	
+		function paging (currentPage,dataMain,tableId,pageId) {
+
+			var _this = this;
+			//数据
+			this.dateMain = dataMain;
+			//一页显示的数据量
+			this.pageCount = 8 ;
+			//总数据的个数	
+			this.count = dataMain.length ;
+			//总页码
+			this.total = Math.ceil(this.count / this.pageCount);  //向上取整
+			//当前页
+			this.currentPage = (function () {
+				
+				if(currentPage <= 0) {
+					
+					currentPage = 1 ;
+					
+				}
+				
+			    if (currentPage >= _this.total) {
+					
+					currentPage = _this.total;
+	
+				};
+			
+				return currentPage;
+				
+			})();
+			//首页
+			this.firstPage = 1;     //这里以1 为首页 而不是0   所依后面要用到页码 记得 -1 
+			//尾页
+			this.lastPage = this.total;
+			//上一页
+			this.prevPage = this.currentPage - 1 <= 0 ? 0 : this.currentPage - 1 ;
+			//下一页
+			this.nextPage = this.currentPage + 1 >= this.total ? this.total : this.currentPage + 1;
+			//默认是用table布局的
+			this.tableWrap = tableId;
+			//pagewrap 
+			this.pageWrap = pageId;
+			
+			//运行
+			this.init(dataMain,tableId,pageId);
+			
+		};
+		
+		paging.prototype.init = function (dataMain,tableId,pageId){
+			
+		
+			
+			this.getData(dataMain,tableId);
+			
+			this.getPageNum(dataMain,tableId,pageId);
+			
+		};
+		
+		paging.prototype.getData =  function (dataMain,tableId) {
+			
+			//首先清除之前的所有数据
+			tableId.find('tr').remove();
+			
+			//显示数据
+			var htmlArr = [];
+			
+		
+			
+			for (var i = (this.currentPage -1)* this.pageCount ; i< ((this.currentPage*this.pageCount) >= this.count ? this.count : this.currentPage*this.pageCount);i++) {
+				
+					htmlArr.push('<tr><td>name:'+dataMain[i]['name']+'</td><td>id:'+dataMain[i]['pid']+'</td><td>地址:'+dataMain[i]['add']+'</td></tr>');
+
+			};
+			
+			tableId.find('table>tbody').append(htmlArr.join(''));
+			
+		};
+		
+		paging.prototype.getPageNum = function (dataMain,tableId,pageId) {
+			
+			//清楚默认样式
+			pageId.empty();
+			
+			var htmlArr = [];
+			
+			//console.log(data)
+			
+			//设置一个中间量
+			
+			var rpValue = 6/2;
+			
+			htmlArr.push('<a href="javascript:new paging(1,data,$(\'#content\'),$(\'#pages\'));">首页</a>');
+			
+			if (this.currentPage <= rpValue) {
+				
+				for(var i=1;i<=rpValue*2;i++) {
+					
+					if(i == this.currentPage ) {
+						
+						htmlArr.push('<a href="javascript:new paging('+i+',data,$(\'#content\'),$(\'#pages\'))" class="currentActive">'+i+'</a>');
+						
+					}else{
+						
+						htmlArr.push('<a href="javascript:new paging('+i+',data,$(\'#content\'),$(\'#pages\'))">'+i+'</a>');
+						
+					};
+					
+				};
+				
+				htmlArr.push('<a href="javascript:new paging('+this.lastPage+',data,$(\'#content\'),$(\'#pages\'));">尾页</a>');
+				
+			}else {
+				
+				
+				htmlArr.unshift('<a href="javascript:new paging('+this.prevPage+',data,$(\'#content\'),$(\'#pages\'))">上一页</a>');
+				
+				var maxPage = (this.currentPage+2) >= this.total ? this.total : (this.currentPage+2);
+							
+				for (var i = this.currentPage - 2; i <= maxPage;i++) {
+					
+					if(i == this.currentPage) {
+						
+							htmlArr.push('<a href="javascript:new paging('+i+',data,$(\'#content\'),$(\'#pages\'))" class="currentActive">'+i+'</a>');
+
+						
+					}else {
+						
+						   htmlArr.push('<a href="javascript:new paging('+i+',data,$(\'#content\'),$(\'#pages\'))">'+i+'</a>');
+	
+						
+					};
+					
+				};
+				
+				htmlArr.push('<a href="javascript:new paging('+this.nextPage+',data,$(\'#content\'),$(\'#pages\'))">下一页</a>');
+				
+				htmlArr.push('<span>.....</span>');
+				
+				htmlArr.push('<a href="javascript:new paging('+this.lastPage+',data,$(\'#content\'),$(\'#pages\'));">尾页</a>');
+			
+			};
+	
+			htmlArr.unshift('<span class="totalPage">'+(this.currentPage+'/'+this.total)+'</span>');
+			
+			pageId.append(htmlArr.join(''));
+			
+		};
+		
+			
+	$(function(){
+		
+		//实例化
+			new paging(3,data,$('#content'),$('#pages'));
+
+	})
+	</script>
+	<body>
+		<h1>无刷新分页</h1>
+        <div id="content">
+                <table width="800">
+                        <tr>
+                                <td width="15%">姓名</td>
+                                <td width="15%">密钥</td>
+                                <td width="15%">年龄</td>
+                        </tr>
+                        <tr>
+                                <td width="15%">姓名</td>
+                                <td width="15%">密钥</td>
+                                <td width="15%">年龄</td>
+                        </tr>
+                </table>
+        </div>
+        <div id="pages">
+        	
+        </div>
+	</body>
+</html>

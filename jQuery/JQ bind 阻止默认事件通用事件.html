@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="../js/jquery-2.0.2.min.js"></script>
+<script>
+	$(function(){
+		
+	$('#div1').bind('click mouseover mouseout',function(){    //bind可以绑定多个事件也可以单独写一个事件。
+		alert(12)	
+	})
+/*	$('#div1').one('click',function(ev){     //one就是只能执行一次。
+		alert(ev.pageY)	                     //事件就是EV，无需做兼容了，  pageY相当于oEvent.clientY  pageX相同
+		return false;          //JQ 当中这个既可以阻止默认事件也可以取消冒泡。  
+	})*/
+})
+</script>
+</head>
+
+<body>
+<div id="div1">asdasdas</div>
+</body>
+</html>

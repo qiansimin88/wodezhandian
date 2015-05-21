@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	function getNowTime() {
+		var t=new Date();
+		var y=t.getFullYear();  //年
+		var m=t.getMonth()+1;     //月
+		var d=t.getDate();      //日
+		
+		var h=t.getHours();    //时
+		var mi=t.getMinutes(); //分
+		var s=t.getSeconds();  //秒
+		
+		//操作不满10的单位自动补0;
+		m= m<10? '0'+m : m;
+		d= d<10? '0'+d : d;
+		
+		h=h<10?  '0'+h : h;
+		mi=mi <10 ? '0' +mi : mi;
+		s=s<10? '0' +s : s;
+		
+		//补上 '-'连接符号
+		return y+"-"+m+'-'+d+' '+h+':'+mi+':'+s; 	
+	};
+	
+	alert(getNowTime());    //2014-5-13 22:30:42
+</script>
+</head>
+
+<body>
+</body>
+</html>

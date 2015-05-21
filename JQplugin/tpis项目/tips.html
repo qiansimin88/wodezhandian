@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="tips.css"/>
+		<!--<script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script><br />-->
+		<script src="../../js/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			body {font-family: "microsoft yahei";}
+			.stepListlx li {position:absolute;}
+			.stepListlx li a {padding-top:39px;font-size:14px;color:#fff;text-decoration: none;}
+			.stepListlx li a:hover {color: #edc840;text-decoration: underline;}
+			.stepTips {z-index:100;padding:9px;background:#f6cd3e;font-size:12px;line-height: 18px;display: block;position: absolute;width:130px;left:20px;}
+			.stepTips .arrow-right {height:100%;width:8px;background: url(arrow.png) no-repeat 0 center;position:absolute;left:-8px;top:0;}
+			.stepbtn-dwzy {left:149px;top:439px;}
+			.stepbtn-zx {left:296px;top:427px;}
+			.stepbtn-zbsq {left:410px;top:410px;}
+			.stepbtn-wssq {left:345px;top:308px;}
+			.stepbtn-jdcx {left: 163px;top:247px;}
+			.stepbtn-lqdb {left:320px;top:173px;}
+			.stepbtn-qzbl {left :446px;top:175px;}
+			.stepbtn-cdtg {left:559px;top:164px;}
+			.stepbtn-xxx {left:687px;top:113px;}
+		</style>
+	</head>
+	<body>
+		<div class="study-abroad-step">
+			<!--<span class="stepTips">无论是从感兴趣的专业，还是理想的职业出发，都能为您精准定位最适合的专业！<span class="arrow-right"></span>-->
+			<ul class="stepListlx">
+				<li class="stepbtn-dwzy"><a href="javascript:void(0);" class="stepbtn">定位专业</a></li>
+				<li class="stepbtn-zx"><a href="javascript:void(0);" class="stepbtn">择校</a></li>
+				<li class="stepbtn-zbsq"><a href="javascript:void(0);" class="stepbtn">准备申请材料</a></li>
+				<li class="stepbtn-wssq"><a href="javascript:void(0);" class="stepbtn">网上申请</a></li>
+				<li class="stepbtn-jdcx"><a href="javascript:void(0);" class="stepbtn">进度查询</a></li>
+				<li class="stepbtn-lqdb"><a href="javascript:void(0);" class="stepbtn">录取对比</a></li>
+				<li class="stepbtn-qzbl"><a href="javascript:void(0);" class="stepbtn">签证办理</a></li>
+				<li class="stepbtn-cdtg"><a href="javascript:void(0);" class="stepbtn">初到他国</a></li>
+				<li class="stepbtn-xxx"><a href="javascript:void(0);" class="stepbtn" style="padding:0 14px;"></a></li>
+			</ul>
+		</div>
+		<script>
+			//2014-12-27 create qsm   样式自己写 插件不支持   本身的创建的TipsBox必须是绝对定位哦 。
+			(function ($){
+				
+				$.fn.toolTips = function (op){
+					
+					var defaults = {
+						
+						eventType : 'mouseenter',
+						
+						msg : '呵呵',   /*支持数组或者字符串*/
+						
+						deClass:'stepTips',
+						
+						animate : true,
+						
+						delayTime : 500,
+						
+						moveL : 20,
+						
+						movgTop : -32
+						
+					};
+					
+					var op = $.extend(defaults,op||{});
+					
+					return this.each(function (i) {
+						
+						var _this = $(this),
+						
+							dt = op.eventType,
+							
+							dMsg = op.msg;
+							
+							
+							_this.hover(function(){
+								
+								var showMsg = $.type(dMsg) == 'array' ? dMsg[i] : dMsg,
+								
+							        newTipBox = "<span class='stepTips'>"+showMsg+"<span class='arrow-right'></span></span>",
+								
+									fatherDom  = _this.parent(),
+									
+									prevDom = _this.prev(),
+								
+									fLeft = fatherDom.position().left,
+									
+									fTop = fatherDom.position().top,
+									
+									dLeft = fatherDom.width() + 15;
+
+									fatherDom.append(newTipBox);
+									
+									var dTop = fatherDom.find('.'+op.deClass).height()/2;
+									
+									$('.'+op.deClass).css({
+										
+										left : dLeft,
+										
+										top : -dTop,
+										
+										display:'none'
+										
+									});
+									
+									$('.'+op.deClass).fadeIn();
+								
+								
+							},function(){				
+								
+								var showMsg = $.type(dMsg) == 'array' ? dMsg[i] : dMsg,
+								
+							        newTipBox = "<span class='stepTips'>"+showMsg+"<span class='arrow-right'></span>",
+								
+									fatherDom  = _this.parent();
+																		
+									fatherDom.find('.'+op.deClass).fadeOut('normal',function(){
+										
+											fatherDom.find('.'+op.deClass).remove();
+										
+									})
+						
+							})
+							
+					});
+					
+				};
+				
+				/*msg*/
+				
+				var showmsgNew = ['无论是从感兴趣的专业，还是理想的职业出发，都能为您精准定位最适合的专业！','广罗各大院校，多种检索方法，为您开启智能选校模式！','最全面的申请材料明细，丰富多彩的模板库，让留学申请无懈可击！','自助保存功能、快捷网申系统、一键上传所有材料，分分钟助您通往名校！','全程跟进申请进度，实时掌握最新信息！','大到院校排名比拼，小到校园生活差异，让留学选择更加显而易见！',
+						'留学仅有院校Offer是不够的，一纸签证绝对影响大局！办理签证，留帮网助您一步到位！','初入异国他校，如何快速融入？留帮入学资讯，带您领略校园学习生活新风采！','留帮网助您打开梦幻留学大门，最终走入理想院校！'
+				];
+				
+				$('.stepbtn').toolTips({
+					
+					msg : showmsgNew
+			
+				});
+				
+			})(jQuery)
+		</script>
+	</body>
+</html>

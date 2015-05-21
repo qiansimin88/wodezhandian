@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	var string="border-bottom-color";
+	
+	function test(str)
+	{
+	    var arr=str.split('-'); //[border,bottom,color]    //通过字符串split的方法把字符串 转换成数组
+		
+		for(var i=1;i<arr.length;i++)  //var i=1;是因为驼峰命名法不需要第一个大写
+		{
+			arr[i]=arr[i].charAt(0).toUpperCase()+arr[i].substring(1);  //数组的每个数组 第一个字母是大写，其它的照抄
+			arr.join('')        //不数组通过join空字符的方法转换成字符串
+			
+		}
+		return arr	  //返回arr
+	}  
+	alert(test(string))   //调用
+</script>
+</head>
+
+<body>
+</body>
+</html>

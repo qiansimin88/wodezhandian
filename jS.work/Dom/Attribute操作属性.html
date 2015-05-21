@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+window.onload=function()
+{
+		var oTxt=document.getElementById('txt1');
+		var oBtn=document.getElementById('btn1');
+		
+		oBtn.onclick=function()
+		{
+			//oTxt.value='saf'
+			//oTxt['value']='sad'	
+			  oTxt.setAttribute('class','asdasdas');        //这是除了.和['']之后的第三种操作属性的方法，setAttribute('','')
+	
+		}
+		
+}
+
+</script>
+
+</head>
+
+<body>
+<input id="txt1" type="text"/>
+<input id="btn1" type="button" value="确定"/>
+
+</body>
+</html>

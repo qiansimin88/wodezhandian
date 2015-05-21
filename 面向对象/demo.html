@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+
+	var data = {
+		name : '钱思敏',
+		age :19	
+	}
+
+	function test (op) {
+		
+		this.name = op.name;
+		
+		this.age = op.age;
+		//
+		this.int();   //19
+		
+		this.showMsg(); // 20
+		
+		this.lo() //21
+		
+		this.ld()	//21
+		
+		this.int(); //19
+	}
+	
+	test.prototype.int =function(){
+		
+		alert(this.age+this.name)
+			
+	}
+	
+	test.prototype.showMsg=function(){
+		
+		this.age = 20;
+		
+		this.name = 'sd'
+		alert(this.age+this.name)
+		
+		
+	}
+	
+	test.prototype.lo =function(){
+		
+			this.age=21;
+			
+			alert(this.age+this.name)
+		
+	}
+	
+	test.prototype.ld=function(){	
+		
+		alert(this.age+this.name)
+	}
+	
+	var msgF = new test(data);
+
+	
+	
+</script>
+</head>
+
+<body>
+</body>
+</html>

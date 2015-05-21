@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+*{padding:0;margin:0;}
+#div1 {background:#FFF;border:1px dashed black;height:500px;width:700px;position:relative;}
+#div2 {background:#F00;height:100px;width:100px;position:absolute}
+</style>
+<script>
+	window.onload=function()
+	{
+		var oDiv1=document.getElementById('div1');
+		var oDiv2=document.getElementById('div2');
+		
+		oDiv2.onmousedown=function(ev)
+		{
+			var oEvent=ev||event;
+			var disX=oEvent.clientX-oDiv2.offsetLeft;
+			var disY=oEvent.clientY-oDiv2.offsetTop;
+			document.onmousemove=function(ev)
+			{
+				var oEvent=ev||event;
+				
+				var L=oEvent.clientX-disX;
+				var H=oEvent.clientY-disY;
+				
+				if(L<50)
+				{
+					L=0;	
+				}
+				else if(L>oDiv1.offsetWidth-oDiv2.offsetWidth)
+				{
+					L=oDiv1.offsetWidth-oDiv2.offsetWidth;	
+				}
+				
+				
+					oDiv2.style.left=L+'px';           //这里不需要加ELSE 。
+				
+				if(H<50)
+				{
+					H=0;	
+				}
+				else if(H>oDiv1.offsetHeight-oDiv2.offsetHeight)
+				{
+					H=oDiv1.offsetHeight-oDiv2.offsetHeight
+				}
+			
+					oDiv2.style.top=H+'px';	
+				
+				
+				
+			};
+			document.onmouseup=function()
+			{
+				document.onmousemove=null;
+				document.onmouup=null;	
+			};
+			return false    //解决火狐和chrome。IE9的BUG	
+		}	  
+	}
+</script>
+</head>
+
+<body>
+<div id="div1">
+<div id="div2"></div>
+</div>
+</body>
+</html>

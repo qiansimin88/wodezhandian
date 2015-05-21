@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	#red {width:200px;height:200px;background:#F00;position:absolute;}
+</style>
+<script src="../js/sea.js"></script>
+<script>
+	window.onload=function(){
+		//seajs.use是最终调用的形式 参数1是模块地址  参数2  是调用成功的回调函数 ，，exports是获得接口  
+		seajs.use('../concatJS/main.js');
+	};
+</script>
+</head>
+
+<body>
+<div id="red">
+</div>
+</body>
+</html>

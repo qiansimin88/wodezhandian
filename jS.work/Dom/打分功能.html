@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        span {
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            // 获取元素
+            var stars = document.getElementById('stars').getElementsByTagName('span');
+            var ret = document.getElementById('ret');
+            
+            //定义getStar函数
+            function getStar (n) {
+                for(var i=0;i<stars.length;i++){
+					//如果i<=穿过来的参数  那么循环中的i 也就是  之前的几个就变成红色星星，否则都是暗色
+                 	if(i<=n-1) {
+						stars[i].style.color='red'	
+					}else {
+						stars[i].style.color='';		
+					} 
+                }
+            }
+
+            // 每个星星节点的点击事件
+            
+            for (var i=0;i<stars.length;i++) {
+                stars[i].onclick=function(){
+					var starNum=this.getAttribute('star');
+					getStar(starNum);	
+				}
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="stars">
+    <span star="1">★</span>
+    <span star="2">★</span>
+    <span star="3">★</span>
+    <span star="4">★</span>
+    <span star="5">★</span>
+</div>
+<div id="ret"></div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	var str ='abcAloZc';
+	
+	var re=/([a-z]+)(\d+)?([A-Z])+/;
+	
+	alert(re.exec(str)) //abc123A,abc, 3    //exec  通常配合 正则加上（）分组来进行使用  例：这里是个数组 第一个匹配全部正则，第二个匹配第一个括号分组匹配的字符串abc,第三个匹配第二个分组匹配的数字3  因为括号在+号之前 所依只匹配到了一个数字  
+	
+</script>
+</head>
+
+<body>
+</body>
+</html>

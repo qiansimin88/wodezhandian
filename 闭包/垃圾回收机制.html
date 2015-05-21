@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+/*	function aaa()
+	{
+		var a=1               在函数里面使用变量就称为局部变量，每次调用都将删除变量，而下次调用 在出现；
+		a++;
+		alert(a)	
+	}
+	aaa();
+	aaa();*/
+	
+	/*
+	var a=1;
+	function aaa()           在函数外面的使用的变量被成为全局变量，每次都调用都是存在的，如例子，函数执行一次，自动为外面的a+1；所依全局变量不好。
+	{
+		a++;
+		alert(a)
+	}
+	aaa();
+	aaa();*/
+	
+	
+	
+	/*
+	(function aa(){                 //(函数)();这中方法和  外部aa()的用途是一样的，是一种简便的调用方法 
+		var a=1;
+		a++;
+		alert(a)	
+	})()*/
+
+
+	function aaa()
+	{
+		var a=1;
+	
+		return function bbb()
+		{
+			a++;
+			alert(a)	
+		}	
+	}
+	var b=aaa();
+	b();
+	b();
+	
+		
+</script>
+</head>
+
+<body>
+</body>
+</html>

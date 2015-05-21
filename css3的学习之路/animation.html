@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="gb2312">
+        <title>CSS3每日一练之动画属性-Animations | 前端开发网(W3Cfuns.com)！</title>
+        <style type="text/css">
+        *{margin:0; padding:0;}
+                body{font-size:14px; color:#333; font-family:"Microsoft Yahei";}
+                #box
+                {
+                        margin:0 auto;
+                        width:200px;
+                        height:200px;
+                        line-height:200px;
+                        color:#fff;
+                        text-align:center;
+                        font-size:14px;
+                        background:#f00;
+                }
+                
+                @-webkit-keyframes w3cfunsColors
+               {
+                        0%{background:#f00;}
+                        25%{background:#f0f;}
+                        50%{background:#00f;}
+                        75%{background:#0f0;-webkit-transform:translateX(200px)}
+                        100%{background:#ff0;}
+                }
+                
+                #box:hover
+                {
+                        -webkit-animation:w3cfunsColors 6s ease-in ;
+                }
+        </style>
+    </head>
+    
+    <body>
+            <div id="box">前端开发网(W3Cfuns.com)！</div>
+    </body>
+</html>

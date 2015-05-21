@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+		  	.wrap {margin:30px auto;width:300px;-webkit-perspective:800px;/*-webkit-transform-style:preserve-3d;*/position:relative;}
+		  	.wrap h2 {height:50px;background:#f03;text-align:center;font:16px/50px 'microsoft yahei';color:#fff;position:relative;z-index: 2;}
+		  	.wrap div {position:absolute;top:32px;left:0;-webkit-transform-style:preserve-3d;-webkit-transform-origin: center top;-webkit-transform: rotateX(-120deg);}
+		  	.wrap>div {top:50px;}
+		  	.wrap span {display:block;width:300px;height:32px;transition:0.6s;font:16px/32px "microsoft yahei";background:#6f3;text-indent: 15px;color:#fff;}
+		  	.wrap span:hover {background: #ff0;text-indent: 30px;}
+		</style>
+	</head>
+	<body>
+		<input type="button" value='伸缩'/>
+		<input type="button" value='展开'/>		
+		<div class="wrap">
+			<h2>标题</h2>
+			<div>
+				<span>第一张</span>
+				<div>
+				  	<span>第二张</span>
+				  	<div>
+				  		<span>第三张</span>
+				  		<div >
+				  			<span>第四张</span>
+				  			<div>
+				  				<span>第五张</span>
+				  				<div>
+				  					<span>第六张</span>
+				  					<div>
+				  						<span>第七张</span>
+				  					</div>
+				  				</div>
+				  			</div>
+				  		</div>
+				  	</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		
+		var wrap = document.querySelector('.wrap');
+		
+		var Box = wrap.getElementsByTagName('div');
+		
+		var btn = document.querySelectorAll('input');
+		
+		btn[0].onclick=function(){
+			
+			for(var i=0 ; i<Box.length;i++) {
+				
+				Box[i].style.webkitTransition ='0.6s '+(Box.length - i) * 100+'ms';
+				
+				Box[i].style.webkitTransform = 'rotateX(60deg)';
+				
+			}
+			
+		}
+		
+		btn[1].onclick=function(){
+			
+			for(var i=0 ; i<Box.length;i++) {
+				
+				Box[i].style.webkitTransition ='0.6s '+ i * 100+'ms';
+				
+				Box[i].style.webkitTransform = 'rotateX(0deg)';
+				
+			}
+			
+		}
+		
+	</script>
+</html>

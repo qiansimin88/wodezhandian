@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes" />
+    	<script src="sea.js"></script>
+    <script>
+    		seajs.use('pop',function(Pop){
+    			
+    			var bt = document.getElementById("alertBtn");
+    			
+    			bt.onclick= function (){
+    				
+    				var alertpop = new Pop({
+    					
+    						 content: '我是alert'
+
+    				});
+    				
+    				alertpop.pop();
+    				
+    			}
+    			
+    		})
+    	</script>
+	</head>
+	<body>
+			<a href="javascript:;" id="alertBtn">alert</a>
+	</body>
+		
+</html>

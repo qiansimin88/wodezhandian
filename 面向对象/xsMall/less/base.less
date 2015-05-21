@@ -1,0 +1,488 @@
+/*
+
+  LESS Master Sheet
+  originally by Roy (zzl1108@hotmail.com)
+
+  Copyright (c) 2012 Roy
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+*/
+
+
+/*
+==================================================
+    Brand-Specific Variables
+==================================================
+*/
+
+//page init
+.reset-old(){
+
+  html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure, footer, header, menu, nav, section, time, mark, audio, video, details, summary {
+    margin: 0;
+    padding: 0;
+    border: 0;
+   
+    font-weight: normal;
+    vertical-align: baseline;
+    background: transparent;
+  }
+
+  
+  body {
+
+    position:relative;
+  }
+
+  article, aside, figure, footer, header, nav, section, details, summary {display: block;}
+
+  *, *:before, *:after {}
+
+  img,
+  object,
+  embed {max-width: 100%;}
+
+  html {overflow-y: scroll;}
+
+  ul {list-style: none;}
+
+  blockquote, q {quotes: none;}
+
+  blockquote:before,
+  blockquote:after,
+  q:before,
+  q:after {content: ''; content: none;}
+
+  a {margin: 0; padding: 0; font-size: 100%; vertical-align: baseline; background: transparent;}
+
+  del {text-decoration: line-through;}
+
+  abbr[title], dfn[title] {border-bottom: 1px dotted #000; cursor: help;}
+
+  table {border-collapse: collapse; border-spacing: 0;}
+  th {font-weight: bold; vertical-align: bottom;}
+  td {font-weight: normal; vertical-align: top;}
+
+  hr {display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0;}
+
+  input, select {vertical-align: middle;}
+
+  pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    white-space: pre-line;
+    word-wrap: break-word;
+  }
+
+  input[type="radio"] {vertical-align: text-bottom;}
+  input[type="checkbox"] {vertical-align: bottom;}
+  .ie7 input[type="checkbox"] {vertical-align: baseline;}
+  .ie6 input {vertical-align: text-bottom;}
+
+  select, input, textarea {font: 99% sans-serif;}
+
+  table {font-size: inherit; font: 100%;}
+
+  small {font-size: 85%;}
+
+  strong {font-weight: bold;}
+
+  td, td img {vertical-align: top;}
+
+  sub, sup {font-size: 75%; line-height: 0; position: relative;}
+  sup {top: -0.5em;}
+  sub {bottom: -0.25em;}
+
+  pre, code, kbd, samp {font-family: monospace, sans-serif;}
+
+  .clickable,
+  label,
+  input[type=button],
+  input[type=submit],
+  input[type=file],
+  button {cursor: pointer;}
+
+  button, input, select, textarea {margin: 0;}
+
+  button,
+  input[type=button] {width: auto; overflow: visible;}
+
+  .ie7 img {-ms-interpolation-mode: bicubic;}
+
+  .clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
+  .clearfix:after { clear: both; }
+  .clearfix { zoom: 1; }
+}
+
+//left,right & top,bottom all center
+.pureCenter () {
+
+  position: absolute; top:0; left:0; bottom:0; right:0; margin:auto;
+}
+
+//border
+.border (@color,@width:1px,@style:solid){
+
+  border-style: @style;
+  border-width: @width;
+  border-color: @color;
+}
+
+//vertical-align
+.vl (@verticalAlign:middle){
+
+  vertical-align: @verticalAlign;
+}
+
+//cursor
+.cursor(@pointer:pointer){
+
+  cursor:@pointer;
+}
+
+//font-weight
+.bold (){
+
+  font-weight: bold;
+}
+
+//margin
+.m (@margin:auto){
+
+  margin:@margin;
+}
+
+.ml (@marginLeft:auto){
+
+  margin-left:@marginLeft;
+}
+
+.mr (@marginRight:auto){
+
+  margin-right:@marginRight;
+}
+
+.mt (@marginTop:auto){
+
+  margin-top:@marginTop;
+}
+
+.mb (@marginBottom:auto){
+
+  margin-bottom:@marginBottom;
+}
+
+//padding
+.p (@padding:auto,@bz:inherit){
+
+  padding:@padding; box-sizing:@bz;
+}
+
+.pl (@paddingLeft:auto,@bz:inherit){
+
+  padding-left:@paddingLeft; box-sizing:@bz;
+}
+
+.pr (@paddingRight:auto,@bz:inherit){
+
+  padding-right:@paddingRight; box-sizing:@bz;
+}
+
+.pt (@paddingTop:auto,@bz:inherit) {
+
+  padding-top:@paddingTop; box-sizing:@bz;
+}
+
+.pb (@paddingBottom:auto,@bz:inherit){
+
+  padding-bottom:@paddingBottom; box-sizing:@bz;
+} 
+
+//float
+.fl (){
+
+  float: left;
+}
+
+.fr (){
+
+  float: right;
+}
+
+//text-decoration
+.tdn (){
+
+  text-decoration: none !important;
+}
+
+.tdu (){
+
+  text-decoration: underline !important;
+}
+
+//position
+.posa(){
+
+  position: absolute;
+}
+
+.posf (){
+
+  position: fixed;
+}
+
+.posr (){
+
+  position: relative;
+}
+
+//show &&　hide
+.show (){
+
+  display: block;
+}
+
+.hide (){
+
+  display: none; content:'';
+}
+
+//background
+.bgUrl (@url,@position:0,@repeat:no-repeat){
+
+  background:url(@url) @position @repeat;
+}
+
+//opacity
+.opacity (@opacity:0.7){
+
+  filter:progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=@opacity);
+  opacity:@opacity;
+}
+
+//width equals height
+
+.wh (@wh){
+
+  width:@wh; height: @wh;
+}
+
+//height equals line-height
+
+.height (@height){
+
+  height: @height; line-height: @height;
+}
+
+.of (@overflow:hidden){
+
+  overflow:@overflow;
+}
+
+
+//clear
+.clear (){
+  
+  clear:both;
+}
+
+.clearfix() {
+  &:before,
+  &:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+//text
+.ta (){
+  
+  text-align:center;
+}
+
+.tl (){
+
+	text-align: left;
+}
+
+.tr (){
+
+	text-align: right;
+}
+
+.text-overflow() {
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-hide() {
+
+  font: ~"0/0" a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+/*
+==================================================
+    CSS3 Mixins
+==================================================
+*/
+
+//ie9+
+.radius (@radius:4px){
+
+  -moz-border-radius: @radius;
+  -webkit-border-radius: @radius;
+  border-radius: @radius;
+}
+
+//ie9+
+.circle (){
+
+  .radius(999px);
+}
+
+//ie9+
+.shadow (@pmr1:2px,@pmr2:1px,@pmr3:10px,@color:#ccc){
+
+  -moz-box-shadow:@arguments;
+  -webkit-box-shadow:@arguments;
+  box-shadow:@arguments;
+}
+
+//ie6+
+.gradient (@pmr1:#444,@pmr2:#999,@direction-x:left top,@direction-y:left bottom){
+
+  background-image: -moz-linear-gradient(@direction-x, @pmr1, @pmr2);
+  background-image: -webkit-gradient(linear,@direction-x, @direction-y, color-stop(0, @pmr1),color-stop(1, @pmr2));
+  background-image: -ms-linear-gradient(@direction-x, @pmr1, @pmr2);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=@pmr1, endColorstr=@pmr2, GradientType='0');
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr="@pmr1", endColorstr="@pmr2",GradientType='0')";
+}
+
+.text-shadow(@value: 0px 1px 5px #333) { text-shadow: @value; }
+
+.sizing (@type:border-box){
+  
+  box-sizing:@type;
+  -moz-box-sizing:@type;
+  -webkit-box-sizing:@type;
+}
+
+// Transitions
+.transition(@transition) {
+  -webkit-transition: @transition;
+          transition: @transition;
+}
+.transition-property(@transition-property) {
+  -webkit-transition-property: @transition-property;
+          transition-property: @transition-property;
+}
+.transition-delay(@transition-delay) {
+  -webkit-transition-delay: @transition-delay;
+          transition-delay: @transition-delay;
+}
+.transition-duration(@transition-duration) {
+  -webkit-transition-duration: @transition-duration;
+          transition-duration: @transition-duration;
+}
+.transition-transform(@transition) {
+  -webkit-transition: -webkit-transform @transition;
+     -moz-transition: -moz-transform @transition;
+       -o-transition: -o-transform @transition;
+          transition: transform @transition;
+}
+
+// Transformations
+.rotate(@degrees) {
+  -webkit-transform: rotate(@degrees);
+      -ms-transform: rotate(@degrees); // IE9+
+          transform: rotate(@degrees);
+}
+.scale(@ratio; @ratio-y...) {
+  -webkit-transform: scale(@ratio, @ratio-y);
+      -ms-transform: scale(@ratio, @ratio-y); // IE9 only
+          transform: scale(@ratio, @ratio-y);
+}
+.translate(@x; @y) {
+  -webkit-transform: translate(@x, @y);
+      -ms-transform: translate(@x, @y); // IE9+
+          transform: translate(@x, @y);
+}
+.skew(@x; @y) {
+  -webkit-transform: skew(@x, @y);
+      -ms-transform: skewX(@x) skewY(@y); // See https://github.com/twbs/bootstrap/issues/4885; IE9+
+          transform: skew(@x, @y);
+}
+.translate3d(@x; @y; @z) {
+  -webkit-transform: translate3d(@x, @y, @z);
+          transform: translate3d(@x, @y, @z);
+}
+
+.rotateX(@degrees) {
+  -webkit-transform: rotateX(@degrees);
+      -ms-transform: rotateX(@degrees); // IE9+
+          transform: rotateX(@degrees);
+}
+.rotateY(@degrees) {
+  -webkit-transform: rotateY(@degrees);
+      -ms-transform: rotateY(@degrees); // IE9+
+          transform: rotateY(@degrees);
+}
+.perspective(@perspective) {
+  -webkit-perspective: @perspective;
+     -moz-perspective: @perspective;
+          perspective: @perspective;
+}
+.perspective-origin(@perspective) {
+  -webkit-perspective-origin: @perspective;
+     -moz-perspective-origin: @perspective;
+          perspective-origin: @perspective;
+}
+.transform-origin(@origin) {
+  -webkit-transform-origin: @origin;
+     -moz-transform-origin: @origin;
+      -ms-transform-origin: @origin; // IE9 only
+          transform-origin: @origin;
+}
+
+// Animations
+.animation(@animation) {
+  -webkit-animation: @animation;
+          animation: @animation;
+}
+.animation-name(@name) {
+  -webkit-animation-name: @name;
+          animation-name: @name;
+}
+.animation-duration(@duration) {
+  -webkit-animation-duration: @duration;
+          animation-duration: @duration;
+}
+.animation-timing-function(@timing-function) {
+  -webkit-animation-timing-function: @timing-function;
+          animation-timing-function: @timing-function;
+}
+.animation-delay(@delay) {
+  -webkit-animation-delay: @delay;
+          animation-delay: @delay;
+}
+.animation-iteration-count(@iteration-count) {
+  -webkit-animation-iteration-count: @iteration-count;
+          animation-iteration-count: @iteration-count;
+}
+.animation-direction(@direction) {
+  -webkit-animation-direction: @direction;
+          animation-direction: @direction;
+}
+

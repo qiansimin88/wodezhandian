@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	var a=2;
+	var b='2';
+	if(a==b)
+	{
+		alert('等于')	   //等于	js==类型自动转换成一致
+	}
+	else
+	{
+		 alert('不等于'); 
+	}
+	
+	var a=true;
+	var b=-5;
+	if(b==a)
+	{
+		alert('相等');	
+	}
+	else
+	{
+		alert('不等')	  //不等
+	}
+	var c=-50;          
+	if(c)
+	{
+		alert('c是true')	 	//负数也是true
+	}
+	else
+	{
+		alert('c是false')	
+	};
+	var d='0';
+	if(d)
+	{
+		alert('字符串0等于true')	  //字符串0的length是1  所依true  php则等false
+	}
+	else
+	{
+		alert('字符串0等于false')	
+	};
+	
+	var o='asdasd456';
+	alert(o+0)
+</script>
+</head>
+
+<body>
+</body>
+</html>

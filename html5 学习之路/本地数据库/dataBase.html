@@ -1,0 +1,101 @@
+<!Doctype html>
+<html>
+	<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    	<script>
+		window.onload=function(){
+			var aName=document.getElementById('name');
+	
+			//必须在服务器下运行
+			if(window.openDatabase){  //判断浏览器是否支持本地数据库对象，目前只有chrome支持
+				var dataBase=openDatabase('student','1.0','学生表',1024*1024,function(){});	//创建数据库 参数自行分别是库名，版本号，描述，字节大小，错误函数（可选），赋值给一个变量  引用性质  已经创建好了
+				dataBase.transaction(function(fx){  //操作数据库的函数 参数是数据库操作的句柄对象
+					fx.executeSql(					//数据库操作函数  参数写成数据库操作语言
+						"create table if not exists stu (id REAL UNIQUE,name TEXT)", //创建表 参数有ID 和NAME
+						[],  			//
+						function(){
+							alert('创建成功')					//创建表成功的函数	
+						},   
+						function(){
+											 //创建表失败的函数	
+						}
+					);
+					//插入数据   同样用的是fx.executeSql语句
+					fx.executeSql(				
+						"insert into stu (id,name) values(?,?)", 
+						[1,'qiansimin'],  			//
+						function(){
+							alert('数据插入成功')					
+						},   
+						function(){
+										
+						}
+					);
+					//插入数据   同样用的是fx.executeSql语句
+					fx.executeSql(				
+						"insert into stu (id,name) values(?,?)", 
+						[2,'jack'],  			//
+						function(){
+							alert('数据插入成功')					
+						},   
+						function(){
+										
+						}
+					);
+					//更新数据
+					fx.executeSql(				
+						"update stu set name=? where id=?", 
+						['jay',1],  			//
+						function(){
+							alert('更新成功成功')					
+						},   
+						function(){
+										
+						}
+					);
+					//查询数据
+					fx.executeSql(				
+						"select *from stu", 
+						[],  			//
+						function(fx,result){      //result  是查询的结果集合
+						//	alert(result.rows.length)	//查询表中所有行的lengtg
+							
+							for(var i=0;i<result.rows.length;i++){  //把所有行数循环
+								aName.innerHTML+=result.rows.item(i)['name']	//弹出所有行中的name值  循环中用+=就是把所有的类目相加
+							};
+							
+						},   
+						function(){
+										
+						}
+					);
+					//删除数据
+					fx.executeSql(				
+						"delete from stu where id=?", 
+						[1],  			//
+						function(){
+							alert('删除成功')					
+						},   
+						function(){
+										
+						}
+					);
+					//直接删除这个表
+					fx.executeSql(				
+						"drop table stu", 
+						[],  			//
+						function(){
+							alert('删除表成功')					
+						}
+					);
+					
+				});
+			};
+		};
+		</script>
+    </head>
+    <body>
+    	<div id="name" style="border:1px solid #000;padding:2px;">
+        </div>
+    </body>
+</html>

@@ -1,0 +1,15 @@
+{
+    "appid":"HelloMUI",
+    "iOS":{
+    	"version":"0.5.1",
+    	"title":"Hello MUI(0.5.1)版本更新",
+    	"note":"完善预加载机制\n",
+    	"url":"itms-apps://itunes.apple.com/cn/app/hello-h5+/id682211190?l=zh&mt=8"
+    },
+    "Android":{
+    	"version":"0.5.1",
+    	"title":"Hello MUI(0.5.1)版本更新",
+    	"note":"完善预加载机制\n",
+    	"url":"http://d.m3w.cn/helloh5p/HelloMUI.apk"
+    }
+}

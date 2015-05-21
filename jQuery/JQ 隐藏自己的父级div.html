@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	p {height:200px;width:200px;background:red;}
+</style>
+<script src="../js/jquery-2.0.2.min.js"></script>
+<script>
+	$(function(){
+		$('input').click(function(){
+			$(this).parents('.hide').hide(500)	
+	})		
+})
+</script>
+
+</head>
+
+<body>
+<h2>中国</h2>
+<div class="hide">
+<input id="btn1" type="button" value="点击隐藏"/>
+<p>asddddddddddd</p>
+</div>
+
+
+<h2>美国</h2>
+<div class="hide">
+<input id='btn2' type="button" value="点击隐藏"/>
+<p>asddddddddddd</p>
+
+</div>
+</body>
+</html>

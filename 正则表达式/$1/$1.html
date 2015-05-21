@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	var str = 'my name is (zhoujie)';    //把括号去掉 只保留其中的值 就要用到分组中的 括号了
+		
+	var re =/\((.*)\)/g;     //     匹配括号  并且括号中的任意字符是一个分组
+	
+	alert(str.replace(re,'$1')) //my name is zhoujie    //$1  表示  正则表达式中 分组  中 匹配到的字符  ;这里的意思就是把 括号 和 其中的内容替换成 第一个分组的内容 
+</script>
+</head>
+
+<body>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	#c1 {background:#fff}
+	body {background:#000;}
+</style>
+<script>
+	window.onload=function(){
+		
+		var oC= document.getElementById('c1');
+		
+		var oGc = oC.getContext('2d');
+		
+		//arc(x,y,半径,起始弧度，结束弧度，旋转方向)
+		//弧度与角度的关系：弧度=角度*Math.Pi/180
+		//旋转方向：顺时针（false）  ；逆时针（true）
+	
+		function toDraw() {
+			
+			//定时器每次会 画 一次，所以每次都要清空画布。
+			oGc.clearRect(0,0,oC.width,oC.height);
+			
+			
+			var x=200,y=200,r=150;
+			
+			var oDate=new Date();
+			
+			var oHours = oDate.getHours();
+			var oMin =oDate.getMinutes();
+			var oSen =oDate.getSeconds();
+			
+			//时钟的弧度变量     -90是因为canvas的圆起始点是在3点的位置上 -90度就变成0点了,,时钟还要受分钟的影响
+			var oHoursLine = (-90+(oHours+oMin/60)*30)*Math.PI/180;
+			//分钟变量
+			var oMinLine  =(-90+oMin*6)*Math.PI/180;
+			
+			var oSenLine  =(-90+oSen*6)*Math.PI/180;
+			
+			oGc.beginPath();
+				
+			//60条线  每条线的相隔6度
+			for(var i=0;i<60;i++) {
+				
+				oGc.moveTo(x,y);
+				
+				oGc.arc(x,y,r,6*i*Math.PI/180,6*(i+1)*Math.PI/180,false);
+				
+			}	
+			oGc.closePath();
+			
+			//画线
+			oGc.stroke();
+			
+			//覆盖白色原盘
+			
+			oGc.beginPath();
+			
+			oGc.fillStyle='white';
+			
+			oGc.moveTo(x,y);
+		
+			oGc.arc(x,y,140,0,360*Math.PI/180,false);
+			
+			oGc.closePath();
+			
+			oGc.fill();
+			
+			//5分钟的大刻度
+			
+			oGc.beginPath();
+			
+			oGc.lineWidth=3;
+			
+			for(var j=0;j<12;j++) {
+				
+				oGc.moveTo(x,y);
+				
+				oGc.arc(x,y,r,30*j*Math.PI/180,30*(j+1)*Math.PI/180,false);
+					
+			}
+			
+			oGc.closePath();
+			
+			//画线
+			oGc.stroke();
+			
+			
+			//覆盖白色圆盘
+			
+			oGc.beginPath();
+			
+			oGc.fillStyle='white';
+			
+			oGc.moveTo(x,y);
+		
+			oGc.arc(x,y,130,0,360*Math.PI/180,false);
+			
+			oGc.closePath();
+			
+			oGc.fill();
+			
+			
+			//时钟线
+			
+			oGc.beginPath();
+			
+			oGc.lineWidth=5;
+			
+			oGc.moveTo(x,y);
+			
+			oGc.arc(x,y,r*10/20,oHoursLine,oHoursLine,false);
+			
+			oGc.closePath();
+			
+			oGc.stroke();
+			
+			//分钟线
+			
+			oGc.beginPath();
+			
+			oGc.lineWidth=3;
+			
+			oGc.moveTo(x,y);
+			
+			oGc.arc(x,y,r*14/20,oMinLine,oMinLine,false);
+			
+			oGc.closePath();
+			
+			oGc.stroke();
+			
+			//秒钟
+			
+			oGc.beginPath();
+			
+			oGc.lineWidth=1;
+			
+			oGc.moveTo(x,y);
+			
+			oGc.arc(x,y,r*16/20,oSenLine,oSenLine,false);
+			
+			oGc.closePath();
+			
+			oGc.stroke();
+			
+		};
+		
+		toDraw();
+				
+		setInterval(toDraw,1000);
+		
+			
+	}
+</script>
+</head>
+
+<body>
+<canvas id="c1" width='400' height='400'></canvas>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../../js/jquery-1.7.2.min.js"></script>
+	<script src="rollPlugin-jquery.js"></script>
+	<link href="index.css" rel="stylesheet"/>
+	<script>
+		//example
+
+		$(function () {
+
+			$('.wrap').rollPlugin({
+
+				'box' : '.container ul',
+
+				'auto' :true
+
+			});
+
+		})
+	</script>
+</head>
+<body>
+	<div class="wrap">
+		<div class="container">
+			<ul class="ulList">
+				<li><img src="../../img2/1.jpg" alt=""></li>
+				<li><img src="../../img2/2.jpg" alt=""></li>
+				<li><img src="../../img2/3.jpg" alt=""></li>
+				<li><img src="../../img2/4.jpg" alt=""></li>
+				<li><img src="../../img2/5.jpg" alt=""></li>
+				<li><img src="../../img2/6.jpg" alt=""></li>
+			</ul>
+		</div>
+		<div class="arrow">
+			<a href="javascript:;" class="prev" title="后一张">&lt;</a>
+			<a href="javascript:;" class="next" title="后一张">&gt;</a>
+		</div>
+	</div>
+</body>
+</html>

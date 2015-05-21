@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+<style>
+*{margin:0;padding:0} 
+#div1 {width:720px;margin:0 auto;}
+#div1 li {margin:10px;list-style:none;float:left;height:220px;width:220px;z-index:1;}
+#div1 .active {border:1px dashed black;}
+</style>
+<script src="../js/prefectmove.js"></script>
+<script>
+
+	window.onload=function()
+	{
+		/*
+			1.对于大量的LI运动，一半都要进行布局转换。
+			2.给父级加上相对定位，用JS配合JSON给每个LI进行 位置的固定，如LEFT&TOP和绝对定位的定义，把文档流的布局转换成了绝对定位。；
+			3.在使用for循环的时候一定要用两个for循环，要给LI设置绝对定位单独弄个for循环。
+		*/
+		var oDiv=document.getElementById('div1');
+		    oDiv.innerHTML+=oDiv.innerHTML;
+	    var aLi=oDiv.getElementsByTagName('li');
+		var pos=[];  //创建一个位置数组
+		var iNowZindex=2;
+		
+		for(var i=0;i<aLi.length;i++)
+		{
+			pos[i]=	{left:aLi[i].offsetLeft,top:aLi[i].offsetTop};   //数组和json的配合，方便下面取原始的位置。
+			
+		}
+		for(var i=0;i<aLi.length;i++)
+		{
+			aLi[i].style.left=pos[i].left+'px'; //给每个li定义原来的left和top 保持不变，，重要的是加上绝对定位，切记在CSS中把父级加上相对定位                                                  别忘记了。
+			aLi[i].style.top=pos[i].top+'px';
+			
+			aLi[i].style.position="absolute";
+				
+			
+			
+			aLi[i].index=i;
+		}
+		//拖拽开始
+		
+		
+		for (var i=0;i<aLi.length;i++)
+		{
+			setDrag(aLi[i])	         //for循环给每个ali都加上拖拽效果。
+		}
+		function setDrag(obj)
+		{
+			obj.onmousedown=function(ev)
+			{
+				obj.style.zIndex=iNowZindex++;
+				var oEvent=ev||event;
+				var disX=oEvent.clientX-obj.offsetLeft;
+				var disY=oEvent.clientY-obj.offsetTop;
+				
+				document.onmousemove=function(ev)
+				{
+					
+					var oEvent=ev||event;
+					var L=oEvent.clientX-disX+'px';
+					var T=oEvent.clientY-disY+'px';
+					
+					obj.style.left=L;
+					obj.style.top=T;
+					
+					for(var i=0;i<aLi.length;i++)   //设置for循环因为每个ali都可能是为碰撞的第二个对象
+					{
+						aLi[i].className='';
+							  						 //continue 语句，跳过为true的部分；
+						
+						/*aLi[i].className='';     //方法1，让每个aLi的className=''和选项卡道理类似；
+						if(test(obj,aLi[i]))
+						{
+							aLi[i].className="active";	
+						}*/
+					/*	else
+						{
+							aLi[i].className=""	    //方法2
+						}
+							*/
+					}
+					var bestNear=near(obj)
+				                                          //碰撞最近的ali加上classname
+					if(bestNear)
+					{
+						bestNear.className='active'
+					}
+				}
+				document.onmouseup=function()
+				{
+					document.onmousemove=null;
+					document.onmousemove=null;	
+						
+					var oNear=near(obj)
+					
+					if(oNear)
+					{
+						oNear.className='';
+						move (oNear,pos[obj.index])	
+						move (obj,pos[oNear.index])   //碰撞交换碰撞与被碰撞两个ali的left和top
+					
+						
+						var tmp=0;
+						tmp=obj.index;
+						obj.index=oNear.index;
+						oNear.index=tmp;
+					}
+					else
+					{
+						move(obj,pos[obj.index])	 //没有碰撞就返回原来位置，这里要注意要在上面给ali[i]加上index索引，方便下面引用，和数组配合 返回原来的位置，
+					}	
+				}
+				clearInterval(obj.timer)
+				return false;	
+			}	
+		}
+		
+		//碰撞检测
+		
+		function test(obj1,obj2)
+		{                                   //创建一个检测函数，设置两个obj，分别写出两个的各个部分， 
+			var l1=obj1.offsetLeft;
+			var w1=l1+obj1.offsetWidth;        
+			var t1=obj1.offsetTop;
+			var h1=t1+obj1.offsetHeight;
+			
+			var l2=obj2.offsetLeft;
+			var w2=l2+obj2.offsetWidth;
+			var t2=obj2.offsetTop;
+			var h2=t2+obj2.offsetHeight;
+			
+			if(l1>w2||w1<l2||t1>h2||h1<t2)    //这里的都为不碰撞，不碰撞返回false
+			{
+				return false;	       // 碰撞为true
+			}
+			else
+			{
+				 return true;	
+			}
+		}
+		function getDis(obj1,obj2)
+		{
+			var a=obj1.offsetLeft-obj2.offsetLeft;
+			var b=obj2.offsetTop-obj2.offsetTop;
+			
+			var c=Math.sqrt(a*a+b*b)
+			
+			return c	
+		}
+		
+		function near(obj)                          //找到碰撞的，并且最近的。
+		{
+			var iMin=999999;
+			var iIndex=-1;
+			for(var i=0;i<aLi.length;i++)
+			{
+				if(obj==aLi[i]) continue           //相同的过滤
+				if(test(obj,aLi[i]))               //找到所有碰撞的
+				{
+					var dis=getDis(obj,aLi[i])     //用一个变量储存 所有距离
+					if(iMin>dis)
+					{
+						iMin=dis;
+						iIndex=i;	       // 得到最小的索引
+					}	  
+				}	
+			}
+			
+			if(iIndex==-1)
+			{
+				return null;	
+			}
+			else
+			{
+				return aLi[iIndex]	     //如果碰撞就return这个ali
+			}
+		}
+		
+	}
+</script>
+
+<body>
+<ul id="div1">
+	<li><img src="../img2/1.jpg" alt="1"/></li>
+    <li><img src="../img2/2.jpg" alt="1"/></li>
+    <li><img src="../img2/3.jpg" alt="1"/></li>
+    <li><img src="../img2/4.jpg" alt="1"/></li>
+    <li><img src="../img2/5.jpg" alt="1"/></li>
+    
+</ul>
+</body>
+</html>

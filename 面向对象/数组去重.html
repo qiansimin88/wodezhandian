@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>	
+	Array.prototype.selectone=function(){
+		var newArray=[];
+		
+		function isIn(arr,value){
+			for(var i=0;i<arr.length;i++){
+				if(arr[i]==value){
+					return false
+				}else{
+					return true;	
+				}
+			};
+		};
+		
+		for(var i=0;i<this.length;i++){
+			var _this=this[i];
+			if(isIn(newArray,_this)){
+				newArray.push(_this)
+			}
+		};
+		return newArray;		
+	};
+	var arr=new Array(1,2,3,3,2,1,0,1,3,4);
+	alert(arr.selectone());
+</script>
+</head>
+
+<body>
+</body>
+</html>

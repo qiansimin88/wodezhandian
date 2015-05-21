@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	window.onload=function()
+	{
+		var oTxt=document.getElementById('txt1');
+		var oBtn=document.getElementById('btn1');
+		var oUl=document.getElementById('ull')
+		oBtn.onclick=function()
+		{
+			var aLi=oUl.getElementsByTagName('li');
+			var oLi=document.createElement('li');
+			//oUl.appendChild(oLi)              这个是附属增加子节点，但是顺序往后排
+					
+			oLi.innerHTML=oTxt.value;	
+			if(aLi.length>0)					//兼容IE浏览器无法识别不存在的aLi。所依在这边判断。
+			{
+				oUl.insertBefore(oLi,aLi[0]);    //FF  chrome
+			}
+			else
+			{
+				oUl.appendChild(oLi);     //IE
+			}
+		}
+	}
+</script>
+</head>
+
+<body>
+<input type="text" id="txt1"/>
+<input type="button" id="btn1"/ value="提交">
+	<ul id="ull">
+    
+    </ul>
+
+
+</body>
+</html>

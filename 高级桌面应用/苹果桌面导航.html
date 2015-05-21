@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+<style>
+* {margin:0;padding:0;}
+#div1 img {width:64px;}
+#div1 {text-align:center;position:absolute;bottom:0;width:100%}
+input {margin-bottom:500px;}
+</style>
+<script>
+
+	/*
+		整体思路
+		0.因为是根据鼠标的移动位置，所依肯定要用document.onmousemove=function来写
+		1.因为根据鼠标移动的位置离图片的距离的大小来判断图片的大小，所依首先把所有图片的宽度设置为原来的一半（宽高自动等比例）。
+		2.因为越往中间越大，所依要算出每个img的中心点坐标，联想到，offsetLeft和top这只是img左上角的原点，所依加上一半的offsetWIdth和offsetHeight就		          可以了。
+		3.利用股沟定理 Math.pow(c,2)=Math.pow(b,2)+Math.pow(b,2),(Math.pow(X,X)即是算立方的)，转换成c=Math.sqrt(a*a+b*b),这里的C就是鼠标         距离img中心点的距离。
+		4. 得出距离，想办法设置一个必烈，如C/300，C越大比例越大，反应到图片上面就是距离越远图片越大，所以不科学，我们转换成C=1-C/300，现在就是越远越小了；
+		5.用这个比例乘以图片的最大值，得出最大图片，在在前面加上IF判断  若 比例小于0.5即一半，则比例为0.5，则最小的图片就是原来图片的一半。
+		6.整体思路就是距离的大小和图片的大小成比例关系，则图片的大小则时时变换
+	*/
+	document.onmousemove=function(ev)
+	{
+		var oDiv=document.getElementById('div1')
+		var oTxt=document.getElementsByTagName('input');
+		var oImg=document.getElementsByTagName('img');
+		var oEvent=ev||event;
+		
+		for(var i=0;i<oTxt.length;i++)
+		{
+			var x=oImg[i].offsetLeft+oImg[i].offsetWidth/2;         
+			var y=oImg[i].offsetTop+oDiv.offsetTop+oImg[i].offsetHeight/2;  
+																				//确定每个图片的中心点位置
+			oTxt[i].value='X:'+x+'Y:'+y;
+			
+			var a=x-oEvent.clientX;
+			var b=y-oEvent.clientY;
+			                            
+			var c=Math.sqrt(Math.pow(a,2)+b*b);   //开平方 勾股定理 c=Math.sqrt(a^2+b^2)
+			var sCale=1-c/300;     // 巧用1-来使得越远越小；
+			if(sCale<0.5)
+			{					//最小便是图片的一半大小
+				sCale=0.5	
+			};
+			oImg[i].style.width=sCale*128+'px'    //乘以图片原本的宽度，则SCALE等于1则为最大值。
+		}
+		
+	}
+</script>
+<body>
+<input type="text" /><input type="text" /><input type="text" /><input type="text" /><input type="text" />
+<div id="div1">
+	<img src="../img2/appalemenu/1.png" alt="1"/>
+    <img src="../img2/appalemenu/2.png" alt="2"/>
+    <img src="../img2/appalemenu/3.png" alt="3"/>
+    <img src="../img2/appalemenu/4.png" alt="4"/>
+    <img src="../img2/appalemenu/5.png" alt="5"/>
+</div>
+</body>
+</html>

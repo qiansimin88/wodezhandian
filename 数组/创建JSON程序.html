@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+
+	/*
+	*		最终返回  已优惠X元 还差X元 即可优惠X元
+	*
+	*/
+
+	//价格区间有关
+	var section  =  {
+		
+		minPrice : 50,
+		
+		maxPrice : 200,
+		
+		//价格区间
+		priceSection  : {
+			//优惠  费率和价格区间
+			50 : {rate:0.1,r:[50,100]},
+			
+			100 : {rate:0.2,r:[100,150]},
+			
+			150 : {rate:0.1,r:[150,200]},
+			
+			200 : {rate:0.1,r:[200,250]} 
+				
+		}
+	}
+	
+	/*
+	*
+	*   parm : num  用户充值的金额
+	*	返回一个JSON对象  包含：
+	*	
+	*	hasFavorable:已经优惠
+	*	differenceAmount:还差多少元
+	*	willFavorable:即可优惠多少元
+	*
+	*/
+	function favorable (num){
+		//说明在在最小和最大值之间
+		if(! (num>=section.minPrice && num<=section.maxPrice)) {
+	
+			alert('您目前消费的金额还不在优惠之内哦')
+			return;
+				
+		 };
+		 //所有的价格区间
+		var priceSection = section.priceSection;
+		var h,d,w;
+		for( i in priceSection) {
+			
+			var priceSectionR = priceSection[i]['r'],
+				 rate =priceSection[i]['rate'];
+			
+			if(num>=priceSectionR[0] && num <=priceSectionR[1]) {
+				
+				h = priceSectionR[0]*rate;
+				d = priceSectionR[1] - num;
+				w = priceSection[priceSectionR[1]]['rate']*priceSectionR[1];
+				
+				break;	
+			}
+				
+		};
+		//函数返回一个带有数据的对象
+		return {
+			
+			hasFavorable:h,
+			differenceAmount:d,
+			willFavorable:w				
+		}
+			
+	};
+	
+console.log(favorable(139))
+	
+</script>
+</head>
+
+<body>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	/**
+		1.闭包就是一个函数 内部返回了另外一个函数
+		2.JS的作用域机制导致  外部函数ob()执行 那么直接引用了 内部return的函数closeb()  因为内部函数可以访问外部函数内的所有变量和函数 ，所依  外部函数的内的变量 会和这个内部函数一直被保存在 内存中，不被销毁
+		3.  这个例子    ob()执行=>closeb函数变成了全局函数  在在后面加上一个括号 就立即执行了， 当然弹出this.b的属性了，又因为  内部函数是全局window执行环境下的  所依 this指的就是window当然弹出 全局变量hehe 
+	
+	*/
+
+	var b='hehe'
+	function ob(){
+		var i=0;
+		var b='json';
+		function closeb(){
+			alert(this.b)
+		}
+		return closeb;	
+	}
+	ob()();
+	
+</script>
+</head>
+
+<body>
+</body>
+</html>

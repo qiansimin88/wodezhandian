@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+
+//方法1
+/*function createPerson(name,qq)       //构造函数
+{								//工厂模式
+	var obj=new Object();        //原料、
+	
+	 //加工
+	obj.name=name;
+	obj.qq=qq;
+	
+	obj.showName=function()
+	{ 
+		alert('我的名字是'+this.name)
+	}
+	obj.showQQ=function()
+	{
+		alert('我的QQ号是：'+this.qq)	
+	}
+	
+	
+	//出厂
+	return obj;                         //把obj对象返还给函数。不然就undefined;
+};
+	var	obj=createPerson('qiansimin',45645)
+	obj.showName();
+	obj.showQQ();
+	alert(obj.qq)
+	
+	var obj2=createPerson('zhoujielun',6546)
+	obj2.showName();
+	obj2.showQQ();*/
+	
+//方法2
+/*function createPerson(name,qq)
+{
+		this.qq=qq
+		this.name=name;
+		
+		this.showName=function()
+		{
+			alert(this.name+'你好')	
+		}
+		this.showqq=function()
+		{
+			alert(this.qq+'我的QQ')	
+		}
+}
+
+var obj=new createPerson("钱思敏" ,5464646)
+	obj.showName();
+	obj.showqq();*/
+	
+	
+//终结版
+	function createPerson(name,qq)             //构造函数里面加属性。
+{
+		this.qq=qq
+		this.name=name;
+		
+}
+                                     
+createPerson.prototype.showName=function()     //原型里面加方法
+{   
+	alert(this.name+'你好')		
+}
+createPerson.prototype.showqq=function()
+{                                            //混合方式构造对象
+	alert(this.qq+'我的QQ')	
+
+}
+var obj=new createPerson("钱思敏" ,5464646)
+	alert(obj.name)
+	obj.showName();
+	obj.showqq();
+	
+var obj2=new createPerson("思敏" ,5464646)
+	obj2.showName();
+	obj2.showqq();
+	
+	
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

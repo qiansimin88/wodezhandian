@@ -1,0 +1,44 @@
+
+body {font-size:1em;.yahei;}
+
+.header {
+    height:33px;background:@baseColor;line-height:33px;
+    .header-reg {
+        height:100%;color:#fff;
+        a {color:#fff;}
+        .reg-wrap {
+            float:right;padding-right:22px;
+        }
+    }
+}
+.nav-wrap {height:100px;box-shadow: 0 5px 5px #dddddd;padding:30px 10px 10px 0;
+   .nav-lists {
+      .nav-list {float:right;
+
+      	.rotateY180 {opacity:1;-webkit-transform:rotateY(0deg);}
+        li {width:50px;float:left;text-align: center;display:table;margin-right:1em;opacity:0;-webkit-transform:rotateY(-180deg);
+
+            a {text-align:center;display:inline-block;display: table-cell;text-align: center;
+                span:nth-of-type(1) {display:inline-block;background:url(../img/xs-icon.png) no-repeat;width:50px;height:40px;}
+                span:nth-of-type(2) {.yahei;color:@baseColor;display:block;text-align:center;font-size:1em;}
+                 span.hf-cz {background-position:3px 0;}
+                 span.liuliang-cz {background-position:3px -47px;}
+                 span.qq-cz {background-position:3px -93px;}
+                 span.gm-cz {background-position:3px -140px;}
+
+            }
+           
+        }
+     }
+       
+   }
+}
+.footer {
+    height:180px;background:@baseHui;
+    .footer-wrap {
+        .yahei;
+        text-align:center;color:#fff;padding-top:3.33em;line-height:21.18px;letter-spacing: 0.166em;
+        div:nth-of-type(1) {a {color:#fff}}
+        div:nth-of-type(2) {a {color:#fff;}}
+    }
+}

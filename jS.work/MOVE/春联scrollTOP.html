@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style>
+#div1 { height:200px;width:100px;background:#F00;position:absolute;right:0;bottom:0;}
+</style>
+<script>
+	window.onscroll=function()
+	{     //oEvent.clienX和oEvent.clientY就是鼠标的时时坐标
+		/*document.documentElement.scrollTop获取HTML的滚动条的实时高度；document.body.scrollTop获取BODY的滚动条高度。*/
+			var oDiv=document.getElementById('div1');
+			var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;//获取滚动条高度
+			//oDiv.style.top=document.documentElement.clientHeight-oDiv.offsetHeight+scrollTop+'px';//不稳定，闪动不好。
+			move (parseInt((document.documentElement.clientHeight-oDiv.offsetHeight)/2+scrollTop))
+						//oDiv的 高度   使其在可是页面的一半		
+	}
+												//document.documentElement.clientHeight可视区的高
+	timer=null;
+	function move(target)
+	{
+		oDiv=document.getElementById('div1');
+		clearInterval(timer)
+		timer=setInterval(function(){
+			var speed=(target-oDiv.offsetTop)/10
+			speed=speed>0?Math.ceil(speed):Math.floor(speed);
+			if(target==oDiv.offsetTop)
+			{
+				clearInterval(timer)	
+			}
+			else
+			{
+				var oBtn=document.getElementById('btn1');
+				oDiv.style.top=oDiv.offsetTop+speed+'px'
+				document.title=target
+				oBtn.value=oDiv.offsetTop      //帮助分析问题。这里是目标和ODIV的offsetTop有了0.5导致oDiv乱跳，在上面加上parseInt就可以了
+				
+			}
+			
+		},30)	
+		
+	}
+</script>
+</head>
+
+<body style="height:2000px;">
+<div id="div1"></div>
+<input id="btn1" type="text" style="position:fixed"/> 
+</body>
+</html>

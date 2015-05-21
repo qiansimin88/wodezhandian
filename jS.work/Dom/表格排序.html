@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	window.onload=function()
+	{
+		var oBtn1=document.getElementById('btn1');
+		var oTab=document.getElementById('tab');
+		oBtn1.onclick=function()
+		{
+			var arr=[];
+			for(var i=0;i<oTab.tBodies[0].rows.length;i++)
+			{
+				arr[i]=oTab.tBodies[0].rows[i];	
+			}	
+			arr.sort(function(tr1,tr2){
+					var n1=parseInt(tr1.cells[0].innerHTML);
+					var n2=parseInt(tr2.cells[0].innerHTML);
+					return n1-n2
+				})
+				for(var i=0;i<arr.length;i++)
+				{
+					oTab.tBodies[0].appendChild(arr[i])	
+				}
+		}
+	}
+
+
+</script>
+
+
+</head>
+<body>
+<input id="btn1" type="button" value="排序"/>
+<table id="tab" border="1" width="500px" >
+	<thead>
+    	<th>ID</th><th>姓名</th><th>年龄</th><th>操作</th>
+    </thead>
+    <tbody>
+    	<tr><td>1</td><td>小王</td><td>21</td><td></td></tr>
+        <tr><td>6</td><td>王思</td><td>22</td><td></td></tr>
+        <tr><td>5</td><td>blue</td><td>23</td><td></td></tr>
+        <tr><td>8</td><td>小李</td><td>24</td><td></td></tr>
+        <tr><td>3</td><td>王李</td><td>24</td><td></td></tr>
+        <tr><td>2</td><td>张思</td><td>24</td><td></td></tr>
+    </tbody>
+</table>
+
+</body>
+</html>

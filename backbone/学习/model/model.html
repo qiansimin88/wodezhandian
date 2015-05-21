@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title> 
+<script src="../../lib/jquery.js"></script>
+<script src="../../lib/underscore.js"></script>
+<script src="../../lib/backbone.js"></script>
+<script>
+/*
+*最简单的模型
+
+	var Man = Backbone.Model.extend({
+		
+		initialize : function () {
+			
+			alert('hey,you create me !')	
+				
+		}	
+		
+	});
+	
+	var man = new Man;
+*/
+
+/*
+*复杂的模型
+*/
+	var Man = Backbone.Model.extend({
+		
+		url : 'man' ,
+		
+		defaults : {
+			
+			name : 'qiansimin',
+			
+			age : 18
+				
+		},
+		
+		initialize : function () {
+			
+			console.log('create a model');
+			
+			this.on('change:name',function (model) {
+				
+				var setName = this.get('name');
+				
+				alert('name属性已经改变为:'+setName);
+							
+			});
+			//监听失败
+			this.on('invalid',function (model,error) {
+				
+				//这里的error就是下面的validate里面返回的错误信息
+				alert(error)
+				
+			});
+			
+		},
+		//验证事件  （attr,options）
+		validate : function (attr,op) {
+			//attr表示当前模型的属性
+			if(attr.name.length < 3 || attr.name == '') {
+				
+				return 'name不能小于3位或者为空';
+				
+			};
+			
+		}
+		
+	});
+	
+	//实例化一个model
+	
+	var man = new Man;
+	
+		man.set({'name':'qsd'});
+		
+		//save后开启验证模式 并且post请求提交所有的属性  
+		//man.fetch()    get提交 
+		man.fetch({
+			
+			success:function (model,resp) {
+				
+				//model为获取到的数据
+				alert(model.get('name'))
+				
+			},error:function () {
+				
+				alert('请求出现无法预估的错误')
+				
+			}
+			
+		});
+</script>
+</head>
+
+<body>
+	
+</body>
+</html>

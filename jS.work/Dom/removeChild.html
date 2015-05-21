@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	window.onload=function()
+	{
+		var oUl=document.getElementById('ull');
+		var oA=document.getElementsByTagName('a');
+		var oLi=document.getElementsByTagName('li');
+		for(var i=0;i<oA.length;i++)
+		{
+			oA[i].onclick=function()
+			{
+				oUl.removeChild(this.parentNode)
+			}	
+		}
+	}
+
+
+</script>
+
+
+
+</head>
+
+
+
+<body>
+	<ul id="ull">
+    	<li>速读<a href="javascript:">删除</a></li>
+        <li>阿斯顿<a href="javascript:">删除</a></li>
+        <li>新政策<a href="javascript:">删除</a></li>
+        <li>阿顿<a href="javascript:">删除</a></li>
+        <li>费电<a href="javascript:">删除</a></li>
+     </ul>
+
+
+</body>
+</body>
+</html>

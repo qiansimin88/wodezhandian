@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+
+</head>
+
+<body>
+	<div id="search_container"></div>
+    <script type="text/template" id="search_template">	
+    	<%_.each(label,function(name){%>
+			
+		<%if(name != 'label2') {%>
+				
+				<li><%= name %></li>
+				
+		    <%}%>
+			
+		<%})%>
+	</script>
+<script src="../../lib/jquery.js"></script>
+<script src="../../lib/underscore.js"></script>
+<script src="../../lib/backbone.js"></script>
+<script>
+
+(function($){
+	
+	/*var SearchView = Backbone.View.extend({
+		
+		//el暂时不声明
+		
+		initialize : function () {
+			
+			console.log('创建了一个视图')
+			
+		},
+		
+		render : function (context) {
+					//template(模版html,模版相应的变量对象)
+			var template =_.template($('#list-template').html(),context);
+			
+			$(this.el).html(template);
+			
+		}	
+		
+	});
+				//实例化的时候传入el
+	var searchview = new SearchView({
+		
+		el : $('#search_container')
+		
+	});
+	//传入模版变量的对象
+	searchview.render();*/
+	
+	
+	   var SearchView = Backbone.View.extend({
+        initialize: function(){
+            
+			var labels ={label:['label1','label2','label3']}
+			
+			this.render(labels);
+			
+        },
+		
+		render : function (c){
+			
+			var temp = _.template($('#search_template').html());
+			
+			$(this.el).html(temp(c))
+			
+		}
+      
+    });
+	
+	var searchview = new SearchView({
+		
+		el : $('#search_container')
+		
+	});
+
+})(jQuery)
+	
+	
+</script>
+</body>
+
+</html>

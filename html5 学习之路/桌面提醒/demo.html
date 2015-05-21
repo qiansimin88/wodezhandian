@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	window.onload=function(){
+		var date=document.getElementsByName('date')[0];
+		var mp3=document.getElementById('mp3');
+	
+		date.onchange=function(){							//选取的时候   本地存贮时间信息
+			localStorage.setItem('time',date.value);
+		};
+		
+		if(localStorage.getItem('time')){					//判断如果本地有这个信息的话
+			var oDate=new Date();
+			var nowTime='0'+(oDate.getMonth()+1)+'-'+oDate.getDate();		//当前的月日
+			var localT=localStorage.getItem('time').substr(5);			//当初注册月日
+
+			if(nowTime==localT){										//如果当初注册的月日和当前的月日相等  说明时间刚好n整年
+				if(window.webkitNotifications){							//判断浏览器是否支持该对象
+					window.webkitNotifications.requestPermission();     //请求显示桌面提醒
+					if(window.webkitNotifications.checkPermission()==0){
+						var obj=window.webkitNotifications.createNotification('img/1.png','恭喜您','注册已经一年');	
+						obj.tag='注册时间';
+						obj.show()
+					}
+				}	
+			}
+		}
+	}
+</script>
+</head>
+
+<body>
+<input type="date" name="date"/><br/>
+<audio src="../../image/2NE1 - Come Back Home.mp3" id="mp3"></audio>
+</body>
+</html>

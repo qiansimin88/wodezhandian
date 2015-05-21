@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	window.onload=function()
+	{
+		var oUl=document.getElementById('ul1');
+		var btn=document.getElementById('btn1');
+		var aLi=oUl.getElementsByTagName('li');
+		var now=4;
+		
+	/*	for(var i=0;i<aLi.length;i++)
+		{
+			aLi[i].onmouseover=function()
+			{
+				this.style.background='red';	
+			};
+			
+			aLi[i].onmouseout=function()
+			{
+				this.style.background='';	//普通写法，性能低，而且 新添加的  LI无法具有 样式。因为新添加的li已经不在for循环的次数范围内了
+			}		
+		}	*/
+		btn.onclick=function()               //添加新的LI
+		{
+			now++
+			var oLi=document.createElement('li');
+			oLi.innerHTML=11*now;
+			oUl.appendChild(oLi);	
+		};
+		
+		oUl.onmouseover=function(ev)     //直接在父级UL上面写事件就是事件委托。
+		{
+			var oEvent=ev||event;        //兼容事件对象
+			var target=oEvent.target||oEvent.srcElement;  //事件源.
+			if(target.nodeName.toLowerCase()=='li')   //nodeName就是标签名  默认是大写 toLowerCase()转成小写
+			{
+				target.style.background="red";
+			}
+			
+		};
+		oUl.onmouseout=function(ev)
+		{
+			var oEvent=ev||event;
+			var target=oEvent.target||oEvent.srcElement;
+			
+			if(target.nodeName.toLowerCase()=='li')
+			{
+				target.style.background="";
+			}
+			
+		};
+		
+	}
+</script>
+</head>
+
+<body>
+
+  事件源：  iE:oEvent.srcElement   标准:oEvent.target  事件源的意思就是 当前所指的那个标签对象、。
+  使用事件委托的好处：1  提高性能  2新添加的元素 具有之前的事件效果。<br/>
+<input type="button" value="添加li" id="btn1"/>
+<ul id="ul1">
+	<li>11</li>
+    <li>22</li>
+    <li>33</li>
+    <li>44</li>
+</ul>
+</body>
+</html>

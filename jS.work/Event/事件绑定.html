@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+function addEvent(obj,ev,fn)
+	{
+		if(obj.attachEvent)
+		{
+			obj.attachEvent('on'+ev,fn);	
+		}
+		else
+		{
+			obj.addEventListener(ev,fn,false)	
+		}	
+	}
+		
+	window.onload=function()
+	{
+		var oBtn=document.getElementById('btn1');
+	
+		
+		addEvent(oBtn,'click',function(){
+		alert('a');
+		})
+		addEvent(oBtn,'click',function(){
+		alert('b')	
+		})	
+		
+	};
+		
+		//   IE
+		//对象名.attachEvent('事件名'，函数)   
+		
+	/*	oBtn.attachEvent('onclick',function()
+		{
+			alert('a');	
+		});
+		oBtn.attachEvent('onclick',function()
+		{
+			alert('b');	
+		})
+	*/
+		//FF.chrome
+		//对象名.addEventListenr('事件名'不需要加on和上面的attachEvent略有不同,函数)
+	/*	oBtn.addEventListener('click',function()       //这里要注意的是addEventListener('事件名'，函数)，这里的事件名不需要加on;
+		{
+			alert('a');	
+		});
+		oBtn.addEventListener('click',function()
+		{
+			alert('b');
+		})
+	*/
+	
+	//兼容部分！！！！！！！！！！！！使用if来兼容FF 。IE
+	
+	/*	if(oBtn.attachEvent)           //若（oBtn.attachEvent）为true执行if  ，false执行else。
+		{
+			oBtn.attachEvent('onclick',function()
+			{
+				alert('a');	
+			})
+			oBtn.attachEvent('onclick',function()
+			{
+				alert('b');	
+			})	
+		}
+		else
+		{
+			oBtn.addEventListener('click',function()
+			{
+				alert('a'),false;	
+			})
+			oBtn.addEventListener('click',function()
+			
+			{
+				alert('b'),false;	
+			})	
+		}
+	*/	
+		
+	
+</script>
+</head>
+
+<body>
+<input id="btn1" type="button" value="弹出"/>
+</body>
+</html>

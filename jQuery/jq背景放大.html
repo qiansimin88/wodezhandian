@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	* {margin:0;padding:0}
+	li {list-style:none;float:left;margin-left:40px;}
+	ul {overflow:hidden;zoome:1;}
+	.div1 {width:1000px;margin:0 auto;margin-top:40px;position:relative;}
+	.div1 img {width:180px;}
+
+	
+</style>
+<script src="file:///D|/wodezhandian/js/jquery-1.7.2.min.js"></script>
+<script>
+	$(function(){
+		var img=$('.div1 img');
+	/*	for(var i=0;i<img.length;i++)
+		{
+			img[i].style.left=img[i].offsetLeft+'px'
+		}	*/
+		/*img.each(function(index, element) {
+            $(this).css({left:img.eq(index).position().left})
+        });*/
+		img.each(function(i){
+			$(this).css({left:img.eq(i).position().left,top:img.eq(i).position().top})	
+		});
+		img.each(function(i){
+			$(this).css({position:'absolute',margin:0})	
+		});
+		img.each(function(index, element) {
+            $(this).hover(function(){
+				$(this).animate({height:220,width:220,marginLeft:-20,marginTop:-20},200)
+			},function(){
+				$(this).animate({height:180,width:180,marginLeft:0,marginTop:0},200)
+			})
+        });
+	})
+</script>
+</head>
+
+<body>
+	<div class="div1">
+    	<ul>
+        	<li><img src="file:///D|/wodezhandian/img2/3.jpg">
+            	
+            </li>
+            <li><img src="file:///D|/wodezhandian/img2/3.jpg"></li>
+            <li><img src="file:///D|/wodezhandian/img2/3.jpg"></li>
+            <li><img src="file:///D|/wodezhandian/img2/3.jpg"></li>
+        </ul>
+    </div>
+</body>
+</html>

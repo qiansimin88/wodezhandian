@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+div {width:200px;height:200px;float:left;margin:0;border:1px solid black}
+</style>
+
+<script>
+	window.onload=function()
+	{
+		var oDiv=document.getElementsByTagName('div');
+		var i=0;                                                    //1.确定初始i
+		  															//2.设置setInterval
+		timer=setInterval(function(){								//3.i++||i--
+																	//4.if(i==X)  clearInterval
+			oDiv[i].style.background='red';
+			i++;  			//每过500毫秒 I就加1个。  放外面就永远加不
+			if(i==oDiv.length)
+			{
+				clearInterval(timer)	
+			}   
+			},500)	
+	}
+</script>
+
+</head>
+
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>

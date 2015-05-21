@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	/*
+		1.每个script 都是一个单独的作用域
+		1. js解析器  会优先  解析  var funcion 关键字  
+		2. 如果遇到var function 同名 那么则保留 函数  因为var解析的结果是undefined
+		3. 然后依次从上往下执行      遇到 = + 、 * 等表达式   进行 解析结果的 正常复制   ；
+	*/
+
+	alert(a);                    //function a() {alert(a)};
+	a=1;
+	alert(a);					//1;
+	function a() {alert(a)};
+	alert(a);					//1
+	var a=3;
+	alert(a);					//3
+	function a() {alert(a)};
+	alert(a);					//3
+	
+	a()                         //并不是 弹出某个 值  而是直接报错 因为这时候a=3；所以 a()；相等于3()
+</script>
+</head>
+
+<body>
+</body>
+</html>

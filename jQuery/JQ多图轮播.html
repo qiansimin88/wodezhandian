@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" href="../css/reset.css" type="text/css">
+<script src="../js/jquery-1.7.2.min.js"></script>
+<style>
+.wrap {position:relative;width:950px;height:300px;}
+	.move1 {position:absolute;top:-200px;left:200px;}
+	.move2 {position:absolute;right:-200px;bottom:150px;}
+	ul {overflow:hidden;_zoom:1;width:3800px;position:absolute;left:0;top:0;}
+	ul li {float:left;width:950px;}
+	ul li img {width:950px;height:300px;} 
+	ul li a {float:left;}
+	ol {position:absolute;bottom:10px;left:50%;margin-left:-50px;z-index:5}
+	.current_li {color:#FFF;position:relative;bottom:4px;}
+	ol li {float:left;cursor:pointer;width:18px;height:18px;background:#0CF;margin-right:8px;text-align:center;line-height:18px;}
+</style>
+<script>
+	$(function(){
+		var wrap=$('.wrap');     //外层包裹
+		var oUl=$('ul');		 //图片ul
+		var num=$('ol li');		 //点击按钮
+		var pics=oUl.find('li');
+		var nownum=0;            //数字计	数
+		var nowul=0;			 //大图计数
+		var length=num.size();
+	
+		var disOne=oUl.children('li').width();  //950;
+		
+		oUl.find('li').css({position:'relative'}).find('.move2').children('img').css({width:'auto',height:'auto'})
+		
+		//
+		wrap.on('click','ol li',function(){
+				$(this).addClass('current_li').siblings('li').removeClass()
+				var index=$(this).index();
+				nownum=index;
+				nowul=index;
+				$('.move1').css({top:-200,left:200})
+				$('.move2').css({right:-200,bottom:150})	
+				oUl.animate({left:-disOne*nownum},function(){
+					$('.move1').eq(nownum).animate({top:100,left:200})
+					$('.move2').eq(nownum).delay(300).animate({right:200,bottom:150});	
+				});		
+		});
+		function autoMove(){
+			if(nownum==length-1)
+			{
+				$('ul li').eq(0).css({left:wrap.width(),position:'relative'});
+				nownum=0;	
+			}
+			else
+			{
+				nownum++;	
+			}
+			nowul++;
+		
+			$('.move1').css({top:-200,left:200});
+			$('.move2').css({right:-200,bottom:150});
+			
+			num.eq(nownum).addClass('current_li').siblings('li').removeClass();	
+				oUl.animate({left:-disOne*nowul},400,function(){
+					$('.move1').eq(nownum).animate({top:100,left:200});
+					$('.move2').eq(nownum).delay(300).animate({right:200,bottom:150});	
+				});			
+		};
+		var timer=null;
+		timer=setInterval(autoMove,4000)
+	});
+</script>
+</head>
+
+<body>
+	<div class="wrap">
+    	<ul>
+        	<li><a href="#"><img src="../img2/hkv1.jpg"/></a>
+            	<div class="move1">谢谢阿斯顿啊</div>
+                <div class="move2"><img src="../image/ico_01.png"/></div>
+            </li>
+            <li><a href="#"><img src="../img2/hkv2.jpg"/></a>
+            	<div class="move1">这已经是第二章了哦</div>
+                <div class="move2"><img src="../image/ico_02.png"/></div>
+            </li>
+            <li><a href="#"><img src="../img2/EA93_hero_960_420.jpg"/></a>
+            	<div class="move1">这已经是第三章了哦</div>
+                <div class="move2"><img src="../image/ico_03.png"/></div>
+            </li>
+            <li><a href="#"><img src="../img2/hkv3.jpg"></a>
+            	<div class="move1">这已经是第四章了哦</div>
+                <div class="move2"><img src="../image/ico_04.png"/></div>
+            </li>
+    	</ul>
+        <ol>
+        	<li class="current_li">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ol>
+    </div>
+</body>
+</html>

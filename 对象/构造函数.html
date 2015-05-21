@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	var car=function(name,color,number){    //这种初始化性质的函数对象就是构造函数，相当于一个模版
+		this.name=name;
+		this.color=color;
+		this.lunzi=number;
+		this.say=function(){
+			alert('我有一辆'+this.color+this.name+'车他有'+this.lunzi+"轮子")
+		};		
+	}
+	var benzi=new car('奔驰','蓝色',4)    //新对象用new关键词来创建  继承原本对象的所有属性和方法
+	benzi.say();
+</script>
+</head>
+
+<body>
+</body>
+</html>

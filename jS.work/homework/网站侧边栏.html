@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+*{padding:0px;margin:0px;}
+body {background:url(../../image/pagebg-m.jpg)}
+#div1 {
+	width:120px;height:200px;position:relative;line-height:35px;text-align:center;top:300px;background:#FFF;left:-120px
+}
+#div1 div {
+	background:#999;height:30px;text-align:left;font-weight:bolder;
+}
+#div1 ul {
+	list-style:none;font-size:14px
+}
+#div1 .span {
+		position:absolute;right:-20px;top:70px;width:20px;height:80px;background:#9F9;line-height:25px;
+}
+#div1  a {text-decoration:none;color:#000;}
+#div1 a:hover {background:#CCC;}
+#log1 {
+	width:16px;height:16px;background:url(../../image/is.png) -4px -161px;position:absolute;top:40px;left:20px;
+	
+}
+#log2 {
+		width:16px;height:16px;background:url(../../image/is.png) -4px -560px;position:absolute;top:75px;left:20px;
+}
+#log3 {
+		width:16px;height:16px;background:url(../../image/is.png) -4px -520px;position:absolute;top:110px;left:20px;
+}
+#log4 {
+	width:16px;height:16px;background:url(../../image/is.png) -4px -480px;position:absolute;top:145px;left:20px;
+	}
+#log5 {
+	width:16px;height:16px;background:url(../../image/is.png) -4px -440px;position:absolute;top:180px;left:20px;
+}
+</style>
+<script>
+	window.onload=function()
+	{
+		var oDiv=document.getElementById('div1');
+		oDiv.onmouseover=function()
+		{
+			move(0)	
+		};
+		oDiv.onmouseout=function()
+		{
+			move(-120)	
+		}	
+	}
+	var timer=null;
+	function move(target)													//运动框架
+	{
+			clearInterval(timer)
+			var oDiv=document.getElementById("div1");
+			timer=setInterval(function(){
+				var speed=0;
+				if(oDiv.offsetLeft>target)
+				{
+					speed=-30;	
+				}
+				else
+				{
+					speed=30;	
+				}
+				
+				if(oDiv.offsetLeft==target)
+				{
+					clearInterval(timer);	
+				}
+				else
+				{
+					oDiv.style.left=oDiv.offsetLeft+speed+'px';	
+				}
+				},30)
+			
+	}
+</script>
+
+</head>
+
+<body>
+<div id="div1">
+<div>&nbsp;分享</div>
+	<ul>
+    	<li><span id="log1"></span><a href="javascript:;">百度</a></li>
+        <li><span id="log2"></span><a href="javascript:;">淘宝</a></li>
+        <li><span id="log3"></span><a href="javascript:;">腾讯</a></li>
+        <li><span id="log4"></span><a href="javascript:;">sina</a></li>
+        <li><span id="log5"></span><a href="javascript:;">知乎</a></li>
+    </ul>
+<span class="span">分享到</span>
+</div>
+
+</body>
+</html>

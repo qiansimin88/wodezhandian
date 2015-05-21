@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+
+window.onload=function()
+{
+	var aImg=document.getElementsByTagName('img');
+	//var str='124905';
+	function timer()
+ {     //函数
+	var oDate=new Date();
+    function toDou(n)
+  {
+	if(n<10)
+	{
+		return '0'+n;	
+	}
+	else
+	{
+  		return ''+n;		
+	}	
+  }
+
+	var str=toDou(oDate.getHours())+toDou(oDate.getMinutes())+toDou(oDate.getSeconds());
+	//alert(str);
+	
+	for(var i=0;i<aImg.length;i++)
+	{                                    //用str[i]是不兼容IE7以下的浏览器的。
+		aImg[i].src='../../image/timer/'+str.charAt(i)+'.JPG';            //str.charAt(i)=str[i]只是为了兼容IE7以下 的浏览器
+	}
+	
+  }
+   
+	setInterval(timer,1000);
+}
+
+
+</script>
+
+
+
+</head>
+
+
+
+<body style="background:#000;color:#FFF;font-size:60px;">
+<img src="../../image/timer/2.JPG"/>
+<img src="../../image/timer/3.JPG"/>
+:
+<img src="../../image/timer/3.JPG"/>
+<img src="../../image/timer/9.JPG"/>
+:
+<img src="../../image/timer/4.JPG"/>
+<img src="../../image/timer/6.JPG"/>
+</body>
+</html>

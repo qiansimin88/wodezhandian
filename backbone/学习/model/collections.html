@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="../../lib/jquery.js"></script>
+<script src="../../lib/underscore.js"></script>
+<script src="../../lib/backbone.js"></script>
+<script>
+	/*
+	*  collections 就是对模型的一个有序的集合
+	*/
+	
+	var Book = Backbone.Model.extend({
+		
+		defaults : {
+			
+			title : '默认'
+			
+		},
+		
+		initialize : function () {
+			
+			//some words
+			
+		}
+		
+	});
+	
+	var Bookshlef = Backbone.Collection.extend({
+		//指定模型
+		model : Book
+		
+	});
+	
+	//实例化多个模型
+	
+	var book1 = new Book({title:'<<javascript算法>>'});
+	var book2 = new Book({title:'<<javascript高级程序设计>>'});
+	var book3 = new Book({title:'<<javascript设计模式>>'});
+	
+	//实例化一个collections  （数组形式的模型也可以add）
+	var bookshlef = new Bookshlef ([book1,book2,book3]);
+	
+	
+	
+</script>
+</head>
+
+<body>
+</body>
+</html>

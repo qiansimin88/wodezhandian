@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+*{padding:0;marin:0}; img {border:0} ul,ol{padding:0;margin:0;}  
+.p1 {position:relative;width:220px;height:220px;background:red;}
+.p1 img {position:absolute;left:0;top:0;}
+.p1 #miaoshu {position:absolute;left:0;bottom:0;width:220px;height:70px;background:rgba(0,0,0,1);opacity:0.7;z-index:2;text-align:center;display:none;}
+#miaoshu h3 {opacity:1;color:white;position:relative}
+</style>
+<script src="../js/jquery-2.0.2.min.js"></script>
+<script>
+  $(function(){
+	$('.p1').hover(function(){
+		
+		$('#miaoshu').stop().slideDown(200);	
+	},function(){
+		$('#miaoshu').stop().slideUp(600);	
+	})	  
+})
+</script>
+</head>
+
+<body>
+<div id="picture">
+  <div class="p1">
+      <img src="../img2/2.jpg" alt="1" value="流年"/>
+      <div id="miaoshu">
+      <h3>盛世流年</h3>
+       
+  	  </div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+*{margin:0; padding:0;}
+
+#div1 { width:100px; height:100px; background:red; position:absolute;}
+</style>
+<script>
+var obj = new Object("ABCD");
+
+console.log(Array.prototype.slice.call(obj,0,3));
+/*
+function foo(){};
+function foo2(){};
+
+
+foo2.prototype.aaa = function(){}
+
+foo.prototype.drag = function(){
+	
+	var oDiv = document.getElementById('div1');
+	
+	oDiv.onmousedown = function(e){
+		
+		var e = e||event;
+		
+		var disX = e.clientX-oDiv.offsetLeft;
+		var disY = e.clientY-oDiv.offsetTop;
+		
+		document.onmousemove = function(e)
+		{
+			var e = e||event;
+			
+			oDiv.style.left = e.clientX-disX+'px';
+			oDiv.style.top = e.clientY-disY+'px';
+			
+			return false;
+		}		document.onmouseup = function(){
+			document.onmousemove = null;
+			document.onmouseup = null;
+		}
+		return false;
+	}
+	
+}
+
+
+window.onload=function(){
+	
+}
+
+/*
+function a()
+{
+	
+}
+
+a.prototype.aaa = function(){
+	alert("a");
+}
+
+
+function b(){};
+
+a.prototype.aaa.call(b,0);
+
+
+b.aaa();
+
+/*
+var obj=new Object();
+
+obj.slice(0,3);
+
+/*
+var a = "das".slice(0,2);	// da
+	
+alert(a);
+*/
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>

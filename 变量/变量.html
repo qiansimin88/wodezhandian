@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	var a 								//这个是全局变量在所有函数中都可以调用
+	(function aa()							
+	{									//切记函数必须才能使用， 这里的a=13如果在下面不用aa()调用 那下面的bb()就无法弹出a=13；因为aa（）没赋值；
+		a=13;	
+	})();
+	function bb()
+	{
+		alert(a)	
+	};
+	
+	bb();
+</script>
+</head>
+
+<body>
+</body>
+</html>

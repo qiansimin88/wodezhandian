@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	div {width:20px;height:20px;border:1px solid #F0F;BACKGROUND:#00F}
+</style>
+<script>
+	window.onload=function(){
+		var oDiv=document.getElementById('div');
+		var sudu=0;
+		setInterval(function(){
+			++sudu
+			setCss3(oDiv,{transform:'rotate('+sudu+'deg)'});
+		},30)
+		
+		
+		//设置一个兼容CSS3的JS函数
+		function setCss3 (obj,attr){
+			for(i in attr)
+			{
+				var newi=i;
+				if(newi.indexOf('-')>=0)
+				{
+					var num=newi.indexOf('-');
+					newi=newi.replace(newi.substr(num,2),newi.substr(num+1,1)).toUpperCase();	
+				}
+				
+				obj.style[newi]=attr[i];
+				newi=newi.replace(newi.charAt(0),newi.charAt(0).toUpperCase());
+				obj.style['webkit'+newi]=attr[i];
+				obj.style['moz'+newi]=attr[i];
+				obj.style['o'+newi]=attr[i];
+			};
+		};
+	};
+</script>
+</head>
+
+<body>
+	<div id="div">
+    </div>
+</body>
+</html>

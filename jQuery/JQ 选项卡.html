@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+<style>
+
+	.active {background:gray}
+	#div1 div {display:none;border:1px solid black;width:200px;height:200px;position:absolute;background:gold}
+</style>
+<script src="../js/jquery.comjquery-1.7.2.min.js"></script>
+<script>
+	window.onload=function()
+	{
+		var oDiv=document.getElementById('div1');
+		var aBtn=oDiv.getElementsByTagName('input');
+		var aDiv=oDiv.getElementsByTagName('div');
+		
+		for(var i=0;i<aBtn.length;i++)
+		{	
+			aBtn[i].index=i;
+			aBtn[i].onclick=function()
+			{
+				
+				for(var i=0;i<aBtn.length;i++)
+				{
+					aBtn[i].className='';	
+					aDiv[i].style.display="none";
+				}
+				
+				this.className='active';	
+				aDiv[this.index].style.display="block"
+			}	
+		}	
+	}
+/*	//JQ写的选项卡
+  $(function(){
+	$('#div1').find('input').click(function(){
+		$('input').attr('class','');
+		$(this).attr('class','active');
+		$('#div1').find('div').css('display','none');
+		$('#div1').find('div').eq($(this).index()).css('display','block');	 // $(this)就表示循环下面的当前 index()就是默认的index
+	})	  
+		  
+})*/
+
+  //具有淡入淡出特效的选项卡
+ /* var now=0;
+  $(function(){
+	$('#div1').find('input').click(function(){
+		$('input').attr('class','');
+		$(this).attr('class','active');
+		var index1=$(this).index();
+		if(index1==now)
+		{
+			alert('deng')
+		}
+		else
+		{
+			now=index1;
+			  //所有的淡出
+			$('div').eq(now).slideDown().siblings('div').slideUp();	 // 当前的淡入  记得把所有的div用绝对定位。		
+		}
+	}) 
+}) */
+
+</script>
+
+<body>
+<div id="div1">
+	<input class="active" type="button" value="1"/>
+    <input type="button" value="1"/>
+    <input type="button" value="1"/>
+    <div style="display:block">1111111</div>
+    <div>2222222</div>
+    <div>3333333</div>
+</div>
+</body>
+</html>

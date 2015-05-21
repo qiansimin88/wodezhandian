@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	//由于js没有块级作用域，所以在结构语句中,用{  }  代码块包含的并不是本身的局部作用域，而是全局的
+	
+//1
+	var c =2;
+	if(c)
+	{
+		var c=8;
+	}
+	alert(c)   //8      这里弹出 8   因为js没有块级作用域    所以c还是覆盖了上面的c
+	
+//2
+
+	for(var j=0;j<10;j++){
+		document.title='hehe';	
+	}
+	alert(j)          //10     这里因为没有块级作用域   所以在for循环完之后   并没有马上销毁该变量  而是自动释放到外部执行环境（这里指的就是window）
+	
+</script>
+</head>
+
+<body>
+</body>
+</html>

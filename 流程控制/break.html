@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	for(var i=0;i<10;i++)
+	{
+		alert(i);
+		if(i>5)
+		{
+			break;
+		}	
+	}
+	/*1.for循环的执行顺序为：先判断i是否小于10，true则执行alert,然后再执行I++,然后在判断是否小于10以此循环
+	*2.在这当i为6时 已经弹出 因为alert()在if条件语句的前面先执行，然后i为6 大于5 break跳出循环 
+	*/
+</script>
+</head>
+
+<body>
+</body>
+</html>

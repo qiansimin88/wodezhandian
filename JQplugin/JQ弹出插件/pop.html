@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+<script src="jQuery-pop.js"></script>
+<style>
+	*{margin:0;padding:0;}
+	.popDiv {z-index:55;position:absolute;width:200px;height:200px;background:#F00;display:none;}
+	.closeBtn,.oBtn,.closeBtn2 {z-Index:54;position:relative}
+</style>
+</head>
+
+<body>
+	<input type="button" value="点击弹框" class="oBtn"/>
+    <input type="button" value="关闭按钮" class="closeBtn">
+    <input type="button" value="关闭按钮" class="closeBtn2">
+    <div class="popDiv">
+    	
+    </div>
+    <div style="height:14000px;"></div>
+</body>
+<script>
+	$('.oBtn').popDiv({
+		drag:true	
+	});
+</script>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	#c1 {background:#fff}
+	body {background:#000;}
+</style>
+<script>
+	window.onload=function(){
+		
+		var oC= document.getElementById('c1');
+		
+		var oGc = oC.getContext('2d');
+		
+		//arc(x,y,半径,起始弧度，结束弧度，旋转方向)
+		//弧度与角度的关系：弧度=角度*Math.Pi/180
+		//旋转方向：顺时针（false）  ；逆时针（true）
+		oGc.beginPath();
+		
+		//oGc.moveTo(200,200)
+		
+		oGc.arc(200,200,150,0,190*Math.PI/180,true);
+		
+		oGc.closePath();
+		//画线
+		oGc.stroke();
+			
+	}
+</script>
+</head>
+
+<body>
+<canvas id="c1" width='400' height='400'></canvas>
+</body>
+</html>

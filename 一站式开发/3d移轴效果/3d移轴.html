@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#wrap {width:1000px;height:700px;margin:0 auto;position: relative;border:2px solid #000;-webkit-perspective:500px;-webkit-transform:preserve-3d;-webkit-perspective-origin:0 center ;}
+			.line {position:absolute;width:3px;height:100%;background:#000;left:499px;top:0;text-indent:-999em;}
+			img {position:absolute;}
+			img:nth-of-type(1) {top:20px;left:100px;-webkit-transform:translateZ(-25px);}
+			img:nth-of-type(2) {top:100px;left:450px;-webkit-transform:translateZ(-55px)}
+			img:nth-of-type(3) {top:300px;left:120px;-webkit-transform:translateZ(-75px)}
+			img:nth-of-type(4) {top:240px;left:500px;-webkit-transform:translateZ(-100px)}
+			img:nth-of-type(5) {top:340px;left:380px;-webkit-transform:translateZ(-125px)}
+			
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div class="line">中间线</div>
+			<img src="image/img(1).jpg"/>
+			<img src="image/img(2).jpg"/>
+			<img src="image/img(3).jpg"/>
+			<img src="image/img(4).jpg"/>
+			<img src="image/img(5).jpg"/>
+		</div>	
+	</body>
+	<script>
+		
+		window.onload=function(){
+			
+			var wrap =document.getElementById("wrap");
+			
+		
+		
+			//鼠标滑动
+
+			wrap.addEventListener('mousemove',moveHandel,false);
+			
+
+			//滑动事件函数
+			function moveHandel (e) {
+				
+				var ev = e || event;
+				
+			
+				//图片相对于中心线的距离
+				var ix = parseInt(ev.clientX - getClientLeft(this));
+				
+				var jidian = parseInt(getStyle(this,'webkitPerspectiveOrigin'));
+				
+				var nowValue =Math.abs( jidian-ix  ) < 50 ? 0 :Math.abs( jidian-ix );
+				
+					//this.style.transition = nowValue +'ms';
+
+					this.style.webkitPerspectiveOrigin = ix /2 +'px'
+	
+				
+			};
+			
+		};
+		
+		//获取 距离左视口距离函数
+		
+		function getClientLeft (obj) {
+			
+			var initL = 0;
+			
+			while(obj) {
+				
+				
+				initL += obj.offsetLeft;
+				
+				obj = obj.offsetParent;
+				
+			}
+	
+			return initL;
+
+		};
+		
+		//获取属性值
+		
+		function getStyle (el,attr) {
+			
+			var getStyleValue = null;
+			
+			getStyleValue= el.currentStyle ? el.currentStyle[attr] : getComputedStyle(el)[attr];
+			
+			return getStyleValue;
+			
+		}
+	</script>
+	<!--<script>
+		//纯JS移轴思路
+		window.onload=function(){
+			
+			var wrap =document.getElementById("wrap");
+			
+			var aImg= wrap.getElementsByTagName('img');
+			
+			//算出所有图片原来的left值
+			
+			 for (var i=0;i<aImg.length;i++) {
+			 	
+			 	aImg[i].startLeft = parseInt(getStyle(aImg[i],'left'));
+				
+			 }
+			
+			//鼠标滑动
+
+			wrap.addEventListener('mousemove',moveHandel,false);
+			
+
+			//滑动事件函数
+			function moveHandel (e) {
+				
+				var ev = e || event;
+				
+				var iMax = 5; //取个最大值
+				
+				//鼠标在视口移动的坐标
+				document.title=ev.clientX;
+				//图片相对于中心线的距离
+				var ix = ev.clientX - getClientLeft(this) - this.offsetWidth/2 ;
+				
+				
+				for (var i = 0; i<aImg.length;i++) {
+					
+					//获得所有的图片zIndex
+					var aboutZindex = getStyle(aImg[i],'zIndex');
+					
+					//获得差值
+					var disValue =  iMax - aboutZindex;
+					
+					var moveValue =-(ix * disValue / 20);
+					
+					aImg[i].style.left = aImg[i].startLeft + moveValue +'px'
+					
+				};
+				
+				
+			};
+			
+		};
+		
+		//获取 距离左视口距离函数
+		
+		function getClientLeft (obj) {
+			
+			var initL = 0;
+			
+			while(obj) {
+				
+				
+				initL += obj.offsetLeft;
+				
+				obj = obj.offsetParent;
+				
+			}
+	
+			return initL;
+
+		};
+		
+		//获取属性值
+		
+		function getStyle (el,attr) {
+			
+			var getStyleValue = null;
+			
+			getStyleValue= el.currentStyle ? el.currentStyle[attr] : getComputedStyle(el)[attr];
+			
+			return getStyleValue;
+			
+		}
+	</script>-->
+</html>

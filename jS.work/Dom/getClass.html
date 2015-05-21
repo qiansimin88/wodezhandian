@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+function getClass(cl) {
+	var arr=[];
+	var re=eval('/\s*'+cl+'\s*/');    //eval方法给正则加变量
+	var allEle=document.getElementsByTagName('*');
+	for(var i=0;i<allEle.length;i++) {
+		if(re.test(allEle[i].className)) {
+			arr.push(allEle[i])	
+		}			
+	};
+	return arr;	
+}
+
+window.onload=function(){
+	var obj=getClass('json');
+	for(var i=0;i<obj.length;i++){
+		obj[i].style.color='red';	
+	}	
+}	
+</script>
+</head>
+
+<body>
+<div id="hehe">asdas</div>
+<div class="hehe json">asdas</div>
+<div class="jsjkn">撒打算的
+	<div class=" hehe      json">你叫会走结论</div>
+</div>
+<div class="json dwqw">asdas</div>
+<div class="ad json asd">asdas</div>
+<div class="json">asd</div>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+* {margin:0;padding:0;}
+	#wrap {-webkit-transition:0.6s linear;width:400px;height:40px;overflow:hidden;font-family:'微软雅黑';position:absolute;left:50%;margin-left:-200px;box-shadow:0 30px 80px rgba(148, 92, 78, 0.74902);top:50%;opacity:0;}
+	#wrap  h2 {height:40px;position:relative;line-height:40px;}
+	
+	.ul  {transition:0.5s .4s top linear;position:relative;top:40px;-webkit-transform-style:preserve-3d;-webkit-perspective:500px;}
+	.ul li {width:400px;height:40px;line-height:40px;padding:0 15px;-webkit-transform-origin:top;-webkit-transform:rotateX(120deg);opacity:0;}
+	
+	.ul li:hover {box-shadow:0 30px 80px rgba(148,92,78,0.4);}
+</style>
+<script>
+	window.onload=function(){
+		
+		//加载好显示
+		
+		var wrap = document.getElementById('wrap');
+		
+		var aUl = wrap.getElementsByTagName('ul')[0];
+		
+		var aLi = aUl.children;
+
+		
+		wrap.style.opacity=1;
+		
+		//给window绑定   过度加载完毕 事件
+		wrap.addEventListener('webkitTransitionEnd',end,false);
+
+		
+		function end () {
+			
+			wrap.removeEventListener('webkitTransitionEnd',end,false);
+			
+			wrap.style.height = 240+'px';
+			
+			wrap.style.marginTop = -120+'px';
+			
+			aUl.style.top=0;
+			
+			//依次展开
+			
+			for(var i=0;i<aLi.length;i++) {
+				
+				aLi[i].style.transition = '0.8s '+(300+i*200)+'ms';
+				
+				aLi[i].style.opacity=1;
+
+				aLi[i].style.WebkitTransform = 'rotateX(0)';
+				
+				//aLi
+				aLi[i].onmouseover=aLiover;
+				
+				aLi[i].onmouseout = aLiout;
+				
+				aLi[i].onclick = aLiclick;
+				
+				//给每个ali设置旋转开关
+				
+				aLi[i].off=true;
+				
+				aLi[i].index=i;
+				
+			};
+	
+		};
+		
+		function aLiover (e) {
+			
+			
+			
+			var dix =  e.clientX - getLeft(this);
+
+			this.style.transition = '0.8s ';
+			
+			
+			if(this.off) {
+				
+					//左侧
+				if(dix  > this.offsetWidth/2) {
+	
+					this.style.WebkitTransform = 'rotateY(30deg)'
+					
+				}else {
+					
+					this.style.WebkitTransform = 'rotateY(-30deg)'
+					
+				}
+				
+			}
+			
+		};
+		
+		function aLiout (e) {
+			
+			if(this.off) {
+				
+					
+				this.style.WebkitTransform = 'rotateY(0deg)'
+				
+			}
+		
+			
+		};
+		
+		function aLiclick (e){
+			
+			var dix =  e.clientX - getLeft(this);
+			
+			var roDeg = dix>this.offsetWidth/2?-180:180;
+			
+			
+			for(var i=0;i<aLi.length;i++) {
+				
+				var outTime = (Math.abs(i-this.index)*100);
+				
+				aLi[i].off = false;
+				
+				aLi[i].style.transition = '0.8s '+outTime+'ms';
+				
+				aLi[i].style.WebkitTransform ='rotateY('+roDeg+'deg)'; 
+				
+			}
+			
+			
+			
+			
+		}
+		
+		//因为原生JS的offset是相对于父级的  没有jquery那么强大 所依要单独写
+		
+		
+		
+		function getLeft(obj) {
+			var offLeft = 0;
+			//一直遍历到最后一层元素 不存在为止
+			while (obj) {
+				
+				offLeft += obj.offsetLeft;
+				
+				obj= obj.offsetParent;
+					
+			};
+			
+			return offLeft;
+			
+		};
+		
+	};
+</script>
+
+</head>
+
+<body>
+	<div id="wrap">
+    	<h2>就是这么屌</h2>
+    	<ul class="ul">	
+        	<li>
+            	<p>
+                	<span>钱脑残粉</span><strong>狠狠还黑</strong><em>2014-56-45</em>
+                </p>
+            </li>
+            <li>
+            	<p>
+                	<span>钱脑残粉</span><strong>狠狠还黑</strong><em>2014-56-45</em>
+                </p>
+            </li>
+            <li>
+            	<p>
+                	<span>钱脑残粉</span><strong>狠狠还黑</strong><em>2014-56-45</em>
+                </p>
+            </li>
+            <li>
+            	<p>
+                	<span>钱脑残粉</span><strong>狠狠还黑</strong><em>2014-56-45</em>
+                </p>
+            </li>
+            <li>
+            	<p>
+                	<span>钱脑残粉</span><strong>狠狠还黑</strong><em>2014-56-45</em>
+                </p>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

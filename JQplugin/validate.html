@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="../js/jquery-1.7.2.min.js"></script>
+<script src="../js/jquery.validate.min.js"></script>
+<script>
+	$().ready(function(){
+		$.validator.addMethod('ismophone',function(value,element){     //添加自定义的方法
+			var tel=/^1[3-9]\d{9}$/g;
+			return this.optional(element)||tel.test(value);
+			
+		},'请输入正确的手机号码');
+		$('#commentForm').validate({
+			rules:{
+				username:{
+					required:true,
+					maxlength:8,
+				},
+			Pass:		{
+					required:true,
+					rangelength:[4,10],
+					digits:true 				
+				},	
+			 confirmPass:{
+				 	equalTo:'#cPass',
+				},
+			email:{
+				 required:true,
+				 email:true,	
+			 },
+			
+			 money:{
+					max:9999,
+					required:true,
+					digits:true
+				},
+			moPhone:{
+					required:true,
+					ismophone:true,
+					number:true,
+					maxlength:11
+				},
+			},
+			debug:true,      //测试用的  不提交表单
+			messages:{
+				username:{
+					required:'必须输入用户名'	,
+					maxlength:'用户名不能超过8位'
+				},
+				Pass:	{
+					required:'必须填入密码',
+					rangelength:"密码必须为4-10位",
+				    digits:'密码必须是数字'		
+				},
+				confirmPass:{
+					equalTo:'两次输入的密码不同'	
+				},
+				email:{
+					required:'您必须填写邮箱地址',
+					email:'请输入正确的邮箱地址'	
+				},
+				money:{
+					required:'必须输入金额',
+					max:'金额不能大于9999'	,
+					digita:'必须输入正确金额'
+				},
+				moPhone:{
+					required:'请输入手机号码',
+					maxlength:'最多不能超过11'
+				}
+			},
+			success:function(label){                        //成功时候调用的自定义css
+				label.text('').addClass('success');
+			}	
+		});
+	});
+</script>
+<style>
+	label.error  {background:url(../image/pwd_sprite.png) no-repeat 0 -286px;padding-left:16px;color:#F00;}
+	label.success {background:url(../image/pwd_sprite.png) no-repeat 0 -252px;padding-left:16px; }
+</style>
+</head>
+
+<body>
+	<form action="" method="post" id="commentForm">
+    	<fieldset>
+        	<legend>使用validate</legend>
+            <p>
+            	<label for="cusername">用户名：</label>
+                <input type="text" id="cusername" name="username"/>
+            </p>
+            <p>
+            	<label for="cPass">密码:</label>
+                <input type="password" id="cPass" name="Pass"/>
+            </p>
+            <p>
+            	<label for="cconfirmPass">重复密码:</label>
+                <input type="password" id="cconfirmPass" name="confirmPass"/> 
+            </p>
+            <p>
+            	<label for="cemail">邮箱地址:</label>
+                <input type="text" id="cemail" name="email"/>
+            </p>
+            <p>
+            	<label for="">金额：</label>
+            	<input type="text" id="cmooney" name="money"/>
+            </p>
+            <p>
+            	<label for="cmoPhone">手机号码：</label>
+                <input type="text" id="cmoPhone" name="moPhone"/>
+            </p>
+            <p>
+            	<input type="submit" id="csubmit" value="提交"/>
+            </p>
+        </fieldset>
+    </form>
+</body>
+</html>

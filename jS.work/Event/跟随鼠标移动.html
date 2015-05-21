@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+#div1 {width:100px;height:100px;background:red;position:absolute;}
+</style>
+<script>
+	document.onmousemove=function(ev)
+	{
+		var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;  //获取鼠标移动的Top距离
+		var oDiv=document.getElementById('div1');
+		var oEvent=ev||event;                      //声明事件变量。
+		oDiv.style.top=oEvent.clientY+scrollTop+'px';        //让oDiv的LEFT和TOP随着可视范围内的Y.X的坐标移动；
+															//但用到oEvent.client的时候一定要加上scrollTop
+		oDiv.style.left=oEvent.clientX+'px';	
+	}
+
+</script>
+</head>
+
+<body style="height:2000px;">
+<div id="div1"></div>
+</body>
+</html>

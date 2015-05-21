@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	#one {width:240px;height:240px;border:1px solid #888;box-shadow:2px 2px 3px #666;position:relative;border-radius:120px;}
+	
+</style>
+<script>
+	window.onload=function(){
+		var oDiv=document.getElementById('one');
+		//简化可以写个函数  主要目的是为了 突显父级元素就可以了
+		drawDiv(oDiv);
+		
+	};
+	var drawDiv=function(obj){
+		for(var i=0;i<60;i++)
+		{
+			var width=3;
+			var height=6;                         //这两个都是预设的值
+			var cDiv=document.createElement('div');
+			
+			if(i%5==0)
+			{
+				width=5;
+				height=10;	
+			}
+			cDiv.style.cssText='height:'+height+'px;width:'+width+'px;background:#111;position:absolute;top:0;left:120px;';
+			setCss3(cDiv,{'transform':'rotate('+i*6+'deg)','transform-origin':'0 120px'});
+			obj.appendChild(cDiv);		
+		}	
+	};
+	
+						//json格式
+	function setCss3(obj,attr){
+		//json格式首先想到的就是for in 循环了
+		for (i in attr)
+		{	//而且获取属性用【】的方式代替.的方式
+			var newi=i;
+			if(newi.search(/-/)>=0)
+			{
+				var num=newi.search(/-/);
+				newi=newi.replace(newi.substr(num,2),newi.substr(num+1,1).toUpperCase())
+			}
+			obj.style[newi]=attr[i];
+			//这里要注意位置不能弄错。因为只有后缀的后面才需要首字母大写。
+			newi=newi.charAt(0).toUpperCase()+newi.substring(1);
+			obj.style['o'+newi]=attr[i];
+			obj.style['webkit'+newi]=attr[i];
+			obj.style['moz'+newi]=attr[i]
+		}
+	}
+</script>
+</head>
+
+<body>
+	<div id='one'>
+    </div>
+</body>
+</html>

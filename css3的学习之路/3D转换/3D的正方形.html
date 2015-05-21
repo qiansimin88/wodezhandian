@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="../../js/setCss3.js"></script>
+<script>
+	function getByClass(op,son)
+	{
+		var El=op.getElementsByTagName('*');
+		var arr=[];
+		for(var i=0;i<El.length;i++)
+		{
+			
+			if(El[i].className==son)
+			{
+				arr.push(El[i])	
+			}
+			return arr;
+		}		
+	}
+</script>
+<script>
+	window.onload=function(){
+		var oUt=document.getElementById('out');
+		var Inner=getByClass(oUt,'inner')[0];
+		var num=0;	
+		setInterval(function(){
+			num++;
+			changeA(Inner,90*(num-1),num*90)
+		},4000)
+		
+	}
+	
+	function changeA(obj,startA,endA)
+	{
+		clearInterval(obj.t);
+		obj.t=setInterval(function(){
+			
+			if(endA==startA)
+			{
+				clearInterval(obj.t);	
+			}
+			else
+			{
+				var speed=(endA-startA)*0.3;
+				speed=speed<0?Math.floor(speed):Math.ceil(speed);
+				startA+=speed;
+				setCss3(obj,{'transform':'rotatey('+(startA+speed)+'deg)'});	
+			}
+			
+		},80)	
+	}
+</script>
+<style>
+* {margin:0;padding:0;}
+	#out {width:150px;height:150px;padding:150px;border:1px solid #000;margin:0 auto;perspective:500px;}
+.inner {width:150px;height:150px;position:relative;transform-style:preserve-3d;background:#FF0;transform-origin:50% 50% 75px;}
+	.inner>div {width:150px;height:150px;position:absolute;text-align:center;line-height:150px;font-size:14px;}
+		.c1 {left:-150px;top:0;background:#0CF;transform:rotateY(90deg);transform-origin:right;}
+		.c2 {left:150px;top:0;background:pink;transform:rotateY(-90deg);transform-origin:left;}
+		.c3 {left:0;top:150px;background:#0C3;transform:rotateX(90deg);transform-origin:top;}
+		.c4 {left:0;top:-150px;background:#6F6;transform:rotateX(-90deg);transform-origin:bottom;}
+		.c5 {left:0;top:0;background:#60C;transform:translateZ(150px);}
+</style>
+</head>
+
+<body>
+	<div id="out">
+    	<div class="inner">
+        	<div class="c1">
+            1
+            </div>
+            <div class="c2">
+            2
+            </div>
+            <div class="c3">
+            3
+            </div>
+            <div class="c4">
+            4
+            </div>
+            <div class="c5">
+            5
+            </div>
+           
+        </div>
+    </div>
+</body>
+</html>

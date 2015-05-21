@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+
+<script src="../js/jquery-2.0.2.min.js"></script>
+<script>
+	window.onload=function()
+	{
+			
+			/*document.getElementById('div1');
+			document.getElementsByTagName('div');               这些都是原生JS获取元素。
+			getClass('box');*/
+		/*	
+		$('#div1')          获取ID为Div1的元素     
+		$('.box') 			获取class为box的元素
+		$('div')			获取div 标签
+		*/	
+		
+		$('#div1').css('height','500px');    //ID选择
+		$('p').css('background','red');			//标签选择和tagname一样
+		$('.box2').css('background','yellow');   //class选择
+		$('.zhou span').css('background','gray')    //和CSS一样  class为zhou 下面的span标签
+		
+
+	}
+</script>
+
+</head>
+
+<body>
+<div id="div1" class="box">aaa</div>
+<div id="div2" class="box2">aaaa</div>
+<p class="p">wo</p>
+<div class="zhou"><span id="p1">p1</span></div>
+<span id="p1">p2</span>
+
+</body>
+</html>

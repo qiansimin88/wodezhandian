@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+		* {margin:0;padding:0}
+			body {background:#e8d0ca;}
+			.wrap {width:690px;height:390px;margin:0px auto;margin-top:170px;position:relative;}
+			#list {list-style: none;width:670px;height:370px;position:relative;}
+			#list li {opacity:0;position:absolute;left:0;top:0;width:600px;height:300px;border:10px solid #fff;border-radius:5px;box-shadow:0 0 10px rgba(0,0,0,0.5),inset 0 0 5px rgba(0,0,0,1)}
+			.btn {opacity:0;width:40px;height:42px;background:url(studentMtAltPicBtn.png) #fff no-repeat;box-shadow:0 0 10px rgba(0,0,0,0.5);border-radius: 5px;position: absolute;top:150px;}
+			.prev {left:-20px;background-position:0 bottom ;}
+			.next {right:-20px;background-position:right bottom ;}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<ul id="list">
+				<li>
+					
+				</li>
+			</ul>
+			<a href="javascript:;" class="btn prev"></a>
+			<a href="javascript:;" class="btn next"></a>
+		</div>
+	</body>
+	<script>
+		 var aImg = ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg'],
+		 
+		 	len = aImg.length,
+		 	
+		 	iNum = 0,
+		 	
+		 	oList=document.getElementById("list"),
+		 	
+		 	aLi = null ;
+		 	
+		 	for(var i=0;i<len;i++) {
+		 		
+		 		var Img = new Image();
+		 		
+		 		Img.src= aImg[i];
+		 		
+		 		Img.onload=function(){
+		 			
+		 			iNum++;
+		 			
+		 			if(iNum == len) {
+		 				
+		 				start();	
+		 				
+		 			}
+		 			
+		 		}
+		 		
+		 	};
+		 	
+		 	function start(){
+		 		
+		 		var sHtml = '';
+		 		
+		 		for(var i=0;i<len;i++) {
+		 			
+		 			sHtml+="<li style='background-image:url("+aImg[i]+");z-index:"+(len-i)+"'></li>"
+		 			
+		 		}
+		 		
+		 		oList.innerHTML=sHtml;
+		 		
+		 		aLi=oList.children;
+		 		
+		 		for(var j=0;j<len;j++) {
+		 			
+		 			var iDeg = parseInt(Math.random()*100)%5+j*4;
+		 			
+		 			aLi[j].iDeg = iDeg;
+		 			
+		 			aLi[j].style.WebkitTransform = 'rotate('+iDeg+'deg) scale(1.5)';
+		 			
+		 		};
+		 		//补延迟 就直接scale(1)了 就没什么效果可言了。
+		 		setTimeout(show,100)
+		 		
+		 	};
+		 	
+		 	function show() {
+		 		
+		 		for(var i=0;i<len;i++) {
+		 			
+		 			aLi[i].style.transition ="0.5s "+(len-i)*400+'ms';
+		 			
+		 			aLi[i].style.WebkitTransform = 'rotate('+aLi[i].iDeg+'deg) scale(1)';
+		 			
+		 			aLi[i].style.opacity= 1;
+		 			
+		 		}
+		 		
+		 	}
+		 	
+		 
+		 
+	</script>
+</html>

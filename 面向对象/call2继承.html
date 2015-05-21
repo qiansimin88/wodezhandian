@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	function show(){
+		alert(this)    	
+	}
+	show()  //window
+
+	show.call('abc')     //abc 
+	
+	/*
+		这里的call 意思 就是 show函数的 this变成括号里面的    call就是替换this用的  本来是window现在变成abc了，
+		
+		意思就改变当前函数的  this 指向 
+	
+	*/
+	
+	function show2(a,b){
+		alert('this是'+this+'a是'+a+'b是'+b);	
+	}
+	
+	show2.call('abc',12,14)     //如果函数本身就带有参数，那么在调用的时候，不影响，只要把参数写在后面就可以了，第一个参数就是this
+</script>
+</head>
+
+<body>
+</body>
+</html>

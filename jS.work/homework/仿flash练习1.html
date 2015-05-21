@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+body {background:url(../../image/pagebg-m.jpg)} ul{padding:0;margin:0;} img {border:0} li {list-style:none;}
+.play {height:705px;width:750px;background:#FFF;margin:0 auto;}
+.big_img {width:750px;height:500px;background:#9C6;position:relative;overflow:hidden;}
+.big_img li {width:750px;height:500px;position:absolute;top:0;left:0;z-index:0; overflow:hidden;}
+.prve {width:24px;height:43px;background:url(../../image/%E5%B0%8F%E5%9B%BE.png) 0px -50px;position:absolute;left:30px;top:230px;z-index:2555;cursor:pointer;opacity:0;filter:alpha(opacity:0);}
+.next {width:24px;height:43px;background:url(../../image/%E5%B0%8F%E5%9B%BE.png) -30px -50px;z-index:2555;position:absolute;top:230px;right:30px;cursor:pointer;filter:alpha(opacity:0);opacity:0;}
+.mark_left {width:375px;height:500px;background:red;z-index:120;opacity:0;filter:alpha(opacity:0);position:absolute;top:0;left:0;}
+.mark_right {width:375px;height:500px;background:yellow;z-index:120;opacity:0;filter:alpha(opacity:0);position:absolute;top:0;left:375px;)}
+.small_img {overflow:hidden;width:750px;height:200px;position:relative;margin-top:5px;left:0;}
+.small_img li {width:250px;height:200px;overflow:hidden;opacity:0.5;filter:alpha(opacity:50);float:left;}
+.small_img ul {overflow:hidden;position:absolute;left:0;top:0;height:200px;width:750px;}
+
+.small_img li img {width:240px;height:200px;}
+
+</style>
+<script src="../../js/lianshi_move.js"></script>
+<script>
+window.onload=function()
+{
+	var oDiv=document.getElementById('playImg');
+	var oMark_left=getByClass(oDiv,'mark_left')[0];
+	var oMark_right=getByClass(oDiv,'mark_right')[0];
+	var oPrve=getByClass(oDiv,'prve')[0];
+	var oNext=getByClass(oDiv,'next')[0];
+	
+	var oSmall=getByClass(oDiv,'small_img')[0];
+	var oSmall_li=oSmall.getElementsByTagName('li');
+	
+	var oUlBig=getByClass(oDiv,'big_img')[0];
+	var oBig_li=oUlBig.getElementsByTagName('li');
+	var oUlSmall=oSmall.getElementsByTagName('ul')[0];
+	
+	oUlSmall.style.width=oSmall_li[0].offsetWidth*oSmall_li.length+'px';
+	
+	var zIndex=2;
+	var now=0;
+	
+	
+	//按钮显示
+	oPrve.onmouseover=oMark_left.onmouseover=function()
+	{
+		move(oPrve,'opacity',100)	
+	}
+	oNext.onmouseover=oMark_right.onmouseover=function()
+	{
+		move(oNext,'opacity',100)	
+	}
+	oMark_left.onmouseout=function()
+	{
+		move(oPrve,'opacity',0)	
+	}
+	oMark_right.onmouseout=function()
+	{
+		move(oNext,'opacity',0);	
+	}
+	
+	for(var i=0;i<oSmall_li.length;i++)
+	{
+		oSmall_li[i].index=i;    //创建index的初衷就是为了让大图与小图的位置匹配。第一张小图配第一张大图、
+		//鼠标移入移除效果
+		oSmall_li[i].onmouseover=function()
+		{
+			move(this,'opacity',100);	
+		}
+		oSmall_li[i].onmouseout=function()
+		{
+			if(this.index!=now)
+			{move(this,'opacity',50);}
+			
+		}	
+		
+		oSmall_li[i].onclick=function()
+		{
+			//设置一个变量now来控制，如果 鼠标所点和now一样则不重复动作。
+			if(now==this.index) return              
+			now=this.index;
+			tab();
+		
+		};
+		
+		
+	};
+	
+	function tab()
+	{
+			//每点击一次小图，大图z-index一次增加，显示
+			oBig_li[now].style.zIndex=zIndex++;	
+			oBig_li[now].style.height=0
+			move(oBig_li[now],'height',500)
+			
+			//和选项卡道理类似，先让所有的【i】属性为空，在为this添加特定属性。
+			for(var i=0;i<oSmall_li.length;i++)
+			{
+				move(oSmall_li[i],'opacity',50)	
+			}
+			move(oSmall_li[now],'opacity',100);
+			//点击小图移动小图
+			move(oUlSmall,'left',-(now-1)*oSmall_li[0].offsetWidth);
+			//第一张图片和最后一张图片移动的位置特殊性；
+			if(now==0)
+			{
+				move(oUlSmall,'left',0)
+			}
+			else if(now==oSmall_li.length-1)
+			{
+				move(oUlSmall,'left',-(now-2)*oSmall_li[0].offsetWidth);  //最后一张和倒数第二张移动的距离是一样的。
+			};	
+	};
+	oPrve.onclick=function()
+	{
+		now--
+		if(now==-1)
+		{
+			now=oSmall_li.length-1
+		}
+		tab()
+	}
+	oNext.onclick=function()
+	{
+		now++
+		if(now==oSmall_li.length)
+		{
+			now=0;
+		}
+		tab();	
+	};
+	timer=setInterval(oNext.onclick,3000);
+	oDiv.onmouseover=function()
+	{
+		clearInterval(timer);	
+	}
+};
+
+</script>
+
+</head>
+
+<body>
+<div id="playImg" class="play">
+    	<ul class="big_img">
+       
+            <div class="prve"></div>
+            <div class="next"></div>
+            <div class="mark_left"></div>
+            <div class="mark_right"></div>
+        	<li style="z-index:1";><img src="../../img2/45346091201305051857176740172875596_007_640.jpg"></li>
+            <li><img src="../../img2/45346091201305051857176740172875596_006_640.jpg"></li>
+            <li><img src="../../img2/45346091201305051857176740172875596_005_640.jpg"></li>
+            <li><img src="../../img2/45346091201305051857176740172875596_004_640.jpg"></li>
+            <li><img src="../../img2/45346091201305051857176740172875596_003_640.jpg"></li>
+        </ul>
+    <div class="small_img">
+    	<ul>
+    	<li style="opacity:1;filter:alpha(opacity:100);"><img src="../../img2/45346091201305051857176740172875596_007_640.jpg"></li>
+        <li><img src="../../img2/45346091201305051857176740172875596_006_640.jpg"></li>
+        <li><img src="../../img2/45346091201305051857176740172875596_005_640.jpg"></li>
+        <li><img src="../../img2/45346091201305051857176740172875596_004_640.jpg"></li>
+        <li><img src="../../img2/45346091201305051857176740172875596_003_640.jpg"></li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

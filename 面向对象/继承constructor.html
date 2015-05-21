@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	function people() {
+		
+		this.name = 'caoyarong';		
+	}
+	
+	people.prototype.getName = function () {
+		
+		return this.name;
+		
+		
+	};
+	
+	function animal () {
+	
+		//继承people的属性
+		people.call(this);	
+		
+	};
+	
+/*	animal.prototype = people.prototype;
+	
+	var cat = new animal();
+	
+	alert(cat.constructor)*/
+	
+	//animal的原型指向一个实例话的people
+	animal.prototype = new people();
+	
+	//把cat的构造函数 纠正为自己的构造函数 
+	animal.prototype.constructor = animal;
+	
+	var cat = new animal();
+	
+	
+	alert(cat.getName())
+	
+	
+	
+</script>
+</head>
+
+<body>
+</body>
+</html>

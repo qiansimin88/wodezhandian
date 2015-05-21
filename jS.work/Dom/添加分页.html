@@ -1,0 +1,73 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	a {margin:5px;}
+</style>
+<script>
+	window.onload=function()
+	{
+		page({id:'div1',nowPage:9,allPage:15})  //采用json形式的形参，适用于多数据
+	}
+	
+	function page(json)
+  {
+		if(!json.id) {return false}
+		
+		var obj=document.getElementById(json.id);
+		var nowPage=json.nowPage||1;
+		var allPage=json.allPage||5;
+	   if(allPage<=5)                      //页面小于5个的样式
+	   {
+		  for(var i=1;i<=allPage;i++)
+		  {
+			  var oA=document.createElement('a');
+			  oA.href="#"+i;
+			  if (nowPage==i)          
+			  {
+				  oA.innerHTML=i;	  //只要nowPage在I之中出现，OA就的INNERHTML为这样  else 为下面的  这里是else的逻辑关系，不是上面就用下面
+			  }
+			  else
+			  {
+				oA.innerHTML="["+i+"]"
+			  }
+			  obj.appendChild(oA);
+			  
+				  
+		  }
+	   }
+	   else      //大于5个页面的样式
+	   {
+		   for(var i=1;i<=5;i++)
+		   {
+				var oA=document.createElement('a');
+				oA.href="#"+(nowPage-3+i);                 //nowPage-3+i 这就对于这里刚刚好，可以换的。
+				if(i==3)                              //之所以是在，是因为创建了5个，第三个刚刚好是中间位置这个和上面的只有5个的不同                                                        永远改变中间的那一个
+				{
+					oA.innerHTML=(nowPage-3+i);
+				}
+				else
+				{
+				  oA.innerHTML="["+(nowPage-3+i)+"]" 
+				}
+				obj.appendChild(oA)  
+		   }
+	   }
+	}
+</script>
+</head>
+
+<body>
+<div id="div1">
+<!--
+<a href="#1">1</a>
+<a href="#2">[2]</a>
+<a href="#3">[3]</a>
+<a href="#4">[4]</a>
+<a href="#5">[5]</a>
+-->
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	#c1 {background:#fff}
+	body {background:#000;}
+</style>
+<script>
+	window.onload=function(){
+		
+		var oC= document.getElementById('c1');
+		
+		var oGc = oC.getContext('2d');
+
+		oGc.moveTo(100,200);
+		//bezierCurveTo(controlX,controlY,contro2X,contro2X,endX,endY);第一组控制点，第二组控制点..,结束坐标
+		oGc.bezierCurveTo(100,100,200,200,200,100);
+		//画线
+		oGc.stroke();
+			
+	}
+</script>
+</head>
+
+<body>
+<canvas id="c1" width='400' height='400'></canvas>
+</body>
+</html>

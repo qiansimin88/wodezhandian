@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	window.onload=function()
+	{
+		var oTab=document.getElementById('tab');
+		//alert(oTab.getElementsByTagName('tbody')[0].getElementsByTagName('tr')[1].getElementsByTagName('td')[2].innerHTML);	
+		alert(oTab.tBodies[0].rows[1].cells[2].innerHTML) //简便写法，tBodies[],rows[]是行，cells[]是列。注意tBodies和tHead都是大写
+	}
+
+</script>
+</head>
+
+<body>
+
+<table id="tab" border="1" width="500px" >
+	<thead>
+    	<th>ID</th><th>姓名</th><th>年龄</th>
+    </thead>
+    <tbody>
+    	<tr><td>1</td><td>小王</td><td>21</td></tr>
+        <tr><td>2</td><td>小红</td><td>22</td></tr>
+        <tr><td>3</td><td>小明</td><td>23</td></tr>
+        <tr><td>4</td><td>小李</td><td>24</td></tr>
+    </tbody>
+</table>
+
+</body>
+</html>

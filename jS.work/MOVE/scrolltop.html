@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+#div1 { height:200px;width:100px;background:#F00;position:absolute;right:0;bottom:0;}
+</style>
+<script>
+	window.onscroll=function()
+	{
+		/*document.documentElement.scrollTop获取HTML的滚动条的实时高度；document.body.scrollTop获取BODY的滚动条高度。*/
+			var oDiv=document.getElementById('div1');
+			var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;//获取滚动条高度
+			//oDiv.style.top=document.documentElement.clientHeight-oDiv.offsetHeight+scrollTop+'px';//不稳定，闪动不好。
+			move (document.documentElement.clientHeight-oDiv.offsetHeight+scrollTop)
+	}
+												//document.documentElement.clientHeight可视区的高
+	timer=null;
+	function move(target)
+	{
+		oDiv=document.getElementById('div1');
+		clearInterval(timer)
+		timer=setInterval(function(){
+			var speed=(target-oDiv.offsetTop)/10
+			speed=speed>0?Math.ceil(speed):Math.floor(speed);
+			if(target==oDiv.offsetTop)
+			{
+				clearInterval(timer)	
+			}
+			else
+			{
+				oDiv.style.top=oDiv.offsetTop+speed+'px'
+				document.title=oDiv.offsetTop+','+speed	
+			}
+			
+		},30)	
+		
+	}
+</script>
+</head>
+
+<body style="height:2000px;">
+<div id="div1"></div>
+</body>
+</html>

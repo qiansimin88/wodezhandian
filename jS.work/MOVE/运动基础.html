@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+#div1 {width:200px;height:200px;background:#F00;position:absolute;top:200px;left:0;}
+</style>
+<script>
+window.onload=function()
+{
+	var oBtn=document.getElementById('btn1');
+	var oDiv=document.getElementById('div1');
+	var timer=null;
+	
+	
+	oBtn.onclick=move;
+
+	
+                   //执行函数不需要move()这对括号。
+	
+	function move()
+	{
+			clearInterval(timer)        //防止用户多次点击导致多开定时器，放在前面则是关闭掉前一个定时器，放在后面则定时器一个都开不了
+			
+				var speed=7;
+			timer=setInterval(function(){
+				
+					if(oDiv.offsetLeft>=300)              //要设置>=300为什么呢，因为speed=7 ，刚好等于301，所依停不下来。
+			{	
+				clearInterval(timer)	
+				
+			}	
+			else
+			{
+					oDiv.style.left=oDiv.offsetLeft+speed+'px';	
+			}	      
+				
+				},30)
+				
+			
+				
+			
+	}
+	
+	
+	
+	
+}
+</script>
+
+</head>
+
+<body>
+<input id="btn1" type="button" value="开始"/>
+<div id="div1">
+</body>
+</html>

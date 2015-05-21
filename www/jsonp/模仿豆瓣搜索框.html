@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+#query {width:400px;height:30px;line-height:30px;}
+#msg {color:#F00;font-size:14px;font-family:'yahei';}
+#msg  .num {color:#000;font-size:16px;}
+#list dl {border-bottom:1px solid #000;}
+#list dl {font-weight:800;}
+</style>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+	$(function () {
+		$('#queryBtn').click(function () {		//创建script标签  加载跨域JS
+			jsonpFun();
+		});
+		$('#query').keydown(function(e){
+			if (e.keyCode == 13) {
+				$('#queryBtn').trigger('click');	
+			};
+		});
+	});
+//声明创建JSONP函数
+function jsonpFun () {
+	var val=$('#query').val();
+		if (val!=='') {    //如果搜索框有值的话  没值就算了
+			var oSr=document.createElement('script');
+			oSr.setAttribute('type','text/javascript');
+			
+			oSr.src="http://api.douban.com/book/subjects?q="+val+"&alt=xd&callback=qiansimin";          //回调函数是qiansimin 
+			document.body.appendChild(oSr);		
+		};
+};	
+//声明函数  
+	function qiansimin (data) {
+		console.log(data);
+		//1  显示有多少条结果
+		$('#msg').html(data.title.$t+':共帮你找到了<span class="num">'+data['opensearch:totalResults'].$t+'</span>条');
+		
+		var dataList=data.entry;    //数组
+		var html='';
+		for (var i=0;i<dataList.length;i++) {
+			html+='<dl><dt><a target="_blank" href="'+dataList[i].link[1]['@href']+'">'+dataList[i].title.$t+'</a></dt><dd><img src="'+dataList[i].link[2]['@href']+'"</img></dd></dl>';
+		};
+		$('#list').html(html);    //将循环过后的  html输出
+	}; 
+</script>
+</head>
+
+<body>
+	<input type="text" placeholder="电影、电视剧、影人、影院" maxlength="24" id="query"/>
+    <input type="button" value="确定" id="queryBtn"/>
+    <p id="msg"><span class="num"></span></p>
+    <hr/>
+    <div id="list">
+    
+    </div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+div { width:150px;height:30px;background:#666;margin:10px;}
+</style>
+<script>
+	window.onload=function()
+	{
+		
+		var aDiv=document.getElementsByTagName('div')
+		
+		for(var i=0;i<aDiv.length;i++)
+		{
+			
+			  aDiv[i].timer=null;  //给每个DIV都设置一个定时器  
+			aDiv[i].onmouseover=function()
+			{
+				move(this,400);
+			};	
+			aDiv[i].onmouseout=function()
+			{
+				move(this,150);
+			};
+		}	
+	};
+//	var timer=null;
+	function move(obj,target)
+	{
+			clearInterval(obj.timer);     //关掉每个DIV自己的定时器，这样就不会造成鼠标移到其它DIV时造成上一个DIV定时器被关闭的情况了。
+			obj.timer=setInterval(function(){
+			var speed=(target-obj.offsetWidth)/10;
+				speed=speed>0?Math.ceil(speed):Math.floor(speed);
+				if(obj.offsetWidth==target)
+				{
+					clearInterval(obj.timer)	
+				}	
+				else
+				{
+					obj.style.width=obj.offsetWidth+speed+'px';	
+				}
+			},30)
+	}
+</script>
+</head>
+
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+
+</body>
+</html>

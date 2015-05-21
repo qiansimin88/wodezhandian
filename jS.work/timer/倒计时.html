@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	
+	window.onload=function(){
+	
+		function competeTime (){
+	
+		var nowTime=new Date();
+							//这里的07相当于6月  因为程序都是从0开始
+		var fuTime=new Date(2014,07,26, 10,10,10 );
+	
+		//获得一个整数秒
+		var comTimeS=Math.floor((fuTime-nowTime)/1000);
+		
+		var D = Math.floor(comTimeS/86400)+'天';
+		
+		var H =Math.floor(comTimeS%86400/3600)+'时';
+		
+		var M =Math.floor(comTimeS%86400%3600/60)+'分';
+		
+		var S =Math.floor(comTimeS%60)+'秒';	
+		
+		return D+H+M+S;
+		
+	}
+	
+		setInterval(function(){
+			
+			document.getElementById('hehe').innerHTML= competeTime()	
+			
+		},1000);
+		
+		
+	}
+	
+</script>
+</head>
+
+<body>
+<p id="hehe"></p>
+</body>
+</html>

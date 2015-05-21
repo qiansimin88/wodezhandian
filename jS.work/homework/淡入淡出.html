@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+#div5 {
+		
+		margin:0 auto;padding:0;width:800px;height:800px;margin:0 auto;padding:0;border:1px dotted black;
+	}	
+#btn1 {margin:0 auto;display:block;}
+#img1 {margin:0 135px;}
+</style>
+<script>
+	window.onload=function()
+	{
+		var oImg=document.getElementById('img1');
+		var oBtn=document.getElementById('btn1');
+		oBtn.onclick=function()
+		{
+			move(100);	
+		}	
+		oBtn.onmouseout=function()
+		{
+			move(0);	
+		}
+	}
+	var alpha=0;
+	var timer=null;
+	function move(target)
+	{	var oImg=document.getElementById('img1');
+		var speed=0;
+		clearInterval(timer)
+		timer=setInterval(function(){
+				if(alpha>target)
+				{
+					speed=-2;
+						
+				}
+				else
+				{
+					speed=2;	
+
+				}
+				if(alpha==target)
+				{
+					clearInterval(timer);	
+				}
+				else
+				{
+					alpha=alpha+speed;  //鸡肋透明度，没过100毫秒用的透明度都是上次的，不像移动每次用的都是固定的speed。
+					oImg.style.filter='alpha(opacity:'+alpha+')';
+					oImg.style.opacity=alpha/100;	
+				}
+			},30)	
+	}
+
+</script>
+</head>
+
+<body>
+<div id="div5">
+<input id="btn1" type="button" value="点击有惊喜"/>
+<img id="img1" src="../../image/3.jpg" style="opacity:0;filter:alpha(opacity:0)">
+</div>
+</body>
+</html>

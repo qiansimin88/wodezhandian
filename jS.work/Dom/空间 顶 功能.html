@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+<script>
+	function ding (obj) {
+		var _this=$(obj);
+		var my=parseInt(_this.attr('my'));    //转换成数字格式
+		var num=parseInt(_this.attr('num'));
+		var newNum;
+		if( !my ) {   //表示我还没有顶
+			 newNum=num+1;
+			_this.attr('my',1);	  //我已经顶了
+			_this.attr('num',newNum);
+			_this.html(''+newNum+'取消赞');		
+		}else{
+			 newNum=num-1;
+			_this.attr('my',0);	  //我已经顶了
+			_this.attr('num',newNum);
+						//如果没有任何赞 用三元运算符 直接 不显示0
+			_this.html(''+newNum == 0 ? '赞' : newNum +'赞');		
+		} 
+	}
+</script>
+</head>
+
+<body>
+<!--my表示 我是否顶了   num表示总共顶了多少条   顶还是没顶 主要还是通过增加的my属性来判断的-->
+<a href="javascript:;" my='0' num="0" onclick='ding(this)'>赞</a>
+</body>
+</html>

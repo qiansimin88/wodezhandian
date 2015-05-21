@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	window.onload=function()
+	{
+		var oTab=document.getElementById('tab');
+		var oTxt=document.getElementById('name');
+	
+		var oBtn=document.getElementById('btn1');
+		
+		oBtn.onclick=function()
+		{
+			for(var i=0;i<oTab.tBodies[0].rows.length;i++)
+			{
+				var sTxt=oTxt.value.toLowerCase();          //toLowerCase转化为小写，两者都为小写，这样输入大小写都能搜到了
+				var sTab=oTab.tBodies[0].rows[i].cells[1].innerHTML.toLowerCase();
+				var arr=sTxt.split(' ');                       //把用户假想的关键词通过空格切成数组
+				oTab.tBodies[0].rows[i].style.background=''	;	
+				for(var j=0;j<arr.length;j++)      //为数组搞上循环
+				{
+					if(sTab.search(arr[j])!=-1)		//数据库当中如果含有数组当中的任何一个关键词 
+					{
+					 	oTab.tBodies[0].rows[i].style.background='#F0C'	;
+					}	
+					
+				
+				}
+				
+				
+			
+			}
+		};	
+	}
+</script>
+
+
+</head>
+
+<body>
+姓名：<input id="name" type="text"/>
+
+<input id="btn1" type="button" value="seach">
+<table id="tab" border="1" width="500px" >
+	<thead>
+    	<th>ID</th><th>姓名</th><th>年龄</th><th>操作</th>
+    </thead>
+    <tbody>
+    	<tr><td>1</td><td>小王</td><td>21</td><td></td></tr>
+        <tr><td>2</td><td>王思</td><td>22</td><td></td></tr>
+        <tr><td>3</td><td>blue</td><td>23</td><td></td></tr>
+        <tr><td>4</td><td>小李</td><td>24</td><td></td></tr>
+        <tr><td>4</td><td>王李</td><td>24</td><td></td></tr>
+        <tr><td>4</td><td>张思</td><td>24</td><td></td></tr>
+    </tbody>
+</table>
+
+</body>
+</html>

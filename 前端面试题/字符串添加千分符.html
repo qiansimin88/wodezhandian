@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	var str="62249431619846";
+	
+	function test(str)
+	{
+		var iNum=str.length%3;    // 0 1 2
+		var arr=[];    //创建一个新数组
+		var prev='';    //不是整三时候的个数
+		var iNow=0;     //计值
+		var tmp="";     //空字符串  用来添加字符用的
+		if(iNum!=0)     //不被三整除的情况                                    //主题思想：由于是字符串想要转换成千分符，必须只有数组的join才能添加符号，所依首                                                              先想到 数组。然后分情况给数组加上值，最后转换成字符串
+		{
+			prev=str.substring(0,iNum) 
+			arr.push(prev)	    //不被三整除的 直接添加进数组
+		}
+		
+		str=str.substring(iNum)                  // 能被三整除剩下的字符串
+		for(var i=0;i<str.length;i++)            // 循环
+		{
+			iNow++
+			tmp+=str[i];
+			
+			if(iNow==3&&tmp)
+			{
+				arr.push(tmp)
+				tmp='';                  //每加完三个就清空 之前的 方便后面继续添加
+				iNow=0;	                 //同上
+			}
+		}
+		
+		return arr.join(',')
+	}
+	alert(test(str));
+</script>
+</head>
+
+<body>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+
+
+* {padding:0px;margin:0px;}
+#div1 {height:220px;width:880px;margin:0 auto;position:relative;background:#F00;}
+#div1 ul li {
+		float:left;
+		list-style:none;
+		height:220px;
+		width:220px;
+		
+	}
+ul {position:absolute;background:#000;
+	top:0px;
+	left:0px;
+	}
+
+#bt1 {position:absolute;
+	 z-index:2;
+	 top:62px;
+	 display:none;}
+#bt2 {position:absolute;
+	  z-index:2;
+      top:62px;
+	  right:0px;
+	  display:none;}
+#img1 {
+		width:220px;
+		height:220px;
+		position:absolute;
+		top:0;
+		left:0;
+	    z-index:5;
+		
+		}
+#img2 {
+		width:220px;
+		height:220px;
+		position:absolute;
+		top:0;
+		right:0;
+		z-index:5;
+	}
+		
+</style>
+<script>
+	window.onload=function()
+	{
+		var oDiv=document.getElementById('div1');
+		var oUl=oDiv.getElementsByTagName('ul')[0];                      //document是取ID时候用的，oDiv是取TagName.
+		var aLi=oUl.getElementsByTagName('li')
+			oUl.innerHTML+=oUl.innerHTML;
+			oUl.style.width=aLi[2].offsetWidth*aLi.length+'px';
+		 var   speed=+5;
+		var timer=null;	
+	    var oBt2=document.getElementById('bt2');
+		var oBt1=document.getElementById('bt1');
+		var aImg1=document.getElementById('img1');
+		var aImg2=document.getElementById('img2');
+		function move(){
+			
+			if(oUl.offsetLeft<-oUl.offsetWidth/2)           
+			{
+				oUl.style.left='0';
+			}
+			if(oUl.offsetLeft>0)
+			{
+				oUl.style.left=-oUl.offsetWidth/2+'px'
+			}
+			oUl.style.left=oUl.offsetLeft+speed+'px'
+		}
+        timer=setInterval(move
+		,20)
+			
+			oDiv.onmouseover=function(){
+				
+					clearInterval(timer);
+				}
+			oDiv.onmouseout=function(){
+				
+				timer=setInterval(move,30);
+				}	
+			aImg1.onmouseover=function(){
+					oBt1.style.display='block';
+					
+			}
+			aImg2.onmouseover=function(){
+					oBt2.style.display='block';
+				}
+			oBt1.onclick=function(){
+				speed=-3;	
+			}
+			oBt2.onclick=function(){
+				speed=+3;	
+			}
+			
+			aImg1.onmouseout=function(){
+					oBt1.style.display="none";
+				}
+			aImg2.onmouseout=function(){
+					oBt2.style.display="none";
+				}
+
+}
+
+
+
+</script>
+
+</head>
+
+<body>
+
+	
+	<div id="div1">
+    
+    <div id="img1"><img id="bt1" src="../img2/right.PNG"/></div>
+    <div id="img2"><img id="bt2" src="../img2/left.PNG"></div>
+	<ul>  
+    	<li><img src="../img2/1.jpg" /></li>
+        <li><img src="../img2/2.jpg" /></li>
+        <li><img src="../img2/3.jpg" /></li>
+        <li><img src="../img2/4.jpg" /></li>
+      
+    </ul>
+	</div>
+
+
+</body>
+</html>

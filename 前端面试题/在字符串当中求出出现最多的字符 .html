@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+  var str='jisgdbmgchhhsdkbfjsoijjalsjdgcnj';
+function test(str)
+{
+	var obj={};   //创建一个空json。
+	var num=0;
+	var value="";                      //在字符串当中 找到出现次数最多的字符   
+									  //主题思想是    先循环 str, 然后if判断，每个字符要是没出现 就创建一个空数组，出现就添加进数                                        组 然后求length的大小得出。
+	for(var i=0;i<str.length;i++)
+	{
+		if( !obj[str[i]])
+		{
+			obj[str[i]]=[];	
+		}
+		obj[str[i]].push(str[i]);	
+	}
+	for (attr in obj)
+	{
+		if(num <obj[attr].length)    //声明一个变量num，与每个attr相比较，只要小于，就等于atrr则  num经过循环后就变成最大的了。
+		{
+			num=obj[attr].length;
+			
+			value=obj[attr][0]	     //value在这个if之中， 所依   自然也是最大的 字符。
+		}	
+	}
+	
+	return '最多的字符串是'+value+'出现的次数是'+num;	
+}
+alert(test(str))
+</script>
+</head>
+
+<body>
+</body>
+</html>

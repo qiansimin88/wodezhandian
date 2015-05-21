@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+
+<style>
+* {margin:0;padding:0}
+#ul1 li {width:100px;height:20px;text-align:center;line-height:20px;float:left;list-style:none;border:1px solid black;background:#F9F;position:relative}
+#ul1 div {width:100px;position:absolute;top:20px;left:0;background:#FF0;overflow:hidden;height:0;opacity:0;filter:alpha(opacity:0)}  <!--这里的overflow很重要                                                   是为了height=0时候，div里面的文字不显示。-->
+</style>
+<script src="../../js/prefectmove.js"></script>
+<script>
+	window.onload=function()
+	{
+		var oDiv=document.getElementById('ul1');
+		var aLi=oDiv.getElementsByTagName('li');
+		
+		for(var i=0;i<aLi.length;i++)
+		{
+			aLi[i].onmouseover=function()
+			{
+				
+				var aDiv=this.getElementsByTagName('div')[0];
+				aDiv.style.height="auto";
+			    var iHeight=aDiv.offsetHeight;
+		        aDiv.style.height='0';
+				move(aDiv,{opacity:100,height:iHeight})	
+			}
+			aLi[i].onmouseout=function()
+			{
+				var aDiv=this.getElementsByTagName('div')[0];
+				move(aDiv,{opacity:0,height:0})		
+			}	
+		}	
+	}
+</script>
+</head>
+
+<body>
+<ul id="ul1">
+	<li>关于我们
+    	<div>asdas<br/>asdas</br>asdas</br>sadas<br/>
+        </div>
+    </li>
+    <li>关于我们
+    	<div>asdas<br/>asdas</br>asdas</br>asdas</br>sadas<br/>asdas</br>sadas<br/>asdas</br>sadas<br/>asdas</br>sadas<br/>
+        </div>
+    </li>
+    <li>关于我们
+    	<div>asdas<br/>asdas</br>
+        </div>
+    </li>
+    <li>关于我们
+    	<div>asdas<br/>asdas</br>asdas</br>asdas</br>sadas<br/>asdas</br>sadas<br/>asdas</br>sadas<br/>asdas</br>sadas<br/>asdas</br>sadas<br/>asdas</br>sadas<br/>
+        </div>
+    </li>
+    <li>关于我们
+    	<div>asdas<br/>asdas</br>asdas</br>
+        </div>
+    </li>
+    
+</ul>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="../js/jquery-1.7.2.min.js"></script>
+
+<script>
+	$(function(){
+		$('p').click(function(){
+			var re=/^\w+$/g;    //加g才能全局匹配到
+			if(re.test($('#btn1').val()))
+			{
+				alert('对')	
+			}                                //这个正则表达式就是为了只能输入一个数字
+			else
+			{
+				alert('错')	
+			}
+		})
+	})
+</script>
+</head>
+
+<body>
+<input type="text" name="mo" id="btn1"/>
+<p>asd</p>
+</body>
+</html>

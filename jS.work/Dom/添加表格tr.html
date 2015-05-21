@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	window.onload=function()
+	{
+		var oName=document.getElementById('name');
+		var oAge=document.getElementById('age');
+		var oTab=document.getElementById('tab');
+		var oBtn=document.getElementById('btn1');
+		var id=oTab.tBodies[0].rows.length+1;
+			for(var i=0;i<oTab.tBodies[0].rows.length;i++)
+	  {
+			oTab.tBodies[0].rows[i].onmouseover=function()
+			{
+				oldColor=this.style.background;
+				this.style.background='#0CF'	
+			}
+			oTab.tBodies[0].rows[i].onmouseout=function()
+			{
+				
+				this.style.background=oldColor;	
+	     	}	
+			if(i%2)
+			{
+				
+				oTab.tBodies[0].rows[i].style.background='gray';	//只要有rows[i]的地方一定要在前面加上oTab.tBOdies[0]之类的父级。
+			}
+			else
+			{
+				oTab.tBodies[0].rows[i].style.background='';
+			}
+			
+		}
+		
+		
+		
+		
+		oBtn.onclick=function()
+		{
+			var oTr=document.createElement('tr');                //创建一个tr
+			var oTd=document.createElement('td');				//创建一个TD	
+				oTd.innerHTML=id++;    //TD的内容
+			oTr.appendChild(oTd);								//TD的位置
+			var oTd=document.createElement('td');				
+				oTd.innerHTML=oName.value;						//以下同理，注意的是 创建一个TR但是TR不具有具体内容，创建几个TD要视情况而定															   																	，然后每个TD都是在TR这个父级下面即可，最后在把TR放到他的父级下面      		                  
+				 oTr.appendChild(oTd);
+			var oTd=document.createElement('td')
+		    	oTd.innerHTML=oAge.value;
+			oTr.appendChild(oTd);
+			
+			var oTd=document.createElement('td');
+				oTd.innerHTML="<a href='javascript:;'>删除</a>"
+			oTr.appendChild(oTd);
+			
+		var	oA=oTd.getElementsByTagName('a')[0]
+	
+		oA.onclick=function()
+				
+				{
+					oTab.tBodies[0].removeChild(this.parentNode.parentNode)	
+				}
+			
+			
+			oTab.tBodies[0].appendChild(oTr);	
+			
+			for(var i=0;i<oTab.tBodies[0].rows.length;i++)
+	  {
+			oTab.tBodies[0].rows[i].onmouseover=function()
+			{
+				oldColor=this.style.background;
+				this.style.background='#0CF'	
+			}
+			oTab.tBodies[0].rows[i].onmouseout=function()
+			{
+				
+				this.style.background=oldColor;	
+	     	}	
+			if(i%2)
+			{
+				
+				oTab.tBodies[0].rows[i].style.background='gray';	//只要有rows[i]的地方一定要在前面加上oTab.tBOdies[0]之类的父级。
+			}
+			else
+			{
+				oTab.tBodies[0].rows[i].style.background='';
+			}
+			
+		}
+			
+	}	
+	
+}
+
+</script>
+
+
+</head>
+
+
+<body>
+姓名：<input id="name" type="text"/>
+年龄：<input id="age" type="text"/>
+<input id="btn1" type="button" value="确定">
+<table id="tab" border="1" width="500px" >
+	<thead>
+    	<th>ID</th><th>姓名</th><th>年龄</th><th>操作</th>
+    </thead>
+    <tbody>
+    	<tr><td>1</td><td>小王</td><td>21</td><td></td></tr>
+        <tr><td>2</td><td>小红</td><td>22</td><td></td></tr>
+        <tr><td>3</td><td>小明</td><td>23</td><td></td></tr>
+        <tr><td>4</td><td>小李</td><td>24</td><td></td></tr>
+    </tbody>
+</table>
+
+</body>
+</html>

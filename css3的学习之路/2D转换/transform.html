@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	.one {width:200px;height:200px;border:1px solid red;}
+	.two {width:200px;height:200px;border:1px solid blue;-webkit-transform:translate(40px,50px)}   
+	/*
+		transform:  2D的变形模式
+	位移：	transform:translate(X轴位移，Y轴位移)
+			transform:translateX(X轴位移)
+			
+	缩放     transform:Scale(宽缩放比列（2），高缩放比列（0.5）)      注意：这里的缩放以DIV的中心点进行缩放而不是以前的那种XY轴的左上角为参照点
+			transform-origin:0% 0%;        选取参照点，用百分比和实际像素 选取X和Y轴的参照点;
+			
+	旋转    transform:rotate(deg)      旋转                     
+	*/		
+</style>
+</head>
+
+<body>
+	<div class="one">
+    	<div class="two">
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+function setText(name){
+	
+		var oTxt=document.getElementById("text1")
+		
+		//oTxt.value="我是呵呵";                这是第一种最常用的方法用.号来设置
+		
+		//oTxt['value']='我是呵呵'			第二种用[]里面写上字符串的方法，并且前面的.号没有了。
+	 /*	var a='value'
+		oTxt[a]='我是呵呵'  	*/			    //由第二种方法引申出来的快捷用法，先设置变量。
+		
+		oTxt[name]='我是呵呵'        //最后这种是使用参数的方法，，在[]里面写上函数的参数，然后在调用的时候写书具体的参数即可。就是                                     下面的onclick="setText('value')"
+													
+									//但凡用.的地方都可以使用 []代替，但是如果是具体的参数 如value.style等等都必须要''来变成字符串，使用参数除外。
+	}	
+
+
+
+
+
+</script>
+
+
+</head>
+
+<body>
+<input type="text" id="text1"/>
+<input type="button"  onclick="setText('value')" value="确定">
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	var a='asdasd84r1dxf158dtrt54641655555555';
+	
+	
+	//写一个JS函数来求出现最多的一个字符串
+	function test (obj){
+	var attr={};
+	var num=0;
+	var value="";
+	
+	for(i=0;i<obj.length;i++)
+	{
+		if(!attr[obj[i]])
+		{
+			attr[obj[i]]=[];
+		}
+		else
+		{
+			attr[obj[i]].push(obj[i])	
+		}	
+	};
+	
+	for(js in attr)
+	{
+		
+		if(num<attr[js].length)
+		{
+			num=attr[js].length;
+			value=attr[js][0];
+		}
+		
+	}
+	alert('出现最多的次数是'+num+'出现最多的字符串是'+value)
+ };
+ 
+ test(a)
+</script>
+</head>
+
+<body>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="gb2312">
+        <title>CSS3每日一练之动画属性-实现动画的方法</title>
+        <style type="text/css">
+                *{margin:0; padding:0;}
+                        body{padding:10px; font-size:14px; font-family:Microsoft yahei;}
+                        #box{margin-bottom:20px; width:50px; height:50px; line-height:50px; text-align:center; border:1px solid #96c2f1; background:#eff7ff; position:relative;}
+                        #box:hover{width:800px;}
+                        #code{padding:5px; width:490px; height:120px; line-height:24px; border:1px solid #92b0dd; color:#00f; font-family:Arial, Tahoma, Verdana;}
+                        .linear{-webkit-transition:all 2s linear; -moz-transition:all 2s linear; -o-transition:all 2s linear;}
+                        .ease{-webkit-transition:all 2s ease; -moz-transition:all 2s ease; -o-transition:all 2s ease;}
+                        .easeIn{-webkit-transition:all 2s ease-in; -moz-transition:all 2s ease-in; -o-transition:all 2s ease-in;}
+                        .easeOut{-webkit-transition:all 2s ease-out; -moz-transition:all 2s ease-out; -o-transition:all 2s ease-out;}
+                        .caseInOut{-webkit-transition:all 2s ease-in-out; -moz-transition:all 2s ease-in-out; -o-transition:all 2s ease-in-out;}
+                        label{display:block; width:200px; height:30px; border-bottom:1px #d1d1d1 dashed; line-height:30px;}
+                        
+        </style>
+        <script type="text/javascript">
+        window.onload = function()
+                {
+                        var radios = document.getElementsByName("moveType");
+                        var code = document.getElementById("code");
+                        var box = document.getElementById("box");
+                        var type = {
+                                "linear":"<span style=\"color:#f0f;\">.linear{</span>
+<span style=\"color:#009;\">&nbsp;&nbsp;&nbsp;&nbsp;-webkit-transition</span><span style=\"color:#f0f;\">:</span>all 2s linear<span style=\"color:#f0f;\">;</span>
+ <span style=\"color:#009;\">&nbsp;&nbsp;&nbsp;&nbsp;-moz-transition</span><span style=\"color:#f0f;\">:</span>all 2s linear<span style=\"color:#f0f;\">;</span>
+ <span style=\"color:#009;\">&nbsp;&nbsp;&nbsp;&nbsp;-o-transition</span><span style=\"color:#f0f;\">:</span>all 2s linear<span style=\"color:#f0f;\">;
+}</span>",
+                                "ease":"<span style=\"color:#f0f;\">.ease{</span>
+<span style=\"color:#009;\">&nbsp;&nbsp;&nbsp;&nbsp;-webkit-transition</span><span style=\"color:#f0f;\">:</span>all 2s ease<span style=\"color:#f0f;\">;</span>
+ <span style=\"color:#009;\">&nbsp;&nbsp;&nbsp;&nbsp;-moz-transition</span><span style=\"color:#f0f;\">:</span>all 2s ease<span style=\"color:#f0f;\">;</span>
+ <span style=\"color:#009;\">&nbsp;&nbsp;&nbsp;&nbsp;-o-transition</span><span style=\"color:#f0f;\">:</span>all 2s ease<span style=\"color:#f0f;\">;
+}</span>",
+                                "easeIn":"<span style=\"color:#f0f;\">.easeIn{</span>
+<span style=\"color:#009;\">&nbsp;&nbsp;&nbsp;&nbsp;-webkit-transition</span><span style=\"color:#f0f;\">:</span>all 2s ease-in<span style=\"color:#f0f;\">;</span>
+ <span style=\"color:#009;\">&nbsp;&nbsp;&nbsp;&nbsp;-moz-transition</span><span style=\"color:#f0f;\">:</span>all 2s ease-in<span style=\"color:#f0f;\">;</span>
+ <span style=\"color:#009;\">&nbsp;&nbsp;&nbsp;&nbsp;-o-transition</span><span style=\"color:#f0f;\">:</span>all 2s ease-in<span style=\"color:#f0f;\">;
+}</span>",
+                                "easeOut":"<span style=\"color:#f0f;\">.easeOut{</span>
+<span style=\"color:#009;\">&nbsp;&nbsp;&nbsp;&nbsp;-webkit-transition</span><span style=\"color:#f0f;\">:</span>all 2s ease-out<span style=\"color:#f0f;\">;</span>
+ <span style=\"color:#009;\">&nbsp;&nbsp;&nbsp;&nbsp;-moz-transition</span><span style=\"color:#f0f;\">:</span>all 2s ease-out<span style=\"color:#f0f;\">;</span>
+ <span style=\"color:#009;\">&nbsp;&nbsp;&nbsp;&nbsp;-o-transition</span><span style=\"color:#f0f;\">:</span>all 2s ease-out<span style=\"color:#f0f;\">;
+}</span>",
+                                "caseInOut":"<span style=\"color:#f0f;\">.caseInOut{</span>
+<span style=\"color:#009;\">&nbsp;&nbsp;&nbsp;&nbsp;-webkit-transition</span><span style=\"color:#f0f;\">:</span>all 2s ease-in-out<span style=\"color:#f0f;\">;</span>
+ <span style=\"color:#009;\">&nbsp;&nbsp;&nbsp;&nbsp;-moz-transition</span><span style=\"color:#f0f;\">:</span>all 2s ease-in-out<span style=\"color:#f0f;\">;</span>
+ <span style=\"color:#009;\">&nbsp;&nbsp;&nbsp;&nbsp;-o-transition</span><span style=\"color:#f0f;\">:</span>all 2s ease-in-out<span style=\"color:#f0f;\">;
+}</span>"
+                        };
+                        code.innerHTML = type.linear;
+                        for(var i = 0, j = radios.length; i < j; i++)
+                        {
+                                (function(m, o)
+                                {
+                                        o.onclick = function()
+                                        {
+                                                if(o.checked)
+                                                {
+                                                        box.className = o.id;
+                                                        code.innerHTML = eval("type." + o.id);
+                                                }
+                                        }
+                                })(i, radios[i]);
+                                
+                        }
+                }
+        </script>
+    </head>
+    
+    <body>
+            <div id="box" class="linear">碰我</div>
+        <div id="code"></div>
+        <label><input id="linear" name="moveType" checked type="radio"/>linear 线性过渡</label>
+        <label><input id="ease" name="moveType" type="radio"/>平滑过渡</label>
+        <label><input id="easeIn" name="moveType" type="radio"/>由慢到快</label>
+        <label><input id="easeOut" name="moveType" type="radio"/>由快到慢</label>
+        <label><input id="caseInOut" name="moveType" type="radio"/>由慢到快再到慢</label>
+    </body>
+</html>[/i]

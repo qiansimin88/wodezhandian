@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        textarea {
+            width: 200px;
+            height: 20px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            
+            //获取元素
+            var txt = document.getElementById('txt');
+            var total = document.getElementById('total');
+
+            //输入框获取焦点时
+           txt.onfocus=function(){
+               txt.style.cssText="width:300px;height:40px;";
+           }
+           
+
+            //输入框失去焦点时
+           txt.onblur=function(){
+               txt.style.cssText="width:200px;height:20px;"
+           }
+
+            //输入框键盘弹起时计算字数
+            txt.onkeyup=function(){
+                var len=this.value.length;
+                total.innerHTML=len
+            }
+           
+        }
+
+    </script>
+</head>
+<body>
+<textarea id="txt"></textarea>
+<p>你输入了<span id="total">0</span>个字</p>
+</body>
+</html>

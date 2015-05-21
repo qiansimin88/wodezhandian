@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="../js/jquery-2.0.2.min.js"></script>
+<script>
+	$(function(){
+			
+		$('div').has('p').css('background','red');	//选择含有P标签的div标签元素。和 div p不同，那个只能选择P而不能过滤选择div
+		
+		$('div').not('.box').css('background','gray')  //选择class不为box的div标签
+		
+		$('div').filter('#id').css('background','yellow')  //选择id为id的div标签
+})
+</script>
+</head>
+
+<body>
+	<div class="box">sdsadasd<p></p></div>
+    <div class="box">asdasd</div>
+    <div>asdsadas</div>
+    <div id="id">asdasd</div>
+</body>
+</html>

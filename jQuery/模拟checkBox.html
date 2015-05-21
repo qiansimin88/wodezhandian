@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="../js/jquery-2.0.2.min.js"></script>
+<script>
+	$(function(){
+		
+		var btn = $('input');
+		
+		var way ;
+		
+		btn.on('click',function(e){
+	
+
+			var nowVal = parseFloat($('font').text()/100);
+			
+			var netPay = $('span');
+			
+			var netPayVal = netPay.text();
+			
+			var _this = $(this);
+
+					
+			//勾选    -  
+			if(_this.is(':checked')) {
+				
+					if(way == 'jian') return;
+				
+					way = 'jian';
+															
+					netPay.text(parseFloat(netPayVal-nowVal).toFixed(2));
+					
+			}
+			//取消  +
+			else{
+					if(way == 'jia') return;
+					
+					way='jia';
+						
+				   netPay.text((parseFloat(netPayVal)+nowVal).toFixed(2));
+
+			}
+			
+		});
+			
+	})
+</script>
+</head>
+
+<body>
+	<input type="checkbox" name="dou"><font>12</font>
+    </br>
+    <span>50.21</span>
+</body>
+</html>

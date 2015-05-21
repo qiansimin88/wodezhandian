@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="../js/jquery-2.0.2.min.js"></script>
+<style>
+.box1 {width:500px;height:500px;}
+</style>
+<script>
+	window.onload=function()
+	{
+		$('#box1 li:first').css('background','red');    //id为box1下面的 第一个li 
+		$('li:last-child').css('background','gray');    //最后一个li不管谁是父级  可以通过添加父级来选择
+		
+	}
+</script>
+</head>
+
+<body>
+
+
+  <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+  </ul>
+  
+  
+  
+  <div id="box1">
+ <ul>
+  	<li></li>
+    	<li></li>
+        	<li></li>
+ </ul>
+</div>
+
+</body>
+</html>

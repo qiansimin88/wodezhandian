@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script src="http://s0.jmstatic.com/templates/jumei/js/jquery/placeholder.min.js"></script>
+<style>
+/*这是低端浏览器下placeholder的字体颜色*/
+placeholder{
+    color: #bfbfbf;
+}
+/*这是firefox下placeholder的字体颜色*/
+::-moz-placeholder {
+    color: #bfbfbf;
+}
+/*这是webkit下placeholder的字体颜色*/
+::-webkit-input-placeholder {
+    color: #bfbfbf;
+}
+/*
+ *    满足这两个条件，该js能工作的更好，更智能
+ *    1.文本框的父定位元素需加入*zoom: 1
+ *    2.文本框或其父元素的position，不能同时为static
+ */
+.textbox {
+    position: relative;
+    *zoom: 1;
+}
+</style>
+</head>
+
+<body>
+
+<div class="textbox">
+    <input type="password" placeholder="请输入密码" autofocus>
+</div>
+</body>
+</html>

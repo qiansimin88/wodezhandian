@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	* {margin:0;padding:0}
+	.popDiv {position:absolute;width:200px;height:180px;border:1px solid #000;background:#00F;display:none;color:#9F3;z-index:2;}
+</style>
+<script src="../js/jquery-1.7.2.min.js"></script>
+<script>
+	$(function(){
+		var popWindow=function(popdiv,closeBtn){	
+			/*浏览器可是区域的宽高*/
+			var browserWidth=$(window).width();   //1366
+			var browserHeight=$(window).height();   //643
+			/*div的真实宽高*/
+			var popDivWidth=$(popdiv).outerWidth(true);  //之所以用outerWidth(true)方便以后项目变更div 还是能取到真实的宽高 好习惯啊
+			var popDivHeight=$(popdiv).outerHeight(true);
+			// div 的left和top值
+			var positionL=(browserWidth-popDivWidth)/2;
+			var positionT=(browserHeight-popDivHeight)/2;
+			//document的宽高度
+			var documentHeight=$(document).height();
+			//弹窗按钮		
+			$('.alBtn').on('click',function(){    //按钮
+				//遮罩层
+				var maskDiv='<div class="maskdiv"></div>';
+				$('body').append(maskDiv);
+				$('.maskdiv').css({height:documentHeight,width:'100%',background:'#000',position:'absolute',left:0,top:0,zIndex:1})
+				$('.maskdiv').fadeTo('slow',0.6);
+				//弹窗主体
+				$(popdiv).show().css({left:positionL,top:positionT+browserScrollHeight,zIndex:999}) //点击也别忘了加scrollTop的距离。
+			});
+			//关闭按钮
+			$(closeBtn).on('click',function(){
+				//删除遮罩层的dom
+				$('.maskdiv').remove();
+				$(popdiv).hide();
+			});
+			/*窗口移动，Div也移动*/
+			$(window).resize(function(){
+				/*全局变量的可视区域宽高度，动态改变*/
+				if($(popdiv).is(':visible'))   //当div显示移动浏览器窗口才有效果。
+				{
+				  browserWidth=$(window).width();
+				  browserHeight=$(window).height();
+				  positionL=(browserWidth-popDivWidth)/2;
+				  positionT=(browserHeight-popDivHeight)/2;
+				  $(popdiv).css({left:positionL,top:positionT+browserScrollHeight,zIndex:999}); //窗口变换也别忘了加scrollTop的距离。	
+				 }
+				 else
+				 {
+					 
+					return false;
+				 }
+			});	
+			/*滚动条事件*/
+			//滚动条距离顶部的距离
+			var browserScrollHeight=$(window).scrollTop();    //局部变量  唯一不变  主要起声明作用；
+			$(window).scroll(function(){                      //全局变量 随着事件 时时变换
+				browserScrollHeight=$(window).scrollTop();    //滚动高度还是要时时获取的
+				if($(popdiv).is(':visible'))  //只有当div显示的时候才动态改变div的位置
+				{
+					$(popdiv).animate({left:positionL,top:positionT+browserScrollHeight,zIndex:999}).dequeue();	
+				}
+			});
+			
+		};
+		
+		//主程序调用  
+		popWindow('.popDiv','.closeBtn');	
+})
+</script>
+</head>
+
+<body>
+<div style="height:1000px;width:100%;"></div>
+<button value="弹出" class="alBtn">弹出</button>
+<div class="popDiv">
+登录框
+<a href="javascript:;" style="color:#000;" class="closeBtn">关闭按钮</a>
+</div>
+
+</body>
+</html>

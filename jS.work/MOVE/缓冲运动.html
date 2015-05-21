@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+#div1 { background:#F00;width:100px;height:100px;position:absolute;top:100px;;left:1200px;}
+#div2 { background:#000;width:1px;height:300px;position:absolute;top:0;left:600px;}
+</style>
+<script>
+window.onload=function()
+{	
+	var oBtn=document.getElementById("btn1");
+	var oDiv=document.getElementById('div1');
+		
+	oBtn.onclick=move;
+}
+	timer=null;
+	function move()
+	{
+		clearInterval(timer)
+		var oDiv=document.getElementById('div1');
+		timer=setInterval(function(){
+		var	speed=(600-oDiv.offsetLeft)/10;
+			/*if(speed>0)
+			{
+				speed=Math.ceil(speed);
+			}
+			else
+			{
+				speed=Math.floor(speed);	
+			}*/
+			//第一种写法speed>0?speed=Math.ceil(speed):speed=Math.floor(speed)   三目
+			speed=speed>0?Math.ceil(speed):Math.floor(speed) //但凡缓冲运动都需要取整
+			if(600==oDiv.offsetLeft)
+			{
+				clearInterval(timer)	
+			}
+			else
+			{
+				oDiv.style.left=oDiv.offsetLeft+speed+'px';	
+				
+			}
+			
+			document.title=oDiv.offsetLeft+','+speed
+		},30)	
+	}
+</script>
+</head>
+
+<body>
+<input id='btn1' type="button" value="开始运动"/>
+<div id="div1"></div>
+<div id="div2"></div>
+</body>
+</html>

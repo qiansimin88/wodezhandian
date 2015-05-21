@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+html,body {overflow-x:hidden;}
+	* {margin:0;padding:0}
+	li {list-style:none;}
+	#wrap {width:1000px;margin:0 auto;height:360px;position:relative;}
+	#wrap .wrap_banner {width:1920px;margin:0 auto;position:absolute;left:-50%;overflow:hidden;height:360px;}
+	.banner-container {position:absolute;left:0;top:0;}
+	.banner-container li {position:absolute;left:0;top:0;width:1920px;}
+	.counter {position:absolute;left:45%;bottom:16px;}
+	.counter li {margin-right:14px;overflow:hidden;width:14px;height:14px;cursor:pointer;background:url(../../images/index_icon.png) no-repeat -240px -23px;float:left;text-indent:-999em;}
+	.counter li.current {background-position:-261px -23px;}
+</style>
+<script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+<script src="jQuery-banner_fade.js"></script>
+<script>
+	$(function(){
+		$('.wrap_banner').banner_fade();	
+	})
+</script>
+</head>
+
+<body>
+	<div id="wrap">
+    	<div class="wrap_banner">
+        	<!--轮播图-->
+        	<ul class="banner-container">
+            	<li><a href="javascript:void(0)" title="梦幻古龙"><img src="../../images/index_image_01.jpg" alt="1"/></a></li>
+                <li><a href="javascript:void(0)" title="梦幻古龙"><img src="../../images/index_image_02.jpg" alt="1"/></a></li>
+                <li><a href="javascript:void(0)" title="梦幻古龙"><img src="../../images/index_image_01.jpg" alt="1"/></a></li>
+                <li><a href="javascript:void(0)" title="梦幻古龙"><img src="pay_image_01.jpg" alt="1"/></a></li>
+            </ul>
+            <!--计数器-->
+            <ol class="counter">
+            	<li class="current">1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

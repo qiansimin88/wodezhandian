@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+
+//    根据js的链式作用域链的原理，函数的内部变量外部是访问不了的。所以通过函数的内嵌的原理，返回一个函数 来获取 外围函数内部的局部变量  a ;这就是闭包
+	function f1(){
+		var a=999;
+		
+		return function f2 (){
+			alert(a)	
+		}
+	}
+	var result=f1();
+	result();    //999
+</script>
+</head>
+
+<body>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	window.onload=function()
+	{
+		var oTxt1=document.getElementById('text1');
+		var oBtn1=document.getElementById('btn1');
+		var oTxt2=document.getElementById('text2');
+		
+		oBtn1.onclick=function()
+		{
+			oTxt2.value+=oTxt1.value+'\n'
+			oTxt1.value="";
+		}
+		oTxt1.onkeydown=function(ev)
+		{
+			var oEvent=ev||event;
+			if(oEvent.keyCode==13&&oEvent.ctrlKey)     //ctrlkey的使用 就变成必须ctrl+回车，才可以执行。
+			{
+				oTxt2.value+=oTxt1.value+'\n'
+				oTxt1.value=""	
+			}
+		}
+			
+	}
+</script>
+</head>
+
+<body>
+<input id="text1" type="text"/>
+<input id="btn1" type="button" value="提交"><br/>
+<textarea id="text2" cols="40" rows="5"></textarea>
+</body>
+</html>

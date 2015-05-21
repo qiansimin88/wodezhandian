@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+//1
+	var x=2;
+	function test(){
+		var x=3;
+		alert(this.x)     //这里的this指的是是window下的全局环境下的x.	
+	}
+	test()     //2 
+	
+	
+//2  
+	var b=4;
+	function test2(){
+		b=5;
+		alert(this.b)    //依然指的是全局环境下的b  test2（）下面的b是覆盖了第一个b   
+	};
+	test2()   //5
+</script>
+</head>
+
+<body>
+</body>
+</html>

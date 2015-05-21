@@ -1,0 +1,340 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<!--移动端的头部信息-->
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+<!--iphone桌面生成icon-->
+<meta name="apple-touch-fullscreen" content="YES">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>无标题文档</title>
+<style>
+	body {
+		margin:0;padding:0;background:#000;overflow:hidden;	
+	}
+	#canvas {overflow:hidden;}
+	
+	ul,li {list-style:none;margin:0;padding:0;overflow:hidden;width:100%;height:100%;}
+	
+	li {display:-webkit-box;-webkit-box-pack:center;-webkit-box-align:center;position:absolute;}
+	li img {vertical-align:middle}
+	
+
+</style>
+<script>
+
+	//模拟的后台太图片数据
+	var  imgInfoList  = [
+		{
+			width:	484,
+			height:640,
+			addr:"images/1.jpg"
+		},
+		{
+			
+			width:484,
+			height:640,
+			addr:"images/4.jpg"
+		},
+		{
+			
+			width:	622,
+			height:375,
+			addr:"images/3.png"
+		},
+		{
+			
+			width:	484,
+			height:640,
+			addr:"images/4.jpg"
+		},
+		{
+			
+			width:	440,
+			height:715,
+			addr:"images/5.jpg"
+		},
+		{
+			
+			width:	1366,
+			height:768,
+			addr:"images/6.jpg"
+		}
+	];
+	
+
+		//图片滚动 组件  面向对象   
+		//1  构造函数
+		
+		function slideImg (op) {
+			//DOM对象
+			this.wrap = op.dom,
+			this.list = op.list			
+		}
+		
+		//原型方法1  初始化 
+		slideImg.prototype.init=function(){
+			
+			//屏幕宽
+			this.width = window.innerWidth;
+			
+			//长宽比
+			this.scale = window.innerHeight/this.width;
+			
+			//初始化的index
+			this.index=0;
+			
+		};
+		//原型方法2 拼装DOM 
+		slideImg.prototype.renderDom = function(){
+			
+			var wraps = this.wrap,
+				data = this.list,
+				len  = data.length,
+				widthInfo= this.width,
+				scale = this.scale;
+	
+			//循环搭建
+			this.outerUl = document.createElement('ul');
+			
+			for ( var i=0;i<len;i++ ) {
+				
+				var item =data[i];
+				
+				var li = document.createElement('li');
+				
+				if(!item) break;	
+		
+				if(item['height']/item['width'] >scale) {
+					li.innerHTML='<img height="'+window.innerHeight+'" src="'+item['addr']+'"/>';						
+				}else{
+					
+					li.innerHTML='<img width="'+widthInfo+'" src="'+item['addr']+'"/>';		
+				};
+				
+				li.style.webkitTransform = 'translate3D('+i*widthInfo+'px,0,0)';
+				
+				this.outerUl.appendChild(li);					
+			};
+			
+			wraps.appendChild(this.outerUl);
+		
+			wraps.style.height=window.innerHeight+'px';
+				
+		};
+		
+		//事件函数
+		
+		slideImg.prototype.moveHandler=function(){
+		
+			
+			var _this = this;
+			
+			var sWidth = this.width;
+			
+			var scale= this.scale;
+			
+			var outer = this.outerUl;
+			
+			var len =this.list.length;
+			
+			//手指按下
+			function startHandler (e) {
+				
+				//开始的X坐标				
+				_this.startX = e.touches[0].pageX;
+				//每次按下 都初始化位移的值为0
+				_this.offsetX = 0;
+				//开始的时间戳
+				_this.startTime = new Date() *1 ;
+				
+			};
+			//手指滑动
+			function moveHandler (e) {
+				//滑动的时候阻止浏览器的默认行为				
+				e.preventDefault();
+				//滑动的位移值
+				_this.offsetX = e.touches[0].pageX-_this.startX;
+				
+				console.log(_this.offsetX)
+				/**手指滑动的 时候 最多只能看到 连续的三张图片的滑动***/
+				
+				var nowList = outer.getElementsByTagName('li');
+				
+				
+				
+				//滑动的第一图片是当前index的前一张图
+				var i = _this.index - 1;
+				//总共三个图片会出现运动
+				var allList = i+3;
+				
+				
+				
+				//循环让连续三张如片运动
+				for (i;i<allList;i++) {
+				
+					//当第一滑动  第一个动的图片是不存在的所有不需要
+					if(nowList[i]) {						
+						nowList[i].style.webkitTransform = 'translate3d('+((i-_this.index)*_this.width+_this.offsetX)+'px,0,0)';
+						
+						//解决移动的延迟BUG。让transition的过度效果消失即可
+						nowList[i].style.webkitTransition = 'none'	;						
+					};
+						
+				};
+				
+				
+				
+				
+			};
+			//手指离开
+			function endHandler () {
+				
+				//屏幕的1/6是临界点
+				var screenPoint = sWidth/6;
+				//离开的时间戳
+				var endTime =new Date()*1;
+				
+				var lis=outer.getElementsByTagName('li');
+					
+
+				//手指触摸时间长 属于慢操作
+				if(endTime - _this.startTime > 800) {
+					
+					if(_this.offsetX >= screenPoint) {
+					
+					//进入上一张
+						_this.go('-1');
+						
+					} else if (_this.offsetX < (-screenPoint)) {
+					//进入下一页	
+						_this.go('+1');
+					
+					}else{
+					
+					//留在当前页
+				
+						_this.go('+0');
+						
+					};
+						
+				}
+				//手指触摸快 属于快操作
+				else{
+						
+					//进入上一张
+					if(_this.offsetX > 30 ) {
+						
+						_this.go('-1');
+							
+					}
+					//进入下一张
+					else if (_this.offsetX < -30 ) {
+						
+						_this.go('+1');	
+					}
+					//当前页面
+					else{
+						
+						_this.go('+0');
+							
+					}
+						
+				}
+				
+				
+			};
+			
+			//绑定事件
+			
+			outer.addEventListener('touchstart',startHandler);
+			
+			outer.addEventListener('touchmove',moveHandler);
+			
+			outer.addEventListener('touchend',endHandler);
+			
+		};
+		
+		
+		//go函数  用于触发动画
+		slideImg.prototype.go=function(n){
+			
+			//初始化的index
+			var index = this.index;
+			
+			var Swidth = this.width;
+			
+			var lis = this.outerUl.getElementsByTagName('li');
+			
+			var len = lis.length;
+			
+			var cidex ;
+			
+			if (typeof n == 'string') {
+					
+				cidex = index+n*1;	
+			}
+			else if (typeof n == 'number') {
+				
+				cidex = n;
+					
+			};
+			
+			//判断超出的所以值
+			
+			if(cidex > len -1 ) {
+				
+				cidex = len-1;
+					
+			}else if (cidex <0) {
+			
+				cidex = 0;
+					
+			}
+			
+			//屏幕中间的图片索引
+			this.index = cidex ;
+			
+			
+			//动画
+			//当前正中的还是都为0
+			
+			lis[cidex].style.webkitTransition='-webkit-transform 0.2s ease-out';
+			lis[cidex-1] && (lis[cidex-1].style.webkitTransition='-webkit-transform 0.2s ease-out');
+			lis[cidex+1] && (lis[cidex+1].style.webkitTransition='-webkit-transform 0.2s ease-out');
+			
+
+			
+			lis[cidex].style.webkitTransform ='translate3d(0,0,0)';
+			
+			lis[cidex-1] && (lis[cidex-1].style.webkitTransform ='translate3d(-'+Swidth+'px,0,0)');
+			
+			lis[cidex+1] && (lis[cidex+1].style.webkitTransform ='translate3d('+Swidth+'px,0,0)');
+		};
+		
+		
+		//开始
+	window.onload=function(){
+		
+		//2  实例化构造函数
+		var slideBoxDemo=new slideImg ({
+			'dom' :document.getElementById('canvas'),
+			'list':	imgInfoList
+		});
+		
+		//实例化 事件行为
+		slideBoxDemo.init();
+		slideBoxDemo.renderDom();
+		slideBoxDemo.moveHandler();
+			
+	};//end
+</script>
+</head>
+
+<body>
+	<!--外层盒子-->
+    <div id="canvas">
+    	
+    </div> 
+</body>
+</html>

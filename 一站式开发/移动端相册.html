@@ -1,0 +1,221 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+ <title>拿走-向上商城</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<script>
+	//js  动态计算  html根节点的  fontsize响应式大小 
+	document.getElementsByTagName('html')[0].style.fontSize = document.documentElement.clientWidth / 3 +'px';
+</script>
+<style>
+	body,ul  {margin:0;padding:0;font-size:0.15rem;font-family:Arial, "宋体";}
+	li {list-style:none;}
+	a {text-decoration:none;color:#fff;}
+	
+	.page {width:100%;height:100%;position:absolute;left:0;top:0;overflow:hidden;}
+	
+	header {height:0.45rem;border-top:2px solid #353535;border-bottom:2px solid #353535;box-sizing:border-box;background:-webkit-linear-gradient(top,#292929,#1e1e1e);color:#fff;line-height:0.45rem;text-align:center;}
+	header .btn {height:0.25rem;width:0.5rem;position:absolute;line-height:0.25rem;right:10px;top:0.06rem;border:2px solid #0d0d0d;border-radius:5px;box-shadow:0 0 3px #0d0d0d,inset 0 0 3px #232323;}
+	header .btn:nth-of-type(1) {left:10px;display:none;}
+	.wrap {background:#000;position:absolute;left:0;width:100%;top:0.45rem;bottom:0.55rem;overflow:auto;}
+		.picList {position:relative;}
+		.picList li {position:absolute;height:1rem;width:1rem;background:url(img/1.jpg) no-repeat 0 0 ;background-size:cover;border:1px solid #000;box-sizing:border-box;transition:0.5s linear;}
+	
+	footer {height:0.55rem;width:100%;position:absolute;left:0;bottom:0;background:-webkit-linear-gradient(top,#1e1f21,#121212);line-height:0.55rem;}
+	footer a {float:left;width:1.5rem;text-align:center;box-sizing:border-box;}
+	footer a.active {background:-webkit-linear-gradient(top,#101010,#070707);border-color:#0e0e0e;}
+	footer a:nth-of-type(1) {border-right:1px solid #222;}
+	footer a:nth-of-type(1) {border-left:1px solid #222;}
+	
+	/*垃圾筒*/
+	.recyle {width:1.2rem;height:1.2rem;background:url(img/recycle.png) no-repeat;position:absolute;left:calc(50% - 0.6rem);background-size:cover;top:100%;}
+	.recyle:nth-of-type(2) {background-image:url(img/recycle2.png);}
+</style>
+<script>
+	var photoAlbum = [];
+	
+		//总共16张图
+		
+		for(var i=0;i<16;i++) {
+			
+			photoAlbum[i] = 'video/'+(i+1)+'.jpg';
+			
+		};
+		
+		
+		
+	window.onload = function () {
+		
+		var oList = document.getElementById('picList'),
+		
+			sHtml = '',
+			
+			oBtn = document.getElementsByClassName('btn'),
+			
+			aLi = oList.getElementsByTagName('li'),
+			
+			deleLiArr = [],
+			
+			//取消开关
+			cancelBtn = true;
+			
+			function createList (data) {
+				
+				for(var i=0;i<data.length;i++) {
+					
+					sHtml+= '<li style="background-image:url('+data[i]+')"></li>';
+					
+				};
+				
+				
+				
+				
+				oList.innerHTML = sHtml;
+				
+			};
+		//生成相册的图片的li
+		createList(photoAlbum);
+		
+		//选择按钮
+		
+		oBtn[1].addEventListener('touchend',function(){eventEndFun.call(this)},false);
+		
+		//删除按钮
+		
+		oBtn[0].addEventListener('touchend',deleLi,false);
+		
+		//给LI定位置
+		
+		
+		function setPosition () {
+			
+		
+			for(var i=0;i<aLi.length;i++) {
+			
+			//left 通过取模来取 0 1 2 rem	
+				aLi[i].style.left = i%3 + 'rem';
+				
+			//top 通过 math.floor 来取 0 1 2 3 。。。。
+				aLi[i].style.top = 	Math.floor(i/3) + 'rem';
+				 	
+				
+			};
+			
+		};
+		
+		
+		
+		function eventEndFun () {
+			
+			if(cancelBtn) {
+				
+				oBtn[1].innerHTML = '取消';
+				
+				for(var i= 0;i<aLi.length;i++) {
+					//给每个li  添加 事件监听
+					aLi[i].addEventListener('touchend',selectTrue,false);
+					
+					aLi[i].index = i;
+					
+				};
+				
+			}else {
+				
+				oBtn[1].innerHTML = '选择';
+				
+				oBtn[0].style.display = 'none';
+				
+				//取消所有选中的图片
+				
+				for(var i =0;i<aLi.length;i++) {
+					
+					aLi[i].style.opacity = 1;
+					
+					//取消ali的事件绑定
+					
+					aLi[i].removeEventListener('touchend',selectTrue,false);
+					
+				};
+				
+				deleLiArr.length = 0 ;
+				
+			};
+			
+			//每次执行都要给选择的开关取反
+			
+			cancelBtn = !cancelBtn;
+			
+		};
+		//选中的函数
+		function selectTrue () {
+			
+			this.style.opacity = 0.1;
+			
+			oBtn[0].style.display = 'block';
+			
+			//把选中的LI的下标存进数组里面；
+			deleLiArr.push(this.index);
+			
+		};
+		
+		//删除li的函数
+		
+		function deleLi () {	
+		
+			//(排序)从后往前删除 可以避免  li下标  删除过后错乱的问题
+			
+			deleLiArr.sort();
+
+	
+			//用while可以判断数组是有值
+	
+			while(deleLiArr.length) {
+				
+				oList.removeChild(aLi[deleLiArr.pop()])
+				
+			};
+			
+			cancelBtn = false;
+			
+			// 重置数组
+			eventEndFun();
+
+			//每次删除过后都调用 setPosition()来重新排位 
+			
+			setPosition();
+			
+		};
+	
+	};
+</script>
+</head>
+
+<body>
+	<article class="page">
+    	<!--头部-->
+        <header>
+        	<a href="javascript:;" class="btn">删除</a>
+            	相机相册
+            <a href="javascript:;" class="btn">选择</a>
+        </header>
+        <!--中间相册-->
+        <section class="wrap">
+        	<ul class="picList" id="picList">
+            	
+            </ul>
+        </section>
+        <!--尾部-->
+        <footer>
+        	<a href="javascript:;" class="active">相机相册</a>
+            <a href="javascript:;" class="">所有相册</a>
+        </footer>
+        <!--垃圾桶-->
+        <span class="recyle"></span>
+        <span class="recyle"></span>
+    </article>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	#dragObj {border:1px solid #F00;width:150PX;height:150px;}
+	#dragArea {border:1px solid #00F;width:200px;height:200px;} 
+</style>
+<script>
+	window.onload=function(){
+		var obj=document.getElementById('dragObj');
+		var area=document.getElementById('dragArea');
+
+		
+		//拖拽体的一系列事件
+		obj.ondragstart=function (e){
+			area.innerHTML='开始'; 		    //推拽体开始拖拽
+			e.dataTransfer.setData('Text','hehehe');    //拖拽设置的数据
+		};
+		obj.ondrag=function(){
+			
+			//	area.innerHTML='移动';        //拖拽移动
+		};
+		obj.ondragend=function(){
+			area.innerHTML="移动结束"	         //拖拽体移动结束
+		}
+		
+		
+		//拖拽目标区域 的一些 事件     这里要注意  拖动区域的事件必须要加上阻止浏览器的默认事件
+		
+		area.ondragenter=function(e){
+			obj.innerHTML="目标进入";	      //拖拽体进入区域
+			e.preventDefault();
+		};
+		area.ondragover=function(e){
+			//obj.innerHTML="目标在区域内移动";  //目标在区域内移动
+			e.preventDefault();	
+		};
+		area.ondragleave=function(e){
+			obj.innerHTML="目标离开"	          //拖拽体离开目标区域
+			e.preventDefault();
+		};
+		area.ondrop=function(e){
+			e.preventDefault();		
+			area.appendChild(obj)
+			alert(e.dataTransfer.getData('Text'));   //拖拽完成 读取的数据
+		};
+	}
+</script>
+</head>
+
+<body>
+	<div id="dragObj" draggable="true">   <!--拖拽体-->
+    asd
+    </div>
+    <div id="dragArea">	 <!--拖拽目标区域-->
+    </div>
+
+</body>
+</html>

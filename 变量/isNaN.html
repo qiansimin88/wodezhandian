@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+window.onload=function()
+{
+		var oTxt=document.getElementById('txt1');
+		var oTxt2=document.getElementById('txt2');
+		var oBtn=document.getElementById('btn1');
+	oBtn.onclick=function()
+	{
+							                                  //parseInt转正数，parsefloat转小数兼容正数
+		var n2=parseInt(oTxt2.value);
+		if(isNaN(parseInt(oTxt.value)))                      //这里采用变量var n2=parseInt(oTxt.value)简化了代码书写量且灵活。
+		{
+			alert('对不起你输入的第一行有误');	
+		}
+		else if(isNaN(Number(n2)))
+		{													//isNaN就是非数字的意思，!isNaN就是数字的意思
+			alert('对不起你输入的第二行有误');
+		}
+		else
+		{
+			alert(parseInt(oTxt.value)+n2);	
+		}
+	};
+}				
+</script>
+</head>
+
+<body>
+<input id="txt1" type="text"/>
+<input id="txt2" type="text"/>
+<input id="btn1" type="button" value="求和">
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	* {margin:0;padding:0}
+	#autoCompete {background:#fff;display:none;border:1px solid #4190db;width:150px;}
+	#autoCompete ul{list-style-type:none;}
+	#autoCompete li {color:#333;cursor:pointer;font-size:16px;line-height:16px;text-indent:5px;}
+	#autoCompete .hover {background:#6eb6fe;color:#fff;}
+</style>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+	$(function(){
+		//初始化 
+	 	var strHtml='<div id="autoCompete">'+    
+		'<ul class="autoCompete_ul">'+
+		'<li class="autoCompete_title">请输入邮箱后缀</li>'+
+		'<li hz="@qq.com">sad</li>'+
+		'<li hz="@sina.com">ads</li>'+
+		'<li hz="@189.com"></li>'+
+		'<li hz="@163.com"></li>'+
+		'<li hz="@263.com"></li>'+
+		'<li hz="@yahoo.com"></li>'+
+		'</ul>'+
+		'</div>';
+		$('body').append(strHtml);
+		var autoC=$('#autoCompete');
+		var autoLi=autoC.find('li:not(:first)');
+		var emailIp=$('#email');
+		autoLi.mouseover(function(){
+			$(this).addClass('hover').siblings().removeClass('hover');
+		});
+		autoLi.mousedown(function(){
+			
+			emailIp.val($(this).text())	
+		})
+		
+		emailIp.keyup(function(e){
+			var valueEmail=this.value;
+			if(/13|38|40|116/.test(e.keyCode) || this.value==''){
+				return ;	
+			};
+			if(valueEmail.indexOf('@')==-1) {
+				autoC.hide();
+				return;
+			};
+			var trueEmail=valueEmail.replace(/@.*/,'');    //@ 之前的字符
+			
+			autoLi.each(function(){
+				var attrHz=$(this).attr('hz');			  //@之后的字符
+				$(this).html(trueEmail+attrHz)            //循环相加
+				
+				//根据输入的后缀匹配  相应的LI显示  其余影藏
+				
+				if(this.innerHTML.indexOf(valueEmail)>=0) {
+					$(this).show();	
+				}
+				else{
+					$(this).hide();	
+				}
+			});
+			autoC.show().css({
+				position:'absolute',
+				left:$(this).offset().left,
+				top:$(this).offset().top+$(this).outerHeight(true)-1,
+				zIndex:9999	
+			});
+			
+			if(!autoLi.filter(':visible').length) {
+				autoC.hide();	
+			}else{
+				autoLi.removeClass('hover');
+				autoLi.filter(':visible').eq(0).addClass('hover')	
+			}
+			
+		}).keydown(function(e){
+			if(e.keyCode == 40) {
+				if(autoLi.filter('.hover').is(autoLi.last())){
+					return;	
+				}
+				autoLi.filter('.hover').removeClass('hover').next('li').addClass('hover');	
+			}else if (e.keyCode==38) {
+				if(autoLi.filter('.hover').is(autoLi.first())){
+					return;	
+				}
+				autoLi.filter('.hover').removeClass('hover').prev('li').addClass('hover');		
+			}else if (e.keyCode==13) {
+				autoLi.filter('.hover').mousedown();
+				autoC.hide()	
+			}	
+		}).blur(function(){
+			autoC.hide()	
+		});	
+	})
+</script>
+</head>
+
+<body>
+邮箱：<input type="text" id="email" name="email"/>
+
+</body>
+</html>

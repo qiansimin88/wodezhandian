@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			* {margin:0;padding:0};
+			img {border:0;vertical-align:top;}
+			li {list-style:none;}
+			
+			.wrap {width:380px;margin:30px auto;position:relative;}
+			#picList {height:80px;position: relative;}
+			#picList li {position:absolute;top:-80px;left:0;opacity:0;transition: all 0.6s;}
+			#picList li.active {top:0;opacity: 1;}
+			#picList li.hide {opacity:0;left:40px;top:0;} 
+			#moveArea {position:relative;z-index:2;}
+			#textList {height:45px;margin:20px 0 0;position:relative;overflow:hidden;}
+			#textList li {position: absolute;left:380px;top:0;transition: all 0.6s;opacity:0;}
+			#textList .active {left:0;opacity:1;}
+			#textList .hide {left:0;top:50px;}
+			
+			#point {float:right;margin-top:30px;}
+			#point li {float:left;width:20px;height:21px;background:url(images/iCourseTabBtnShadow.png) no-repeat;margin:0 5px;}
+			#point li span {transition: all 0.6s;background:url(images/iCourseIco.png) no-repeat center 3px;display: block;height:21px;-webkit-transform: scale(0);}
+			#point .active span  {-webkit-transform: scale(1);}
+			#zoom {width:144px;height: 172px;background:url(images/iZoom.png) no-repeat;position:absolute;top:-6px;left:-80px;}
+			#zoomPic {border-radius:50%;overflow:hidden;width:96px;height:96px;position:absolute;left:44px;top:3px;}
+			#zoomPic .pic {width:96px;height:96px;background:url(images/iBannerTextBig.png) 28px -10px  #fff no-repeat;}
+			#zoomPic .mask {position:absolute;left:0;top:0;width:96px;height:96px;background:url(images/iZoomGlass.png) no-repeat;}
+		</style>
+		<script src="jquery-2.0.2.min.js"></script>
+		<script>
+		
+		$(function(){
+			
+			//实例化
+			new Zoom($('#picList'),$('#textList'),$('#point'));
+			
+		})
+
+			
+			//放大镜的构造函数  
+			/* Notice : this plugin is depeond on jQuery lib;
+			 * parm :  1 .图片的外层ID  2.文字图片的外层ID  3.按钮的外层ID
+			 * 
+			 */
+			
+			function Zoom (imgID,textID,btnID) {
+				
+				this.imgId = imgID;
+				
+				this.imgList = this.imgId.children();
+				
+				this.textId = textID;
+				
+				this.textList = this.textId.children();
+				
+				this.BtnId = btnID;
+				
+				this.btnList = this.BtnId.children();
+				
+				this.zoom = $('#zoom');
+				
+				this.picBg = $('.pic');
+				
+				this.scale = (424/369).toFixed(2);
+				
+				this.now = 0;
+				
+				//运行所有方法
+				
+				this.start();
+				
+			}
+			
+			Zoom.prototype = {
+				
+				//运行
+				start : function () {
+					
+					this.init();
+					
+					this.btnClick();
+					
+					this.zoomMove();
+					
+				},
+				
+				//初始化
+				
+				init : function () {
+					
+					var fathDom = this.textId.parent();
+					
+					fathDom.find('ul li:nth-child(1)').addClass('active');
+					
+				},
+				
+				//按钮点击
+				
+				btnClick : function () {
+					
+				    var _this = this
+					
+					this.btnList.on('click',function(){
+						
+						var $this = $(this);
+						
+						var num = $this.index();
+						
+						_this.btnList.removeClass();
+						
+						$this.addClass('active');
+							
+						_this.toHide(_this.now);
+						
+						_this.now = num;
+
+					});
+					
+				},
+				
+				//点击隐藏
+				
+				toHide : function (now) {
+					
+					var _this = this;
+					
+					//这里要注意  添加class之后无法写出回调函数 所依这用了 ‘webkitTransitionEnd’事件
+					
+					this.imgList.eq(now).on('webkitTransitionEnd',function () {
+						
+						_this.picShow.call(_this);
+						
+					});
+					
+					this.textList.eq(now).on('webkitTransitionEnd',function () {
+						
+						_this.textShow.call(_this);
+						
+					});
+					
+					this.imgList.eq(now).removeClass().addClass('hide');
+					
+					this.textList.eq(now).removeClass().addClass('hide');
+					
+				
+				},
+				//图片显示
+				picShow : function () {
+					
+				//	this.imgList.eq(this.now).removeEventListener('webkitTransitionEnd',this.picShow,false);
+									
+					this.imgList.removeClass();
+					
+					this.imgList.eq(this.now).addClass('active');
+					
+				},
+				
+				//文字显示
+				
+				textShow : function (){
+					
+					//this.textList.eq(this.now).removeEventListener('webkitTransitionEnd',this.textShow,false);
+					
+					this.textList.removeClass();
+					
+					this.textList.eq(this.now).addClass('active');
+					
+				},
+				
+				//放大镜的运动
+				
+				zoomMove : function () {
+					
+					var _this = this;
+					
+					this.movArea = this.imgId.parent();
+					
+					this.movArea.on('mousemove',function(e){
+						//92是放大镜中心点的 到图片边界的距离
+						var CX = e.pageX - _this.getOffsetLeft(this) - 92;
+						
+						if(e.pageX>_this.getOffsetLeft(this) && e.pageX < (_this.getOffsetLeft(this)+this.offsetWidth)) {
+									
+							_this.backPosi(CX)		;	
+									
+							_this.zoom.css('left',CX);
+						
+						}
+					
+						
+					})
+
+				},
+				
+				//放大镜里面的background-position移动
+				
+				backPosi : function (cx) {
+					
+					var _this = this;
+					
+					var nowCx = Math.ceil(-cx*this.scale-70);
+					
+					this.picBg.css({
+						
+						backgroundPosition : nowCx+'px -6px'
+					})
+				
+				},
+				//获得对象的相对于视图的左偏移量
+				
+				getOffsetLeft :function (obj) {
+					//默认为0
+					this.left = 0;
+					
+					while (obj) {
+						
+						this.left += obj.offsetLeft;
+						
+						obj = obj.offsetParent;
+						
+					};
+					
+					return this.left;
+					
+				}
+				
+			};
+		</script>
+		
+	</head>
+	<body>
+		<div class="wrap">
+			<div id="moveArea">
+				<ul id="picList">
+					<li>
+						<img src="images/iBannerText.png" alt="" />
+					</li>
+					<li>
+						<img src="images/iBannerText2.png" alt="" />
+					</li>
+					<li>
+						<img src="images/iBannerText3.png" alt="" />
+					</li>
+				</ul>
+				<div id="zoom">
+					<div id="zoomPic">
+						<div class="pic"></div>
+						<div class="mask">
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<ul id="textList">
+				<li><img src="images/iCourseTabText.png" alt="" /></li>
+				<li><img src="images/iCourseTabText2.png" alt="" /></li>
+				<li><img src="images/iCourseTabText3.png" alt="" /></li>
+			</ul>
+			<ul id="point">
+				<li><span></span></li>
+				<li><span></span></li>
+				<li><span></span></li>
+			</ul>
+			
+		</div>
+	</body>
+</html>

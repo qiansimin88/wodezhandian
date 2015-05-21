@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	var str={
+		name:"前四名年",
+		age:24,                   //str 对象
+		sex:'man',
+		car1:'bmw',
+		car2:'tong',
+		car3:'care',
+		car4:'asd'
+	}
+	//alert(str.name)
+	//alert(str['name'])        //第二种去对象属性的方法，注意的是要加引号变成字符串，用这种方法在取多个具有相同字符的属性用循环比较方便
+	for(var i=0;i<4;i++)
+	{
+		alert(str['car'+(1+i)])    //这里要注意要加括号 为什么呢。因为不加括号 字符串相加就编程car11了 加括号就先运算 变成car1了。	
+	}
+</script>
+</head>
+
+<body>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<link href="../bootstrap-3.2.0-dist/css/bootstrap.min.css" rel="stylesheet" midia="screen">
+		<script src="../../js/jquery-1.7.2.min.js"></script>
+
+		<style>
+			.header {
+				background: #0099ee;
+				height: 33px;
+			}
+			.reg {
+				line-height: 33px;
+				color: #fff;
+				margin-right: 20px;
+			}
+			.reg > a {
+				color: #fff;
+				font-family: 'Microsoft YaHei'
+			}
+			.reg > a:hover {
+				text-decoration: none;
+			}
+
+			.navWrap {
+				box-shadow: 0 5px 5px #dddddd;
+			}
+			.nav {
+				padding-top: 33px;
+				padding-bottom: 10px;
+			}
+			.nav > a {
+				text-indent: -9999em;
+				display: inline-block;
+				width: 50px;
+				height: 60px;
+				background: url(../img/home_1.jpg) no-repeat;
+			}
+			.nav > a:nth-of-type(1) {
+				background-position: 0 0;
+			}
+			.nav > a:nth-of-type(2) {
+				background-position: -53px 0;
+			}
+			.nav > a:nth-of-type(3) {
+				background-position: -106px 0;
+			}
+			.nav > a:nth-of-type(4) {
+				background-position: -156px 0;
+			}
+
+			.bannber-img img {
+				width: 100%;
+			}
+			.product-img > h2 {
+				color: #555;
+				font-size: 18px;
+				font-family: \5FAE\8F6F\96C5\9ED1, serif, Arial;
+				text-align: center;
+				font-weight: 900;
+			}
+			.product-img > h3 {
+				margin-bottom: 20px;
+				color: #555;
+				font-size: 18px;
+				font-family: \5FAE\8F6F\96C5\9ED1, serif, Arial;
+				text-align: center;
+			}
+
+			.product-img .under-line {
+				background: #555555;
+				height: 2px;
+				margin: 0 auto;
+				float: none;
+				margin: 0 auto;
+			}
+			.nazouBtn-wrap {
+				margin: 24px auto 16px auto;
+			}
+			.nazouBtn {
+				background: #0099ee;
+				color: #fff;
+				margin: 0 auto;
+				border-radius: 0px;
+			}
+			.explain {
+				padding: 6px 0;
+				background: #424242;
+				color: #7f7f7f;
+				font-family: \5FAE\8F6F\96C5\9ED1, serif, Arial;
+			}
+			.explain > p {
+				line-height: 20px;
+				font-size: 18px;
+			}
+			
+			.padL p:nth-of-type(1) {
+				padding-top: 10px
+			}
+
+			.products-list img {
+				width: 100%;
+			}
+			.FAQ {color:#fff;background:#0099ff;}
+			.top-FAQ {
+				padding:6px 0;text-align: center;display:block;font-size:38px;width:130px;margin:0 auto;border-bottom:2px solid #fff;
+			}
+			.FAQ {font-family: \5FAE\8F6F\96C5\9ED1, serif, Arial;}
+			.FAQ h3 {font-size:16px;text-align:center;line-height: 24px;}
+			.FAQ p {font-size: 14px;text-align: center;line-height: 24px;}
+			.FAQ table {text-align:center;width:250px;margin:0 auto;}
+			.footer {
+				background:#555;color:#fff;text-align:center;padding:36px 0;margin-top:-10px;
+			}
+			.footer a {
+				color:#fff;padding-right:4px;font-size:14px;
+			}
+			.copy-info .lead {color:#a0a0a0;font-size: 12px;margin-top:30px;}
+		</style>
+		<title>无标题文档</title>
+	</head>
+
+	<body>
+		<div class="container-fluid">
+			<!--头部-->
+			<div class="row">
+				<header class="header">
+					<section class="reg pull-right">
+						<a href="#" title="登陆">
+							登陆
+						</a>
+						|
+						<a href="#" title="注册">
+							注册
+						</a>
+					</section>
+				</header>
+			</div>
+			<!--导航-->
+			<div class="row navWrap">
+				<nav>
+					<section class="nav pull-right">
+						<a href="#" title="话费充值">
+							话费充值
+						</a>
+						<a href="#" title="流量充值">
+							流量充值
+						</a>
+						<a href="#" title="QQ业务">
+							QQ业务
+						</a>
+						<a href="###" title="游戏充值">
+							游戏充值
+						</a>
+					</section>
+				</nav>
+			</div>
+			<!--产品-->
+			<div class="row">
+				<article class="product-img">
+					<h2>分期付话费</h2>
+					<h2>手机、流量、靓号统统免费拿走！</h2>
+					<aside class="bannber-img">
+						<img src="../img/mb.jpg" class="img-responsive"/>
+					</aside>
+					<h3>使用工商银行信用卡</h3>
+					<div class="under-line col-xs-3"></div>
+					<h3>按月支付话费</h3>
+					<div class="under-line col-xs-3"></div>
+					<h3>免费拿走手机</h3>
+					<div class="under-line col-xs-3"></div>
+					<h3>更有额外流量赠送</h3>
+					<div class="under-line col-xs-3"></div>
+					<div class="container nazouBtn-wrap">
+						<a href="#" class="btn nazouBtn btn-lg btn-block">
+							最低每月￥105即可带走
+						</a>
+					</div>
+				</article>
+			</div>
+			<div class="row">
+				<section class="explain">
+					<div class="container">
+						<article class="padL">
+							<p class="text-center">
+								1.选择手机和套餐
+							</p>
+							<p class="text-center">
+								2.签收手机
+							</p>
+							<p class="text-center">
+								3.按月支付套餐费用
+							</p>
+						</article>
+					</div>
+				</section>
+			</div>
+			<div class="row">
+				<div class="products-list">
+					<a href="#">
+						<img src="../img/m1.jpg" />
+					</a>
+					<a href="#">
+						<img src="../img/m2.jpg"/>
+					</a>
+					<a href="#">
+						<img src="../img/m3.jpg" />
+					</a>
+					<a href="#">
+						<img src="../img/m4.jpg"/>
+					</a>
+					<a href="#">
+						<img src="../img/m5.jpg"/>
+					</a>
+				</div>
+			</div>
+			<div class="row">
+				<section class="FAQ">
+					<span class="top-FAQ"> FAQ </span>
+					<h3>
+						我办理49元的套餐，可以免费领取<br />
+						iphone5s手机吗？
+					</h3>
+					<p>
+						不可以的。49元的套餐可以任意领取价值在<br />
+0~412元的手机<br />每款套餐可以领取的手机价值如下：
+					</p>
+					<table border="0" cellspacing="0" cellpadding="1">
+						<tr>
+							<td>套餐(元)</td>
+							<td>49</td>
+							<td>69</td>
+							<td>89</td>
+							<td>129</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>159</td>
+							<td>189</td>
+							<td>229</td>
+							<td>289</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>389</td>
+							<td>489</td>
+							<td>589</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>手机(元)</td>
+							<td>412</td>
+							<td>580</td>
+							<td>748</td>
+							<td>1084</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>1336</td>
+							<td>1588</td>
+							<td>1924</td>
+							<td>2428</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>2764</td>
+							<td>3268</td>
+							<td>4108</td>
+							<td></td>
+						</tr>
+					</table>
+					<h3>
+						办理分期付款会产生手续费吗？
+					</h3>
+					<p>
+						不会的。整个活动中，<br />不会产生任何和信用卡相关的手续费
+					</p>
+					<h3>参加活动后，每月还需要冲话费吗？</h3>
+					<p>
+						我们会在每月月初左右充值您所选套餐的<br />话费金额
+（如您选择的是129套<br />
+餐，那我们每月会充值129元到您手机上），<br />
+如您消费超出此金额，则需要自己充值
+					</p>
+					<h3>我想拥有iphone5s 64G手机，但每个月
+只要消费129元，
+参加这个活动有优惠吗？</h3>
+					<p>
+						有的。我们可以把129元套餐对应的手机价值<br />
+（1084元）做为优惠，补贴给够机款。具体如<br />
+下：iphone5s 64G商城价是6000元，如果您产假<br />
+这个活动并且办理了129元的套餐，<br />
+那么购买此款手机只需支付4916（6000-1084）元<br />
+即可
+					</p>
+				</section>
+			</div>
+			<div class="row">
+				<section class="footer">
+					<a href="#">关于我们</a>|
+					<a href="#">联系我们</a>|
+					<a href="#">合作协议</a>|
+					<a href="#">荣誉墙</a><br />
+					<a href="##">企业法人营业执照</a>|
+					<a href="#">增值业务营业许可证</a>
+					<aside class="copy-info">
+						<p class="lead">
+							Copyright@ 1999-2013版权所有 ICP备案许可<br />
+证：浙ICP备11062741号
+						</p>
+					</aside>
+				</section>
+				
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+ * {margin:0;padding:0}
+	#ul1,#ul2 {width:300px;height:auto;margin:20px;float:left;border-top:1px solid black;} 
+	li {list-style:none;height:40px;width:100%;overflow:hidden;position:relative;border-bottom:1px dashed black;line-height:40px;}
+	li div {position:absolute;top:-40px;}  <!--给每个DIV都加上absolute属性 -->
+	li div p {height:40px;}
+</style>
+<script src="../../js/prefectmove.js"></script>
+<script>
+	window.onload=function()
+	{
+		var oUl=document.getElementById('ul1');
+		var oUl2=document.getElementById('ul2');
+		var oBtn=true;              //开关
+		show(oUl)    //函数执行
+		function show(obj)     //函数
+		{
+			var aDiv=document.getElementsByTagName('div');
+			var iNow=0;                 // 初始值
+			var timer=null;              //定时器初始值
+			setInterval(function()
+			{
+				toMove()                    //每过3秒  执行一次这个  分布运动
+				if(oBtn)              //开关切换
+				{
+					oBtn=false;	
+				}
+				else
+				{
+					oBtn=true	
+				}
+				
+			},3000)	
+			function toMove()            //分布运动
+			{
+				timer=setInterval(function(){
+					move(aDiv[iNow],{top:oBtn?0:-40})              //三目的运用。真的就下来，假的就上去
+					iNow++
+					if(iNow==aDiv.length)
+					{
+						clearInterval(timer)	
+						iNow=0                 //为了再来一次向上的做铺垫
+					}
+				},100)	
+			}
+		}
+	}
+</script>
+</head>
+
+<body>
+<ul id="ul1">
+	<li>
+		<div>
+        	<p>aaaaaaaaaaaaaa</p>
+            <p>bbbbbbbbbbbbbb</p>
+        </div>
+    </li>
+    <li>
+		<div>
+        	<p>aaaaaaaaaaaaaa</p>
+            <p>aaaaaaaaaaaaaa</p>
+        </div>
+    </li>
+    <li>
+		<div>
+        	<p>aaaaaaaaaaaaaa</p>
+            <p>aaaaaaaaaaaaaa</p>
+        </div>
+    </li>
+    <li>
+		<div>
+        	<p>aaaaaaaaaaaaaa</p>
+            <p>aaaaaaaaaaaaaa</p>
+        </div>
+    </li>
+    <li>
+		<div>
+        	<p>aaaaaaaaaaaaaa</p>
+            <p>aaaaaaaaaaaaaa</p>
+        </div>
+    </li>
+    <li>
+		<div>
+        	<p>aaaaaaaaaaaaaa</p>
+            <p>aaaaaaaaaaaaaa</p>
+        </div>
+    </li>
+</ul>
+<ul id="ul2">
+	<li>
+		<div> 
+        	<p>aaaaaaaaaaaaaa</p>
+            <p>bbbbbbbbbbbbbb</p>
+        </div>
+    </li>
+    <li>
+		<div>
+        	<p>aaaaaaaaaaaaaa</p>
+            <p>aaaaaaaaaaaaaa</p>
+        </div>
+    </li>
+    <li>
+		<div>
+        	<p>aaaaaaaaaaaaaa</p>
+            <p>aaaaaaaaaaaaaa</p>
+        </div>
+    </li>
+    <li>
+		<div>
+        	<p>aaaaaaaaaaaaaa</p>
+            <p>aaaaaaaaaaaaaa</p>
+        </div>
+    </li>
+    <li>
+		<div>
+        	<p>aaaaaaaaaaaaaa</p>
+            <p>aaaaaaaaaaaaaa</p>
+        </div>
+    </li>
+    <li>
+		<div>
+        	<p>aaaaaaaaaaaaaa</p>
+            <p>aaaaaaaaaaaaaa</p>
+        </div>
+    </li>
+</ul>
+</body>
+</html>

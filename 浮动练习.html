@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+.container {
+			width:1000px;
+			height:1000px;
+			border:1px solid black;
+			margin:0 auto;
+			padding:0px;
+			position:relative;
+			
+			}
+.left {
+		width:100px;                               /*浮动是脱离文档流的, 之后的第一个div会占据他的位置 , 而之后的div会实现转行，而三个连续                                                        的float：left会并排显示*/
+		height:100px;                              
+		border:1px solid black;                      /*定位也是脱离文档流的*/
+		position:absolute;
+		top:0;
+		left:0px;
+		background:#0F0;
+		
+		
+		
+	}		
+.center {                                           /*布局可以采用浮动和定位多种方法，注意浮动之后可以增加外边据实现效果，而定位就是设置                                                         left top right等*/
+	
+}
+.right {
+		width:300px;
+		height:300px;
+		float:right;
+		                                 /*clear:both主要是对上一个元素清楚，也就是使用clear:both的元素换行显示。*/
+		border:1px solid black;
+		
+		
+	}
+
+
+
+
+
+</style>
+
+</head>
+
+<body>
+<div class="container">
+<div class="left"></div>
+
+<div class="right"></div>
+</div>
+</body>
+</html>

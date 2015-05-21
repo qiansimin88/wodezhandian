@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style type="text/css">
+#div1 {
+		width:200px;height:200px;background:red;
+	}
+
+</style>
+
+<script>
+function getStyle(obj,name)
+{
+	if(obj.currentStyle)
+	{
+			return obj.currentStyle[name];	            
+	}	
+	else
+	{
+	  	return	getComputedStyle(obj,false)[name];
+	}
+}
+
+window.onload=function()
+{
+	//var oDiv=document.getElementById('div1')
+	
+  var oDiv=document.getElementById('div1');
+  alert(getStyle(oDiv,'width'))   
+	
+	
+}
+
+
+</script>
+</head>
+
+<body>
+<div id="div1">
+</div>
+</body>
+</html>

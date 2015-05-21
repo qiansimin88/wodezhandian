@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	window.onload=function(){
+		
+		var oC = document.getElementById('d1');
+		
+		var oGc = oC.getContext('2d');
+		//开始边线
+		oGc.beginPath();
+		
+		//方块
+		oGc.rect(200,200,100,100)
+		
+		//闭合边线
+		oGc.closePath();
+		
+		//绘制边线 图形
+		oGc.stroke();    //oGc.fill()  绘制填充图形
+		
+		
+		//删除方块   （X起点，Y起点，宽度，高度）
+		oGc.clearRect(0,0,oC.width,oC.height)
+
+			
+	}
+</script>
+</head>
+
+<body>
+<canvas id="d1" width=1000 height=1000>
+</canvas>
+</body>
+</html>

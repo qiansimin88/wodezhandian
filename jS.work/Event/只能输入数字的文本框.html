@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	window.onload=function()
+	{
+		var oTxt=document.getElementById('text1');
+		oTxt.onkeydown=function(ev)
+		{
+			var oEvent=ev||event;
+									//小于96或大于105都不行。二者有一个false执行接过还是true.所依用||而不是&&
+			if(oEvent.keyCode!=8&&oEvent.keyCode!=37&&oEvent.keyCode!=39&&(oEvent.keyCode<96||oEvent.keyCode>105))
+			{
+				return false;
+			}
+		}	
+	}
+</script>
+</head>
+
+<body>
+<input id="text1" type="text"/>
+<input type="button" value="确定"/>
+</body>
+</html>

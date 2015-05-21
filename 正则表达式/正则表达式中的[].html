@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	var str="ghj jhj khj chj"
+	var re=/[gjk]hj/g              //[gjk]带面三个都可以。
+	alert(str.match(re))           //match找到并以数组的形式返还；
+	
+	var str="sad 12 as 457 3 asd76"
+	var re=/\d/g   	              //[0-9]中间加-号表示范围，即0-9之间的都可以
+	alert(str.match(re))  
+	
+	var str='sa 654 asd&^$%sad)^$d2654'   //^a-z表示除了英文字母如果加上0-9就表示除了英文子字母和数字。
+	var re=/[^a-z0-9]/g
+	alert(str.match(re))   
+</script>
+
+</head>
+
+<body>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	/*window.onload=function()
+	{
+			var oUl=document.getElementById('ull');
+			var aLi=oUl.getElementsByTagName('li');
+			for(var i=0;i<aLi.length;i++)
+			{
+				if(aLi[i].className=='box')
+				{
+					aLi[i].style.background='red'	
+				}	
+			}
+	}*/
+	
+   function getByClass(oparent,sClass)
+   	{
+		var result=[]
+		var oEle=oparent.getElementsByTagName('*');
+		for(var i=0;i<oEle.length;i++)                    /*函数封装部分  思想是：设置两个参数，一个是父级元素还有一个是选择的元素  如clss='	
+															box'，重要的是设置一个数组  把返回的classname==box的组成数组。*/
+		{
+			if(oEle[i].className==sClass)
+			{
+				result.push(oEle[i])	
+				               
+			}	
+			
+		}	
+		return result
+	}
+	window.onload=function()
+	{
+		var oUl=document.getElementById('ull');         /*调用部分*/
+		var aSt=getByClass(oUl,'box');				//这个是建立新的数组进行for循环，然后把每个classname=box的部分进行属性设置
+		for(var i=0;i<aSt.length;i++)
+		{
+			aSt[i].style.background='red';	
+		}	
+	}
+</script>
+</head>
+
+<body>
+	<ul id="ull">
+    <li class="box"></li>
+     <li></li>
+      <li class="box"></li>
+       <li class="box"></li>
+        <li></li>
+       </ul>
+</body>
+</html>

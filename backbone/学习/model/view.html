@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+
+</head>
+
+<body>
+	<div id="search_container"></div>
+    <script type="text/template" id="search_template">	
+    <label><%= search_label %></label>
+    <input type="text" id="search_input" />
+    <input type="button" id="search_button" value="Search" />
+	</script>
+<script src="../../lib/jquery.js"></script>
+<script src="../../lib/underscore.js"></script>
+<script src="../../lib/backbone.js"></script>
+<script>
+
+(function($){
+	
+	/*var SearchView = Backbone.View.extend({
+		
+		//el暂时不声明
+		
+		initialize : function () {
+			
+			console.log('创建了一个视图')
+			
+		},
+		
+		render : function (context) {
+					//template(模版html,模版相应的变量对象)
+			var template =_.template($('#list-template').html(),context);
+			
+			$(this.el).html(template);
+			
+		}	
+		
+	});
+				//实例化的时候传入el
+	var searchview = new SearchView({
+		
+		el : $('#search_container')
+		
+	});
+	//传入模版变量的对象
+	searchview.render();*/
+	
+	
+	   var SearchView = Backbone.View.extend({
+        initialize: function(){
+            
+        },
+        render: function(c) {
+            //使用underscore这个库，来编译模板
+          var template =_.template($("#search_template").html());
+            //加载模板到对应的el属性中
+            $(this.el).html(template(c));
+        },
+		//事件对象
+		events:{
+			
+			'click input[type=button]' : 'doSearch'	
+			
+		},
+		
+		doSearch : function (e) {
+			
+			alert('search for'+$('#search_input').val())
+			
+		}
+		
+    });
+    var searchView = new SearchView({el: $("#search_container")});
+    searchView.render({search_label: "搜索的label"});  //这个reander的方法可以放到view的构造函数中
+	
+})(jQuery)
+	
+	
+</script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	.hehe {font-size:18px;}
+</style>
+<script>
+	window.onload=function(){
+		var pro=document.getElementsByTagName('progress')[0];
+		var t=setInterval(function(){
+			if(pro.value===20)
+			{
+				clearInterval(t);
+				document.body.removeChild(pro);
+				var spanT=document.createElement('span');
+				spanT.className='hehe';
+				spanT.innerHTML='加载完成';
+			
+				document.body.appendChild(spanT)	
+			}
+			else
+			{
+				pro.value++;	
+			}
+		},300)	
+	};
+</script>
+</head>
+
+<body>
+	<progress max=20 min=0 value=0>
+    	<!--max最大值 min最小值  value当前值-->
+    </progress>
+</body>
+</html>

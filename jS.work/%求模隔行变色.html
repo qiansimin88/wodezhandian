@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+window.onload=function()
+{
+	var aLi=document.getElementsByTagName('li');
+	for(var i=0;i<aLi.length;i++)                   //for循环的标准格式是  for(i=0;i<oLi.length;i++)
+	{
+		if(i%2==0)									//%求模    如果i%2==0；i就是 2 4 6 8以此类推 i%3就是隔3行 i%3==0  i就是3 6 9；
+		{
+			aLi[i].style.background='#ccc';         //for循环 下面提取事件的括号是 []  而不是{}..
+													//就是求 除数余下的 余数的意思
+		}
+		else
+		{
+			aLi[i].style.background='';
+		}
+				
+	};
+};
+
+
+</script>
+
+
+
+
+</head>
+
+<body>
+	<ul style="list-style:none;font-weight:bolder;">
+    	<li>钓鱼岛是中国的</li>
+        <li>钓鱼岛是中国的</li>
+        <li>钓鱼岛是中国的</li>
+        <li>钓鱼岛是中国的</li>
+        <li>钓鱼岛是中国的</li>
+        <li>钓鱼岛是中国的</li>
+        <li>钓鱼岛是中国的</li>
+        <li>钓鱼岛是中国的</li>
+        <li>钓鱼岛是中国的</li>
+        <li>钓鱼岛是中国的</li>
+        <li>钓鱼岛是中国的</li>
+        <li>钓鱼岛是中国的</li>
+     </ul>
+</body>
+</html>

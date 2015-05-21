@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="../js/jquery-2.0.2.min.js"></script>
+<script>
+
+    //jQuery方法
+	 $(function(){
+		$('#div1').click(function(){    
+		
+		//alert(this.innerHTML)    //原生写法
+		 
+		// alert( $(this).html() )    //JQ写法   连个这都行  可以混用
+		
+		alert( $(this).innerHTML )    // 前面是JQ后面是原生写法 这样就不行了。不能混用
+	})		 
+})	
+</script>
+</head>
+
+<body>
+<div id="div1">aaa</div>
+</body>
+</html>

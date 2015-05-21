@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+* {margin:0;padding:0;}
+   #q {width:300px;height:30px;padding:5px;border:1px solid #f90;font-size:16px;}
+   #u {border:1px solid #f90;border-top:0;width:310px;display:none;}
+   #u li a {display:block;line-height:30px;text-decoration:none;color:#000;padding:5px;} 
+   #u li a:hover {background:#f90;color:#FFF;}
+</style>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+function qiansimin(data) {
+	if (data.s.length) {    //返回的data里面有json 数据
+		$('#u').slideDown('400')
+		var html='';
+		for (var i=0;i<data.s.length;i++) {
+			html+="<li><a href='http://www.baidu.com/s?wd="+data.s[i]+"'>"+data.s[i]+"</a></li>"	
+		}	
+		$('#u').html(html)
+	}else {					//返回的data里面没有数据
+		$('#u').slideUp('400')	;
+	}	
+	
+}
+
+$(function () {
+	var q=document.getElementById('q');
+	var oUl=document.getElementById('u');
+	
+	q.onkeyup=function(){
+		
+		//这里创建DOM 直接用JQUERY方法会报错  建议用原生的方法
+		var oSc=document.createElement('script');
+		
+		//这是百度的接口   wd  =  关键字   cb  =返回的回调函数名称 
+		oSc.src="http://suggestion.baidu.com/su?wd="+this.value+"&cb=qiansimin";
+		document.body.appendChild(oSc);
+	}
+})
+</script>
+</head>
+
+<body>
+<input type="text" id="q"/>
+	<ul id="u">
+    	<li><a href="#"></a></li>
+        <li><a href="#"></a></li>
+        <li><a href="#"></a></li>
+        <li><a href="#"></a></li>
+    </ul>
+</body>
+</html>

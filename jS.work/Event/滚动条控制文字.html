@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+#parent {width:20px;height:600px;position:relative;background:#ccc;margin:0px auto;float:right;}
+#div1 {width:20px;height:20px;position:absolute;background:#F00;left:0;top:0;}
+#div2 {width:500px;height:400px;position:relative;border:1px solid black;float:right;overflow:hidden;margin-right:50px;}
+#div3 {position:absolute;left:0;top:0;text-indent:1em;padding:5px;}
+#div5 {width:0px;;height:0px;background:#F99;display:inline-block}
+</style>
+<script>
+	window.onload=function()
+	{
+		var oDiv=document.getElementById('div1');
+		var oParent=document.getElementById('parent');
+		var oDiv2=document.getElementById('div2');
+		var oDiv3=document.getElementById('div3');
+		
+		var oDiv5=document.getElementById('div5');
+		
+		oDiv.onmousedown=function(ev)
+		{
+			var oEvent=ev||event;
+			var disY=oEvent.clientY-oDiv.offsetTop;
+			
+			document.onmousemove=function(ev)
+			{
+				var oEvent=ev||event;
+				H=oEvent.clientY-disY;
+				
+				if(H<0)
+				{
+					H=0	
+				}
+				else if(H>oParent.offsetHeight-oDiv.offsetHeight)
+				{
+					H=oParent.offsetHeight-oDiv.offsetHeight;
+				}
+				
+				oDiv.style.top=H+'px';
+				var sCale=H/(oParent.offsetHeight-oDiv.offsetHeight);
+				oDiv3.style.top=-sCale*(oDiv3.offsetHeight-oDiv2.offsetHeight)+'px'  //这里是主要的。!important
+				oDiv5.style.width=sCale*400+'px';
+				oDiv5.style.height=sCale*400+'px';
+				
+			};
+			document.onmouseup=function()
+			{
+				document.onmousemove=null;
+				document.onmouseuo=null;	
+			}
+		}
+	}
+</script>
+</head>
+
+
+<body>
+ <div id="parent">
+ 	<div id="div1"></div>
+  
+ </div>
+ <div id="div5"></div>
+ <div id="div2">
+ 	<div id="div3">2. margin加倍的问题
+　　设置为float的div在ie下设置的margin会加倍。这是一个ie6都存在的bug。解决方案是在这个div里面加上display:inline;
+　　例如：
+　　<#div id=”imfloat”>　　相应的css为　　#imfloat{　　float:left;　　margin:5px;　　display:inline;}
+　　3.浮动ie产生的双倍距离
+　　#box{ float:left; width:100px; margin:0 0 0 100px; //这种情况之下IE会产生200px的距离 display:inline; //使浮动忽略}
+　　这里细说一下block与inline两个元素：block元素的特点是,总是在新行上开始,高度,宽度,行高,边距都可以控制(块元素);Inline元素的特点是,和其他元素在同一行上,不可控制(内嵌元素);
+　　#box{ display:block; //可以为内嵌元素模拟为块元素 display:inline; //实现同一行排列的效果 diplay:table;
+　　4 IE与CSS宽度和CSS高度的问题div css技巧
+　　IE不认得min-这个定义，但实际上它把正常的width和height当作有min的情况来使。这样问题就大了，如果只用宽度和高度，正常的浏览器里这两个值就不会变，如果只用min-width和min-height的话，IE下面根本等于没有设置宽度和高度。
+　　比如要设置背景图片，这个宽度是比较重要的。要解决这个问题，可以这样：
+　　#box{ width: 80px; height: 35px;}html>body #box{ width: auto; height: auto; min-width: 80px; min-height: 35px;}
+　　5.页面的最小宽度
+　　min-width是个非常方便的CSS命令，它可以指定元素最小也不能小于某个宽度，这样就能保证排版一直正确。但IE不认得这个，而它实际上把 width当做最小宽度来使。为了让这一命令在IE上也能用，可以把一个＜div> 放到＜body> 标签下，然后为div指定一个类,然后CSS这样设计：http://www.php100.com
+　　#container{ min-width: 600px; width:expression_r(document.body.clientWidth ＜ 600? "600px": "auto" );}
+　　第一个min-width是正常的；css制作但第2行的width使用了Javascript，这只有IE才认得，这也会让你的HTML文档不太正规。它实际上通过Javascript的判断来实现最小宽度。
+　　6.DIV浮动IE文本产生3象素的bug
+　　左边对象浮动，右边采用外补丁的左边距来定位，右边对象内的文本会离左边有3px的间距.
+　　#box{ float:left; width:800px;}　　#left{ float:left; width:50%;}　　#right{ width:50%;}　　*html #left{ margin-right:-3px; //这句是关键}　　<div id="box">　　<div id="left">＜/div>　　<div id="right">＜/div>　　</div>
+　　7.IE捉迷藏的问题
+　　当div应用复杂的时候每个栏中又有一些链接，DIV等这个时候容易发生捉迷藏的问题。
+　　有些内容显示不出来，当鼠标选择这个区域是发现内容确实在页面。解决办法：对#layout使用line-height属性或者给#layout使用固定高和宽。页面结构尽量简单。http://www.php100.com
+8.float的div闭合;清除浮动;自适应高度
+　　①例如：＜#div id=”floatA” >＜#div id=”floatB” >＜#div id=”NOTfloatC” >这里的NOTfloatC并不希望继续平移，而是希望往下排。(其中floatA、floatB的属性已经设置为float:left;)
+　　这段代码在IE中毫无问题，问题出在FF。原因是NOTfloatC并非float标签，必须将float标签闭合。在 ＜#div class=”floatB”> ＜#div class=”NOTfloatC”>之间加上 ＜#div class=”clear”>这个div一定要注意位置，而且必须与两个具有float属性的div同级，之间不能存在嵌套关系，否则会产生异常。并且将clear这种样式定义为为如下即可： .clear{ clear:both;}
+　　②作为外部 wrapper 的 div 不要定死高度,div css制作为了让高度能自动适应，要在wrapper里面加上overflow:hidden; 当包含float的box的时候，高度自动适应在IE下无效，这时候应该触发IE的layout私有属性(万恶的IE啊！)用zoom:1;可以做到，这样就达到了兼容。　　例如某一个wrapper如下定义：
+　　.colwrapper{ overflow:hidden; zoom:1; margin:5px auto;}
+　　③对于排版,我们用得最多的css描述可能就是float:left.有的时候我们需要在n栏的float div后面做一个统一的背景,譬如:
+　　<div id=”page”>　　<div id=”left”>＜/div>　　<div id=”center”>＜/div>　　<div id=”right”>＜/div>　　</div>
+　　比如我们要将page的背景设置成蓝色,以达到所有三栏的背景颜色是蓝色的目的,但是我们会发现随着left center right的向下拉长,而page居然保存高度不变,问题来了css 制作,原因在于page不是float属性,而我们的page由于要居中,不能设置成 float,所以我们应该这样解决
+　　<div id=”page”>　　<div id=”bg” style=”float:left;width:100%”>　　<div id=”left”>＜/div>　　<div id=”center”>＜/div>　　<div id=”right”>＜/div>　　</div>　　</div>
+　　再嵌入一个float left而宽度是100%的DIV解决之道。
+　　④万能float 闭合(非常重要!)
+　　关于 clear CSS float 的原理可参见 [How To Clear Floats Without Structural Markup],将以下代码加入Global CSS 中,给需要闭合的div加上 class="clearfix" 即可,屡试不爽.
+　　　　.clearfix:after { content:"."; display:block; height:0; clear:both; visibility:hidden; }　　.clearfix { display:inline-block; }　　　　.clearfix {display:block;}　　　　
+　　或者这样设置：.hackbox{ display:table; //将对象作为块元素级的表格显示}
+　　9．高度不能自适应
+　　高度不能自适应是当内层对象的高度发生变化时外层高度不能自动进行调节，特别是当内层对象使用margin 或paddign 时。
+　　例：
+　　#box {background-color:#eee; }　　#box p {margin-top: 20px;margin-bottom: 20px; text-align:center; }　　<div id="box">　　<p>p对象中的内容＜/p>　　</div>
+　　解决技巧：在P对象上下各加2个空的div对象CSS代码：.1{height:0px;overflow:hidden;}或者为DIV加上border属性。
+　　10 .div+css之IE6下为什么图片下有空隙产生
+　　解决这个BUG的技巧也有很多,可以是改变html的排版,或者设置img 为display:block 或者设置vertical-align 属性为vertical-align:top 　
+　　bottom 　middle 　text-bottom 都可以解决.
+　　11.如何对齐文本与文本输入框
+　　加上 vertical-align:middle;
+　　<style type="text/css">　　<!--　　input {　　width:200px;　　height:30px;　　border:1px solid red;　　vertical-align:middle;　　}　　-->　　</style>
+　　12.web标准中定义id与class区别吗
+　　(1).web标准中是不容许重复ID的,比如 div id="aa" 不容许重复2次,而CSS class定义的是类,理论上可以无限重复, 这样需要多次引用的定义便可以使用他.
+　　(2).属性的优先级问题
+　　CSS ID的优先级要高于class,看上面的例子
+　　(3).方便JS等客户端脚本,如果在页面中要对某个对象进行脚本操作,那么可以给他定义一个ID,否则只能利用遍历页面元素加上指定特定属性来找到它,这是相对浪费时间资源,远远不如一个ID来得简单。</div>
+ </div>
+</body>
+</html>

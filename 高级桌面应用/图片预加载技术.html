@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+
+<script>
+window.onload=function()
+{
+	var oImg=new Image();
+	oImg.onload=function()               
+	{
+		alert('加载完成');
+	}
+	oImg.onerror=function()
+	{
+		alert('error type:404')	
+	}
+	oImg.src="http://jpp1.imghb.com/pic/pic/78/45/79/1399386178457918_a602x602.jpg"	  //在这里进行预加载，当打开网页时自动进行第二章图片的加载
+}
+</script>
+</head>
+
+<body>
+<img style="height:200px;width:220px;" src="http://img1.gtimg.com/blog/pics/hv1/190/91/1172/76232695.jpg" onmouseover="this.src='http://jpp1.imghb.com/pic/pic/78/45/79/1399386178457918_a602x602.jpg';" onmouseout="this.src='http://img1.gtimg.com/blog/pics/hv1/190/91/1172/76232695.jpg';">
+</body>
+</html>

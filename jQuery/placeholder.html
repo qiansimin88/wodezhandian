@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	/*这是低端浏览器下placeholder的字体颜色*/
+placeholder{
+    color: #bfbfbf;
+}
+/*这是firefox下placeholder的字体颜色*/
+::-moz-placeholder {
+    color: #bfbfbf;
+}
+/*这是webkit下placeholder的字体颜色*/
+::-webkit-input-placeholder {
+    color: #bfbfbf;
+}
+/*
+ *    满足这两个条件，该js能工作的更好，更智能
+ *    1.文本框的父定位元素需加入*zoom: 1
+ *    2.文本框或其父元素的position，不能同时为static
+ */
+.textbox {
+    position: relative;
+    *zoom: 1;
+}
+</style>
+<script src="http://libs.baidu.com/jquery/1.7.1/jquery.min.js"></script>
+<script>
+	$(function(){
+		var b=(function (){
+			var p=document.createElement('input');
+			if ( !('placeholder' in p))    //这里要注意加上括号  一元操作符的权重太大
+			{
+				$('input[placeholder]').each(function(){
+					var $_this=$(this);
+					$_this.val($_this.attr('placeholder')).on({
+						focus:function(){
+							if($_this.val()==$_this.attr('placeholder'))
+							{
+								$_this.val('');	
+							}
+						},
+						blur:function(){
+							var val=$_this.val();
+							var re=/^\s+$/;
+							if($_this.val()=='' && $_this.attr('placeholder') || re.test(val))
+							{
+								$_this.val($_this.attr('placeholder'))	
+							}	
+						}
+					});
+				});	
+			}		
+		})();	
+	});
+</script>
+</head>
+
+<body>
+	<form action method="post" id="reg-use">
+    	<label for="user"><input id="username" name="cusername" placeholder="输入用户名"/></label>
+        <input id="username" name="cusername" placeholder="asdasd"/>
+    </form>
+</body>
+</html>

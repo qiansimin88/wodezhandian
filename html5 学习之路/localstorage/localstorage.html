@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+
+</head>
+
+<body>
+<script>
+
+	var dataimg = [
+	
+		'img/0.JPG',
+		'img/1.JPG',
+		'img/2.JPG',
+		'img/3.JPG',
+		'img/4.JPG',
+	]
+
+	//把图片存localstorage
+	
+	function setLocalStorage(key,src) {
+		
+		var img = new Image();
+		
+		img.addEventListener('load',function(){
+			
+			var oCanvas = document.createElement('canvas'),
+				//绘制2d环境
+				oCanvas2D = oCanvas.getContext('2d');
+				//宽高要和图片的宽高一致
+				oCanvas.height = this.height;
+				oCanvas.width = this.width;
+				//绘制图片(对象，X偏移，Y偏移，宽，高)
+				oCanvas2D.drawImage(this,0,0,this.width,this.height);
+				
+				//获得base64的地址   toDataURL必须是取的是canvas的图片地址
+				var base64url = oCanvas.toDataURL('image/png');
+				
+				//异常捕获  判断浏览器是否支持localstorage 目前IE8+都已经支持
+				try {
+					
+					localStorage.setItem(key,base64url);
+					
+				}
+				catch (err) {
+					
+					console.log('your browser can not support "localstorage"!');	
+										
+				};	
+				
+		},false);
+		
+		img.src = src;	
+	};
+	
+	
+	/*测试存储img*/
+	
+	for(var i = 0;i<dataimg.length;i++) {
+		
+		var imgKey = 'userImg' +i;
+		
+		setLocalStorage(imgKey,dataimg[i]);
+		
+	}
+	
+	/*取image*/
+	
+	function getLocalStorage(key) {
+		
+		var oCanvas = document.createElement('canvas'),
+		
+			oCanvas2D = oCanvas.getContext('2d');
+			
+			newImg = new Image();
+			
+			newImg.onload = function () {
+				
+				oCanvas.width = this.width;
+				oCanvas.height = this.height;
+				
+				oCanvas2D.drawImage(this,0,0,this.width,this.height);
+				
+			};
+			
+			var imgUrl = localStorage.getItem(key);
+			
+			newImg.src = imgUrl;
+				
+			document.body.appendChild(oCanvas);		
+	};
+	
+	/*测试取img*/
+	
+	for(var i = 0 ;i<dataimg.length;i++) {
+		
+		var imgKey = 'userImg' +i;
+		
+		getLocalStorage(imgKey);
+		
+	}
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="../js/jquery-1.7.2.min.js"></script>
+<script>
+	$(function(){
+		$('button').click(function(){
+			var n=$('.div1').queue('fx');
+			runIt();
+		});
+		function runIt(){
+			$('.div1').animate({left:400}).animate({top:400})
+		}
+		
+	});
+</script>
+<style>
+	.div1 {width:200px;height:100px;position:absolute;left:0;top:0;background:#F00;}
+	.div2 {width:200px;height:200px;position:absolute;right:0;bottom:0;background:#00F;}
+	button {cursor:pointer;position:absolute;left:400px;}
+</style>
+</head>
+
+<body>
+<div class="div1"></div>
+<div class="div2"></div>
+<button type="button">点我</button>
+</body>
+</html>

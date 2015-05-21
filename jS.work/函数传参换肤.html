@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+#div1 {
+		height:200px;
+		width:200px;
+		border:1px solid black;
+		
+}
+</style>
+<script>
+
+	function toColor(color){
+	
+		var oBtn1=document.getElementById('bt1');
+		var oBtn2=document.getElementById('bt2');
+		var oBtn3=document.getElementById('bt3');
+	    var oDiv=document.getElementById('div1');
+		
+	
+		oDiv.style.background=color
+	}
+
+		
+</script>
+
+
+
+
+</head>
+
+<body>
+<input type="button" value="变红" id"bt1" onclick="toColor('red')"/>
+<input type="button" value="变绿" id="bt2"/>
+<input type="button" value="变黄" id="bt3"/>
+<div id="div1"></div>
+</body>
+</html>

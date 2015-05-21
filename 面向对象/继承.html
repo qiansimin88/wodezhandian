@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	
+	function base (id){                     //对象1
+		this.id=id;
+		this.getId=function(){
+			return this.id;	
+		}	
+	}
+	
+	function c1 (name){					//对象2
+		this.name=name;
+		this.getname=function(){
+			return this.name;	
+		}	
+	}
+	base.prototype=new c1('hehe');		//对象1的原型指向对象2实例化出来的新对象
+	
+	var newbase=new base('name');		//实例化对象1的新对象
+	
+	alert(newbase.getname())				  //实例对象1  具有了对象2的所有属性
+</script>
+</head>
+
+<body>
+</body>
+</html>

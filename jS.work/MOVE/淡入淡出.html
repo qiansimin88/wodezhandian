@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+#div1 {
+		background:red;width:300px;height:300px;filter:alpha(opacity:30);opacity:0.2;
+}
+</style>
+<script>
+	window.onload=function()
+	{
+		var oDiv=document.getElementById('div1');
+		oDiv.onmouseover=function()
+		{
+			move(100)	
+		}	
+		oDiv.onmouseout=function()
+		{
+			move(10)	
+		}
+	}
+	var timer=null;
+                //因为没有offsetOpacity这种方便的样式可以设置，所依当没有具体的办法设置样式时就用一个变量来代替，然后把变量带进s						                                      tyle里面就可以了
+	var alpha=20;
+	function move(target)
+	{
+		
+		var oDiv=document.getElementById('div1');
+		var speed=0
+		clearInterval(timer)
+		timer=setInterval(function(){
+			if(alpha<target)
+			{
+				speed=3
+			}
+			else
+			{
+				speed=-3	
+			}
+			if(alpha==target)
+			{
+				clearInterval(timer);	
+			}
+			else
+			{
+				alpha=alpha+speed
+				oDiv.style.filter='alpha(opacity:'+alpha+')'
+				oDiv.style.opacity=alpha/100;
+				
+			}	
+		},30)	
+	}
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>

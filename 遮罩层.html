@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	window.onload=function()
+	{
+		var oBtn=document.getElementById('btn');
+		var aLert=document.getElementById('alert');
+		var oZhezhao=document.getElementById('zhezhao');
+		var oClose=document.getElementById('close');
+		oBtn.onclick=function()
+		{
+			aLert.style.display='block';
+			oZhezhao.style.display='block';	
+		}	
+		oClose.onclick=function()
+		{
+			aLert.style.display='none';
+			oZhezhao.style.display='none';	
+		}
+	}
+</script>
+
+<style>
+#zhezhao {width:100%;height:100%;background:#000;opacity:0.7;position:absolute;left:0;top:0;z-index:222;display:none;}
+#con {width:100%;height:1366px;background:url(image/360desktop_20121229144353325_systemp.jpg) no-repeat;position:relative}
+#alert {width:200px;height:200px;background:#FFF;position:absolute;top:20%;left:50%;margin-left:-100px;z-index:3333;display:none;}
+#alert h2 {display:inline-block;}
+#alert  span {display:inline-block;padding-left:50px;}
+</style>
+</head>
+
+<body>
+<div id="con">
+	<input type="button" value="确认" id="btn"/>
+    <div id="alert">
+    	<h2>申请表单</h2><span><a href="#" id="close">关闭</a></span>
+    </div>
+    <div id="zhezhao">
+    </div>
+</div>
+</body>
+</html>

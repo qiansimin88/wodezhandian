@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+  //删除：  splice(),需要两个参数，第一个参数是数组的起始位置，第二个是删除的个数,返回的是删除部分的数组，如果没有删除的部分，则是空
+  var arr=['a','b','c','d','e','f']   
+  var remove=arr.splice(1,3)     //b,c,d   删除的部分
+  alert(arr)                     //a,e,f   原来的数组已经删除了一部分，只剩下没有被删除的部分了  引用传值  
+  
+  //插入     splice(),需要三个参数  分别是  起始位置，删除的个数(0),插入的部分
+  var arr2=['blue','yellow','orange'];
+  var remove=arr2.splice(1,0,'red','black','green');   //  null  
+  alert(arr2)        			//blue,red,black,green,yellow,orange   从数组的 位置1 开始  先删除0个数组 然后插入三个
+  
+  //替换   splice(),需要三个参数 分别是 起始位置 ，要删除的个数（随意值）,插入替换的 数组值
+  
+  var arr3=['你','我','他'];
+  var remove=arr3.splice(1,2,'呵呵','哈哈');     //我 他  删除的部分 
+  alert(arr3)                                   //你  呵呵 哈哈     原来数组剩下的部分
+  
+  
+  
+  /*
+  	splice（）是 JS中数组最强大的一个函数  永远返回  删除的  数组      三个参数  第一个是 起始 位置  第二个是删除个数  [第三个是替换部分];  	
+  */
+        
+</script>
+</head>
+
+<body>
+</body>
+</html>

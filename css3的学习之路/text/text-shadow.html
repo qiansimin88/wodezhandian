@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	div {font-size:30px;cursor:pointer;}   /*x轴偏移量  y轴偏移量  模糊度 颜色*/
+</style>
+<script>
+	window.onload=function(){
+		var oDiv=document.getElementsByTagName('div')[0];
+		timer=null;
+		var num=0;
+		oDiv.onmouseover=function(){
+			
+			var _this=this;
+			timer=setInterval(function(){
+				num++;
+				if(num==5)
+				{
+					clearInterval(timer)	
+				}
+				else
+				{
+					
+					oDiv.style.textShadow=num+'px '+num+'px '+num+'px #000';	
+				}
+			
+			},100)	
+		};
+		
+	}
+</script>
+</head>
+
+<body>
+<div>
+	快使用双节棍
+</div>
+</body>
+</html>

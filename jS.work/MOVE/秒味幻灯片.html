@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="file:///F|/秒味课堂JS/20—幻灯片效果/幻灯片——上下滑动/miaov.js"></script>
+<style type="text/css">
+
+* { padding: 0; margin: 0; }
+li { list-style: none; }
+img { border: none; }
+
+body { background: #ecfaff; }
+
+.play { width: 470px; height: 150px; position: relative; margin: 150px auto 0; }
+ol { position: absolute; right: 5px; bottom: 5px; z-index: 2; }
+ol li { float: left; margin-right: 3px; display: inline; cursor: pointer; background: #fcf2cf; border: 1px solid #f47500; padding: 2px 6px; color: #d94b01; font-family: arial; font-size: 12px; }
+.active { padding: 3px 8px; font-weight: bold; color: #ffffff; background: #ffb442; position: relative; bottom: 2px; }
+
+ul { position: absolute; top: 0; left: 0; z-index: 1; }
+ul li { width: 470px; height: 150px; float: left; }
+ul img { float: left; width: 470px; height: 150px; }
+</style>
+<body>
+
+<div class="play" id="play">
+    <ol>
+    	<li class="active">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ol>
+	<ul>
+		<li><a href="http://www.miaov.com/"><img src="../../image/1.jpg" alt="广告一" /></a></li>
+		<li><a href="http://www.miaov.com/"><img src="../../image/2.jpg" alt="广告二" /></a></li>
+		<li><a href="http://www.miaov.com/"><img src="../../image/3.jpg" alt="广告三" /></a></li>
+		<li><a href="http://www.miaov.com/"><img src="../../image/4.jpg" alt="广告四" /></a></li>
+		<li><a href="http://www.miaov.com/"><img src="../../image/5.jpg" alt="广告五" /></a></li>
+	</ul>
+</div>
+<script type="text/javascript">
+createPPT('play');
+</script>
+</body>
+</html>
+</body>
+</html>

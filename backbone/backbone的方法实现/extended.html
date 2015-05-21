@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="../lib/jquery.js"></script>
+<script src="../lib/underscore.js"></script>
+<script src="../lib/backbone.js"></script>
+<script>
+
+	var modell = new Backbone.Model({'hehe':'enen'});
+	
+	var model2 = new Backbone.Model({'age':12});
+	//创建一个空的集合对象
+	var collectionModel = new Backbone.Collection();
+	
+		//集合对象中 插入两个 模型
+		collectionModel.add(modell);
+		
+		collectionModel.add(model2);
+		
+		//变成集合对象了
+		alert(collectionModel);  //{'hehe':'enen','age':12};
+		
+		
+		
+		
+	
+	
+	
+	
+	
+	
+</script>
+</head>
+
+<body>
+	
+</body>
+</html>

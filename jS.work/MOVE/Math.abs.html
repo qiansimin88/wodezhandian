@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+#div1 { background:#F00;width:100px;height:100px;position:absolute;top:100px;;left:0px;}
+#div2 { background:#000;width:1px;height:300px;position:absolute;top:0;left:600px;}
+</style>
+<script>
+window.onload=function()
+{	
+	var oBtn=document.getElementById("btn1");
+	var oDiv=document.getElementById('div1');
+		
+	oBtn.onclick=function()
+	{
+		move(500)	
+	}
+}
+	timer=null;
+	function move(target)
+	{
+		clearInterval(timer)
+		var oDiv=document.getElementById('div1');
+		var speed=0
+		timer=setInterval(function(){
+	
+		if(oDiv.offsetLeft>target)
+		{
+			speed=-7	
+		}
+		else
+		{
+			speed=7	
+		}
+		if(Math.abs(target-oDiv.offsetLeft)<=7)//若目标值减去ODIV的移动offsetLeft小于最后一次运动的速度即 则直接相等，避免出现颤动的情况。
+												//这里if(oDiv.offsetLeft>=target)也同样可以 
+		{
+			oDiv.style.left=target+'px'
+			
+		}		
+		else
+		{
+		oDiv.style.left=oDiv.offsetLeft+speed+'px';	
+		}
+			
+
+		},30)	
+	}
+</script>
+</head>
+
+<body>
+<input id='btn1' type="button" value="开始运动"/>
+<div id="div1"></div>
+<div id="div2"></div>
+</body>
+</html>

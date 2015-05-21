@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script> 
+     var a =12;    //全局变量 ，使得函数每次运行都会改变  全局变量的值。
+	function test()
+	{
+	     // var a =12;    若在内部声明 ，每次调用都会导致  var 重置成初始值，所依无法达到递增效果。
+		a++;
+			alert(a)
+		
+	}
+	test();   //13
+	test();    //14
+	test();   //15  
+	 
+	 
+	
+</script>
+</head>
+
+<body>
+</body>
+</html>

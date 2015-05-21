@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" href="../css/reset.css" type="text/css">
+<style>
+	.error {color:#F00;}
+	.true {color:green;}
+	
+</style>
+<script src="../js/jquery-1.7.2.min.js"></script>
+</head>
+<script>
+	$(function(){
+		//为所有input添加事件
+		$('form input').not('input :submit').on('keyup focus blur',function(){
+			var msg=$(this).next('span');
+			//通过一系列的is判断当前的元素是哪个 ，进行分析
+			if($(this).is('#username'))
+			{
+				if(this.value==''||this.value.length<6)
+				{
+					msg.text('*用户名不少于6位').removeClass().addClass('error')    //添加class之前要删除以前的class。
+				}
+				else
+				{
+					msg.text('*用户名输入正确').removeClass().addClass('true')
+				}
+			}
+			else if($(this).is('#password'))
+			{
+				var passvalue=this.value;
+				if(passvalue==''||passvalue==undefined||/\s+/.test(passvalue))
+				{
+					msg.text('*密码不能为空').removeClass().addClass('error');	
+				}
+				else if (passvalue.length<6||passvalue.length>18)
+				{
+					msg.text('*密码不能小于6位且不能大于18位').removeClass().addClass('error');	
+				}
+				else
+				{
+					msg.text('*密码正确').removeClass().addClass('true');
+				}
+			}
+			else if($(this).is('#email'))
+			{
+				var emailv=this.value;
+				var re=/^\w+@\w{2,}\.[a-zA-Z]{2,3}(\.(com|cn|net))?$/	
+				if(emailv.length==0||emailv==''||emailv==undefined)
+				{
+					msg.text('*E-mail不能为空').removeClass().addClass('error');	
+				}
+				else if(!re.test(emailv))
+				{
+					msg.text('*请输入正确的邮箱').removeClass().addClass('error');
+				}
+				else
+				{
+					msg.text('*邮箱正确').removeClass().addClass('true')	
+				}
+			};
+		});
+		$(':submit').click(function(){
+			$('form .requerd').trigger('blur');
+			var errorL=$('form span.error').size();
+			if(errorL)
+			{
+				return false;	
+			}
+		});
+	});
+</script>
+
+<body>
+	<div class="register">
+    	<form id="register" name="register" method="post">
+        	<p>
+                <label for="username">用户名:</label>
+                <input type="text" id="username" class="requerd"/>
+                <span></span>
+          	</p>
+            <p>
+             	<label for="password">密码：</label>
+               	<input type="password" id="password" class="requerd"/>
+                 <span></span>
+          	</p>
+           <p>
+           		<label for="email">E-mail:</label>
+                <input type="text" id="email" class="requerd"/>
+                 <span></span>
+           </p>
+           <p><input type="submit" id="submit" value="提交"/></p>
+        </form>
+    </div>
+</body>
+</html>

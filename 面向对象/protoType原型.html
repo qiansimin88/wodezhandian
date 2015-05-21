@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	var arr1=new Array(12,55,34,78,676)
+	var arr2=new Array(12,33,1)
+	
+Array.prototype.sum=function()  //想当于CSS中的class，给所有数组给与方法     prototype在类上面用而不是对象， arr1就是对象（产品），Array就是类。
+// arr1.sum=function()       //行间样式
+	{
+		var result=0;
+		for(var i=0;i<this.length;i++)
+		{  
+			result+=this[i]	
+		}
+		return result	
+	}
+	alert(arr1.sum());
+	alert(arr2.sum());
+
+</script>
+</head>
+
+<body>
+</body>
+</html>

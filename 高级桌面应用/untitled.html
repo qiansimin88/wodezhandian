@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+div {
+		height:200px;
+		width:200px;
+		border:black 1px solid;
+		float:left;
+		margin:10px;
+		}
+
+</style>
+<script>
+window.onload=function ()
+{
+	var oDiv=document.getElementsByTagName('div');
+	var oBtn=document.getElementById('btn1');
+	
+	   // oDiv[4].style.background='red'
+	 for(var i=0;i<oDiv.length;i++)
+	 {
+		 oDiv[i].style.background="red"
+		 oDiv[i].onclick=function()
+		 {
+			for(var i=0;i<oDiv.length;i++)
+			{
+				oDiv[i].style.width=500+'px'	
+			}
+		}
+	}
+ 
+}
+
+
+</script>
+
+
+
+</head>
+
+<body>
+<input type="button" value="b" id="btn1">
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+
+</body>
+</html>

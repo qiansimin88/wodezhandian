@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+* {margin:0;padding:0;}
+li {list-style:none;}
+.wrap {width:1100px;margin:0 auto;position:relative;overflow:hidden;height:220px;}
+.wrap ul {position:absolute;top:0;left:0;}
+.wrap ul li {float:left;}
+</style>
+<script src="../js/jquery-1.7.2.min.js"></script>
+<script>
+	$(function(){
+	var ulHtml=$('.wrap ul').html();
+	var timer=null;
+	var length=$('.wrap ul li').size();
+		$('.wrap ul').html(ulHtml+ulHtml)
+		$('.wrap ul').width(220*length*2);
+		
+	function move(){
+		if($('.wrap ul').css('left')==-$('.wrap ul').width()/2+'px')
+		{
+			$('.wrap ul').css('left',0)	
+		}
+		else
+		{
+			$('.wrap ul').css('left','+=-2')	
+		}
+	};
+		timer=setInterval(move,30)
+		$('.wrap ul').hover(function(){
+			clearInterval(timer)	
+		},function(){
+			timer=setInterval(move,30);
+		})
+})
+</script>
+</head>
+
+<body>
+	<div class="wrap">
+    	<ul>
+        	<li><img src="../img2/1.jpg"></li>
+            <li><img src="../img2/2.jpg"></li>
+            <li><img src="../img2/3.jpg"></li>
+            <li><img src="../img2/4.jpg"></li>
+            <li><img src="../img2/5.jpg"></li>
+        </ul>
+    </div>
+</body>
+</html>

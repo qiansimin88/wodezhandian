@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	window.onload=function(){
+		var name=document.getElementsByName('name')[0];
+		var pass=document.getElementsByName('pass')[0];
+		var  save=document.getElementsByName('save')[0];
+		
+		if(localStorage.getItem('name') && localStorage.getItem('pass')){   //判断客户端是否有 本地存贮信息
+			save.checked=true;
+			name.value=localStorage.getItem('name');
+			pass.value=localStorage.getItem('pass');	
+		}
+		save.onclick=function(){											//点击box  存贮本地信息
+			if(save.checked){
+				localStorage.setItem('name',name.value);
+				localStorage.setItem('pass',pass.value);		
+			}else{
+				localStorage.removeItem('name');
+				localStorage.removeItem('pass');	
+			}
+		}
+	}
+</script>
+</head>
+
+<body>
+	用户名：<input type="text" name="name"/><br/>
+    密码：<input type="text" name="pass"/><br/>
+    记录用户名：<input type="checkbox" name="save"/>
+</body>
+</html>

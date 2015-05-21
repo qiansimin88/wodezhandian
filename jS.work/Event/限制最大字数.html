@@ -1,0 +1,25 @@
+ <html>
+<head>
+<title>JS限制Textarea文本域字符个数</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<SCRIPT LANGUAGE="JavaScript">
+<!--//
+function textCounter(field, countfield, maxlimit) {
+// 函数，3个参数，表单名字，表单域元素名，限制字符；
+if (field.value.length > maxlimit)
+//如果元素区字符数大于最大字符数，按照最大字符数截断；
+field.value = field.value.substring(0, maxlimit);
+else
+//在记数区文本框内显示剩余的字符数；
+countfield.value = maxlimit - field.value.length;
+}
+//-->
+</SCRIPT>
+</head>
+<body>
+<form name=myform action="">
+<textarea name="message" cols="28" rows="5" onKeyDown="textCounter(message,remLen,6);" onKeyUp="textCounter(message,remLen,6);"></textarea>
+您还可以输入:<input name="remLen" type="text" value="6" size="5" readonly>个字符
+</form>
+</body>
+</html>

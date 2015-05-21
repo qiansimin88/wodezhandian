@@ -1,0 +1,39 @@
+ ·<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	//对象引用
+	/*var obj1={a:20};
+	var obj2=obj1;
+	
+	obj2.a=30;
+	alert(obj1.a)  //30     因为是json形式，所依造成 对象引用，改变obj2,同样改变obj. */
+	
+	//赋值方法
+	
+	var obj1={a:20};
+	function copy(obj)          //拷贝函数
+	{
+		var newobj={};            //创建一个函数，声明一个新的json形式的对象，然后用for in遍历，让每个旧的obj的attr都等于新的obj.
+		
+		for (var attr in obj)
+		{
+			newobj[attr]=obj[attr]	
+		}
+		return newobj         //返还新的 newobj   json对象
+	}
+	
+	obj2=copy(obj1)              //obj2获得obj1的所有属性，并且 是赋值互不影响。
+	
+	obj2.a=30;
+	alert(obj1.a)
+	
+	
+</script>
+</head>
+
+<body>
+</body>
+</html>

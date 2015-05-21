@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	/*
+		1.回调函数
+		  通过函数的指针来调用另外一个函数
+		  (把一个函数的指针做为另一个函数的参数，当调用这个参数的时候，这个函数就叫回调函数)
+	*/
+    
+	//1 .  通过指针调用的函数
+//	
+//	function math(num1,num2,fn){
+//		return fn(num1,num2);	
+//	};
+//	
+//	function fc (a,b){
+//		return a+b-20;		
+//	};
+//	
+//	alert(math(1,2,fc));    -17  这就是指针回调函数   直接把另外的函数当做参数来调用
+//	
+	//2   把匿名函数直接当做回调函数
+	function math(num1,num2,fn){
+		alert('hehe')
+		return fn(num1,num2);
+	};
+	
+	alert(math(1,2,function(a,j){
+		return 	a*j;				//2   这就是把匿名函数当做回调函数直接使用。 
+	}));
+    </script>
+</head>
+
+<body>
+</body>
+</html>

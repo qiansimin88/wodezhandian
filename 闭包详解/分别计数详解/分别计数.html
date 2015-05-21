@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	window.onload=function(){
+		var aBtn=document.getElementsByTagName('input');
+		
+		//way1 闭包的方法
+		/*for(var i=0;i<aBtn.length;i++)
+		{
+			addNum(aBtn[i]);
+		}
+		
+		function addNum(obj){
+			var count=0;
+			obj.onclick=function(){
+				alert(count++);	
+			}
+		};	*/
+		
+		//way2 内部属性 index
+		
+		/*for(var i=0;i<aBtn.length;i++)
+		{
+			aBtn[i].index=0;
+			aBtn[i].onclick=function(){
+				alert(this.index++)	
+			}	
+		}*/
+		
+		//闭包方法2      这个方法和方法1  一样  只不过形式不同，想当于给与了每个aBtn[i]一个单独的函数作用域 互相影响
+		
+		for(var i=0;i<aBtn.length;i++){
+			(function(o){
+				var i=0;
+				o.onclick=function(){
+					alert(i++);
+				};	
+			})(aBtn[i])//当参数传入
+		};
+	}
+	
+	
+	
+	//两种方法都可以。。第一种方法更好
+</script>
+</head>
+
+<body>
+<input type="button" value='点击计数'/>
+<input type="button" value='点击计数'/>
+<input type="button" value='点击计数'/>
+<input type="button" value='点击计数'/>
+</body>
+</html>

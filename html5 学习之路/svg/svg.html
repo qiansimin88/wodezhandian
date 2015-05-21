@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	window.onload=function(){
+		var one=document.getElementById('svg');				//基本的获取ID
+		var oSvg=one.getSVGDocument();						//获取SVG文件
+		var svgDocument=oSvg.documentElement;				//获取SVG的document文档	
+		var po=svgDocument.getElementsByTagName('polygon')[0];	//获取SVG文档中的标签属性
+	  //po.setAttribute('points','0,0 50,0 50,50')  //设置属性
+	  	var angel=0;
+		setInterval(function(){
+			angel+=0.1;
+			var str =po.getAttribute('points');
+			var arr=str.split(',');
+			var newArr=[];
+			for(var i=0;i<arr.length;i++){
+				newArr.push(parseInt(arr[i])+10*Math.random()*Math.sin(angel));	
+			}
+			var newStr=newArr.join(',');				
+			po.setAttribute('points',newStr)
+		},50)
+	}
+</script>
+</head>
+
+<body>
+<!-------------svg的三种引入方式------------------->
+
+<!--1 embed-->
+
+<embed id="svg" src="svg.svg" width="600" height="600" type="image/svg+xml" pluginspage="http://www.adobe.com/svg/viewer/install/">
+
+<!--2 object 火狐不支持-->
+
+<!--<object data="svg.svg" width="300" height="300" type="image/svg+xml" codebase="http://www.adobe.com/svg/viewer/install/"></object>-->
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	var str="45sd8w4d-ds.24sd535^42sfhgj94"
+	var tmp=""
+	var arr=[];
+	for(var i=0;i<str.length;i++)
+	{
+		if(str.charAt(i)>=0&&str.charAt(i)<=9)
+		{
+			tmp+=str.charAt(i)	
+		}
+		else                               //如果不是数字的话，就把前面的tmp塞进数组里面，然后清空tmp，以此循环
+		{
+			if(tmp)
+			{
+				arr.push(tmp)
+				tmp="";	
+			}	
+		}		
+	}
+	
+if(tmp)                        //若当最后没有非数字的时候，可能造成 纳入不完全，随意再次添加没有非数字前面的tmp,完美了。
+{
+	arr.push(tmp)	
+	tmp=""
+}
+alert(arr)
+	
+</script>
+</head>
+
+<body>
+</body>
+</html>

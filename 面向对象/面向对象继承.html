@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+#div1 { width:150px;height:150px;background:#F00;position:absolute;}
+#div2 { width:150px;height:150px;background:yellow;position:absolute;}
+</style>
+<script src="../js/drag.js"></script>
+<script src="../js/limitDrag.js"></script>
+
+<script>
+/*面向对象程序的思路
+	1.撤销所有嵌套函数，各自封装成一个函数。
+	2.把所有的在多个函数使用的变量，设置成全局变量；
+	3.设置构造函数 function XXX(XX)
+	4.设置原型方法  XXX.prototype.XX=function
+	5.为每个属性加上this
+	6.改变直接调用函数前面的this.设置一个变量var _this=this
+	7.一切就绪后。。设置一个window.onload  内创建一个new 对象
+*/
+	
+	window.onload=function()
+	{
+		new Drag('div1');	
+		new limitDrag('div2')
+	}
+	
+
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+
+</body>
+</html>

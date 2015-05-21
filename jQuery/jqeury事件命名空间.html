@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="../js/jquery-1.7.2.min.js"></script>
+<script>
+			//在多个开发人员开发的情况下。给事件加上命名空间可以有效的避免冲突；
+	$(function(){
+		//第一个开发 人员
+		$('p').on('click.bg',function(){
+			$(this).css('background','red');
+		});
+		//第二个 开发人员
+		$('p').on('click.color',function(){
+			$(this).css('color','yellow');	
+		})
+		//第三个开发人员
+		$('p').off('click.color')
+	});
+</script>
+</head>
+
+<body>
+<p>点击背景色，和字体的颜色。</p>
+</body>
+</html>

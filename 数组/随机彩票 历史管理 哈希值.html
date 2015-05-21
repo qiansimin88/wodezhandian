@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	window.onload=function()
+	{
+		var oBtn=document.getElementById('btn1');
+		var oDiv=document.getElementById('div1');
+		
+		oBtn.onclick=function()
+		{
+			
+			oDiv.innerHTML=ranDom(35,7);	
+			window.location.hash=ranDom(35,7);   //给浏览器添加 哈希值
+		};
+		
+		window.onhashchange=function()             //历史管理函数，作用就是浏览器在不刷新界面的情况下，返回上次哈希值的状态
+		{
+			var number=window.location.hash.slice(1)  //slice(1)是除去哈希值前面的#符号
+			oDiv.innerHTML=number;	
+		}
+		
+		function ranDom(allNum,Num)
+		{
+			var arr1=[];
+			var arr2=[];
+			
+			for(var i=1;i<=allNum;i++)
+			{
+				arr1.push(i);	
+				
+			}
+		  	for(var i=0;i<Num;i++)
+			{
+				arr2.push(arr1.splice(Math.floor(Math.random()*allNum),1))	
+			}
+			return arr2
+		}	
+	}
+</script>
+</head>
+
+<body>
+<input type="button" id="btn1" value="开始" />
+<div id="div1"></div>
+</body>
+</html>

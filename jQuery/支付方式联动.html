@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	.clearfix {_zoom:1}
+	.clearfix:after {display:block;content:' ';clear:both;}
+	.pay-left {float:left}
+	.pay-right {float:right;}
+	.toPayBox {width:450px;}
+	ul {clear:both;}
+</style>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+
+<body>
+<div class="toPayBox">
+	<p style="float:right">订单总额:<span class="OrderTotal">60</span>元</p>
+	<ul class="clearfix">
+    	<li  class="pay-left">
+        	<input type="checkbox" class="toPayIntegral checkedBtn"><span>支付积分:<span class="Integral nowtoPay">400.00</span></span>
+        </li>
+        <li class="pay-right">
+        	可支付积分余额:<span class="governIntegral">400.00</span>分
+    	</li>
+    </ul>
+    <ul class="clearfix">
+    	<li class="pay-left">
+        	<input type="checkbox" class="toPayAmount checkedBtn"><span>支付金额:<span class="Amount nowtoPay">12</span>元</span>
+        </li>
+        <li class="pay-right">
+        	可支付金额余额:<span class="governAmount">13</span>元
+    	</li>
+    </ul>
+    <ul>
+    	<li class="otherPay">其它方式支付<span class="otherToPay">44</span>元</li>
+    </ul>
+</div>
+<script>
+	
+	//支付函 数
+	
+	(function(){
+		
+		var toPayBox= $('.toPayBox'),
+		
+			//支付积分checked
+			toPayIntegral= $('.toPayIntegral'),
+			
+			//支付金额checked 
+			toPayAmount= $('.toPayAmount'),
+			
+			//两个checked 
+			checkedBtn = $('.checkedBtn'),
+		
+			//订单总额
+			OrderTotal = $('.OrderTotal'),
+				
+			
+			//支付积分
+			Integral = $('.Integral'),
+				IntegralVal =parseFloat(Integral.text()),
+				
+			//支付金额
+			Amount= $('.Amount'),
+				AmountVal =parseFloat(Amount.text()),
+			
+			//可支付积分
+			governIntegral =$('.governIntegral'),
+			
+			//可支付余额
+			governAmount = $('.governAmount'),
+				governAmountVal = parseFloat(governAmount.text());
+		
+			//其它还需支付
+			var otherToPay = $('.otherToPay');
+				otherToPayVal=parseFloat( otherToPay.text());
+			
+			//按钮点击
+			checkedBtn.on('click',function(){
+				
+				var _this=$(this);
+				
+				//后面支付的 钱或积分
+				
+				var nowVal =parseFloat( _this.next().find('.nowtoPay').text());
+				
+				//只要勾选 发现值为0  就return 
+				
+				if ( nowVal == 0) {
+					
+					return ;	
+				} 
+				
+				//勾选
+				if(_this.is(':checked')){
+					
+					//是积分
+					if (_this.hasClass('toPayIntegral')){
+						
+						IntegralClickOn();
+						
+					}
+					//是余额
+					else{
+						
+						
+						AmountClickOn();
+							
+					}
+					
+				}
+				//取消勾选
+				else{
+					
+					//是积分
+					if (_this.hasClass('toPayIntegral')){
+						
+						 IntegralClickOff.call(_this);
+						
+					}
+					//是余额
+					else{
+						
+						  AmountClickOff();	
+					}
+				}
+				
+			});
+			
+			
+			//积分取消勾选事件
+			
+			function IntegralClickOff () {
+
+			//支付积分
+				var Integral = $('.Integral');
+				var IntegralValNow =parseFloat(Integral.text());
+				//支付金额
+				var Amount= $('.Amount');
+				var AmountValNow =parseFloat(Amount.text());
+				//其它还需支付
+				var otherToPay = $('.otherToPay');
+				var otherToPayValNow = parseFloat(otherToPay.text());
+
+				//最开始要判断 余额是否是勾选状态
+				
+				if (toPayAmount.is(':checked')) {
+					
+						  //先判断  可支付余额是否够 支付 
+					  
+						  //如果够
+						  
+					  if ( governAmountVal > AmountValNow) {
+						  
+						  //Amount.text(parseFloat(IntegralVal/100+AmountVal));
+						  
+						  //内部还要判断积分换算元加上现有支付余额是否大于总剩余金额
+						  
+						  if((IntegralValNow/100+AmountValNow) > governAmountVal ) {
+							  //支付余额显示
+							  Amount.text(governAmountVal);
+							  //其它支付方式显示
+							  otherToPay.text(parseFloat(otherToPayValNow+(IntegralValNow/100+AmountValNow-governAmountVal)));
+								  
+						  }else{
+							  
+							  //支付余额显示
+							  Amount.text(parseFloat(IntegralValNow/100+AmountValNow));
+								  
+						  }
+						  
+					  }
+					  //不够或者相等
+					  else{
+						  
+						  //直接就让 其它方式相加   而  余额支付不变
+						  
+						  otherToPay.text(parseFloat((IntegralValNow/100+otherToPayValNow)));
+						  
+					  }
+						
+				}else{
+					
+					otherToPay.text(parseFloat((IntegralValNow/100+otherToPayValNow)));
+						
+				}
+					
+			};
+			
+			//积分勾选事件
+			
+			function IntegralClickOn () {
+				//支付积分
+				var Integral = $('.Integral');
+				var IntegralValNow =parseFloat(Integral.text());
+				//支付金额
+				var Amount= $('.Amount');
+				var AmountValNow =parseFloat(Amount.text());
+				//其它还需支付
+				var otherToPay = $('.otherToPay');
+				var otherToPayValNow = parseFloat(otherToPay.text());
+		
+				
+				//最开始要判断 余额是否是勾选状态
+				
+				if (toPayAmount.is(':checked')) {
+					//1.先判断是否是  余额在变  （通过页面初始化的支付额值 和当前的支付额 值是否相等）
+						//说明不是金额在变  而是其它方式支付在变化
+					  if(AmountVal == AmountValNow) {
+							  
+						  otherToPay.text(parseFloat(otherToPayValNow-IntegralValNow/100))
+						  
+					  }
+					  //说明是金额在变  其它方式支付没有变化
+					  else{
+						  //变成初始化的值
+						  Amount.text(AmountVal);
+						  
+						  otherToPay.text(otherToPayVal);
+					  }
+					
+				}else{
+								
+					 otherToPay.text(parseFloat(otherToPayValNow-IntegralValNow/100));
+					
+				}
+				
+			};
+			
+			
+			//金额取消勾选事件
+			
+			function AmountClickOff () {
+				
+				//支付积分
+				var Integral = $('.Integral');
+				var IntegralValNow =parseFloat(Integral.text());
+				//支付金额
+				var Amount= $('.Amount');
+				var AmountValNow =parseFloat(Amount.text());
+				//其它还需支付
+				var otherToPay = $('.otherToPay');
+				var otherToPayValNow = parseFloat(otherToPay.text());
+				
+				
+				//因为积分是100%全额付完 所以金额取消 就是增加 其它支付的额度
+				
+				otherToPay.text(otherToPayValNow+AmountValNow);
+					
+			};
+			
+			//金额勾选事件
+			
+			function AmountClickOn () {
+				
+				//支付积分
+				var Integral = $('.Integral');
+				var IntegralValNow =parseFloat(Integral.text());
+				//支付金额
+				var Amount= $('.Amount');
+				var AmountValNow =parseFloat(Amount.text());
+				//其它还需支付
+				var otherToPay = $('.otherToPay');
+				var otherToPayValNow = parseFloat(otherToPay.text());
+				
+				
+				//因为积分是100%全额付完 所以金额取消 就是增加 其它支付的额度
+				
+				otherToPay.text(otherToPayValNow-AmountValNow);
+					
+			};
+			
+			
+			
+			//页面初始化
+			(function(){
+				
+				if (IntegralVal > 0) {
+						
+					toPayIntegral.attr('checked',true)
+				}
+				
+				if(AmountVal > 0) {
+					
+					toPayAmount.attr('checked',true);	
+				}
+					
+			})()
+			
+	})()
+	
+</script>
+</body>
+</html>

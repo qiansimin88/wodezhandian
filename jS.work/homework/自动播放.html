@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+#header {width:970px;height:270px;position:relative;}
+ul {list-style:none;}
+#header li {position:absolute;left:0;top:0;z-index:1;}
+
+</style>
+
+<script>
+	window.onload=function()
+	{
+		var oDiv=document.getElementById('div1');
+		var aLi=document.getElementsByTagName('li');
+		var nowZindex=1;
+		var i=2;
+		timer=setInterval (function (){
+				
+				aLi[i].style.zIndex=nowZindex++;
+				i--;
+				if(i==-1)
+				{
+					i=aLi.length-1;	
+				}
+			},2000)
+	}
+	
+</script>
+</head>
+
+<body>
+	<div id="header">
+    	<ul>
+        	<li><a href="javascript:"><img src="../../image/-231.jpg" alt="1"/></a></li>
+            
+            <li><a href="javascript:"><img src="../../image/-234.jpg" alt="2"/></a></li>
+            <li><a href="javascript:"><img src="../../image/-246.jpg" alt="3"/></a></li>
+            <li><a href="javascript:"><img src="../../image/-267.jpg" alt="4"/></a></li>
+        </ul>
+    </div>
+</body>
+</html>

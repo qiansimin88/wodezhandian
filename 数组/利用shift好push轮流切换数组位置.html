@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+window.onload=function()
+{
+	var oDiv=document.getElementById('div1');
+	var oBtn1=document.getElementById('btn1');
+	
+	oBtn1.onclick=function()
+	{
+		var arr=oDiv.innerHTML.split(',')    //不字符串  通过 spilt转换成数组
+		arr.push(arr[0]);     //尾部添加的是数组的第一个
+		arr.shift();         //顺便删除第一个
+		oDiv.innerHTML=arr;	    //把数组变成HTML
+	}	
+}
+</script>
+</head>
+
+<body>
+<input type="button" id="btn1" value="轮回"/>
+<div id="div1">1,2,3,4,5,6</div>
+</body>
+</html>

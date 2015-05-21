@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	body {background:#000}
+	#draw {background:#fff;}
+</style>
+<script>
+	window.onload=function(){
+		
+		var oc = document.getElementById('draw');
+		
+		var oGc= oc.getContext('2d');
+		
+		//先创建图片预加载对象
+		
+		var cImg = new Image();
+		
+		
+		cImg.onload=function(){
+			
+			//绘图
+			draw(this);
+			
+		};
+		
+		//图片地址
+		cImg.src="1.jpg";
+		
+		function draw (obj) {
+			
+			//canvas绘制图片  drawImage(对象,x,y,宽,高)
+			oGc.drawImage(obj,0,0)
+			
+		};
+		
+	}
+</script>
+</head>
+
+<body>
+<!--用html5的drawImage()绘制图片 可以提高性能-->
+<canvas id="draw" width='400' height='400'></canvas>
+</body>
+</html>

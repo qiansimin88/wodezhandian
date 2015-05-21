@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="../js/jquery-1.7.2.min.js"></script>
+<script>
+	//这里注意 checkbox 的  选择 是否 是个布尔值。
+	$(function(){
+		$('#btn').click(function(){
+			$('input[name="tem"]:checkbox').each(function(){
+				$(this).attr('checked',!$(this).attr('checked'))
+			});
+		});
+		$('input[name="tem"]:checkbox').click(function(){
+			var flag=true;
+				$('input[name="tem"]:checkbox').each(function(){
+					if(!this.checked)
+					{
+						flag=false;
+					}	
+				$('#btn').attr('checked',flag)	
+			});
+		});
+	});
+</script>
+</head>
+
+<body>
+	<input type="checkbox" id="btn"/>全选/全不选<br/>
+   <input type="checkbox" name="tem"/>足球
+    <input type="checkbox" name="tem"/>篮球
+     <input type="checkbox" name="tem"/>乒乓球
+      <input type="checkbox" name="tem"/>橄榄球
+   
+</body>
+</html>

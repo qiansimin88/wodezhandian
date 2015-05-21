@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	span {border:1px solid #000}
+</style>
+<script src="../js/jquery-1.7.2.min.js"></script>
+<script>
+	$(function(){
+		$('.tianjiar').click(function(){
+			$('#se1 option:selected').appendTo('#se2')
+		});
+		$('.tianjiaallr').click(function(){
+			$('#se1>option').appendTo('#se2')
+		});
+		$('#se1 option').dblclick(function(){
+			$(this).appendTo('#se2');
+		});
+	});
+</script>
+</head>
+
+<body>
+<select multiple="multiple" id="se1" style="width:100px;height:180px;">
+	<option value="1">选项一</option>
+    <option value="2">选项2</option>
+    <option value="3">选项3</option>
+    <option value="4">选项4</option>
+    <option value="5">选项5</option>
+    <option value="6">选项6</option>
+</select>
+<div class="left_b">
+	<span class="tianjiar">选中添加到右边</span><br/>
+    <span class="tianjiaallr">选中全部添加到右边</span>
+</div>
+<select multiple="multiple" id="se2" style="width:100px;height:180px;">
+</select>
+<div class="right_b">
+	<span class="tianjial">选中添加到左边</span><br/>
+    <span class="tianjiaalll">选中全部添加到左边</span>
+</div>
+</body>
+</html>

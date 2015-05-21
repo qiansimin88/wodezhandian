@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" href="../css/reset.css" type="text/css">
+<style>
+	.showimg {width:352px;margin:40px auto 0;position:relative;}
+	.list_small li {float:left;padding:1px;border:1px solid #CECFCE;margin-left:7px;_display:inline;}
+	
+	.list_small li img {width:50px;height:50px;}
+	.big_img {width:352px;text-align:center;border:1px solid #CECFCE;position:relative;}
+	.list_small {overflow:hidden;_zoom:1;position:absolute;left:20px;z-index:111;}
+	.pic_wrap {position:relative;width:354px;margin-top:4px;height:56px;overflow:hidden;}
+	.left_b,.right_b {top:0px;position:absolute;width:18px;height:54px;border:1px solid #cecece;background:#FFF;line-height:54px;text-align:center;color:#999;z-index:222;}
+	.left_b:hover,.right_b:hover {border:1px solid #cecece;} 
+	.left_b {left:0px;}
+	.right_b {left:334px;}
+	.current {background:#ddd;}
+	.disable {cursor:default;}
+	.mask {width:120px;height:120px;background:#abcdef;position:absolute;left:0;top:0;display:none;}
+	.msxPic {width:354px;height:412px;position:absolute;left:356px;top:0px;overflow:hidden;}
+	.msxPic  img {width:600px;height:600px;position:absolute;left:0;top:0;}
+</style>
+<script src="../js/jquery-1.7.2.min.js"></script>
+<script>
+	$(function(){
+		var li=$('.list_small li');
+		var liW=$('.list_small li').eq(2).outerWidth(true);
+		var mask=$('.mask');
+		var oUl=$('.list_small');
+		oUl.width(liW*li.size());
+		var bigimg=$('.big_img img');
+		var wrapDiv=$('.big_img');
+		var yuanshiLeft=parseInt(oUl.css('left'));
+		
+		li.mouseover(function(){
+			var imgsrc=$(this).children().attr('src');
+			$(this).css({border:'1px solid #f00'}).siblings('li').css('border','1px solid #CECFCE')
+			bigimg.attr('src',imgsrc);
+		});
+		var now=0;
+		$('.left_b').on('click',function(){
+			$('.right_b').removeClass('disable').addClass('current');
+			
+			if(now>=5)
+			{
+				$(this).removeClass('current').addClass('disable');
+				now=5;		
+			}
+			else
+				
+			{	now++
+				oUl.animate({left:-liW*now+yuanshiLeft})		
+			}
+		});
+		$('.right_b').on('click',function(){
+			if(now<=0)
+			{
+				now=0;	
+			}
+			else
+			{
+				now--;
+				oUl.animate({left:-liW*now+yuanshiLeft})	
+			}
+		});
+		
+		wrapDiv.mousemove(function(e){
+			var msxPic=$('.msxPic');
+			msxPic.children('img').attr('src',$(this).children().attr('src'));
+			
+			mask.show().fadeTo(20,0.6);
+			var offsetWrapDiv=wrapDiv.offset();
+			var x=e.pageX-offsetWrapDiv.left-mask.width()/2;
+			var y=e.pageY-offsetWrapDiv.top-mask.height()/2;
+			if(x<0)
+			{
+				x=0;
+			}
+			else if (x>wrapDiv.width()-mask.width()){
+				x=wrapDiv.width()-mask.width();
+			};
+			if(y<0)
+			{
+				y=0;	
+			}
+			else if(y>wrapDiv.height()-mask.height())
+			{
+				y=	wrapDiv.height()-mask.height();
+			}
+			
+			mask.css({
+				left:x,top:y	
+			});
+			var msxPicImg=msxPic.children('img');
+			msxPicImg.css({
+				left:-x,
+				top:-y		
+			});
+			
+			
+		});
+		wrapDiv.mouseout(function(){
+			mask.hide();
+		});
+	});
+</script>
+</head>
+
+<body>
+	<div class="showimg">
+    	<div class="big_img">
+        	<img src="../image/jx01.jpg"/>
+            <div class="mask"></div>
+        </div>
+      
+        <div class="pic_wrap">
+        	  <a href="javascript:;" class="left_b current">&lt;</a>
+            <ul class="list_small">
+                <li><img src="../image/jx01.jpg"></li>
+                <li><img src="../image/jx02.jpg"></li>
+                <li><img src="../image/jx03.jpg"></li>
+                <li><img src="../image/jx04.jpg"></li>
+                <li><img src="../image/jx05.jpg"></li>
+                <li><img src="../image/jx06.jpg"></li>
+                <li><img src="../image/jx04.jpg"></li>
+                <li><img src="../image/jx01.jpg"></li>
+                <li><img src="../image/jx02.jpg"></li>
+                <li><img src="../image/jx03.jpg"></li>
+            </ul><!--list_small-->
+             <a href="javascript:;" class="right_b disable">&gt;</a>
+          </div>
+          <div class="msxPic">
+          	<img src="../image/jx01.jpg"/>
+          </div>
+    </div>
+</body>
+</html>

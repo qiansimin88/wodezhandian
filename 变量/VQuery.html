@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+#div1 {background:red;width:200px;height:200px;}
+</style>
+<script>
+function $(some)
+{
+	if(typeof some=='function')		//利用typeof来  设置下面$（）里面的数据类型
+	{
+		window.onload=some	
+	}
+	else if(typeof some=='string')
+	{
+		return document.getElementById(some);	
+	}
+	else if (typeof some=='object')
+	{
+		return 	some
+	}
+};
+
+$(function(){							//缩水版的vQuery  主要还是注意$(XX)XX的数据类型；
+	$('div1').onclick=function(){
+		$(this).style.background='green';	
+	}
+})
+
+
+/*老方法
+
+window.onload=function()
+{
+	var oDiv=document.getElementById('div1')
+	oDiv.onclick=function()
+	{
+		this.style.background='yellow'	
+	}
+}*/
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>

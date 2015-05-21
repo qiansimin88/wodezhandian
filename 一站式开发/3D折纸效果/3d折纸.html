@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+		  	.wrap {margin:30px auto;width:302px;-webkit-perspective:800px;-webkit-transform-style:preserve-3d;position:relative;}
+		  	.wrap div {position:absolute;top:52px;left:0;-webkit-transform-style:preserve-3d;-webkit-transform-origin: center top;}
+		  	.wrap span {display:block;width:300px;border:1px solid #000;height:50px;font:16px/50px "microsoft yahei";background:#ccc;}
+		</style>
+	</head>
+	<body>
+		<input type="button" value='伸缩'/>
+		<input type="button" value='展开'/>		
+		<div class="wrap">
+			<span>第一张</span>
+			<div>
+			  	<span>第二张</span>
+			  	<div>
+			  		<span>第三张</span>
+			  		<div >
+			  			<span>第四张</span>
+			  			<div>
+			  				<span>第五张</span>
+			  				<div>
+			  					<span>第六张</span>
+			  				</div>
+			  			</div>
+			  		</div>
+			  	</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		
+		var wrap = document.querySelector('.wrap');
+		
+		var Box = wrap.getElementsByTagName('div');
+		
+		var btn = document.querySelectorAll('input');
+		
+		btn[0].onclick=function(){
+			
+			for(var i=0 ; i<Box.length;i++) {
+				
+				Box[i].style.webkitTransition ='0.6s '+(Box.length - i) * 100+'ms';
+				
+				Box[i].style.webkitTransform = 'rotateX(60deg)';
+				
+			}
+			
+		}
+		
+		btn[1].onclick=function(){
+			
+			for(var i=0 ; i<Box.length;i++) {
+				
+				Box[i].style.webkitTransition ='0.6s '+ i * 100+'ms';
+				
+				Box[i].style.webkitTransform = 'rotateX(0deg)';
+				
+			}
+			
+		}
+		
+	</script>
+</html>

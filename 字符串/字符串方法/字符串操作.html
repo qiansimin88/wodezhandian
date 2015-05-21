@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+	
+	   var str = 'name=qiansimin&sex=男&age=18&adress=安徽'
+		function hehe() {
+			var aboutMsg=[];
+			var msgArr= str.split('&');
+			for(var i=0;i<msgArr.length;i++){
+				var mMore=msgArr[i].split('=');
+				aboutMsg.push(mMore[1])	
+			};
+			console.log(msgArr)
+		
+			$('.msg').find('p').each(function(i){
+				$(this).find('span').text(aboutMsg[i])	
+			})	
+		}
+		
+</script>
+</head>
+
+<body>
+	<div class="msg">
+    	<p>姓名：<span></span></p>
+        <p>性别：<span></span></p>
+        <p>年龄：<span></span></p>
+        <p>地籍：<span></span></p>
+    </div>
+    <input  type="button" class="getmsg" onclick='hehe()'/>
+</body>
+</html>

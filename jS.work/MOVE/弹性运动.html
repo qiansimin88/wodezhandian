@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+#div1 {width:200px;height:200px;background:red;position:absolute;left:0;top:50px;}
+</style>
+<script>
+	var timer=null;  //清除上一次定时器，避免重复。
+	
+	function move()
+	{
+	    clearInterval(timer)
+		var iSpeed=0;  //  相对于下面的iSpeed就是全局变量了。
+		
+		var oDiv=document.getElementById('div1');
+		
+		 timer=setInterval(function(){
+			/* if(oDiv.offsetLeft<600)
+			 {
+				iSpeed+=(600-oDiv.offsetLeft)/50;	   //小于600，ispeed  递增
+			 }
+			 else
+			 {
+				iSpeed-=(oDiv.offsetLeft-600)/50;	   //大于600 ，因为之前 递加了 ，所依现在的速度还是正的，逐步递减。形成返回的效果。 
+			 }*/
+			 
+			 iSpeed+=(600-oDiv.offsetLeft)/5;   //其实等于上面的 if。    这里取5  下面的摩擦取0.7是比较合适的。
+			iSpeed*=0.7;                          //摩擦  系数，这样就可以让弹性运动停下来了。
+		 oDiv.style.left=oDiv.offsetLeft+iSpeed+'px';	
+	  },30)
+			
+	}
+</script>
+</head>
+
+<body>
+<input type="button" value="运动" onclick="move()"/>
+<div id="div1"></div>
+<div style="width:1px;height:300px;position:absolute;left:600px;background:black;"></div>
+</body>
+</html>

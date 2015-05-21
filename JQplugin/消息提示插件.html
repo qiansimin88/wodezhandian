@@ -1,0 +1,50 @@
+ 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" /> 
+<title>jquery实现简单文字提示</title> 
+<style type="text/css"> 
+#preview{border:1px solid #cccccc; background:#9900CC;color:#fff; padding:5px; display:none; position:absolute;} 
+</style> 
+<script type="text/javascript" src="http://img.jb51.net/jslib/jquery/jquery.js"></script> 
+</head> 
+<body> 
+<a class="preview">把鼠标放到这里1</a> 
+<br><br><br> 
+<a class="preview">把鼠标放到这里2</a> 
+<br><br><br> 
+<a class="preview">把鼠标放到这里3</a> 
+<br><br><br> 
+<a class="preview">把鼠标放到这里4</a> 
+<br><br><br> 
+<a class="preview">把鼠标放到这里5</a> 
+<script type="text/javascript"> 
+this.imagePreview = function(){ 
+/* CONFIG */ 
+xOffset = 0; 
+yOffset = 30; 
+// 可以自己设定偏移值 
+/* END CONFIG */ 
+$("a.preview").hover(function(e){ 
+$("body").append("<div id='preview'>jquery实现简单文字提示</div>"); 
+$("#preview") 
+.css("top",(e.pageY - xOffset) + "px") 
+.css("left",(e.pageX + yOffset) + "px") 
+.fadeIn("slow"); 
+}, 
+function(){ 
+$("#preview").fadeOut("fast"); 
+}); 
+$("a.preview").mousemove(function(e){ 
+$("#preview") 
+.css("top",(e.pageY - xOffset) + "px") 
+.css("left",(e.pageX + yOffset) + "px"); 
+}); 
+}; 
+// 页面加载完执行 
+$(document).ready(function(){ 
+imagePreview(); 
+}); 
+</script> 
+</body> 
+</html> 

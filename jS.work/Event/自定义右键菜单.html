@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+* {margin:0;padding:0;}
+ul {position:absolute;font-family:Arial, Helvetica, sans-serif;text-align:left;border:1px solid gray;background:url(../../img2/70d9eeb5ea1549c3ad96a671c96fc7de.gif) bottom right no-repeat;font-size:10px;font-weight:300;display:none;}
+li {margin:10px 0;list-style:none;text-indent:1em;height:25px;line-height:25px;}
+.line {background:gray;width:150px;height:1px;opacity:0.3;}
+</style>
+<script>
+	document.oncontextmenu=function(ev)
+	{
+			var oDiv=document.getElementById('ul1');
+			var oEvent=ev||event;
+			
+			oDiv.style.display='block'
+			
+			oDiv.style.left=oEvent.clientX+'px';
+			oDiv.style.top=oEvent.clientY+'px';
+				return false                //让浏览器默认  右键菜单消失。
+	}
+	
+	document.onclick=function()
+	{
+		var oDiv=document.getElementById('ul1');
+		oDiv.style.display='none';	
+	}
+	
+	window.onload=function()
+	{
+			var color=null;
+			var oDiv=document.getElementById('ul1');
+			var aLi=oDiv.getElementsByTagName('li')
+			for(var i=0;i<aLi.length;i++)
+			{
+				aLi[i].onmouseover=function()
+				{
+				   color=this.style.background;
+					this.style.background="gray";	
+				}
+				aLi[i].onmouseout=function()
+				{
+					this.style.background=color;	
+				}	
+			}
+				
+	}
+</script>
+</head>
+
+<body>
+	<ul id="ul1">
+    <li>返回(B)</li>
+      <li>前进(F)</li>
+      <li class="line"></li>
+        <li>重新加载(l)</li>
+          <li>目标另存为(A)</li>
+            <li>审查元素(R)</li>
+            <li class="line"></li>
+              <li>极致体验(L)</li>
+                <li>生活馆(PL)</li>
+                	<li>LG悦动潮流</li>
+   	</ul>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	window.onload=function()
+	{
+		oTxt1=document.getElementById('text1');
+		oTxt2=document.getElementById('text2');
+		oBtn1=document.getElementById('btn1');
+		
+		oBtn1.onclick=function()
+		{
+			var re=/卧槽|我日|干你妈|操你妈|SB|煞笔|艹|死|\d/g     //这里面|就是或者的意思
+			oTxt2.value=oTxt1.value.replace(re,'****')	
+		}	
+	}
+</script>
+</head>
+
+<body>
+<textarea id="text1" rows="10" cols="40"></textarea><br/>
+<input id="btn1" type="button" value="过滤"/><br/>
+<textarea id="text2" rows="10" cols="40"></textarea>
+</body>
+</html>

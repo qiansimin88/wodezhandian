@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	window.onload=function()
+	{
+		var oBtn=document.getElementById('input1');
+		var oBtn2=document.getElementById('input2');
+		var oTxt=document.getElementById('text1')
+		var n1=oTxt.value;
+		
+		oBtn2.onclick=function()
+	{
+			
+			
+			if(oTxt.value>=20)                  //如果oTxt,value>=20的只会执行true，false更本不会去执行，如果没达到>=20才会执行false
+		{  
+		    oTxt.value=20;
+			alert('对不起你输入的值过大');	
+			
+		}
+		else {
+				oTxt.value++;
+			 }
+	
+				
+   };
+		oBtn.onclick=function()
+   {
+		
+			if(oTxt.value<=0)
+		{
+			
+			oTxt.value=0;
+			alert('对不起你输入的值过小');	
+			
+		}else 
+		{
+			oTxt.value--
+	    }
+		
+	 };
+	
+		
+
+	}
+
+
+</script>
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body>
+<input id="input1" type="button" value="-"/>
+<input id="text1" type="text" name="text" value="1"/>
+<input id="input2" type="button" value="+"/>
+</body>
+</html>

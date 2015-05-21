@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+body {
+		margin:0;
+		padding:0;
+		text-align:center;
+		font-family:Arial, Helvetica, sans-serif;
+		font-weight:bolder;
+		
+	 }
+.box {
+		margin:0 auto;
+		padding:0;
+		width:486px;
+		background:url(../image/1_121224024745_2.jpg);
+		height:600px;
+		
+		}
+.box ul{
+		list-style:none;	
+		padding:0;
+		}
+.box li {
+		 	float:left;
+			width:160px;
+			height:100px;
+			padding:0px;
+		}
+.active {
+			color:#F0F;
+		}
+.text { 
+		font-size:20px;
+	 }
+</style>
+<script>
+window.onload=function()
+{	
+	var arr=['一月春风来，出处走走吧',
+			 '二月到了，快过年了，出门拜友吧',
+			 '三月将至，出去野营吧',
+			 '四月',
+			 '五月',
+			 '六月',
+			 '七月',
+			 '八月',
+			 '九月',
+			 '十月',
+			 '十一月',
+			 '十二月',
+			]
+	var oDiv=document.getElementById('tab');                //获取元素
+	var oLi=oDiv.getElementsByTagName('li');
+	var oTxt=oDiv.getElementsByTagName('div')[0];           
+		
+		for(var i=0;i<oLi.length;i++)
+		{	
+		    oLi[i].index=i;
+			oLi[i].onmouseover=function()
+			{
+				for(var i=0;i<oLi.length;i++)
+				{
+					oLi[i].className='';                           //提取事件
+				};
+		    	this.className='active';
+				oTxt.innerHTML="<h2>"+(this.index+1)+"月</h2><p>"+arr[this.index]+"</p>"//引号是 显示字符串的作用'.....'都是输出的					                                                                                               文字
+				                                        
+														 
+													//	'+(this.index)+' 这里的两个+是与前后的相加，引号是和前后的形成字符串闭合。
+				
+			}
+		
+
+		
+		};
+		
+				
+	
+			
+}
+
+</script>
+</head>
+
+<body>
+<div id="tab" class="box">
+	<h1>中华万年历</h1>
+   <ul>
+    	<li class="active"><h2>1</h2><p>JAN</p></li>
+        <li><h2>2</h2><p>FER</p></li>
+        <li><h2>3</h2><p>MAR</p></li>
+        <li><h2>4</h2><p>APR</p></li>
+        <li><h2>5</h2><p>MAY</p></li>
+        <li><h2>6</h2><p>JUN</p></li>
+        <li><h2>7</h2><p>JUL</p></li>
+        <li><h2>8</h2><p>AUG</p></li>
+        <li><h2>9</h2><p>SEP</p></li>
+        <li><h2>10</h2><p>OCT</p></li>
+        <li><h2>11</h2><p>NOV</p></li>
+        <li><h2>12</h2><p>DEC</p></li>
+    </ul>
+  
+	<div class="text">
+	
+    </div>
+
+</div>
+</body>
+</html>

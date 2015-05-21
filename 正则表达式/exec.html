@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	var re=/(\w+)([a-z])(\d+)/;				   //每个（）就是一个分组 
+	var str='qp12';
+	var result=re.exec(str);   //[qp12,q,p,12]     返回是一个数组 分别是  所有匹配，第一个分组的匹配，第二个分组的匹配，第三个分组的匹配
+	alert(RegExp.$2)       //分组模式匹配  必须先执行 字符串执行匹配后  regExp对象下面有个 $1  $2  $..  分别表示  分组模式中的1 2 3
+	alert(result);
+</script>
+</head>
+
+<body>
+</body>
+</html>

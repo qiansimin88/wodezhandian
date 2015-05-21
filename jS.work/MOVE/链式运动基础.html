@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+#div1 {width:10px;height:10px;background:red;}
+#div1 p {opacity:0}
+</style>
+<script src="../../js/lianshi_move.js"></script>
+<script>
+	window.onload=function()
+	{	
+		var oDiv=document.getElementById('div1');
+		var aP=oDiv.children[0];
+	  oDiv.onmouseover=function()
+	  {
+		  move(oDiv,'width',300,function(){
+					move(oDiv,'height',500,function(){
+							move(aP,'opacity',100,function(){
+						    	move(aP,'font-size',70)		
+					});
+				});  
+			});	
+	  };
+	  oDiv.onmouseout=function()
+	  {
+		 move(oDiv,'font-size',12,function(){
+			 	move(oDiv,'height',10,function(){
+						move(oDiv,'width',10)
+					});
+			 });	  
+	  };
+	  
+	}
+</script>
+
+</head>
+
+<body>
+<div id="div1"><p>阿萨德发阿斯顿</p></div>
+</body>
+</html>

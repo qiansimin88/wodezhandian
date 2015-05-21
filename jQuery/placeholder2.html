@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	;(function($) {
+        $(function() {
+                if ('placeholder' in document.createElement('input')) {
+                        return this;
+                }
+
+                $(document).on('holder mousedown keydown keyup', 'input, textarea', function(e) {
+                        var $this = $(e.target);
+                        switch(e.type) {
+                                case 'holder':
+                                        var tips = $this.attr('placeholder');
+                                        if (!tips.length) return false;
+                                        if (!$this.val().length) {
+                                                $this.val(tips).addClass('placeholder').data({'holder': 1, 'tips': tips});
+                                        } else {
+                                                $this.data({'holder': 0, 'tips': tips});
+                                        }
+                                        break;
+                                case 'mousedown':
+                                        if (!!$this.data('holder')) {
+                                                var $pwd = $this.data('pwd'), 
+                                                        $inp = $this.clone().insertAfter($this).data({
+                                                                'holder': 1,
+                                                                'tips': $this.data('tips')
+                                                        }).focus();
+
+                                                $pwd && $inp.data('pwd', $pwd) && $pwd.data('tar', $inp);
+                                                $this.remove();
+                                                return false;
+                                        }
+                                case 'keydown': 
+                                        if (!!$this.data('holder')) {
+                                                var $pwd = $this.data('pwd');
+                                                if (!$pwd) {
+                                                        $this.val('').removeClass('placeholder').data('holder', 0);
+                                                } else {
+                                                        $pwd.show().focus();
+                                                        $this.hide();
+                                                }
+                                        }
+                                        break;
+                                case 'keyup': 
+                                        if (!$this.val().length && $this.data('holder') != undefined) {
+                                                var tips = $this.data('tips'), $tar = $this.data('tar'), _rel = (!$tar && !!tips);
+                                                (function(par) {
+                                                        this.val(tips).addClass('placeholder').data('holder', 1).show().trigger('mousedown');
+                                                        !par && $this.hide();
+                                                }).call(_rel ? $this : $tar, _rel);
+                                        }
+                                        break;
+                        }        
+                });
+
+                $('[placeholder]:password').each(function() {
+                        var $this = $(this), tips = $this.attr('placeholder'), $inp;
+                        if (tips.length) {
+                                $inp = $('<input>', {
+                                        'type': 'text',
+                                        'class': $this.attr('class'),
+                                        'style': $this.attr('style'),
+                                        'placeholder': tips,
+                                        'rel': 'pwdholder'
+                                }).insertAfter($this).data('pwd', $this);
+                                $this.data({'tar': $inp, 'holder': 0, 'tips': tips});
+                                ($this.val().length ? $inp : $this)['hide']();
+                        }
+                });
+
+                $('input, textarea').not(':radio, :checkbox, :hidden, :button, :submit, :file, :password').filter('[placeholder]').trigger('holder');
+        });
+})(jQuery);
+</script>
+</head>
+
+<body>
+</body>
+</html>

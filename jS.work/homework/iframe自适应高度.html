@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+</head>
+
+<body>
+	<div class="wrap">
+    	<iframe name="txtong_pay"  id="txtong" framespacing="0" frameborder="no" width="689" height="100%" scrolling="no" allowtransparency="yes" src="http://www.txtong.com//if/v2.0/v2Precharge.php?gid=5500&amp;cid=120708&amp;sign=c4561ca9c39ce69ba32859fd748f1cca" ></iframe>
+    </div>
+
+</body>
+  <script type="text/javascript" language="javascript">
+	
+	$(function(){
+		
+	$(window.parent.document).find("#txtong").load(function(){
+	var main = $(window.parent.document).find("#txtong");
+	
+	
+	
+	var thisheight = $(document).height()+30;
+	
+	//alert(thisheight)
+	main.height(thisheight);
+	
+	});
+		
+	})
+  </script> 
+</html>

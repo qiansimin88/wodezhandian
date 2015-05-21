@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	window.onload=function()
+	{
+		var oA=document.getElementsByTagName('a');
+		for(var i=0;i<oA.length;i++)
+		{												//群组通常紧跟for寻坏来表示群组下一步所要表现的东西
+			oA[i].onclick=function()                   //这里要注意触发群组事件的时候经常要用到this来表示鼠标当前所指的某一个元素
+			{
+				this.parentNode.style.display='none'	
+			}
+		}	
+	}
+
+
+
+</script>
+
+</head>
+
+<body>
+	<ul>
+    	<li>速读<a href="javascript:">隐藏</a></li>
+        <li>阿斯顿<a href="javascript:">隐藏</a></li>
+        <li>新政策<a href="javascript:">隐藏</a></li>
+        <li>阿顿<a href="javascript:">隐藏</a></li>
+        <li>费电<a href="javascript:">隐藏</a></li>
+   </ul>
+</body>
+</html>

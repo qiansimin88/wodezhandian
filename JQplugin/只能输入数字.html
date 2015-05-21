@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+	$(function(){
+		//b
+		$.fn.onlyNum=function(){
+			
+			var _this = $(this);
+			
+			_this.bind({
+				
+				keypress:function(e){
+					
+					  var ev = e.which || e.keyCode;
+
+             		  return ev>=48&&ev<=57||ev==46;
+					
+				},
+			   blur:function(){
+					var nowVal =_this.val();
+					//结尾不能是.
+					var re4 = /\.$/g;
+					
+					if(re4.test(nowVal)){
+						
+					  $(this).val(nowVal.replace(re4,''))
+					  
+					}
+					
+					if(isNaN(nowVal)){
+						
+						$(this).val('');
+						
+						alert('请输入正确的加款金额');
+					}
+			  	},
+				keyup:function(){
+					
+					 var nowVal = _this.val();
+					 //去除开头的.
+					 var re1 = /^\./g;
+					 //连续输入.只能保留一个.
+					 var re2 = /\.{2,}/g;
+					 //开头不能为0
+					 var re3 = /^0{1}/;
+					 var num = 0;
+					  
+					 if(re1.test(nowVal)){
+						
+					  _this.val(nowVal.replace(re1,''));
+						return false;
+					 };
+					 if(re2.test(nowVal)){
+					 
+					 _this.val(nowVal.replace(re2,'.'));
+					 };
+					
+					 //去除多个.
+					 for(var i=0;i<nowVal.length;i++ ){
+					 
+						if(nowVal.charAt(i) == '.'){
+						
+							num++;
+						}
+		
+					 };
+					 if(num >=2) {
+					 
+						var indexI = nowVal.indexOf('.');
+						_this.val(nowVal.substring(0,nowVal.indexOf('.',(indexI+1))))
+						
+					 };
+											 
+					 if(nowVal.length >= 2) {
+						 
+						if(re3.test(nowVal) && (!(/^0(?=\.)/.test(nowVal)))){
+							
+							_this.val('');
+						}
+						 
+					}
+				}
+					
+			})
+				
+		}
+		//end
+		
+		$('.numbers').onlyNum()
+			
+	})
+</script>
+</head>
+
+<body>
+<input class="numbers"/>
+</body>
+</html>

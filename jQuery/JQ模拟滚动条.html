@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" href="../css/reset.css" type="text/css">
+<style>
+	.outwrap {width:500px;height:300px;border:1px solid #000;position:relative;margin:140px auto 0;line-height:18px;}
+	.innerword {width:400px;padding:30px;position:absolute;}
+	.outbox {border:1px solid #000;border-right:none;width:20px;position:absolute;right:0;top:-1px;height:300px;}
+	.innerbox {width:20px;background:#999;height:25px;position:absolute;top:0px;left:0;}
+</style>
+<script src="../js/jquery-1.7.2.min.js"></script>
+<script>
+	$(function(){
+		//闭包形式的函数
+		(function(){
+			var innerbox=$('.innerbox');
+			
+			//alert(innerBoxPosi.left)   1030
+			//alert(innerBoxPosi.top)   
+			innerbox.mousedown(function(e){
+				var innerBoxPosi=innerbox.position();
+				var innword=$('.innerword');
+				var innwordh=$('.innerword').height();
+				var outwraph=$('.outwrap').height();
+				//alert(e.pageX)   1039
+				
+				//var disX=e.pageX-innerBoxPosi.left;
+				var disY=e.pageY-innerBoxPosi.top;
+			
+				var outboxh=$('.outbox').height();
+				var innerboxh=$('.innerbox').height();
+				$(document).mousemove(function(e){
+				//	var x=e.pageX-disX;
+					var y=e.pageY-disY;
+					if(y<0)
+					{
+						y=0	
+					}
+					else if(y>outboxh-innerboxh)
+					{
+						y=outboxh-innerboxh
+					}
+					innerbox.css({top:y})
+					//设定一个比例
+					var sCale=y/(outboxh-innerboxh);
+					innword.css({top:-sCale*(innwordh-outwraph)})
+						
+				
+					$('input').val(sCale)
+				});
+				$(document).mouseup(function(){
+					$(document).unbind('mousemove')
+				});
+				return false;
+			});
+		})()
+	})
+</script>
+</head>
+
+<body>
+	<div class="outwrap">
+    	<div class="innerword">
+        	Javascript是一种由Netscape的LiveScript发展而来的原型化继承的面向对象的动态类型的区分大小写的客户端脚本语言，主要目的是为了解决服务器端语言，比如Perl，遗留的速度问题，为客户提供更流畅的浏览效果。当时服务端需要对数据进行验证，由于网络速度相当缓慢，只有28.8kbps，验证步骤浪费的时间太多。于是Netscape的浏览器Navigator加入了Javascript，提供了数据验证的基本功能JavaScript是一种基于对象和事件驱动并具有相对安全性的客户端脚本语言。同时也是一种广泛用于客户端Web开发的脚本语言，常用来给HTML网页添加动态功能，比如响应用户的各种操作。它最初由网景公司（Netscape）的Brendan Eich设计，是一种动态、弱类型、基于原型的语言，内置支持类。JavaScript是Sun公司的注册商标。Ecma国际以JavaScript为基础制定了ECMAScript标准。JavaScript也可以用于其他场合，如服务器端编程。完整的JavaScript实现包含三个部分：ECMAScript，文档对象模型，字节顺序记号。
+Netscape公司在最初将其脚本语言命名为LiveScript。在Netscape在与Sun合作之后将其改名为JavaScript。JavaScript最初受Java启发而开始设计的，目的之一就是“看上去像Java”[1]，因此语法上有类似之处，一些名称和命名规范也借自Java。但JavaScript的主要设计原则源自Self和Scheme[2]。JavaScript与Java名称上的近似，是当时网景为了营销[3]考虑与Sun公司达成协议的结果。为了取得技术优势，微软推出了JScript脚本语言。Ecma国际（前身为欧洲计算机制造商协会）创建了ECMA-262标准（ECMAScript）。现两者都属于ECMAScript的实现。尽管JavaScript作为给非程序人员的脚本语言，而非是作为给程序人员的编程语言来推广和宣传，但是JavaScript具有非常丰富的特合作之后将其改名为JavaScript。JavaScript最初受Java启发而开始设计的，目的之一就是“看上去像Java”[1]，因此语法上有类似之处，一些名称和命名规范也借自Java。但JavaScript的主要设计原则源自Self和Scheme[2]。JavaScript与Java名称上的近似，是当时网景为了营销[3]考虑与Sun公司达成协议的结果。为了取得技术优势，微软推出了JScript脚本语言。Ecma国际（前身为欧洲计算机制造商协会）创建了ECMA-262标准（ECMAScript）。现两者都属于ECMAScript的实现。尽管JavaScript作为给非程序人员的脚本语言，而非是作为给程序人员的编程语言来推广和宣传，但是JavaScript具有非常丰富的特性。合作之后将其改名为JavaScript。JavaScript最初受Java启发而开始设计的，目的之一就是“看上去像Java”[1]，因此语法上有类似之处，一些名称和命名规范也借自Java。但JavaScript的主要设计原则源自Self和Scheme[2]。JavaScript与Java名称上的近似，是当时网景为了营销[3]考虑与Sun公司达成协议的结果。为了取得技术优势，微软推出了JScript脚本语言。Ecma国际（前身为欧洲计算机制造商协会）创建了ECMA-262标准（ECMAScript）。现两者都属于ECMAScript的实现。尽管JavaScript作为给非程序人员的脚本语言，而非是作为给程序人员的编程语言来推广和宣传，但是JavaScript具有非常丰富的特性。性。
+        </div>
+         <div class="outbox">
+            <div class="innerbox">
+            </div>
+   		 </div>
+    </div>
+    <input type="text"/>
+</body>
+</html>

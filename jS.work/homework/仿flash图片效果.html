@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+body {background:url(../../image/pagebg-m.jpg)} ul{padding:0;margin:0;} img {border:0} li {list-style:none;}
+.play {height:705px;width:750px;background:#FFF;margin:0 auto;}
+.big_img {width:750px;height:500px;background:#9C6;position:relative;overflow:hidden;}
+.big_img li {width:750px;height:500px;position:absolute;top:0;left:0;z-index:0; overflow:hidden;}
+.prve {width:24px;height:43px;background:url(../../image/%E5%B0%8F%E5%9B%BE.png) 0px -50px;position:absolute;left:30px;top:230px;z-index:2555;cursor:pointer;opacity:0;filter:alpha(opacity:0);}
+.next {width:24px;height:43px;background:url(../../image/%E5%B0%8F%E5%9B%BE.png) -30px -50px;z-index:2555;position:absolute;top:230px;right:30px;cursor:pointer;filter:alpha(opacity:0);opacity:0;}
+.mark_left {width:375px;height:500px;background:red;z-index:120;opacity:0;filter:alpha(opacity:0);position:absolute;top:0;left:0;}
+.mark_right {width:375px;height:500px;background:yellow;z-index:120;opacity:0;filter:alpha(opacity:0);position:absolute;top:0;left:375px;)}
+.small_img {width:750px;height:200px;overflow:hidden;position:relative;margin-top:5px;left:0}
+.small_img li {width:250px;height:200px;overflow:hidden;opacity:0.5;filter:alpha(opacity:50);float:left;}
+.small_img ul {overflow:hidden;position:absolute;left:0;top:0;height:200px;width:750px;}
+
+.small_img li img {width:240px;height:200px;}
+
+</style>
+<script src="../../js/move.js"></script>
+<script>
+	
+	window.onload=function()
+{
+		var oDiv=document.getElementById('playImg')
+		var aBtnLeft=getByClass(oDiv,'prve')[0];
+		var aBtnRight=getByClass(oDiv,'next')[0];           //数组后面都需要加 【】
+		var aMarkLeft=getByClass(oDiv,'mark_left')[0];
+	   	var aMarkRight=getByClass(oDiv,'mark_right')[0];
+		
+		var oDivSmall=getByClass(oDiv,'small_img')[0];
+		var aLiSmall=oDivSmall.getElementsByTagName('li');
+		var oUlSmall=oDivSmall.getElementsByTagName('ul')[0];
+		
+		var oUlBig=getByClass(oDiv,'big_img')[0];
+		var aLiBig=oUlBig.getElementsByTagName('li');
+		var nowIndex=2;
+		var now=0;
+	
+		oUlSmall.style.width=aLiSmall[0].offsetWidth*aLiSmall.length+'px';
+		//左右按钮
+	    aBtnLeft.onmouseover=aMarkLeft.onmouseover=function()
+		{
+			move(aBtnLeft,'opacity',100);	
+		};
+		aBtnLeft.onmouseout=aMarkLeft.onmouseout=function()
+		{
+			move(aBtnLeft,'opacity',0);	
+		};
+		aBtnRight.onmouseover=aMarkRight.onmouseover=function()
+		{
+			move(aBtnRight,'opacity',100);
+				
+		};
+		aBtnRight.onmouseout=aMarkRight.onmouseout=function()
+		{
+			move(aBtnRight,'opacity',0)	
+		};	
+		
+		//大图切换
+		for(var i=0;i<aLiSmall.length;i++)
+		{
+			aLiSmall[i].index=i;
+			aLiSmall[i].onclick=function()
+			{
+				if(this.index==now)            //now初始值为0，所依小图的第一张图片怎么按都不会动，如不是，则this.index的值赋给now。
+				
+				return	
+			
+				
+				now=this.index;	
+				
+				tab();
+			};
+			//鼠标移入图片不透明。移除透明。
+			aLiSmall[i].onmouseover=function()
+			{
+				move(this,'opacity',100);	
+			};
+			aLiSmall[i].onmouseout=function()
+			{
+				if(this.index!=now)  //如果this.index也就是鼠标所指的等于now则不执行，不等于则执行透明效果。
+				{
+					move(this,'opacity',50)	
+				};
+			};
+				
+		};
+		function tab()
+		{
+			//大图幻灯片效果
+		   aLiBig[now].style.zIndex=nowIndex++;	
+		   aLiBig[now].style.width = 0;
+				
+		   move(aLiBig[now],"width",750);
+				//点击当前图片不透明，其它图片透明
+		    for(var i=0;i<aLiSmall.length;i++)
+			{
+			  move(aLiSmall[i],'opacity',50)
+			}
+			  move(aLiSmall[now],'opacity',100)
+			  //小图移动
+			  move(oUlSmall,'left',-(now-1)*aLiSmall[0].offsetWidth)   //移动规律
+			  //小图第一和最后一张图片的位置特殊
+			  if(now==0)
+			  {
+				 move(oUlSmall,'left',0)	 
+			  }
+			  else if(now==aLiSmall.length-1)  //如果是最后一张图  则 图片位置是和倒数第二章图片的位置是一样的。
+			  {
+				move(oUlSmall,'left',-(now-2)*aLiSmall[0].offsetWidth)  
+			  }
+			
+		};
+		
+		aBtnLeft.onclick=function()    //上面的是根据小图的点击的this.index来确定大图的，这里是now++来确定，因为是按钮，只需默认+就可以了。
+		{
+			now--
+			if(now==-1)
+			{
+				now=aLiSmall.length-1;	
+			}
+		
+			tab()
+		};
+		aBtnRight.onclick=function()
+		{
+			now++
+			if(now==aLiSmall.length)
+			{
+				now=0;	
+			}
+			tab()
+		}
+	var timer=setInterval(aBtnRight.onclick,2000)
+	
+	oDiv.onmouseover=function()
+	{
+		clearInterval(timer)	
+	}
+		
+}
+</script>
+
+</head>
+
+<body>
+<div id="playImg" class="play">
+    	<ul class="big_img">
+        	
+            <div class="prve"></div>
+            <div class="next"></div>
+            <div class="mark_left"></div>
+            <div class="mark_right"></div>
+        	<li style="z-index:1";><img src="../../img2/45346091201305051857176740172875596_007_640.jpg"></li>
+            <li><img src="../../img2/45346091201305051857176740172875596_006_640.jpg"></li>
+            <li><img src="../../img2/45346091201305051857176740172875596_005_640.jpg"></li>
+            <li><img src="../../img2/45346091201305051857176740172875596_004_640.jpg"></li>
+            <li><img src="../../img2/45346091201305051857176740172875596_003_640.jpg"></li>
+        </ul>
+    <div class="small_img">
+    	<ul>
+    	<li style="opacity:1;filter:alpha(opacity:100);"><img src="../../img2/45346091201305051857176740172875596_007_640.jpg"></li>
+        <li><img src="../../img2/45346091201305051857176740172875596_006_640.jpg"></li>
+        <li><img src="../../img2/45346091201305051857176740172875596_005_640.jpg"></li>
+        <li><img src="../../img2/45346091201305051857176740172875596_004_640.jpg"></li>
+        <li><img src="../../img2/45346091201305051857176740172875596_003_640.jpg"></li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="../js/jquery-2.0.2.min.js"></script>
+<script>
+
+	function checkName()
+	{
+		var user= $.trim($(':text:eq(0)').val());
+		var tishi=null;
+		var wrong=false;
+		if(user.length<7)
+		{
+			tishi="用户名过短"	
+		}
+		else{
+			tishi='';	
+			wrong=true;
+		}
+		$('#userName+span').text(tishi).css('color','blue');
+		return wrong
+	}
+	
+	function checkPass()
+	{
+			var pass=$(':password:first').val();
+			var len=pass.length;
+			var tishi=null;
+			var wrong=false;
+			
+			if(len==0)
+			{
+				tishi="密码不能为空";	
+			}
+			else if(len<6)
+			{
+				tishi="密码长度不能小于6位";	
+			}
+			else
+			{
+				tishi=''
+				wrong=true;
+			}
+			$('#password+span').text(tishi)
+			return wrong;
+	}
+	
+	function mailRe(str){
+		
+		var re=/^\w+@[a-z]+\.[a-z]{3}$/i;
+		return re.test(str)
+			
+	}
+	
+	
+	function checkMail(){
+			var mail=$(':text:last').val();
+			var len=mail.length;
+			var tishi=null;
+			var wrong=false;
+			
+			if(len==0||mail==undefined)
+			{
+				tishi="邮箱不能为空"	
+			}	
+			else if (!mailRe(mail))
+			{
+				tishi="邮箱格式错误"		
+			}
+			else
+			{
+				tishi="";
+				wrong=true;	
+			}
+			$('#mail_bi+span').text(tishi);
+			return wrong;
+	}
+
+
+    $(function(){
+	  $(':text:eq(0)').bind('keyup',function(){
+			  checkName();
+	})
+	
+	$(':password:first').blur(function(){
+			checkPass()
+	})
+	
+
+	
+	$(':text:last').blur(function(){
+		checkMail();
+	})
+	$(':submit').click(function(){
+			if(checkName()&&checkMail()&&checkPass())
+			{
+				return true	;
+			}
+			else
+			{
+				return false;	
+			}
+	})	
+})
+</script>
+</head>
+<style>
+i {font-style:normal;display:inline-block;width:80px;text-align:right;}
+
+</style>
+<body>
+<form action="#" method="post" id="form_ele">
+	<p><i>用户名：</i><input id="userName" type="text"/><span></span></p>
+    <p><i>密码：</i><input id="password" type="password"/><span></span></p>
+    <p><i>确认密码:</i><input id="jqu_password" type="password"/><span></span></p>
+    <p><i>邮箱：</i><input id="mail_bi" type="text"/><span></span></p>
+    <p><input type="submit" id="submit_tijiao" value="提交"/><span></span></p>
+</form>
+</body>
+</html>

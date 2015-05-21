@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	var string="border-bottom-color";
+	function test(str)
+	{
+		var re=/-(\w)/g;
+	return	str.replace(re,function($0,$1){       //直接返回给函数   //这个函数的第一个形参$0表示整个正则第二个$1表示第一个子项就是加括号的。，
+		return	$1.toUpperCase();	  //内部函数 所依要return  
+		})
+		
+	}
+	alert(test(string))
+</script>
+</head>
+
+<body>
+</body>
+</html>

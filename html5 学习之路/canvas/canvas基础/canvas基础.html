@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+#canvas {background:#999;}
+</style>
+<script>
+	window.onload=function(){
+		var canvas =document.getElementById('canvas');
+		//	document.write(canvas)  [object HTMLCanvasElement]  html元素
+		var cobj=canvas.getContext('2d');
+		//	document.write(cobj)	[object CanvasRenderingContext2D] canvas画布环境
+		//var colorObj=cobj.createLinearGradient(0,0,0,100);  //创建线性渐变（起始点，结束点的坐标）并返回一个对象
+		var colorObj=cobj.createRadialGradient(50,50,30,50,50,70)  //创建放射性渐变 参数（第一个圆点的坐标X Y 半径，第二个圆的坐标 X Y  半径）
+		colorObj.addColorStop(0,'red');				//添加颜色，参数中的数字相当于占的面积的百分比
+		colorObj.addColorStop(0.4,'black');
+		colorObj.addColorStop(0.8,'orange');
+		colorObj.addColorStop(1,'blue');
+		 cobj.shadowColor='rgb(11,25,9)';   //阴影颜色
+		 cobj.shadowOffsetX =3;			//阴影偏移量
+		 cobj.shadowOffsetY =3;
+		 cobj.shadowBlur=3             //阴影模糊度
+		 cobj.fillStyle=colorObj;   //填充色改变  如果使用填充色就用上面创建的渐变色的对象参数
+		 cobj.strokeStyle='green';	 //边框改变
+		 cobj.fillRect(0,0,100,100)    //填充矩形   parm:X Y 宽 高     
+		// cobj.strokeRect(100,100,100,100)    //边框矩形 
+		 
+	}
+</script>
+</head>
+
+<body>
+	<canvas id="canvas" width=400 height=400>
+    	
+    </canvas>
+</body>
+</html>

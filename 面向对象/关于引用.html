@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+/*	var arr1=[1,2,3];
+	var arr2=arr1;    这里并不是赋值了，而是引用，导致两边都一样，并且下面给ARR2加的  ARR1同样拥有
+	
+	arr2.push(4);      在数字，布尔，字符串中  =都是赋值，而在对象类型或者函数或者json 如数组就是引用， 两边都有效。  
+	
+	alert(arr1)
+	alert(arr2)
+*/
+    var a=[1,2,3]
+	var b=0;
+	b=a
+	b.push(4)
+	alert(b)   //1,2,3,4
+	alert(a)   //1,2,3,4     关于数组就是引用
+	
+	var a=[1,2,3]
+	var b=a;
+	b=[1,2,3,4]
+	alert(b)    //1,2,3,4
+	alert(a)	//1,2,3       这里和上面又 不一样，因为这里虽然两者用的都是一个地址，但是上面的是push是把这个地址加了4，但是这里 是b单独又重新                                赋值了，和之前的没有任何关系，所依A不变。
+/*
+	var arr1=[1,2,3];
+	var arr2=[];
+	
+	for(var i=0;i<arr1.length;i++)    //这里就是 赋值了。
+	{
+		arr2.push(arr1[i])	
+	}
+	
+	arr2.push(4);
+	
+	alert(arr1);  1，2，3
+	alert(arr2);   1，2，3，4
+*/
+</script>
+</head>
+
+<body>
+</body>
+</html>

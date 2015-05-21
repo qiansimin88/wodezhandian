@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="../js/jquery-2.0.2.min.js"></script>
+<script>
+	$(function(){
+		//$('ul').html('<li>sadas</li>')	 方法1
+		//  $('ul').append('<li>json</li>')	  //方法2
+		
+		var oLi=$('<li>');              // $('<>')在里面加<>相当于添加一个元素。然后赋值吗，再然后放在UL后面。
+		oLi.html('<h2>zhoujielun</h2>');
+		$('ul').append(oLi)            
+})
+</script>
+</head>
+
+<body>
+<ul>
+</ul>
+</body>
+</html>

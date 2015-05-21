@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+#swich div { width:200px;height:200px;background:gray;display:none;}
+#swich input { background:white;}
+#swich  .active {background:#FF0}
+</style>
+<script>
+	var aDiv=null;
+	var oBtn=null;
+	window.onload=function()
+	{
+		var oDiv=document.getElementById('swich');
+		 oBtn=oDiv.getElementsByTagName('input');
+	     aDiv=oDiv.getElementsByTagName('div')
+		
+		for(var i=0;i<oBtn.length;i++)
+		{
+			oBtn[i].index=i;
+			oBtn[i].onclick=swichCard;
+		}	
+	};
+	function swichCard()
+			{
+				for(var i=0;i<oBtn.length;i++)
+				{
+					oBtn[i].className=""
+				    aDiv[i].style.display="none";
+				};
+				this.className="active"	
+				aDiv[this.index].style.display="block"
+			}	
+</script>
+</head>
+
+<body>
+<div id="swich">
+<input class="active" type="button" value="1"/>
+<input type="button" value="1"/>
+<input type="button" value="1"/>
+<input type="button" value="1"/>
+<div style="display:block">asd</div><div>ads</div><div>ads</div><div>asd</div>
+</div>
+
+
+</body>
+</html>

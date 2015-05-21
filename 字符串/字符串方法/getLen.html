@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+/*
+*	[\u4e00-\u9fa5]  这中文编码    一个中文两个字符  
+*/
+
+	function getStrLen (str) {
+		var len=0;
+		var re=/[\u4e00-\u9fa5]/;
+		//如果有中文进入
+		if ( /[\u4e00-\u9fa5]/.test (str)){
+			//循环遍历所有的字符   是中文+2   英文+1
+			for (var i=0;i<str.length;i++){
+				if (/[\u4e00-\u9fa5]/.test(str.charAt(i))){
+					len+=2;	
+				}else
+				{
+					len+=1;	
+				}	
+			};
+		}
+		//没中文则算整体的leng
+		else {
+			len=str.length	
+		};
+		return len;	
+	};
+	
+	var  str='sd呵呵';
+	
+</script>
+</head>
+
+<body>
+</body>
+</html>

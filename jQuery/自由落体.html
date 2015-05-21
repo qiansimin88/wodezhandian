@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+* {margin:0;padding:0;}
+.jian {width:20px;height:100px;background:url(../img2/5.jpg) no-repeat center top;position:absolute;left:300px;top:0px;}
+</style>
+<script src="../js/jquery-1.7.2.min.js"></script>
+<script src="../js/jquery.easing.1.3.js"></script>
+<script>
+/*
+$(window).load(function(){
+	function moveRocket(){
+		$("#float").animate({'left':'+=100'},5000).delay(1000)
+					.animate({'left':'-=100'},5000,function(){
+				setTimeout(moveRocket,1000);
+		});
+	};
+	moveRocket();
+});
+
+*/
+	$(function(){
+		var obj=$('.jian');
+		var pot=$(document).height();
+		function setTim (){
+			obj.animate({top:pot},1500,'easeInCubic');
+			
+		};
+		setTimeout(setTim,1000)
+	});
+</script>
+</head>
+
+<body>
+<div class="jian">
+	
+</div>
+<div style="height:1000px;">
+</div>
+</body>
+</html>

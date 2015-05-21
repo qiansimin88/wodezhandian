@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="../js/jquery-1.7.2.min.js"></script>
+<style>
+a {display:inline-block;width:100px;height:20px;border:1px solid #06F;text-align:center;cursor:pointer;}
+.current0 {background:#0F0;}
+.current1 {background:#0F9;}
+.current2 {background:#FC3;}
+p {width:320px;height:100px;display:none;}
+</style>
+<script>
+	$(function(){
+	var timer=null;
+	$('.ali a').mouseover(function(){
+	var _this=$(this);
+	timer=setTimeout(function(){
+	//重点就是这里的this指向问题，this就是指向当前的函数，所依这里的this指向setTime而不是上面的mouseover，所依要用_this=$(this)来替换。
+
+/*$(this)*/$(_this).addClass('current'+_this.index()).siblings().removeClass();
+		  $('.pli p').eq($(_this).index()).show().siblings().hide();
+},300)
+
+	}).mouseout(function(){
+		//mouseout清除延时器，为了鼠标快速移入移出不触动效果，更人性化。但凡有计时的都要清除
+		clearTimeout(timer);
+	});
+});
+</script>
+</head>
+
+<body>
+<div class="ali">
+	<a>1</a>
+    <a>2</a>
+    <a>3</a>
+ </div>
+<div class="pli">
+    <p style="background:yellow;display:block;">呵呵呵</p>
+    <p style="background:red;">哈哈哈哈</p>
+    <p style="background:#000;">嘿嘿</p>
+</div>
+</body>
+</html>

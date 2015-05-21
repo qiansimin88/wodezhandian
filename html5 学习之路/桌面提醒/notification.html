@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	//必须在服务器下运行
+	if(window.webkitNotifications){              //判断浏览器是否支持该对象  目前只有chrome支持
+		window.webkitNotifications.requestPermission();		//用浏览器请求桌面提醒功能
+		if(window.webkitNotifications.checkPermission()==0){		//检测浏览器的提醒状态码是否为1；
+			var obj=window.webkitNotifications.createNotification('img/1.png','标题','内容');  //自定义一个提		                                                                  醒对象，并赋值给一个变量
+			obj.tag='sad'						//设置该对象的 tag属性，避免骚扰用户
+			obj.show();	   						//让提醒   显示
+			/*obj.onclick=function(){
+				alert('sad')                    可以添加任意事件
+			}*/
+		}	
+	}
+</script>
+</head>
+
+<body>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	/*var num=-100;
+	alert(Math.abs(num));  //绝对值 100
+	
+	var num2=3.1245; 
+	alert(Math.round(num2));       //四舍五入  3
+	
+	var num3=5.656;
+	alert(Math.floor(num3));    //5
+	alert(Math.ceil(num3))      //6
+	*/
+	
+alert(parseInt(Math.random()*4))    //随机数
+alert(parseInt(Math.random()*(100-50+1)+50))    //求上限值和下限值 之间的正数   公式是Math.random()*(上限-下限+1)+下限
+//用函数封装  取上限和下限值的函数 
+
+	var _random=function(up,down){
+		return Math.random()*(up-down+1)+down;	
+	}
+	alert(parseInt(_random(5,0)))
+
+	alert(Math.pow(2,20))   //2的20次方  
+	
+	alert(Math.max(22,15,4,542,2))     //取最大值
+</script> 
+</head>
+
+<body>
+</body>
+</html>

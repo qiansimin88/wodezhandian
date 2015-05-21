@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	*{margin:0;padding:0}
+	li {float:left;list-style:none;}
+	.wrap {position:relative;width:220px;height:220px;overflow:hidden;margin:0 auto;}
+	ol {position:absolute;bottom:0px;right:0px;z-index:222;}
+	ul {position:absolute;left:0;top:0;width:880px;}
+	ul li {width:220px;}
+	ol li {width:20px;height:20px;background:#0FF;line-height:20px;text-align:center;margin-right:3px;cursor:pointer;}
+	.current {background:#FFF;}
+	.wrap p {height:30px;width:120px;position:absolute;left:0;bottom:0;background:rgba(0,0,0,0.5);line-height:30px;color:#FFF;}
+</style>
+<script src="../js/jquery-1.7.2.min.js"></script>
+<script src="../js/jquery.easing.1.3.js"></script>
+<script>
+	$(function(){
+		var numLi=$('.wrap ol li');
+		var oUl=$('.wrap ul');
+		var now=0; //这里是重点，now控制数字图。
+		var now2=0; //这里是控制大图的计数。
+
+		var aLi=$('.wrap ul li');
+		var wrap=$('.wrap');
+		var timer=null;
+		var length=$('.wrap ul li').size();
+		var aLiW=$('.wrap ul li').eq(0).width();
+
+		var aImg=$('.wrap ul img');
+		
+		//数字点击函数
+		numLi.click(function(){
+			var index=$(this).index();
+			now=index;    //同步
+			now2=index;
+			$(this).addClass("current").siblings().removeClass();	
+			oUl.animate({left:-aLiW*index},500);
+			var imgAlt=aImg.eq(now).attr('alt');
+			$('.wrap p').html(imgAlt).fadeIn('nomal');
+		});
+		//自动函数
+		function auTomove(){
+			if(now==length-1)    //把 第一个li编程相对定位，定到最后一个上面。
+			{
+				aLi.eq(0).css({
+					position:'relative',
+					left:oUl.width()
+				});
+				now=0;	
+			}
+			else
+			{
+				now++;	
+			}
+			now2++;
+			var imgAlt=aImg.eq(now).attr('alt');//获取当前img里面的alt的值；
+			$('.wrap p').html(imgAlt);			//没过2秒 换一个alt.
+			$('.wrap ol li').eq(now).addClass('current').siblings().removeClass();
+			oUl.animate({left:-aLiW*now2},500,function(){  //因为animate有回调函数，所依这里的if判断卸载animate里面；要注意
+				if(now==0)                        //数字等于0时,跟大图有关的所有复原所有复原。
+				{
+					aLi.eq(0).css('position','static');
+					oUl.css('left',0)
+					now2=0;
+				};	
+			});
+		};
+	timer=setInterval(auTomove,2000)
+		wrap.mouseover(function(){
+			clearInterval(timer)	
+		});
+		wrap.mouseout(function(){
+			timer=setInterval(auTomove,2000);
+		});			
+	})
+</script>
+</head>
+<body>
+	<div class="wrap">
+    	<ul>
+        	<li><img src="../img2/1.jpg" alt="1"/></li>
+            <li><img src="../img2/2.jpg" alt="22"/></li>
+            <li><img src="../img2/3.jpg" alt="3"/></li>
+            <li><img src="../img2/4.jpg" alt="44"/></li>
+        </ul>
+        <ol>
+        	<li class="current">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ol>
+        <p>1</p>
+    </div>
+</body>
+</html>

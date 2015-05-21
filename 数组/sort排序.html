@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	/*var arr=['left','position','zoom','index','apple','json']
+	arr.sort();
+	alert(arr)   */       //字典序，按英文字母的顺序排，大写在前面，就是按第一个字母顺序拍，所依造成数字无法利用这种方法排序，要搞清楚sort的本质，就是排第一个的顺序。
+	
+	
+	
+	var arr=[9,6,7,24,3,4,8,2,7]
+	alert(arr.sort(function(n1,n2)      //function(){}为比较函数，比较数字
+					{
+						return n1-n2}
+					))
+					
+	var abb=['张三','阿杜','女生','张豁免','擦肩呀','阿虎','周记录'];  //数组默认以编码排序，所依转换成当地的排序，localeCompare（）
+	abb.sort(function(str1,str2){
+		return	str1.localeCompare(str2)	
+	})
+	alert(abb)
+</script>
+</head>
+
+<body>
+</body>
+</html>

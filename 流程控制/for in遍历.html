@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+#div1 {background:red;width:100px;height:100px;}
+</style>
+<script>
+	window.onload=function()
+	{
+		var oDiv=document.getElementById('div1');
+		var oTxt=document.getElementById('text');
+		var attr="";
+		
+		for(attr in oDiv.style)
+		{
+			oTxt.value+=attr+'\n'	     //遍历属性，， 适合和json的配合使用
+		}
+			
+	}
+</script>
+
+</head>
+
+<body>
+<div id="div1"></div>
+<textarea id="text" cols="40" rows="10"></textarea>
+</body>
+</html>

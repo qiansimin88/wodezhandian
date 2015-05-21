@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+*{margin:0;padding:0}
+#weibo {margin:0 auto;padding:0;width:500px;height:700px;border:1px solid black;}
+#text1 {margin-left:60px;}
+
+#ul1 {width:500px;height:500px;overflow:hidden;border:1px solid black}
+#ul1 li {border-bottom:1px dashed black;list-style:none;padding:10px;overflow:hidden;opacity:0}
+</style>
+<script src="../../js/prefectmove.js"></script>
+<script>
+	window.onload=function()
+	{
+	
+		var aTxt=document.getElementById("text1");
+		var aBtn=document.getElementById("btn1");
+		var oUl=document.getElementById("ul1");
+		
+		aBtn.onclick=function()
+		{
+			var oLi=document.createElement('li');
+			oLi.innerHTML=aTxt.value
+			
+			if(oUl.children.length>0)
+			{
+				oUl.insertBefore(oLi,oUl.children[0])
+					
+			}
+			else
+			{
+				oUl.appendChild(oLi)	
+			}
+			var iHeight=oLi.offsetHeight;
+			oLi.style.height=0;
+			move(oLi,{height:iHeight,opacity:100})
+			
+		}
+			
+	}
+</script>
+</head>
+
+<body>
+<div id="weibo">
+<textarea id="text1" cols="50" rows="5" title="请@你想要关注的人吧">
+
+</textarea>
+<input id="btn1" type="button" value="发布">
+
+	<ul id="ul1">
+    
+    </ul>
+
+</div>
+</body>
+</html>

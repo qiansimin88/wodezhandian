@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+*{margin:0;padding:0;}
+#ul1 {width:485px;height:40px; margin:0 auto;position:relative;}
+#ul1 li {width:95px; border:1px solid black;float:left;list-style:none;height:38px;line-height:40px;text-align:center;}
+#ul1 .bg {width:95px;height:4px;position:absolute;left:0px;bottom:0;background:gold;}
+</style>
+<script>
+ window.onload=function()
+{
+ 	var oUl=document.getElementById('ul1');
+	var aLi=oUl.getElementsByTagName('li');
+	var aBg=aLi[0].children[0];
+	
+
+	
+	 for(var i=0;i<aLi.length;i++)
+	 {
+		aLi[i].onmouseover=function()
+		{
+			move(aBg,this.offsetLeft)	
+		}	 
+	 }	 
+}
+
+	var iSpeed=0;
+	var left=0;    //初始的obj的 left
+	
+	function move(obj,iTarget)    //封装一个  弹性运动的函数
+	{
+		                        //弹性运动因其特殊性，所依采用一个变量来替换之前的obj.offsetLeft.
+		clearInterval(obj.timer);
+		obj.timer=setInterval(function(){
+			iSpeed+=(iTarget-obj.offsetLeft)/5;  //弹性运动
+			iSpeed*=0.7;                          //摩擦系数
+			left+=iSpeed;
+		
+			if(Math.abs(iSpeed)<1 && Math.abs(left-itarget)<1) //距离足够近 速度足够小
+			{
+				clearInterval(obj.timer)	
+				obj.style.left=iTarget+'px';   //关闭定时器是重要的。这里使用了的math.abs绝对值。
+			}
+			else
+			{
+				obj.style.left=left+'px';     //这里用了left变量
+			}
+				
+		document.title=left  
+		
+				
+	  },30)	
+	}
+</script>
+</head>
+
+<body>
+<ul id="ul1">
+	<li>关于我们
+      <div class="bg"></div>
+    </li>
+    <li>产品介绍</li>
+    <li>联系我们</li>
+    <li>公司事件</li>
+    <li>公司地址</li>
+  
+</ul>
+</body>
+</html>

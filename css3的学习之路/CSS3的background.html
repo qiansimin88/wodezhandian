@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	#wrap {width:300px;height:300px;
+			background-image:url(../img2/1.jpg),url(../img2/2.jpg),url(../img2/3.jpg);
+			background-repeat:no-repeat;
+			background-size:100% 100%,100% 100%,100% 100%;
+			background-position:0px 0px,-1000px -1000px,-1000px -1000px;
+	}
+</style>
+<script>
+	window.onload=function(){
+		var oDiv=document.getElementById('wrap');
+		var num=0;
+		var arrPosi=getStyle(oDiv,'backgroundPosition').split(',');   //通过','转化成数组
+		
+		setInterval(function(){
+		/*
+			for(var i=0;i<arrPosi.length;i++)
+			{
+				arrPosi[i]='-1000px -1000px';
+				arrPosi[num]='0px 0px'
+			};
+			num++;
+			if(num==arrPosi.length)                                         写法1
+			{
+				num=0;	
+			}*/
+			
+			for(var i=0;i<arrPosi.length;i++)					//其实这里要注意num++的位置，因为要符合程序的意思，这里我前期把num放在了for循环里面了，程序							                                                                  都是错的，因为这里面的num放在for循环里面就是一次性加了 三次了，放在外面就表示每过2秒加一次。
+			{
+				if(i==num)
+				{
+					arrPosi[i]='0px 0px';
+				}	
+				else
+				{
+					arrPosi[i]='-1000px -1000px';	
+				};
+			
+			};
+				num++;
+				if(num==arrPosi.length)
+				{
+					num=0;	
+				};
+		oDiv.style.backgroundPosition=arrPosi.join(',')	;		
+		},2000);
+				
+		function getStyle(obj,attr)
+		{
+			if(obj.currentStyle)
+			{
+				return obj.currentStyle[attr]	
+			}	
+			else
+			{
+				return getComputedStyle(obj,false)[attr];	
+			}
+		}
+	};
+</script>
+</head>
+
+<body>
+	<div id="wrap">
+    	
+    </div>
+</body>
+</html>

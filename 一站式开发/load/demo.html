@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+@-webkit-keyframes move1
+{
+	0%
+	{
+		top:0;
+	}	
+	100%
+	{
+		top:8px;
+	}
+}
+@-webkit-keyframes move2
+{
+	0%
+	{
+		-webkit-transform:rotate(0deg);
+	}	
+	100%
+	{
+		-webkit-transform:rotate(-360deg);
+	}
+}
+@-webkit-keyframes move2
+{
+	0%
+	{
+		-webkit-transform:rotate(0deg);
+	}	
+	100%
+	{
+		-webkit-transform:rotate(-360deg);
+	}
+}
+@-webkit-keyframes move3
+{
+	0%
+	{
+		-webkit-transform:rotate(0deg);
+	}	
+	100%
+	{
+		-webkit-transform:rotate(360deg);
+	}
+}
+
+#loading{width:120px;height:140px;position:fixed; left:calc(50% - 60px);top:calc(50% - 70px);}
+#load{width:120px;height:100px;background:url(loding/loading3.png) no-repeat; position:absolute;top:0;left:0; -webkit-animation:.5s move1 infinite alternate linear; }
+#loadIco1{width:120px;height:100px; position:absolute;left:0;top:0;background:url(loding/loading4.png) no-repeat;-webkit-animation:1.2s move2 infinite linear;}
+#loadIco2{ width:120px;height:100px; position:absolute;left:0;top:0;background:url(loding/loading5.png) no-repeat;-webkit-animation:1.2s move3 infinite linear;}
+#loadtext{ width:120px;height:100px; position:absolute;left:0;top:0; text-align:center; line-height:100px; font:bold 16px/100px Arial; color:#f9725c;}
+#loadShadow{width:100px;height:40px; position:absolute;left:10px; bottom:0; background:url(loding/loading2.png) no-repeat;}
+</style>
+</head>
+<script>
+
+	window.onload=function(){
+		
+		var showNum = document.getElementById('loadtext');
+		//所有动画
+		var animations = document.querySelectorAll('.animations');
+	
+	
+	var aUrl=["http://pic3.nipic.com/20090602/846299_152058002_2.jpg","http://pic12.nipic.com/20110212/2457331_151615433709_2.jpg","http://pic18.nipic.com/20111207/5252423_202255633000_2.jpg","http://www.git-scm.com/images/monitor-windows.png"];
+	
+	var iNum = 0;
+	//运用图片预加载来实现  load效果
+	for( var i=0;i<aUrl.length;i++) {
+			
+			var oImg = new Image();
+			
+			oImg.src= aUrl[i];
+			
+			oImg.onload=function(){
+				
+				iNum++;
+				
+				showNum.innerHTML=iNum/aUrl.length*100+'%';
+				
+					//当iNum等于图片数暂停
+					
+					if(iNum == aUrl.length ) {
+					
+						 for(var i=0;i<animations.length;i++) {
+						
+							animations[i].style.WebkitAnimationPlayState = 'paused';	 
+							 
+						}
+					}
+				
+			};
+			
+		};
+	
+		
+		
+	}
+	
+</script>
+<body>
+	<div id="loading">
+		<div id="load" class="animations">
+            <div id="loadIco1" class="animations"></div>
+            <div id="loadIco2" class="animations"></div>
+            <div id="loadtext">0%</div>
+        </div>
+    <div id="loadShadow"></div>
+  </div>
+</body>
+</html>

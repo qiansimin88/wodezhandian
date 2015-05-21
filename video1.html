@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"><!-- saved from url=(0036)http://www.89525.com/blog/flvplayer/ -->
+<HTML>
+<HEAD>
+<TITLE>果果在线视频播放器</TITLE>
+</HEAD>
+<BODY>
+    <div align="center">
+        <table cellSpacing="0" cellPadding="0" width="620" border="0">
+        <tr>
+        <td>
+            样式1<div id="flash"></div></td>
+        <td>
+            样式2<div id="flash2"></div></td>    
+        </tr>
+        <tr>
+        <td>
+            样式3<div id="flash3"></div></td>
+        <td>
+            样式4<div id="flash4"></div></td>    
+        </tr>    
+             
+        </table>        
+     
+    <script type="text/javascript" src="http://www.89525.com/blog/flvplayer/swfobject.js"></script>
+    <script type="text/javascript">
+//播放器mediaplayer2454.swf
+ 
+//样式1
+        var style1 = new SWFObject("http://www.89525.com/blog/flvplayer/mediaplayer2454.swf","mediaplayer","300","185","8");
+        style1.addParam("allowfullscreen","true");
+        style1.addVariable("width","300");
+        style1.addVariable("height","185");
+        style1.addVariable("file","http://www.trendsmag.com/trendsmag/cosmopolitan/project/women2007/video/cosmowomen-1.flv");    //影视文件直接设定    
+        style1.write("flash");
+         
+//样式2(自动播放／配说明)
+        var style2 = new SWFObject("http://www.89525.com/blog/flvplayer/mediaplayer2454.swf","playlist","230","268","2");
+        style2.addVariable("file","http://www.89525.com/blog/flvplayer/plist.xml?664");  //影视文件在plist.xml中设定
+            style2.addVariable("displayheight","172");
+            style2.addParam("allowfullscreen","true");
+            style2.addParam("transparent","true");
+            style2.addParam("wmode","transparent");
+            style2.addVariable('width','230'); 
+            style2.addVariable('height','268'); 
+                 
+            style2.addVariable("backcolor","0x003399");
+            style2.addVariable("frontcolor","0xE2F0FE");
+            style2.addVariable("repeat","list");
+            style2.addVariable("shuffle","false");
+            style2.addVariable("linktarget","_blank");
+            style2.addVariable("autostart","true");
+            style2.write("flash2");
+         
+//样式3
+         
+        var style3 = new SWFObject("http://www.89525.com/blog/flvplayer/mediaplayer2454.swf","mediaplayer","300","260","8");
+        style3.addParam("allowfullscreen","true");
+        style3.addVariable("width","300");
+        style3.addVariable("height","260");
+        style3.addVariable("file","http://www.89525.com/blog/flvplayer/plist.xml?664");  //影视文件在plist.xml中设定
+        style3.addVariable("backcolor","0xFFFFFF");
+        style3.addVariable("image","afraid.jpg");
+        style3.addVariable("frontcolor","0x546E00");
+        style3.write("flash3");
+ 
+//样式4
+         
+        var style4 = new SWFObject("http://www.89525.com/blog/flvplayer/mediaplayer2454.swf","mediaplayer","300","185","8");
+        style4.addParam("allowfullscreen","true");
+        style4.addVariable("width","300");
+        style4.addVariable("height","185");
+        style4.addVariable("file","http://www.trendsmag.com/_homeinc/video/th4w_emo-0222.flv");//影视文件直接设定    
+        style4.addVariable("backcolor","0x003399");
+    style4.addVariable("frontcolor","0xE2F0FE");
+        style4.write("flash4");
+    </script>
+</div>
+</BODY>
+</HTML>

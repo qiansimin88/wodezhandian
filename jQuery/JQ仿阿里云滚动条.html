@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" href="../css/reset.css" type="text/css">
+<style>
+	.wrap {width:500px;height:26px;margin:200px auto;border:1px solid #000;position:relative;}
+	.move_btn{width:22px;height:36px;background:#00F;position:absolute;margin-top:-5px;left:0px;top:0px;}
+	.progress_bar  {background:#FC3;height:26px;width:0px;position:absolute;left:0px;top:0px;}
+	.value {padding:0 4px;color:#F00;}
+</style>
+<script src="../js/jquery-1.7.2.min.js"></script>
+
+<script>
+	$(function(){
+		var move_b=$('.move_btn');
+		move_b.mousedown(function(e){
+			var move_b_position=move_b.position();
+			var wrapW=$('.wrap').width();
+			var progress_bar=$('.progress_bar');
+			var move_bW=move_b.width();
+			var disX=e.pageX-move_b_position.left;
+				$(document).mousemove(function(e){
+					var x=e.pageX-disX;
+					if(x<0)
+					{
+						x=0;	
+					}
+					else if(x>wrapW-move_bW)
+					{
+						x=	wrapW-move_bW;
+					};
+					var sClae=x/(wrapW-move_bW);
+					$('.value').text(Math.round(sClae*200))
+					move_b.css({left:x});	
+					progress_bar.width(x);
+					
+				});	
+				$(document).mouseup(function(){
+					$(this).off('mousemove mousedown');
+				});
+				return false;
+		});
+	});
+</script>
+</head>
+
+<body>
+	<div class="wrap">
+    	<div class="progress_bar">
+        	
+        </div>
+        <div class="move_btn">
+        	
+        </div>
+    </div>
+    <p style="text-align:center;">你选择了<span class="value">0</span>G的套餐</p>
+</body>
+</html>

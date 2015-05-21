@@ -1,0 +1,34 @@
+1.直接给jQuery添加全局函数
+
+
+	1. jQuery.myAlert=function(str){
+    	alert(str) 
+        return str;    便于链式操
+    }
+    调用：   $.myAlert(str)
+    
+    2.用extend()方法
+    
+    jQuery.extend({
+   		myAlert:function(str){
+       	 	alert(str);
+            return str;    便于链式操
+       };
+        myAlert:function(str2){
+       	 	alert(str2)
+            return str;    便于链式操作
+       };
+   })
+   
+   调用：$.myAlert(str);
+   
+   
+   3.命名空间
+   
+   jQuery.qsm={
+   		myAlert:function(str){
+       	  alert(str)
+          return str;    便于链式操作
+       }
+   }
+   $.qsm.myAlert(str);

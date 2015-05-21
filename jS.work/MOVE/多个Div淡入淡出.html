@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+div { background:red;width:200px;height:200px;float:left;margin:10px;filter:alpha(opacity:30);opacity:0.3;}
+
+</style>
+<script>
+	window.onload=function()
+	{
+		var aDiv=document.getElementsByTagName('div');
+		for(var i=0;i<aDiv.length;i++)
+		{
+			aDiv[i].alpha=30;                //给每个DIV设置一个定时器，互不影响；
+			aDiv[i].timer=null;				//给每个DIV设置一个原有的alpha，互不影响，记住在下面的框架当中都要加上obj，因为要互不影响。
+			aDiv[i].onmouseover=function()
+			{
+				move(this,100);	
+			}
+			aDiv[i].onmouseout=function()
+			{
+				move(this,30);	
+			}
+		}	
+		
+	}
+	function move(obj,target)
+	{
+		clearInterval(obj.timer)
+	obj.timer=setInterval(function(){
+		var speed=(target-obj.alpha)/50;
+		speed=speed>0?Math.ceil(speed):Math.floor(speed);
+			if(obj.alpha==target)
+			{
+				clearInterval(obj.timer);	
+			}
+			else
+			{
+				obj.alpha+=speed;
+				obj.style.filter='alpha(opacity:'+obj.alpha+')';
+				obj.style.opacity=obj.alpha/100;	
+			}	
+		},30)
+	}
+</script>
+</head>
+
+<body>
+<div></div>
+<div></div>
+
+<div></div>
+<div></div>
+</body>
+</html>

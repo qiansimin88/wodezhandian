@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<style>
+		
+		#show,#tetx {border:1px solid #008000;margin-bottom:40px;width:400px;}
+		
+	</style>
+	<script>
+		function typeWriter (txt,obj,speed) {
+				
+			var timer = null;
+			
+			var cont = 0; 
+			
+			function int (){
+				
+				var le = txt.length;
+				
+				if(cont == le) {
+					
+					obj.innerHTML = txt.substring(0,cont);
+					
+					clearInterval(timer);
+					
+					return;
+					
+				}
+				
+				obj.innerHTML = txt.substring(0,cont)+'_';
+				
+				cont++;
+				
+			};
+			
+			timer = setInterval(int,speed);
+			
+		}
+		
+	window.onload=function(){
+		
+		var tXt = document.getElementById("tetx").innerHTML;
+		
+		var oBj = document.getElementById("show");
+		
+		var speed = 100;
+		
+		typeWriter(tXt,oBj,speed)
+		
+	}
+	</script>
+	<body>
+		<div id="tetx" style="display:none;">
+			周杰伦（Jay Chou），1979年1月18日出生于台湾省新北市，华语流行男歌手、演员、词曲创作人、MV及电影导演、编剧及制作人。2000年被吴宗宪发掘，发行首张个人专辑《Jay》。2001年发行专辑《范特西》。2002年在中国、新加坡、马来西亚、美国等地举办首场个人世界巡回演唱会。
+2003年登上美国《时代周刊》亚洲版封面人物。
+周杰伦的音乐融合中西方元素，风格多变，四次获得世界音乐大奖最畅销亚洲艺人；凭借专辑《Jay》、《范特西》、《叶惠美》及《跨时代》四次获得金曲奖"最佳国语专辑"奖，并凭借《魔杰座》、《跨时代》获得第20届和第22届金曲奖“最佳国语男歌手”奖；2014年获QQ音乐年度盛典”港台最受欢迎男歌手“及压轴大奖“最佳全能艺人”[1] 。
+		</div>
+		<div id="show">
+			
+		</div>
+	</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
+		<style type="text/css">
+			#imgsDiv {
+				position: relative;
+				height: 400px;
+			}
+			.picDiv {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 400px;
+				background-position: center center;
+				background-repeat: no-repeat;
+				z-index: 0;
+			}
+			#dotLists {
+				position: relative;
+				margin: -30px auto 0;
+				text-align: center;
+				height: 20px;
+				z-index: 20;
+			}
+			.dot {
+				display: inline-block;
+				width: 12px;
+				height: 12px;
+				margin: 0 8px;
+				border-radius: 50%;
+				-webkit-border-radius: 50%;
+				-moz-border-radius: 50%;
+				-ms-border-radius: 50%;
+				-o-border-radius: 50%;
+				background: #ccc;
+				cursor: pointer;
+			}
+			.hover {
+				background: #FF1515;
+			}
+		</style>
+		<script>
+				 	
+			$(function(){
+				
+				new fadeIn($('#imgsDiv'),$('#dotLists'));
+				
+			})
+			 
+		</script>
+		<script>
+			/* *
+ 			 * *	想要得到淡入淡出的自然效果  必须依赖z-index
+			 * *	
+			 * 		parm : 1 :图片 父级div
+			 * 			   2 :按钮 父级div 
+			 * *	example: <div class/id>
+			 * 					*********   (图片的层级)
+			 * 					*********
+			 * 				 </div>
+			 * 				 <div class/id>
+			 * 					*********   (按钮的层级)
+			 * 					*********
+			 * 				 </div>
+			 * */		
+			//构造函数
+			function fadeIn (imgObj,pointObj) {
+				
+				//构造函数  写共有属性
+				
+				this.imgWrap = imgObj;
+				
+				this.pointWrap = pointObj;
+				
+				this.imgList = this.imgWrap.children();
+				
+				this.pointList = this.pointWrap.children();
+				
+				this.now = 0;
+				
+				this.timer = null;
+				
+				this.allNum = this.pointList.size();
+							
+				this.start();
+				
+			};
+			
+			//原型方法
+			fadeIn.prototype = {
+				
+				//运行
+				start : function () {
+					
+					this.hander_click(this.pointList,this.imgList);
+					
+					this.init();
+					
+					this.setIntervalFun();
+											
+					
+				},
+				
+				//初始化
+				
+				init : function () {
+					
+					var _this = this;
+					
+					this.imgList.hide().eq(0).show().css('zIndex','1');
+					
+					this.pointList.eq(0).addClass('hover');
+					
+					this.imgList.hover(function(){
+						
+						_this.clearFun();
+						
+					},function(){
+						
+						_this.setIntervalFun();
+						
+					})
+					
+				},
+				
+				//点击
+				
+				hander_click : function (pointList,imgList) {
+					
+					var _this = this;
+					
+					this.clearFun();
+					
+					pointList.on('click',function(){
+						
+						var index = $(this).index();
+						
+						 if (this.now == index) {
+						 	
+						 	return;
+						 	
+						 };
+																	
+						_this.imgList.stop(true,true);
+						
+						_this.fadeInDemo(index,_this.now%_this.allNum);
+						//动画执行完毕 this.now才赋值
+						_this.now = index;
+						
+					})
+					
+				},
+				
+				//fadeIn主函数 
+				
+				fadeInDemo : function (index,now) {
+					
+					var _this = this ;
+
+					this.pointList.removeClass('hover').eq(index).addClass('hover');
+					
+					//console.log(index,this.now)
+					
+					this.imgList.eq(index).show().css('zIndex',0).end().eq(now).css('zIndex','1').fadeOut(900,function(){
+						
+						_this.imgList.eq(now).css('zIndex',0);
+						
+					})
+				},
+				
+				//定时器相关
+				
+				setIntervalFun : function () {
+					
+					var _this = this;
+					
+					this.timer =  setInterval(function () {
+						
+						_this.now++ ;
+						
+						_this.fadeInDemo((_this.now)%_this.imgList.size(),((_this.now)%_this.imgList.size()-1));
+						
+						
+					},3000);
+					
+				},
+				
+				//清除定时器
+				
+				clearFun : function () {
+					
+					var _this = this;
+					
+					clearInterval(_this.timer);
+					
+				}
+				
+			};
+		
+		</script>
+	</head>
+	<body>
+		<div id="imgsDiv">
+			<div class="picDiv" style="background-image:url(https://i.alipayobjects.com/i/ecmng/jpg/201407/31kKIcRiQ3.jpg);"></div>
+			<div class="picDiv" style="background-image:url(https://i.alipayobjects.com/i/ecmng/jpg/201406/2pMuCMfPWf_src.jpg);"></div>
+			<div class="picDiv" style="background-image:url(https://i.alipayobjects.com/i/ecmng/jpg/201406/2pMuBhXfEr_src.jpg);"></div>
+			<div class="picDiv" style="background-image:url(https://i.alipayobjects.com/i/ecmng/jpg/201406/2pMuC9bBef_src.jpg);"></div>
+		</div>
+		<p id="dotLists">
+			<span class="dot"></span>
+			<span class="dot"></span>
+			<span class="dot"></span>
+			<span class="dot"></span>
+		</p>
+	</body>
+</html>

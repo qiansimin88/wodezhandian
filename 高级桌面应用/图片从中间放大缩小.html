@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+
+#div1 {height:200px;width:200px;position:absolute;top:100px;left:500px;margin:0;}
+</style>
+<script src="../js/prefectmove.js"></script>
+<script>
+	window.onload=function()
+	{
+			var oImg=document.getElementById('div1');
+			oImg.onmouseover=function()
+			{
+				move(oImg,{height:300,width:300,marginLeft:-50,marginTop:-50}) 
+			}
+			oImg.onmouseout=function()
+			{
+				move(oImg,{height:200,width:200,marginLeft:0,marginTop:0})	
+			}
+	}
+</script>
+
+</head>
+
+<body>
+
+<img id="div1" src="../image/889718570433107520_640x640_320.jpg"/>
+<p>这其实是主要利用了 定位后 magin值的 道理，让margin移动到 大图减去小图的一半的负距离  然后增加宽高 即可。</p>
+
+</body>
+</html>

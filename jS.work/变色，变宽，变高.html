@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+
+<style>
+#box {
+		width:300px;
+		height:300px;
+		border:1px solid black;}
+</style>
+<script>
+window.onload=function(){
+	
+	 
+	 var oBtn=document.getElementById('btn');
+	 
+	 var oBtn2=document.getElementById('btn2');
+	 
+	 var oBtn3=document.getElementById('btn3')
+	
+	var oDiv=document.getElementById('box');
+
+	function toGreen(xx,color)
+	{   
+			oDiv.style[xx]=color;                         //使用改变具体样式的时候用[]代替.
+	}
+	 
+	 oBtn.onclick=function()
+	 {
+		 
+		toGreen('background','green')
+	}
+	oBtn2.onclick=function()
+	{
+		toGreen('width','400px')	
+	}
+	oBtn3.onclick=function()
+	{
+		toGreen('height','500px')
+	}
+
+
+}
+
+</script>
+
+
+<body>
+<input type="button" value=" 变绿"  id="btn"/>
+<input type="button" value="变宽" id="btn2"/>
+<input type="button" value="变高" id="btn3"/>
+
+
+<div id="box">
+
+</div>
+
+
+</body>
+
+</html>

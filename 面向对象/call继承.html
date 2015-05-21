@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	function A()
+	{
+		this.abc=12	
+	}
+	A.prototype.show=function()
+	{
+		alert(this.abc)	
+	}
+
+	function B()			//属性继承
+	{
+		A.call(this)     //这个this指的是B,但是前面用了call意味着把当前B调入给了上面的A里面的this，A里面的THIS也就变成了B里面的，所依B继承A的属性
+	}
+	
+	//错误的B.prototype=A.prototype;  
+											  //方法继承				
+	for (i in A.prototype)                   //B的方法和A一样 。。因此继承
+	{
+		B.prototype[i]=A.prototype[i]	
+	}
+	
+	var obj=new B()
+	
+	obj.show();
+	
+</script>
+</head>
+
+<body>
+</body>
+</html>

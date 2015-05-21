@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="../js/jquery-2.0.2.min.js"></script>
+<script>
+
+  //  clone:复制节点
+	$(function(){
+		
+	//$('div').append('asdasd')	//append表示asdasdas变成div的子元素和innerHTML相似不涉及到便签.简单说appedn('填的是具体的字符串')	
+	// $('div').appendTo('p')  //表示把<div></div>整个标签变成P元素的子标签，并且是剪切形式。，appednTo('填的是具体的标签')
+	  
+	$('div').clone().appendTo('p') //clone()克隆节点，就是把div标签克隆一份 复制到P标签下面作为的节点，而之前的还保存。
+})
+</script>
+</head>
+
+<body>
+<div>div</div>
+<p>p</p>
+</body>
+</html>

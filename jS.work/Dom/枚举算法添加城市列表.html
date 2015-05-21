@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	window.onload=function()
+	{
+		var ap=document.getElementsByTagName('a');
+		var aUl=document.getElementById('ul1');
+		var aLi=aUl.getElementsByTagName('li');
+		
+		for(var i=0;i<ap.length;i++)
+		{
+			ap[i].onclick=function()
+			{
+				if(test(this.innerHTML))
+				{
+				   	var oLi=document.createElement('li')
+					oLi.innerHTML=this.innerHTML
+					if(!aLi[0])
+					{
+						aUl.appendChild(oLi)	
+					}
+					else
+					{
+						aUl.insertBefore(oLi,aLi[0])	
+					} 
+				}
+				else
+				{
+					test2(this.innerHTML)	
+				}	
+			}	
+		} 
+		
+		function test(text)
+		{
+			var result=true;
+			for(var i=0;i<aLi.length;i++)
+			{
+				if(aLi[i].innerHTML===text)
+				{
+					result=false;	              //不创建
+				}
+				
+			}
+			
+			return result
+		
+		}
+		function test2(text)						//下面这两种通通都是枚举算法，都是预先通过for寻坏让ali所有的值中找出与条件一致的然后给与方法
+		{
+			for(var i=0;i<aLi.length;i++)
+			{
+				if(aLi[i].innerHTML==text)
+				{
+					aUl.insertBefore(aLi[i],aLi[0])   //若出现相同的则把相同的 位置调到最上面
+				}	
+			}
+		}
+	}
+</script>
+</head>
+
+<body>
+<a href="javascript:;">北京</a>
+<a href="javascript:;">上海</a>
+<a href="javascript:;">南京</a>
+<a href="javascript:;">巢湖</a>
+<a href="javascript:;">合肥</a>
+<a href="javascript:;">杭州</a>
+<a href="javascript:;">台州</a>
+<ul id="ul1">
+</ul>
+</body>
+</html>

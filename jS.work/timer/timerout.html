@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	/*
+时间倒计时插件
+TimeDown.js
+*/
+function TimeDown(id,endDateStr ) {
+    //结束时间
+    var endDate = new Date(endDateStr);
+    //当前时间
+    var nowDate = new Date();
+    //相差的总秒数
+    var totalSeconds = parseInt((endDate - nowDate) / 1000);
+    //天数
+    var days = Math.floor(totalSeconds / (60 * 60 * 24));
+    //取模（余数）
+    var modulo = totalSeconds % (60 * 60 * 24);
+    //小时数
+    var hours = Math.floor(modulo / (60 * 60));
+    modulo = modulo % (60 * 60);
+    //分钟
+    var minutes = Math.floor(modulo / 60);
+    //秒
+    var seconds = modulo % 60;
+    //输出到页面
+    document.getElementById(id).innerHTML = "距离"+endDateStr+"还剩:" + days + "天" + hours + "小时" + minutes + "分钟" + seconds + "秒";
+    //延迟一秒执行自己
+    setTimeout(function () {
+        TimeDown(id, endDateStr);
+    }, 1000)
+}
+</script>
+</head>
+
+<body>
+	 <form id="form1" runat="server">
+        <div id="show">
+        </div>
+        <script type="text/javascript">
+            TimeDown("show", "2013-12-10 12:00:00");
+        </script>
+    </form>
+</body>
+</html>

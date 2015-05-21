@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	var checkThis = function() {
+    alert( this.x); 
+};
+	var x = 'this is a property of window';
+	
+	var obj = {};
+	obj.x = 100;
+	obj.y = function(){ alert( this.x ); };
+	
+	var obj2 = obj.y;
+	
+	obj.y();   //弹出 100
+	checkThis();    //弹出 'this is a property of window
+	obj2();    //弹出 'this is a property of window
+	
+/*	这里为什么会弹出 'this is a property of window'，可能有些让人迷惑。在JavaScript的变量作用域里有一条规则“全局变量都是window对象的属性”。当执行 checkThis() 时相当于 window.checkThis()，因此，此时checkThis函数体内的this关键字的指向变成了window对象，而又因为window对象又一个x属性（ 'this is a property of window'）,所以会弹出 'this is a property of window'。
+
+上面的两个示例都是比较容易理解的，因为只要判断出当前函数是作为哪个对象的方法调用（被哪个对象调用）的，就可以很容易的判断出当前this变量的指向。*/
+</script>
+</head>
+
+<body>
+</body>
+</html>

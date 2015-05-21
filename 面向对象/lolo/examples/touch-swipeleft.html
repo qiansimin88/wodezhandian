@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>demo</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/app.js"></script>
+		<style>
+			html, body, .mui-content {
+				background-color: #efeff4;
+			}
+		</style>
+		<script>
+			mui.init();
+		</script>
+	</head>
+	<body>
+
+<style>
+	.mui-content>.mui-table-view:first-child {
+		margin-top: 5px;
+	}
+	.mui-h6,
+	h5,
+	h4 {
+		font-weight: 500;
+		margin: 0;
+		text-transform: none;
+	}
+	.mui-table-view .mui-table-view-cell {
+		padding-right: 0;
+	}
+	.oa-contact-cell.mui-table .mui-table-cell {
+		padding: 11px 0;
+		vertical-align: middle;
+	}
+	.oa-contact-cell {
+		position: relative;
+		margin: -11px 0;
+	}
+	.oa-contact-avatar {
+		width: 75px;
+	}
+	.oa-contact-avatar img {
+		border-radius: 50%;
+		height: 60px;
+		width: 60px;
+	}
+	.oa-contact-content {
+		width: 100%;
+	}
+	.oa-contact-name {
+		margin-right: 20px;
+	}
+	.oa-contact-name,
+	oa-contact-position {
+		float: left;
+	}
+	/*左拖拉出，右拖关闭菜单*/
+	/*重要：该样式定制拉出的功能菜单区域的margin-left(必须,该值是功能菜单距离mui-slider-cell左侧的位置)*/
+	.oa-contact-action {
+		background-color: #527fdc;
+		margin-left: 75px;
+	}
+	.oa-contact-action .mui-icon {
+		width: 30%;
+		color: white;
+		text-align: center;
+		line-height: 70px;
+	}
+</style>
+
+
+
+<header class="mui-bar mui-bar-nav">
+	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	<h1 class="mui-title">Touch(左滑)</h1>
+</header>
+
+
+<div class="mui-content">
+	<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
+		<li class="mui-table-view-cell">
+			<div class="mui-slider-cell">
+				<div class="oa-contact-cell mui-table">
+					<div class="oa-contact-avatar mui-table-cell">
+						<img src="../images/wangan.jpg" />
+					</div>
+					<div class="oa-contact-content mui-table-cell">
+						<div class="mui-clearfix">
+							<h4 class="oa-contact-name">王安</h4>
+							<span class="oa-contact-position mui-h6">CEO</span>
+						</div>
+						<p class="oa-contact-email mui-h6">
+							wangan@dcloud.io
+						</p>
+					</div>
+				</div>
+				<div class="mui-slider-handle oa-contact-action mui-table-cell mui-disabled">
+					<span class="mui-icon mui-icon-phone"></span>
+					<span class="mui-icon mui-icon-sms"></span>
+					<span class="mui-icon mui-icon-chat"></span>
+				</div>
+			</div>
+		</li>
+		<li class="mui-table-view-cell">
+			<div class="mui-slider-cell">
+				<div class="oa-contact-cell mui-table">
+					<div class="oa-contact-avatar mui-table-cell">
+						<img src="../images/seaman.jpg" />
+					</div>
+					<div class="oa-contact-content mui-table-cell">
+						<div class="mui-clearfix">
+							<h4 class="oa-contact-name">seaman</h4>
+							<span class="oa-contact-position mui-h6">CTO</span>
+						</div>
+						<p class="oa-contact-email mui-h6">
+							seaman@mui.io
+						</p>
+					</div>
+				</div>
+				<div class="mui-slider-handle oa-contact-action mui-table-cell mui-disabled">
+					<span class="mui-icon mui-icon-phone"></span>
+					<span class="mui-icon mui-icon-sms"></span>
+					<span class="mui-icon mui-icon-chat"></span>
+				</div>
+			</div>
+		</li>
+		<li class="mui-table-view-cell">
+			<div class="mui-slider-cell">
+				<div class="oa-contact-cell mui-table">
+					<div class="oa-contact-avatar mui-table-cell">
+						<img src="../images/wulili.jpeg" />
+					</div>
+					<div class="oa-contact-content mui-table-cell">
+						<div class="mui-clearfix">
+							<h4 class="oa-contact-name">吴丽丽</h4>
+							<span class="oa-contact-position mui-h6">理事长</span>
+						</div>
+						<p class="oa-contact-email mui-h6">
+							wulili@mui.io
+						</p>
+					</div>
+				</div>
+				<div class="mui-slider-handle oa-contact-action mui-table-cell mui-disabled">
+					<span class="mui-icon mui-icon-phone"></span>
+					<span class="mui-icon mui-icon-sms"></span>
+					<span class="mui-icon mui-icon-chat"></span>
+				</div>
+			</div>
+		</li>
+		<li class="mui-table-view-cell">
+			<div class="mui-slider-cell">
+				<div class="oa-contact-cell mui-table">
+					<div class="oa-contact-avatar mui-table-cell">
+						<img src="../images/chb.jpg" />
+					</div>
+					<div class="oa-contact-content mui-table-cell">
+						<div class="mui-clearfix">
+							<h4 class="oa-contact-name">CHB</h4>
+							<span class="oa-contact-position mui-h6">工程师</span>
+						</div>
+						<p class="oa-contact-email mui-h6">
+							chb@mui.io
+						</p>
+					</div>
+				</div>
+				<div class="mui-slider-handle oa-contact-action mui-table-cell mui-disabled">
+					<span class="mui-icon mui-icon-phone"></span>
+					<span class="mui-icon mui-icon-sms"></span>
+					<span class="mui-icon mui-icon-chat"></span>
+				</div>
+			</div>
+		</li>
+		<li class="mui-table-view-cell">
+			<div class="mui-slider-cell">
+				<div class="oa-contact-cell mui-table">
+					<div class="oa-contact-avatar mui-table-cell">
+						<img src="../images/lxl.jpeg" />
+					</div>
+					<div class="oa-contact-content mui-table-cell">
+						<div class="mui-clearfix">
+							<h4 class="oa-contact-name">李小琳</h4>
+							<span class="oa-contact-position mui-h6">大管家</span>
+						</div>
+						<p class="oa-contact-email mui-h6">
+							lixiaolin@mui.io
+						</p>
+					</div>
+				</div>
+				<div class="mui-slider-handle oa-contact-action mui-table-cell mui-disabled">
+					<span class="mui-icon mui-icon-phone"></span>
+					<span class="mui-icon mui-icon-sms"></span>
+					<span class="mui-icon mui-icon-chat"></span>
+				</div>
+			</div>
+		</li>
+		
+	</ul>
+</div>
+</body>
+</html>

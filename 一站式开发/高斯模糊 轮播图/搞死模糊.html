@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			@-webkit-keyframes show {
+				
+				0% {opacity: 1;-webkit-transform: scale(1);}
+				
+				100% {opacity: .1;-webkit-transform: scale(3);}
+				
+			}
+		
+			body {background:#e8d0ca;}
+			#wrap {width:600px;margin:100px auto;border:2px solid #000;position: relative;}
+			#list {position: relative;height:310px;margin:0;padding:0;list-style: none;}
+			#list li {width:281px;height:310px;background:url(img/iWorks_1.png) no-repeat;position:absolute;top:0;transition: 0.6s;}
+			#list span {width:100%;height:100%;display: block;}
+			#list li:nth-of-type(1) {left:0;z-index: 1;-webkit-transform:scale(0.8);opacity: 0.6;background:url(img/iWorks_1.png)；}
+			#list li:nth-of-type(1) span  {background:url(img/iWorksBlur_1.png);opacity: 1;}			
+			#list li:nth-of-type(2) {left:calc(50% - 140px);z-index: 2;opacity: 1;background:url(img/iWorks_2.png)}
+			#list li:nth-of-type(2) span {background:url(img/iWorksBlur_2.png);opacity: 0;}
+			#list li:nth-of-type(3) {left:calc(100% - 281px););z-index: 1;-webkit-transform:scale(0.8);opacity: 0.6;background:url(img/iWorks_3.png)}
+			#list li:nth-of-type(3) span {background:url(img/iWorksBlur_3.png);opacity: 1;}
+			.btn {width:18px;height:29px;position:absolute;top:130px;z-index: 10;cursor: pointer;}
+			.btn span {position: absolute;left:0;top:0;width:100%;height: 100%;background:inherit;}
+			.btn:hover span:nth-of-type(1) {-webkit-animation: show 2s infinite alternate;}
+			.btn:hover span:nth-of-type(2) {-webkit-animation: show 2s .5s infinite;}
+			#prev {left:80px;background:url(img/iWorksPrev.png) no-repeat;}
+			#next {right:80px;background:url(img/iWorksNext.png) no-repeat;}
+		</style>
+	</head>
+	<body>
+			<div id="wrap">
+				<ul id="list">
+					<li><span></span></li>
+					<li><span></span></li>
+					<li><span></span></li>	
+				</ul>
+				<div id="prev" class="btn">
+					<span></span>
+					<span></span>
+				</div>
+				<div id="next" class="btn">
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+	</body>
+	<script>
+			var prevBtn = document.getElementById('prev');
+			
+			var nextBtn = document.getElementById("next");
+			
+			var oList = document.getElementById("list");
+			
+			var aLi = oList.children;
+			
+			
+			
+			var initOffset = [];
+			
+			
+			//初始给数组赋值
+			for(var i = 0 ;i < aLi.length;i++ ) {
+				
+				var aSpan = aLi[i].children[0];   //找到当前的span 
+				
+				initOffset[i] = {
+					
+					left  : getStyle(aLi[i],'left'),
+					
+					opacity : getStyle(aLi[i],'opacity'),
+					
+					scale : getStyle(aLi[i],'-webkit-transform'),
+					
+					zIndex:getStyle(aLi[i],'z-index'),
+					
+					sonOpacity : getStyle(aSpan,'opacity')
+					
+				}
+				
+			};
+			
+			//console.log(initOffset)
+			
+			//上一张点击
+			
+			prevBtn.onclick=function(){
+				
+				//进行数组操作   把数组的最后一项移到数组的第一项
+				
+				initOffset.unshift((initOffset.pop()));
+				
+				ctrlDom();
+				
+			};
+			
+			
+			//下一张点击
+			
+			nextBtn.onclick=function(){
+				
+				//进行数组操作   把数组的第一项移到数组的最后
+				
+				initOffset.push(initOffset.shift())
+				
+				ctrlDom();
+				
+			};
+			
+			
+			
+			//dom操作
+			
+			function ctrlDom () {
+				
+				for(var i=0;i<aLi.length;i++) {
+					
+					var aSpan = aLi[i].children[0];
+					
+					aLi[i].style.left = initOffset[i].left;
+					
+					aLi[i].style.opacity = initOffset[i].opacity;
+					
+					aLi[i].style.zIndex = initOffset[i].zIndex;
+					
+					aLi[i].style.webkitTransform = initOffset[i].scale;
+					
+					aSpan.style.opacity = initOffset[i].sonOpacity;
+					
+				}
+				
+				
+			};
+		
+					
+			//取非行间样式的函数
+			function getStyle(obj,attr) {
+				
+				if(obj.currentStyle) {
+					
+					return obj.currentStyle[attr];
+					
+				}else{
+					
+					return getComputedStyle(obj,false)[attr];
+					
+				}
+				
+			}
+			
+	</script>
+</html>

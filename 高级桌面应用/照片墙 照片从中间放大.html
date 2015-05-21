@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+* {margin:0;padding:0;}
+#ul1 {margin:0 auto;width:488px;}
+li {list-style:none;float:left;margin:10px;border:1px solid black;}
+#ul1 li img{height:140px;width:140px;z-index:1}
+</style>
+<script src="../js/prefectmove.js"></script>
+<script>
+	window.onload=function()
+	{
+		var oUl=document.getElementById('ul1');
+		var aImg=oUl.getElementsByTagName('img');
+		var nowIndex=1;
+		
+		for(var i=0;i<aImg.length;i++)
+		{
+			aImg[i].style.left=aImg[i].offsetLeft+'px';   // 让每个img的图片位置保持和css布局的 位置一样
+			aImg[i].style.top=aImg[i].offsetTop+'px';	
+		}
+		for(var i=0;i<aImg.length;i++)
+		{
+			aImg[i].style.position='absolute';        //采用绝对定位就是让图片脱离文档流，不然图片变大会挤跑别的图片。
+			aImg[i].style.margin="0";                  //取消margin,避免marin重复，还有定位要单独使用一个for循环
+		}
+		
+		for(var i=0;i<aImg.length;i++)
+		{
+			aImg[i].onmouseover=function()
+			
+			{
+				this.style.zIndex=nowIndex++;        //巧妙利用zIndex使得每个图片没移入一次  层级增加
+				move(this,{height:220,width:220,marginLeft:-40,marginTop:-40})	
+			}
+			aImg[i].onmouseout=function()    //使用margin，让大图减去小图一半的负margin，使得img从 中间 放大。
+			{
+				move(this,{height:140,width:140,marginLeft:-0,marginTop:-0})	
+			}		
+		}
+	}
+</script>
+</head>
+
+<body>
+<ul id="ul1">
+	<li><img src="../img2/1.jpg"/></li>
+    <li><img src="../img2/2.jpg"/></li>
+    <li><img src="../img2/3.jpg"/></li>
+    <li><img src="../img2/4.jpg"/></li>
+    <li><img src="../img2/5.jpg"/></li>
+    <li><img src="../img2/6.jpg"/></li>
+    <li><img src="../img2/7.jpg"/></li>
+    <li><img src="../img2/8.jpg"/></li>
+    <li><img src="../img2/9.jpg"/></li>
+    <li><img src="../img2/10.jpg"/></li>
+    <li><img src="../img2/1.jpg"/></li>
+    <li><img src="../img2/2.jpg"/></li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+#head  {height:270px;width:970px;overflow:hidden;position:relative;margin:0 auto; }
+#head ul {list-style:none;}
+img {border:none;}
+#head ul li {position:absolute;left:0;top:0;opacty:100;filter:alpha(opacity:100)}
+.prev {position:absolute;top:100px;left:30px;background:url(../../image/%E5%B0%8F%E5%9B%BE.png) 0px -50px;width:24px;height:43px;cursor:pointer;z-index:121;opacity:0;}
+.next {position:absolute;top:100px;right:30px;;width:24px;height:43px;background:url(../../image/%E5%B0%8F%E5%9B%BE.png) -30px -50px;cursor:pointer;z-index:121;opacity:0;}
+.mark_left {position:absolute;left:0;top:0;width:485px;height:270px;background:#900;z-index:120;opacity:0;filter:alpha(opacity:0)}
+.mark_right {position:absolute;left:485px;top:0;width:485px;height:270px;background:#009;z-index:120;opacity:0;filter:alpha(opacity:0)}
+</style>
+<script>
+window.onload=function()
+{
+	web.app.change();	
+};
+
+var web={};
+
+web.tools={};
+
+web.tools.getByClass=function (oParent,sClass)
+{
+	var aEl=oParent.getElementsByTagName('*');
+	var arr=[];
+	
+	for (var i=0;i<aEl.length;i++)
+	{
+		if(aEl[i].className==sClass)
+		{
+			arr.push(aEl[i])	
+		}	
+	}
+	return arr;	
+};
+
+web.tools.getByStyle=function(obj,name)
+{
+	if(obj.currentStyle)	
+	{
+		return obj.currentStyle[name]	
+	}
+	else
+	{
+		return getComputedStyle(obj,false)[name]	
+	}
+}
+
+web.ui={};
+
+web.ui.danru=function(obj)
+{
+	
+	
+	var attr=0;
+	clearInterval(obj.timer)
+	obj.timer=setInterval(function(){
+		var speed=5;
+		if(attr==100)
+		{
+			clearInterval(obj.timer)	
+		}
+		else 
+		{
+			attr+=speed;
+			obj.style.opacity=attr/100;
+			obj.style.filter='alpha(opacity:'+attr+')'
+		}	
+ },30)	
+}
+
+web.ui.danchu=function(obj)
+{
+	var iattr=web.tools.getByStyle(obj,'opacity')
+	if (iattr==0) {return false}                //若tattr==0就不需要隐藏了，一种要解决bug。
+	var attr=100;
+	clearInterval(obj.timer)
+	obj.timer=setInterval(function(){
+		var speed=-5;
+		if(attr==0)
+		{
+			clearInterval(obj.timer)	
+		}
+		else
+		{
+			attr+=speed;
+			obj.style.opacity=attr/100;
+			obj.style.filter='alpha(opacity:'+attr+')'	
+		}	
+ },30)	
+}
+
+web.app={};
+
+web.app.change=function()
+{
+	var oDiv=document.getElementById('head');
+	var aLi=oDiv.getElementsByTagName('li');
+	var now=0;
+	
+	var oPrev=web.tools.getByClass(oDiv,'prev')[0];
+	var oNext=web.tools.getByClass(oDiv,'next')[0];
+	
+	var oMarkL=web.tools.getByClass(oDiv,'mark_left')[0];
+	var oMarkR=web.tools.getByClass(oDiv,'mark_right')[0];
+	var timer=setInterval(auto,3000)
+	function auto ()
+	{
+		now++
+		if(now==aLi.length)
+		{
+			now=0;	
+		}
+		
+		for(var i=0;i<aLi.length;i++)
+		{
+			web.ui.danchu(aLi[i])
+		}
+		web.ui.danru(aLi[now])
+	}
+	function autoPrev ()
+	{
+		
+		if(now==0)
+		{
+			now=aLi.length-1;	
+		}
+		else 
+		{
+			now--	
+		}
+		for(var i=0;i<aLi.length;i++)
+		{
+			web.ui.danchu(aLi[i])
+		}
+		web.ui.danru(aLi[now])
+	}
+	
+	oMarkL.onmouseover=oPrev.onmouseover=function()
+	{
+		clearInterval(timer)
+		web.ui.danru(oPrev)		
+	}
+	oMarkL.onmouseout=function()
+	{
+		web.ui.danchu(oPrev)	
+		timer=setInterval(auto,3000)
+	}
+	oMarkR.onmouseover=oNext.onmouseover=function()
+	{
+		clearInterval(timer)
+		web.ui.danru(oNext)	
+	}
+	oMarkR.onmouseout=function()
+	{
+		web.ui.danchu(oNext)
+		timer=setInterval(auto,3000)	
+	}
+	oPrev.onclick=function()
+	{
+			autoPrev();
+	};
+	oNext.onclick=auto
+
+}
+</script>
+</head>
+
+<body>
+ <div id="head">
+ 	<ul>
+    	<div class="prev"></div>
+        <div class="next"></div>
+        <div class="mark_left"></div>
+        <div class="mark_right"></div>
+    	<li><a href="#"><img src="../../image/-231.jpg" alt="1"/></a></li>
+        <li><a href="#"><img src="../../image/-234.jpg" alt="2"/></a></li>
+        <li><a href="#"><img src="../../image/-246.jpg" alt="3"/></a></li>
+        <li><a href="#"><img src="../../image/-267.jpg" alt="4"/></a></li>
+    </ul>
+ </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	#c1 {background:#fff}
+	body {background:#000;}
+</style>
+<script>
+	window.onload=function(){
+		
+		var oC= document.getElementById('c1');
+		
+		var oGc = oC.getContext('2d');
+		
+		oGc.fillRect(0,0,100,100) ;
+		
+		var pix = oGc.getImageData(0,0,100,100);
+		
+		//alert(pix.width)   //像素体宽
+
+		//alert(pix.data)   //像素数据集合  是数组  length  是宽X高的4倍
+		
+		
+		
+	}
+</script>
+</head>
+
+<body>
+<canvas id="c1" width='400' height='400'></canvas>
+</body>
+</html>

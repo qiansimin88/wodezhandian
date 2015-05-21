@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+body {background:black;color:#FFF;}
+div {width:5px;height:5px;font-weight:bold;position:absolute;margin:10px;}
+</style>
+<script>
+	function getPos(ev)           //封装XY轴
+	{
+		var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+		var scrollLeft=document.documentElement.scrollLeft||document.body.scrollLeft;
+		
+		return {x:ev.clientX+scrollLeft,y:ev.clientY+scrollTop}	
+	}
+	document.onmousemove=function(ev)
+	{
+		var oEvent=ev||event;
+		var oDiv=document.getElementsByTagName("div")	;
+
+			oDiv[0].style.top=getPos(oEvent).y+'px';
+			oDiv[0].style.left=getPos(oEvent).x+'px';
+		
+		for(var i=oDiv.length-1;i>0;i--)          //for循环的妙用之一。反过来循环。
+		{
+			oDiv[i].style.left=oDiv[i-1].offsetLeft+'px';
+			oDiv[i].style.top=oDiv[i-1].offsetTop+'px';
+	    };
+			
+	}
+</script>
+</head>
+
+<body>
+<div>javascript</div>
+<div>java</div>
+<div>null</div>
+<div>false</div>
+<div>true</div>
+<div>document</div>
+<div>underfined</div>
+<div>double</div>
+<div>style</div>
+<div>time</div>
+<div>float</div>
+<div>text</div>
+<div>mouse</div>
+<div>div</div>
+<div>class</div>
+<div>array</div>
+</body>
+</html>

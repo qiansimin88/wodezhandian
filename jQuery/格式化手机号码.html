@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+	$(function(){
+		
+		//格式化手机号码 
+		var formattingPhoneNumber = function () {
+				//手机号
+			var phoneNum  = $(this).val().replace(/\s+/g,''),
+				//手机号个数
+				phoneLength = phoneNum.length;
+	
+			if (phoneLength > 3) {
+				
+				phoneNum = phoneNum.substring(0,3)+ ' ' + phoneNum.substring(3)
+					
+			}
+			
+			if (phoneLength > 7) {
+				
+				phoneNum = phoneNum.substring(0,3) + ' ' +phoneNum.substring(3,8) + ' ' + phoneNum.substring(8)
+					
+			}
+			
+			$(this).val(phoneNum)
+		};
+		
+		
+		$('.hehe').on('keypress',function () {
+
+			formattingPhoneNumber.call(this);
+				
+		})
+			
+	})
+</script>
+</head>
+
+<body>
+<input type="text" class='hehe'/>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+#div1 {background:red;width:200px;height:200px;position:absolute}
+.box { position:absolute;border:1px dashed black;}
+</style>
+<script>
+	window.onload=function()
+	{
+		var oDiv=document.getElementById('div1');
+		oDiv.onmousedown=function(ev)                        //鼠标按下算  间距
+															//在鼠标按下后 加上鼠标移动 算oDiv的  left 和TOP即可最后鼠标移开；
+		{
+			var oEvent=ev||event;
+			
+			var disX=oEvent.clientX-oDiv.offsetLeft;
+			var disY=oEvent.clientY-oDiv.offsetTop;
+			
+			var oBox=document.createElement('div');
+			oBox.className='box';                             //确定oBox的位置及大小及className。
+			oBox.style.height=oDiv.offsetHeight+'px';
+			oBox.style.width=oDiv.offsetWidth+'px';
+			oBox.style.left=oDiv.offsetLeft+'px';
+			oBox.style.top=oDiv.offsetTop+'px';
+			document.body.appendChild(oBox);
+			
+			document.onmousemove=function(ev)
+			{
+				var oEvent=ev||event;
+				var L=oEvent.clientX-disX;
+				var H=oEvent.clientY-disY;
+				if(L<0)
+				{
+				  L=0;
+				}
+				else if(L>document.documentElement.clientWidth-oDiv.offsetWidth)
+				{
+					L=document.documentElement.clientWidth-oDiv.offsetWidth
+				}
+				
+				
+				
+				
+				if(H<0)
+				{
+					H=0	
+				}
+				else if(H>document.documentElement.clientHeight-oDiv.offsetHeight)
+				{
+					H=document.documentElement.clientHeight-oDiv.offsetHeight;	
+				}
+				
+					oBox.style.left=L+'px'	
+					oBox.style.top=H+'px';	
+				
+			};
+			document.onmouseup=function()
+			{
+					document.onmousemove=null;
+					document.onmouseup=null;
+					//这个要在removeChild的前面 因为先是确定oDiv的位置，然后在是清除 oBox。
+					oDiv.style.left=oBox.offsetLeft+'px';
+					oDiv.style.top=oBox.offsetTop+'px';
+					
+					document.body.removeChild(oBox)  //清楚虚线框。
+					
+			};
+			return false
+		};	
+	}
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+
+
+</body>
+</html>

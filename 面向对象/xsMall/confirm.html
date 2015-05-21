@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>商城确认页</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<link rel="stylesheet" type="text/css" href="css/confirm.css"/>
+	</head>
+	<body>
+		<header class="header">
+			<section class="header-reg centerDis">
+				<div class="reg-wrap clearfix">
+					<a href="#" title="登陆">
+							登陆
+			     	</a>
+						
+				    <a href="#" title="注册">
+							注册
+				    </a>
+				</div>
+			</section>
+		</header>
+		<div class="nav-wrap">
+			<section class="nav-lists centerDis clearfix">
+				<ul class="nav-list clearfix">
+				<li><a href="#"><span class="hf-cz"></span><span>话费充值</span></a></li>
+				<li><a href="#"><span class="liuliang-cz"></span><span>流量充值</span></a></li>
+				<li><a href="#"><span class="qq-cz"></span><span>QQ业务</span></a></li>
+				<li><a href="#"><span class="gm-cz"></span><span>游戏充值</span></a></li>
+				</ul>
+			</section>
+		</div>
+		
+		<div class="order-info centerDis">
+			<h2 class="lead-title">
+				确认订单信息
+			</h2>
+			<form action="www.baidu.com" method="post">
+				<article class="net-in module-confirm">
+					<h3>入网信息</h3>
+					<ul class="form-area">
+						<li>
+							<label for="username">机主姓名</label>
+							<input id="username" name="username" class="input-enter username" type="text" tabindex="1" placeholder="新开户机主姓名" />
+						</li>
+						<li>
+							<label for="idcard">身份证号码</label>
+							<input id="idcard" name="idcard" class="input-enter idcard" type="text" maxlength='18' tabindex="2" placeholder="机主身份证号码，用以开通业务" />
+						</li>
+						<li>
+							<span><input type="checkbox" tabindex="3" name="isChoose" id="isChoose" value=""  class="isChoose"/><span class="special-width">签署入网协议：我已同意阅读并同意<a href="javascript:;">《入网协议》</a>和<a href="javascript:;">《拿走活动协议》</a></span></span>
+						</li>
+						
+					</ul>
+				</article>
+				<article class="post-info module-confirm">
+					<h3>邮寄信息</h3>
+					<ul class="form-area">
+						<li>
+							<label for="getusername">收货人姓名</label>
+							<input id="getusername" name="getusername" class="input-enter getusername" type="text" tabindex="4" placeholder="机主姓名必须与收货人姓名一致" />
+						</li>
+						<li>
+							<label for="phoneNum">联系电话</label>
+							<input id="phoneNum" name="phoneNum" class="input-enter phoneNum" type='tel' maxlength='18' tabindex="5" placeholder="手机号码，邮寄时联系"/>
+						</li>
+						<li>
+							<label>收货地址</label>
+							<section class="sect-area">
+								<select class="province-sele product-slele">
+									<option selected='selected'>省&nbsp;/&nbsp;直辖市</option>
+									<option >省&nbsp;/&nbsp;直辖市</option>
+								</select>
+								<select class="city-sele product-slele">
+									<option>市区</option>
+								</select>
+								<select class="county-sele product-slele">
+									<option>县&nbsp;/&nbsp;区</option>
+								</select>
+								<input tabindex='6'name="addr" id="addr" class="addr enterInput"
+                        placeholder="街道信息,不需要写省市区" />
+							</section>
+						</li>
+						
+					</ul>
+				</article>
+				<article class="package-info">
+					<div class="info-wrap">
+						<div class="top-info">
+							<div class="img-pd">
+								<img src="img/b.png"/>
+							</div>
+							<div class="text-pd">
+								<h3>小米3 MI3 16G版本</h3>
+								<p>已经号码：<span>1866822222</span></p>
+								<p>手机型号：<span>银色</span><span class="number-mb">X1</span></p>
+								<p>套餐: <span>189元/月</span></p>
+							</div>
+						</div>
+						<div class="bt-info">
+							<p>补差价额</p>
+							<p>¥1800</p>
+						</div>
+					</div>
+				</article>
+				<article class="computed-info">
+					<ul>
+						<li><span>差额</span><span>¥1200.00</span></li>
+						<li><span>运费</span><span>¥1200.00</span></li>
+						<li><span>分期话费</span><span>¥1200.00*24</span></li>
+						<li class="yhj-card"><span>优惠卷名称</span><span>¥1200.00</span></li>
+						<li class="km-card"><span>卡密优惠</span><span>¥1200.00</span></li>
+					</ul>
+					<div class="choosable-area">
+						<ul>
+							<li><span><input type="checkbox" name="yhj" class="yhj-choose"/>使用优惠卷</span><span class="yhj-span"><select class="yhj-option"><option selected="selected">请选择</option>></select></span></li>
+							<li>
+								<span><input type="checkbox" name='km' class="km-choose"/>使用卡密</span>
+							</li>
+							<li class="module-son">
+								<input type="text" class="km-kh" placeholder="卡号"/>
+							</li>
+							<li class="module-son">
+								<input type="password" class="km-password" placeholder="密码"/>
+							</li>
+						</ul>
+					</div>
+				</article>
+				<input type="submit" class="sub-btn" value="确认订单"/>
+			</form>
+		</div>
+		
+		<!--尾-->
+		<div class="footer">
+			<footer class="footer-wrap centerDis">
+				<div><a href="#" title="关于我们">关于我们</a>|<a href="#" title="联系我们">联系我们</a>|<a href="#" title="合作协议">合作协议</a>|<a href="#" title="荣誉墙">荣誉墙</a></div>
+				<div><a href="#" title="企业法人营业执照">企业法人营业执照</a>|<a href="#" title="增值业务经营许可证">增值业务经营许可证</a></div>
+				<div>Copyright@ 1999-2013版权所有 ICP备案许可<br/>证：浙ICP备11062741号</div>
+			</footer>
+		</div>
+		
+	</body>
+<!--	<script src="http://img.365xs.cn/v1/frontend/js/touch.js"></script>
+-->
+	<script src="http://img.365xs.cn/v1/Js/zepto.js" type="text/javascript" charset="utf-8"></script>
+	<script src="http://img.365xs.cn/v1/Js/zepto-touch.js"></script>
+	<script src="http://img.365xs.cn/v1/Js/zepto-selector.js"></script>
+	<!--<script src="http://img.365xs.cn/v1/Js/zepto-fx.js"></script>
+	<script src="http://img.365xs.cn/v1/Js/zepto-fxmethod.js"></script>-->
+	
+	<script type="text/javascript" src="js/lib/common.js" ></script>
+	<script src="js/lib/tips.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/inc/confirmCtrl.js" ></script>
+</html>

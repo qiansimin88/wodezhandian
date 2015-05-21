@@ -1,0 +1,10 @@
+CACHE MANIFEST
+########  CACHE:后面的都是缓存文件    NETWORK:后面的文件都是需要联网的情况下的文件
+CACHE:
+1.html
+css/2.css
+3.js
+NETWORK:
+1.jpg
+FALLBACK:
+2.html

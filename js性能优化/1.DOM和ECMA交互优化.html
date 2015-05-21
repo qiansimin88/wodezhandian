@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	window.onload=function(){
+		var oDiv=document.getElementById('div1');
+		
+		/*console.time('hello');
+		for (var i=0;i<5000;i++)
+		{
+			oDiv.innerHTML+='a';	
+		}
+		console.timeEnd('hello');   //通过for循环下面的直接DOM操作5000次 大概需要   480ms*/
+		
+		console.time('hello');
+		var con='';
+		for (var i=0;i<5000;i++){
+			
+			con+='a';	
+		}
+		oDiv.innerHTML=con;
+	};
+	    console.timeEnd('hello');          //通过变量缓存起来 然后在赋值给Dom只需要操作dom一次， 只需要  1ms;
+</script>
+</head>
+
+<body>
+	<div id="div1">
+    	
+    </div>
+</body>
+</html>

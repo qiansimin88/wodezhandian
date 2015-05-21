@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+* {margin:0;padding:0;}
+body {background:url(../../image/pagebg-m.jpg)}
+
+
+#navBox {width:300px;position:relative;margin:20px auto;font-size:25px;}
+.headBox {height:60px;background:#fff;font-weight:bold;}
+.headBox div {padding-left:50px;line-height:60px;cursor:pointer}
+.line {position:absolute;right:10px;top:10px;border-left:1px solid gray;padding:20px;}
+.line span { position:absolute;border-width:6px;border-color:#999 #fff #fff #fff;border-style:solid dashed dashed dashed;cursor:pointer;}
+a {text-decoration:none;color:#000}
+li {list-style:none;}
+img {border:none;float:left;}
+.list {position:absolute;top:65px;;left:0;width:100%;}
+.list  li {margin-bottom:5px;height:60px;position:relative;opacity:0;filter:alpha(opacity:0)}
+.list a {background:white;display:block;height:60px;color:#333;padding-left:30px;line-height:60px;}
+
+.list a:hover {background:yellow;color:#FFF};
+
+
+</style>
+<script src="../../js/prefectmove.js"></script>
+<script>
+	window.onload=function()
+	{
+		var oDiv=document.getElementById('navBox');
+		var oUl=oDiv.children[1];
+		var aLi=oUl.children;
+		var headBox=oDiv.children[0];
+		var opend=false;
+		
+		for (var i=0;i<aLi.length;i++)
+		{
+			if(i%2==1)
+			{
+				aLi[i].style.left=-aLi[i].offsetWidth+'px';	
+			}
+			else
+			{
+				aLi[i].style.left=aLi[i].offsetWidth+'px';	
+			}	
+		}
+		
+		headBox.onclick=function()
+		{
+			if(opend)										//如果是打开就的就收起来
+			{
+				headBox.className="headBox"          //收起来的className
+				var i=aLi.length-1;          
+			
+				var timer=setInterval(function(){
+					move(aLi[i],{left:i%2?-aLi[i].offsetWidth:aLi[i].offsetWidth,opacity:0})
+					i--;
+					if(i==-1)
+					{
+						clearInterval(timer)	
+					}	
+					},50)	
+			}
+			else											//如何过是关闭的就展开
+			{
+				    //打开的className    两个要同时存在的。
+				var i=0;
+				var timer=setInterval(function(){
+				move(aLi[i],{left:0,opacity:100})
+				i++;
+				if(i==aLi.length)
+				{
+					clearInterval(timer)	
+				}
+				},50)
+					
+			}
+			
+		
+				if(opend)                                  //每次点击后 都变换状态。  一定要放在后面才可以。
+				{
+					opend=false	
+				}
+				else
+				{
+					opend=true	
+				}
+		}
+		
+		for(var i=0;i<aLi.length;i++)
+		{
+			var oDiv2=headBox.children[0];
+			
+			aLi[i].onclick=function()
+			{
+				oDiv2.innerHTML=this.children[0].innerHTML;      //head通过的innerHTML更改内容。灵活使用children[X]
+			/*	for(var i=0;i<aLi.length;i++)
+				{
+					move(aLi[i],{left:i%2?-aLi[i].offsetWidth:aLi[i].offsetWidth,opacity:0})	
+				}
+			*/	var i=aLi.length-1;    
+				opend=false;              //这里一定要注意，javascript要一条一条来，逻辑要好，要全面，这里ali每次点击都是收起状态，所依不能忘  																								                                    		  要	把opend=false加上去  不能忘掉，忘掉就出现BUG了、      
+			
+				var timer=setInterval(function(){
+					move(aLi[i],{left:i%2?-aLi[i].offsetWidth:aLi[i].offsetWidth,opacity:0})
+					i--;
+					if(i==-1)
+					{
+						clearInterval(timer)	
+					}	
+					},50)
+			}
+				
+		}
+			
+	}
+</script>
+</head>
+
+<body>
+<div id="navBox">
+	<div class="headBox"><div><img src="../../image/ico_01.png" style="display:none;">请选择</div>
+    					<span class="line"><span></span></span>
+    
+    </div>
+    <ul class="list">
+    	<li><a href="javascript:;"><img src="../../image/ico_01.png"/>关于我们</a></li>
+        <li><a href="javascript:;"><img src="../../image/ico_02.png"/>联系我们</a></li>
+        <li><a href="javascript:;"><img src="../../image/ico_03.png"/>官网首页</a></li>
+        <li><a href="javascript:"><img src="../../image/ico_04.png"/>课程案例</a></li>
+        <li><a href="javascript:"><img src="../../image/ico_05.png"/>学员生活</a></li>
+        <li><a href="javascript:"><img src="../../image/ico_06.png"/>在线咨询</a></li>
+    	 </ul>
+</div>
+</body>
+</html>

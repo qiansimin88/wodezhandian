@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	window.onload=function(){
+			var table=document.getElementsByTagName('table')[0];
+			var tbody=table.getElementsByTagName('tbody')[0];
+			var addB=document.getElementsByName('add')[0];
+			var delB=document.getElementsByName('del')[0];
+			var saveB=document.getElementsByName('save')[0];
+			
+			addB.onclick=function(){				//添加一行
+			var tr=document.createElement('tr');
+			var aTd='';
+			for(var i=0;i<4;i++){
+				aTd=aTd+'<td>&nbsp;</td>'			//因为有4个  td  所以循环4次 创建一个4个TD的字符串
+			}
+			tr.innerHTML=aTd;
+			tbody.appendChild(tr);
+		};
+			delB.onclick=function(){			//删除一行
+			var aTr=tbody.getElementsByTagName('tr');   //获取所有的tr集合
+			tbody.removeChild(aTr[aTr.length-1]);		//通过下标删除最后一个tr即可
+		};
+		
+		//用事件委托的方法给整个 table添加双击 事件  然后让每个单元格都能自定义文字
+		table.ondblclick=function(ev){
+			var oEvent=ev||event;
+			var target=oEvent.target||oEvent.srcElement;
+			if(target.nodeName='TD'){
+				var oldV=target.innerHTML;
+				target.innerHTML='';
+				var input=document.createElement('input');
+				input.type="text";
+				input.value=oldV;
+				input.size=12;
+				target.appendChild(input);
+				//input  onblur  就删除这个文本域   并把当前的文本域中的文本内容 保存当前的TD中
+				input.onblur=function(){
+					var newV=this.value;
+					target.removeChild(this);
+					target.innerHTML=newV;	
+				};
+			};
+		};	
+		
+		
+		/**************************************以下都是wbeSql的操作***************************************/
+		if(window.openDatabase){        //判断是否支持本地数据库
+		var str='';
+			var dataBase=openDatabase(
+				'test','1.0','学生表',1024*1024,function(){}
+			);    //有这个数据库就打开数据库 没有就创建这个数据库
+			dataBase.transaction(function(fx){
+				fx.executeSql(                                //建表
+					'create table if not exists class (name TEXT,age TEXT,sex TEXT,class TEXT)',
+					[],
+					function(){
+						alert('创建表成功')
+					},
+					function(){
+						alert('创建表失败')	
+					}
+				)
+			});
+		};
+		//保存表单中的数据
+		saveB.onclick=function(){
+			for(var i=1;i<tbody.getElementsByTagName('tr').length;i++){
+				var tds=tbody.getElementsByTagName('tr')[i].getElementsByTagName('td'); //每行下面的td集合
+				dataBase.transaction(function(fx){
+					fx.executeSql(
+						"insert into class (name,age,sex,class) values(?,?,?,?)", 
+						[tds[0].innerHTML,tds[1].innerHTML,tds[2].innerHTML,tds[3].innerHTML],
+						function(){
+							alert('成功插入一行数据');
+						}
+					)
+				});
+			};	
+		};
+		//查询表单中的数据
+	dataBase.transaction(function(fx){
+			fx.executeSql(
+			'select *from class',
+			[],
+			function(fx,result){
+				for(var i=0;i<result.rows.length;i++){
+					var tr=document.createElement('tr');
+					var std='<td>'+result.rows.item(i)['name']+'</td>'+'<td>'+result.rows.item(i)['age']+'</td>'+'<td>'+result.rows.item(i)['sex']+'</td>'+'<td>'+result.rows.item(i)['class']+'</td>';
+					tr.innerHTML=std;
+					tbody.appendChild(tr);
+				};	
+			}	
+		)
+	});	
+	}
+</script>
+</head>
+
+<body>
+<table width=500 border=1 cellspacing=1>
+	<caption>学生花名册</caption>
+    <tr>
+    	<th>姓名</th><th>年龄</th><th>性别</th><th>班级</th>
+    </tr>
+</table>
+<input type="button" value="添加一行" name="add">
+<input type="button" value="删除一行" name="del">
+<input type="button" value="保存" name="save">
+</body>
+</html>

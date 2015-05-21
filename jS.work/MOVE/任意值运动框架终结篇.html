@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+div {width:150px;height:150px;background:#F00;border:1px solid black;float:left;margin:20px;line-height:50px;}
+#div5 {opacity:0.2;filter:alpha(opacity:20);}
+#div6 {position:absolute;top:450px;left:0px;}
+</style>
+<script>
+	window.onload=function()
+	{
+		var oDiv1=document.getElementById('div1');
+		
+		oDiv1.onmouseover=function()
+		{
+			move(this,'height',500);	
+		};
+		oDiv1.onmouseout=function()
+		{
+			move(this,'height',150);	
+		};
+		var oDiv2=document.getElementById('div2');
+		oDiv2.onmousemove=function()
+		{
+			move(this,'width',600)	
+		};
+		oDiv2.onmouseout=function()
+		{
+			move(this,'width',150)
+		};
+		
+		var oDiv3=document.getElementById('div3');
+		
+		oDiv3.onmouseover=function()
+		{
+			move(this,'line-height',200);	
+		};
+		oDiv3.onmouseout=function()
+		{
+			move(this,'line-height',12);	
+		};
+		
+		var oDiv4=document.getElementById('div4');
+		
+		oDiv4.onmouseover=function()
+		{
+			move(this,'padding',100);	
+		};
+		oDiv4.onmouseout=function()
+		{
+			move(this,'padding',2);	
+		};
+		var oDiv5=document.getElementById('div5');
+		
+		oDiv5.onmouseover=function()
+		{
+			move(this,'opacity',100);	
+		};
+		oDiv5.onmouseout=function()
+		{
+			move(this,'opacity',20);	
+		};
+		var oDiv6=document.getElementById('div6');
+		oDiv6.onclick=function()
+		{
+			move(this,'left',500);	
+		};
+		oDiv6.onmouseout=function()
+		{
+			move(this,'left',0);	
+		};
+	};
+	function getStyle(obj,name)			//这个函数是为了获取行间样式的。
+	{	
+		if(obj.currentStyle)
+		{
+			
+			return obj.currentStyle[name];
+			 	
+		}
+		else
+		{
+			return getComputedStyle(obj,false)[name];	
+		}	
+	}
+	function move(obj,attr,target)  //运动框架
+	{
+		clearInterval(obj.timer);
+		
+		obj.timer=setInterval(function(){
+		
+		if(attr=='opacity')                                  //为了透明属性而加
+		{
+			var cur=Math.round(parseFloat(getStyle(obj,attr))*100);	    //parseFloat是因为获取的opacity是小数 Math.round四舍五入防BUG
+		}
+		else
+		{
+			var cur=parseInt(getStyle(obj,attr));	
+		}
+		var speed=(target-cur)/20;
+		speed=speed>0?Math.ceil(speed):Math.floor(speed);
+			if(cur==target)                       //if一定要加==双等于才行。
+			{
+				clearInterval(obj.timer)	
+			}
+			else
+			{
+				if(attr=='opacity')
+				{
+					cur+=speed
+					obj.style.filter='alpha(opacity:'+cur+')';
+					obj.style.opacity=cur/100;
+					document.getElementById('div7').value=obj.style.opacity;
+				}
+				else
+				{
+					obj.style[attr]=cur+speed+'px'	
+				}
+			
+			}	
+		},30)	
+	}
+	
+</script>
+</head>
+
+<body>
+
+<div id="div1">变高</div>
+<div id="div2">变宽</div>
+<div id="div3">呵呵呵呵呵呵</div>
+<div id="div4"></div>
+<div id="div5"></div>
+<div id="div6"></div>
+<input id="div7" type="text"/>
+</body>
+</html>

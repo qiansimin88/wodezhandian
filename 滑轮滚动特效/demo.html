@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>滚轮触发页面效果</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/> 
+<script type="text/javascript" src="http://www.oppo.com/userfiles/www/js/jquery-1.7.2.min.js?t=1413158400"></script>
+<script type="text/javascript" src="http://www.oppo.com/userfiles/www/js/jquery.easing.1.3.js?t=1413158400"></script>
+
+<style>        
+        * {margin:0; padding:0;}
+        html,body{overflow-x:hidden; }
+        body{position:relative; height:100%; background:#FFF; }
+        #wrap {width:1160px; margin:0 auto; overflow: hidden;}
+        #wrap > div {position: relative; margin-bottom:20px}
+        #box1 {height:500px; background:#ccc}
+        #box2 {height:300px; background:#e5e5e5}
+        #box3 {height:400px; background:#d8d8d8}
+        #box4 { background:#a8a8a8}
+        #box1 > div {position: absolute; top:20px; width:500px; height:300px;}
+        #box1 .a1 { left:-20%; margin-left:-580px; background: red}
+        #box1 .a2 { left:120%; margin-left:80px; background: green}
+        #box2 > div {position: absolute; top:25px; width:300px; height:250px;}
+        #box2 .b1 {left:-20%; margin-left:-580px; background:blue;}
+        #box2 .b2 {left:-50%; margin-left:-150px; background:orange;}
+        #box2 .b3 {left:120%; margin-left:280px; background:#11ff33;}
+        #box3 > div {position: absolute; }
+        #box3 .c1 {left:-20%; top:20px; width:300px; height:200px; margin-left:-580px; background:blue;}
+        #box3 .c2 {left:-50%; top:20px; width:300px; height:200px; margin-left:-260px; background:orange;}
+        #box3 .c3 {left:120%; top:20px; width:525px; height:360px; margin-left:55px; background:#11ff33;}
+        #box3 .c4 {left:-20%; top:240px; width:620px; height:140px; margin-left:-580px; background:#ff0000;}
+        #box4 {overflow: hidden; padding:20px;}
+        #box4 > div {float: left; width:20%; position: relative; bottom: 150px}
+        #box4 > div > span {margin:20px; display: block; height:100px; line-height: 100px; text-align: center;  background:#334455}
+</style>
+</head>
+<body>
+        <div id="wrap">
+                <div id="box1">
+                        <div class="a1" data-init="false">1</div>
+                        <div class="a2" data-init="false">2</div>
+                </div>
+                <div id="box2">
+                        <div class="b1" data-init="false">1</div>
+                        <div class="b2" data-init="false">2</div>
+                        <div class="b3" data-init="false">3</div>
+                </div>
+                <div id="box3">
+                        <div class="c1" data-init="false">1</div>
+                        <div class="c2" data-init="false">2</div>
+                        <div class="c3" data-init="false">3</div>
+                        <div class="c4" data-init="false">4</div>
+                </div>
+                <div id="box4">
+                        <div class="d1" data-init="false"><span>1</span></div>
+                        <div class="d2" data-init="false"><span>2</span></div>
+                        <div class="d3" data-init="false"><span>3</span></div>
+                        <div class="d4" data-init="false"><span>4</span></div>
+                        <div class="d5" data-init="false"><span>5</span></div>
+                </div>
+        </div>
+
+
+        <script type="text/javascript">
+                window.onload=function(){
+
+                        var box1=document.getElementById('box1'),
+                                 box2=document.getElementById('box2'),
+                                 box3=document.getElementById('box3'),
+                                 box4=document.getElementById('box4')
+                                 a=box1.getElementsByTagName('div'),
+                                 b=box2.getElementsByTagName('div'),
+                                 c=box3.getElementsByTagName('div'),
+                                 d=box4.getElementsByTagName('div')
+
+
+                        for (var i = 0; i < a.length; i++) {
+                                a[i].setAttribute('data-init','false');
+                        };
+
+                        for (var i = 0; i < b.length; i++) {
+                                b[i].setAttribute('data-init','false');
+                        };
+
+                        for (var i = 0; i < c.length; i++) {
+                                c[i].setAttribute('data-init','false');
+                        };
+
+                        for (var i = 0; i < d.length; i++) {
+                                d[i].setAttribute('data-init','false');
+                        };
+
+                        //
+                        function isScrolled(obj){
+                                var scrollTop=document.documentElement.scrollTop || document.body.scrollTop,
+                                         bodyHeight=document.documentElement.clientHeight || document.body.clientHeight,
+                                         objTop=$(obj).offset().top;
+                                if (scrollTop + bodyHeight > objTop+50) {
+                                        return true;
+                                }else{
+                                        return false;
+                                }
+                        }
+
+                        //
+                        function animateInit(){
+                                for (var i = 0; i < a.length; i++) {
+                                        if (isScrolled(a[i]) && a[i].getAttribute('data-init')=='false') {
+                                                $(a[i]).animate({'left': '50%'}, 1000, 'easeOutCubic');
+                                                a[i].setAttribute('data-init','true');
+                                        };
+                                };
+
+                                for (var i = 0; i < b.length; i++) {
+                                        if (isScrolled(b[i]) && b[i].getAttribute('data-init')=='false') {
+                                                $(b[i]).animate({'left': '50%'}, 1000, 'easeOutCubic');
+                                                b[i].setAttribute('data-init','true');
+                                        };
+                                };
+
+                                for (var i = 0; i < c.length; i++) {
+                                        if (isScrolled(c[i]) && c[i].getAttribute('data-init')=='false') {
+                                                $(c[i]).animate({'left': '50%'}, 1000, 'easeOutCubic');
+                                                c[i].setAttribute('data-init','true');
+                                        };
+                                };
+
+                                for (var i = 0; i < d.length; i++) {
+                                        if (isScrolled(d[i]) && d[i].getAttribute('data-init')=='false') {
+                                                $(d[i]).delay(i*200).animate({'bottom': '0'}, 1000, 'easeOutCubic');
+                                                d[i].setAttribute('data-init','true');
+                                        };
+                                };
+
+                        }
+
+                        animateInit();
+
+                        window.onscroll=function(){
+                                animateInit();
+                        }
+                }
+        </script>
+</body>
+</html>

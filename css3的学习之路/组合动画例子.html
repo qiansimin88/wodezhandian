@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="gb2312">
+        <title>CSS3每日一练之动画属性-Transitions组合动画| 前端开发网(W3Cfuns.com)！</title>
+        <style type="text/css">
+        *{margin:0; padding:0;}
+        body{font-size:14px; color:#333; font-family:"Microsoft Yahei";}
+                #box
+                {
+                        margin:-100px 0 0 -100px;
+                        top:50%;
+                        left:50%;
+                        width:200px;
+                        height:200px;
+                        line-height:200px;
+                        text-align:center;
+                        border:5px #d1d1d1 solid;
+                        border-radius:105px;
+                        box-shadow:0 0 20px #666;
+                        background:#eee;
+                        overflow:hidden;
+                        position:absolute;
+                        
+                        /*动画部分 开始*/
+                        -webkit-transition:
+                        margin 1s linear,
+                        width 1s linear,
+                        height 1s linear,
+                        font-size 1s linear,
+                        line-height 1s linear,
+                        color 1s linear,
+                        border 1s linear,
+                        border-radius 1s linear,
+                        background 1s linear,
+                        box-shadow 1s linear,
+                        -webkit-transform 1s linear;
+                        
+                        -moz-transition:
+                        margin 1s linear,
+                        width 1s linear,
+                        height 1s linear,
+                        font-size 1s linear,
+                        line-height 1s linear,
+                        color 1s linear,
+                        border 1s linear,
+                        border-radius 1s linear,
+                        background 1s linear,
+                        box-shadow 1s linear,
+                        -moz-transform 1s linear;
+                        
+                        -o-transition:
+                        margin 1s linear,
+                        width 1s linear,
+                        height 1s linear,
+                        font-size 1s linear,
+                        line-height 1s linear,
+                        color 1s linear,
+                        border 1s linear,
+                        border-radius 1s linear,
+                        background 1s linear,
+                        box-shadow 1s linear,
+                        -o-transform 1s linear;
+                        /*动画部分 结束*/
+                }
+                
+                #box:hover
+                {
+                        margin:-200px 0 0 -200px;
+                        width:400px;
+                        height:400px;
+                        font-size:26px;
+                        line-height:400px;
+                        color:#fff;
+                        border:5px #fff solid;
+                        border-radius:210px;
+                        background:#05a;
+                        box-shadow:0 0 40px #900;
+                        -webkit-transform:rotate(720deg);
+                        -moz-transform:rotate(720deg);
+                        -o-transform:rotate(720deg);
+                }
+        </style>
+    </head>
+    
+    <body>
+            <div id="box">前端开发网(W3Cfuns.com)！</div>
+    </body>
+</html>

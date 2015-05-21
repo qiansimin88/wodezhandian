@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+#div1 {
+		width:150px;height:200px; border:1px solid black;background:#9FC;position:absolute;left:-150px;
+}
+#div1 span{
+	position:absolute;width:20px;height:60px;
+		background:#993;line-height:20px;right:-20px;top:70px;
+}
+</style>
+<script>
+	window.onload=function()
+	{
+		var oDiv=document.getElementById('div1');
+		
+		
+		oDiv.onmouseover=function()
+		{
+			move(0);	
+		}
+		oDiv.onmouseout=function()
+		{
+			move(-150)	
+		}
+			
+		
+	}
+
+	
+			var timer=null  //之所以放在函数外面 是确保 确保timer=null只调去一次，而放在下面则每次onmouseover都使得timer=null，则会BUG.
+	function move(target)
+	{
+	    	
+			var oDiv=document.getElementById("div1");
+		
+		clearInterval(timer);
+		timer=setInterval(function(){
+			var speed=0;
+			if(oDiv.offsetLeft>target)
+			{
+				speed=-10;	
+			}
+			else
+			{
+				speed=10;	
+			}
+			
+			if(oDiv.offsetLeft==target)
+			{
+				clearInterval(timer);	
+			}
+			else
+			{
+				oDiv.style.left=oDiv.offsetLeft+speed+'px';	
+			}
+		},30);
+			
+	}
+
+</script>
+
+</head>
+
+<body>
+<div id="div1">
+<span>分享到</span>
+</div>
+</body>
+</html>

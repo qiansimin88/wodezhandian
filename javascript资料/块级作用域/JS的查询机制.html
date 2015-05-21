@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	var c=2;
+	
+	function test(){
+		return c;	
+	}
+	var b=test;
+	alert(b())    //2   因为test()函数中没有 c  这个变量   js的机制就自动向上级作用域链查询（外部执行环境）
+</script>
+</head>
+
+<body>
+</body>
+</html>

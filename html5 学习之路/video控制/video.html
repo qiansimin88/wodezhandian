@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	#box {width:500px;height:40px;background:#F00;border-radius:10px;box-shadow:1px 1px 2px #232;}
+	.play {width:0px;height:0px;
+	       border-left:16px solid #fff;
+		   border-top:12px solid rgba(255,255,255,0);
+		   border-bottom:12px solid rgba(255,255,255,0);
+		   margin:10px 0 0 10px;
+		   float:left;
+		   opacity:1;
+	}
+	.pause {
+		width:6px;height:18px;
+		border-left:3px solid #FFF;
+		border-right:3px solid #FFF;
+		float:left;
+		margin:10px 0 0 10px;
+		opacity:1;
+	}
+	#progress{
+		float:left;
+		width:60%;height:8px;background:#FFF;
+		box-shadow:1px 1px 2px #232;
+		border-radius:5px;
+		margin:16px 0 0 16px;
+		position:relative;
+	}
+	#bar {
+		width:0%;height:100%;background:#ccc;
+	}
+	#control {
+		width:16px;height:17px;position:absolute;left:0;top:-4px;background:#FFF;border-radius:100%;box-shadow:1px 1px 1px #999999;cursor:pointer;
+	}
+	.soundon {width:10px;height:8px;border-right:13px solid #fff;border-top:6px solid rgba(255,255,255,0);border-bottom:6px solid rgba(255,255,255,0);float:left;margin-top:10px;margin-left:10px;cursor:pointer;}
+	.soundoff {width:10px;height:8px;border-right:13px solid #000;border-top:6px solid rgba(255,255,255,0);border-bottom:6px solid rgba(255,255,255,0);float:left;margin-top:10px;margin-left:10px;cursor:pointer;}
+	
+	
+	#volume{
+		float:left;
+		width:15%;height:8px;background:#FFF;
+		box-shadow:1px 1px 2px #232;
+		border-radius:5px;
+		margin:16px 0 0 6px;
+		position:relative;
+	}
+	#volume-bar {
+		width:100%;height:100%;background:#ccc;border-radius:5px;
+	}
+	#volume-control {
+		width:16px;height:17px;position:absolute;left:0;top:-4px;background:#FFF;border-radius:100%;box-shadow:1px 1px 1px #999999;cursor:pointer;
+	}
+	
+	#full {width:15px;height:15px;border:2px solid #ccc;cursor:pointer;float:left;margin:10px 0 0 15px;transition:all 0.2s ease-out;}
+	#full:hover {width:20px;height:20px;margin:7px 0 0 12px;}
+</style>
+<script>
+	window.onload=function(){
+		var play=document.getElementById('play');	 //播放按钮
+		var video=document.getElementById('video');  //视频
+		var box=document.getElementById('box');		 //整体
+		var progress=document.getElementById('progress');  //总的视频进度条
+		var bar=document.getElementById('bar');      //视频当前进度条
+		var control=document.getElementById('control');  //进入体按钮
+		var sound=document.getElementById('sound');    //喇叭
+		var fullscreen=document.getElementById('full');  //是否全屏
+		
+		//兼容函数
+		function addEvent(obj,ev,fn){
+			if(obj.attachEvent)
+			{
+				obj.attachEvent('on'+ev,fn)	
+			}
+			else
+			{
+				obj.addEventListener(ev,fn,false)	
+			}	
+		}
+		//是否全屏
+		addEvent(fullscreen,'click',function(){
+			video.webkitRequestFullScreen();
+			video.mozRequestFullScreen();
+		});
+		//按钮部分
+		play.onclick=function(){
+			if(video.paused){  //通过video的api得知pause则是暂停状态
+				this.className='pause';
+				video.play();	
+			}
+			else
+			{
+				this.className='play';
+				video.pause();	
+			}
+		};	
+		
+		addEvent(video,'timeupdate',function(){           //timeupdata  视频过程的函数
+			var sclae =video.currentTime/video.duration;
+			var posi=progress.offsetWidth*sclae;
+			bar.style.width=posi+'px';   //当前视频进度条
+			
+			if(sclae>=0.9)
+			{
+				control.style.left=posi-16+'px';
+			}
+			else
+			{
+				control.style.left=posi+'px';	
+			};
+		});
+		
+		//拖拽  按钮
+		control.onmousedown=function(e){
+			video.pause();
+			play.className='play';
+			document.onmousemove=function(e){
+				var posL=e.clientX-box.offsetLeft-progress.offsetLeft;
+				if(posL<=0)
+				{
+					posL=0;	
+				}
+				else if(posL>=progress.offsetWidth-16)
+				{
+					posL=progress.offsetWidth-16
+				}
+				control.style.left=	posL+'px';
+				bar.style.width=posL+'px';
+				
+			};
+			document.onmouseup=function(){
+
+				var newscale=control.offsetLeft/progress.offsetWidth;
+				video.currentTime=newscale*video.duration;
+				video.play();
+				play.className='pause';
+				document.onmousemove=null;
+				document.onmouseup=null;
+			};
+			return false;
+		};
+		
+		//是否静音
+		sound.onclick=function(){
+			if(video.muted){
+				video.muted=false;
+				this.className="soundon"	
+			}
+			else
+			{
+				video.muted=true;
+				this.className='soundoff';	
+			}
+		};
+	}
+</script>
+</head>
+
+<body>
+	<video src="../../image/Lead The Way--音悦Tai.mp4" id="video" controls></video>
+	<div id="box">
+    	<!--按钮-->
+    	<div id="play" class="play">
+        </div>
+        <!--进度条-->
+        <div id="progress">
+        	<div id="bar">
+            	
+            </div>
+            <div id="control">
+            	
+            </div>
+        </div>
+        <!--喇叭-->	
+        <div id="sound" class="soundon">
+        	
+        </div>
+         <!--声音控制条-->
+        <div id="volume">
+        	<div id="volume-bar">
+            	
+            </div>
+            <div id="volume-control">
+            	
+            </div>
+        </div>
+       <!--全屏-->
+       <div id="full">
+       </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	#table {border:1px solid #000;width:600px;border-collapse:collapse;}
+	th,td {border:1px solid #000;text-align:center;line-height:40px;}
+</style>
+<script src="../js/jquery-1.7.2.min.js"></script>
+<script>
+	$(function(){       
+		$('a.view').on('click',function(){
+			var arr=[]; //设置一个空的数组，储存数值
+			var len=$(this).parent().siblings().size();
+			alert(len)
+			for(var i=0;i<len;i++)
+			{
+				arr.push($(this).parent().siblings().eq(i).text())
+			}
+			/*$(this).parent().siblings().each(function(){               //与for循环一样；
+				arr.push($(this).text())
+			});*/
+			$('#popdiv').show().find('span').each(function(i){
+				$(this).text(arr[i])        //巧用each循环  来遍历每一个值，巧用arr数组来储存数据    //这里的$(this)指的就不是点击的对象而是find('span')的span集合对象。
+			});
+		});
+	});
+</script>
+</head>
+
+
+<body>
+	<table id="table">
+    	<thead>
+        	<tr>
+            	<th>姓名</th>
+                <th>岗位</th>
+                <th>年龄</th>
+                <th>工资</th>
+                <th>操作</th>
+        	</tr>
+        </thead>
+        <tbody>
+        	<tr>
+                <td>周杰伦</td>
+                <td>歌手</td>
+                <td>34</td>
+                <td>8亿</td>
+                <td><a class="view" href="javascript:void(0);">查看</a>
+                    <a href="javascript:void(0);">删除</a>
+                </td>
+            </tr>
+            <tr>
+                <td>小钱</td>
+                <td>前端开发</td>
+                <td>23</td>
+                <td>3500</td>
+                <td><a class="view" href="javascript:void(0);">查看</a>
+                    <a href="javascript:void(0);">删除</a>
+                </td>
+            </tr>
+              <tr>
+                <td>老王</td>
+                <td>运营维护</td>
+                <td>33</td>
+                <td>7000</td>
+                <td><a class="view" href="javascript:void(0);">查看</a>
+                    <a href="javascript:void(0);">删除</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <style type="text/css">
+		#popdiv {padding:15px;width:600px;position:absolute;left:50%;margin-left:-300px;top:200px;border:1px solid #0CF;display:none;}
+		#popdiv p {border-bottom:1px solid #0CF;}
+	</style>
+   <div id="popdiv">
+   		<p><strong>姓名：</strong><span></span></p>
+        <p><strong>岗位：</strong><span></span></p>
+        <p><strong>工资：</strong><span></span></p>
+   </div>
+</body>
+</html>

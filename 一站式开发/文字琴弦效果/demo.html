@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#wrap {margin:50px auto;padding:0;list-style: none;width:340px;}
+			#wrap li {border:1px solid #000;height:40px;font:12px/40px '宋体';position:relative;}
+			#wrap li span {line-height: 12px;height:12px;width:12px;}
+		</style>
+	</head>
+	<script type="text/javascript" charset="utf-8">
+		window.onload=function(){
+			
+			var oWrap = document.getElementById("wrap");
+			
+			var aLi = oWrap.getElementsByTagName('li');
+			
+			for(var i=0;i<aLi.length;i++) {
+				
+				var container = aLi[i].innerHTML;
+				
+				aLi[i].innerHTML = '';
+				
+				for(var j=0;j<container.length;j++) {
+					
+					aLi[i].innerHTML += '<span>'+container.charAt(j)+'</span>' ; 
+					
+				};
+				
+				var aSpan = aLi[i].children;
+				
+				for(var j =0;j<aSpan.length;j++) {
+					
+					aSpan[j].style.left = aSpan[j].offsetLeft+'px';
+					
+					aSpan[j].style.top = aSpan[j].offsetTop+'px';
+					
+				};
+				
+				for(var j =0;j<aSpan.length;j++) {
+					
+					aSpan[j].style.position = 'absolute';
+				
+				};
+				
+
+			};
+			
+		};
+	</script>
+	<body>
+		<ul id="wrap">
+			<li>可爱而又迷人的反派角色，小次郎就是我。</li>
+			<li>可爱而又迷人的反派角色，小次郎就是我。</li>
+			<li>可爱而又迷人的反派角色，小次郎就是我。</li>
+			<li>可爱而又迷人的反派角色，小次郎就是我。</li>
+			<li>可爱而又迷人的反派角色，小次郎就是我。</li>
+		</ul>
+	</body>
+</html>

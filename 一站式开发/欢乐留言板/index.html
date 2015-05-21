@@ -1,0 +1,275 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+body,ul,p{margin:0;padding:0; font:12px "宋体";}
+li{ list-style:none;}
+body{background:#e8d0ca;}
+#message{width:600px;margin:30px auto; overflow:hidden;padding:0 50px;}
+#header{ height:30px;background:#fff; border-radius:5px; line-height:30px; text-indent:2em; box-shadow:0 5px 7px rgba(0,0,0,0.2);}
+#footer{ height:30px;background:#fff;box-shadow:0 5px 7px rgba(0,0,0,0.2); border-radius:5px; line-height:30px; text-align:center; position:relative;z-index:10;}
+#footer a,#footer p{ display:inline-block; background:}
+#footer a{ transition:0.5s;opacity:0;text-decoration:none;background:#d5ccc8;line-height:22px;padding:0 10px; color:#555; border-radius:2px;box-shadow:0 1px 3px rgba(0,0,0,0.5);margin:0 5px;}
+#footer a:active,#footer .active{box-shadow:inset 0 1px 3px rgba(0,0,0,0.5);}
+#messageList{transition:all 1.5s ease;height:0;padding:10px 0;margin-left:100px;border-left:1px solid #fff;}
+#messageList li{padding:5px 0; position:relative; min-height:100px; -webkit-perspective: 800px;-webkit-perspective-origin:left ;}
+#messageList .box{-webkit-transform-style:preserve-3d;-webkit-transform-origin:left 30px;-webkit-transform:rotateY(90deg);transition: 0.6s;}
+#messageList .pic{width:60px;height:60px;border:5px solid #fff;border-radius:50%; position:absolute;left:-100px;top:0;background:url(img/1.png) center no-repeat; box-shadow:inset 0 2px 5px rgba(0,0,0,0.2),0 5px 7px rgba(0,0,0,0.2);}
+#messageList .ico{ width:8px;height:8px;background:#F33;border:3px solid #fff;border-radius:50%;box-shadow:inset 0 2px 5px rgba(0,0,0,0.2),0 5px 7px rgba(0,0,0,0.2); position:absolute;left:-8px;top:23px;}
+#messageList .text{margin:0 30px;background:#f7ebe6;border:5px solid #fff;line-height:30px;min-height:50px;padding:10px; border-radius:5px;box-shadow:inset 0 2px 5px rgba(0,0,0,0.2),0 5px 7px rgba(0,0,0,0.2);}
+#messageList .reply{transition:0.6s cubic-bezier(0.000, 0.485, 0.515, 1.255);margin-top:10px;-webkit-transform-origin: top;-webkit-transform: rotateX(-90deg);-webkit-backface-visibility: hidden;}
+</style>
+</head>
+<body>
+<div id="message">
+	<header id="header">留言回复</header>
+    <ul id="messageList">
+    	<!--<li>
+        	<div class="box">
+            	<div class="pic"></div>
+                <div class="ico"></div>
+                <div class="content text">学习课程</div>
+                <div class="reply text">好好学习，天天做出好东西~~</div>
+            </div>
+        </li>-->
+    </ul>
+    <footer id="footer">
+    	<!--<a href="javascript:;">首页</a>
+        <a href="javascript:;" >上一页</a>
+    	<p>
+        	<a href="javascript:;" class="active">1</a>
+            <a href="javascript:;">2</a>
+            <a href="javascript:;">3</a>
+       	</p>
+        <a href="javascript:;">下一页</a>
+        <a href="javascript:;">末页</a>-->
+	</footer>
+	<script src="date.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script type="text/javascript" charset="utf-8">
+	
+		var pageDateNum = 8 ;   //一页几条数据
+	
+		var footer = document.getElementById("footer");
+		
+		var dateLen = Math.ceil(date.length/pageDateNum) ;  //向上取整
+		
+		//调用
+			createFooter();
+			createDate(1);
+		
+		function createFooter () {
+			
+			var str = '' ;
+			
+			str += '<a href="javascript:;">首页</a><a href="javascript:;" >上一页</a><p>';
+			
+			for (var i=0;i<dateLen;i++) {
+				
+			
+				
+				str += '<a href="javascript:;">'+(i+1)+'</a>';
+				
+			};
+			
+			str += '</p><a href="javascript:;">下一页</a><a href="javascript:;">末页</a>';
+			
+			footer.innerHTML =str;
+			
+			
+			
+		};
+		
+		
+		
+		function createDate (iNum) {
+			
+			var aList = document.getElementById("messageList");
+			
+			var str = '';
+			
+			var iStart = iNum * pageDateNum;
+			
+			var iEnd = iStart+pageDateNum > date.length ? date.length:iStart+pageDateNum;
+			
+			for(var i = iStart ; i < iEnd ; i++) {
+				
+				str += '<li><div class="box"><div class="pic"></div><div class="ico"></div><div class="content text">'+date[i].message+'</div><div class="reply text">'+date[i].message+'</div></div> </li>';
+				
+			};
+			
+			aList.innerHTML = str;
+			
+			controlFooter(iNum);
+			
+		};
+		
+		function controlFooter (iNum) {
+			
+			var iNow = 0;
+			
+			var allA = footer.getElementsByTagName('a');
+			
+			var aPs = footer.getElementsByTagName('p')[0];
+			
+			var aBtns = aPs.children;
+			
+			aBtns.className='';
+			
+			iNow =iNum;
+			
+			aBtns[iNow].className = 'active';
+			
+			if(iNow == 0) {
+				
+				allA[0].style.display = 'none';
+				
+				allA[1].style.display = 'none';
+				
+			}else {
+				
+				allA[0].style.display = 'inline-block';
+				
+				allA[1].style.display = 'inline-block';
+				
+			};
+			
+			if(iNow == aBtns.length-1) {
+				
+				allA[allA.length-1].style.display = 'none';
+				
+				allA[allA.length-2].style.display = 'none';
+				
+			}else {
+				
+				allA[allA.length-1].style.display = 'inline-block';
+				
+				allA[allA.length-2].style.display = 'inline-block';
+				
+			};
+			
+			
+			for(var i=0;i<allA.length;i++) {
+				
+				allA[i].style.opacity=1;
+				
+			}
+			
+			//执行
+			showList();
+			
+		};
+		
+		
+		function showList () {
+			
+			var wrap = document.getElementById("messageList");
+			
+			var aLi = wrap.children;
+			
+			var iHeight = 0 ;
+			
+			for(var i=0;i<aLi.length;i++) {
+				
+				iHeight+= aLi[i].offsetHeight;
+				
+				aLi[i].open = true;
+				
+			};
+			
+			wrap.style.height = iHeight+'px';
+			
+			wrap.addEventListener('transitionend',end,false);
+			
+			function end () {
+				
+				showLi();
+				
+				window.onresize = window.onscroll =function (){
+					
+					showLi();
+					
+				}
+				
+			}
+			
+		};
+		
+		
+		function showLi () {
+			
+			var oList = document.getElementById('messageList');
+			
+			var aLi = oList.children;
+			
+			var iTime = 0 ;
+			
+			var scrollT = document.body.scrollTop + document.documentElement.clientHeight ;
+			
+			for(var i=0;i<aLi.length;i++) {
+				
+				if(getOffset(aLi[i]) < scrollT && aLi[i].open) {
+					
+					//开关 关闭  无法在找到
+					aLi[i].open = false;
+					
+					console.log(i);
+					
+					showNow(aLi[i],iTime);
+					
+					iTime+=200;
+					
+				}
+				
+			}
+			
+		};
+		
+		function showNow (obj,iTime) {
+			
+			var aBox = obj.children[0];
+			
+			var aReplay = aBox.children[aBox.children.length-1];
+			
+			//一种依次旋转效果
+			
+			setTimeout(function(){
+				
+				aBox.style.webkitTransform = 'rotateY(0deg)';
+				
+			},iTime);
+			
+			aBox.addEventListener('transitionend',end,false);
+			
+			function end (){
+				
+				aReplay.style.webkitTransform = 'rotateY(0deg)';
+				
+				aReplay.style.opacity = 1;
+				
+			}
+			
+		}
+		
+		function getOffset (obj) {
+			
+			var oSet = 0;
+			
+			while (obj) {
+				
+				oSet += obj.offsetTop;
+				
+				obj = obj.offsetParent;
+				
+			}
+			
+			return oSet;
+			
+		}
+	
+	</script>
+</div>
+</body>
+</html>

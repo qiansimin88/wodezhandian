@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+	//1  邮政编码     ex:第一位不能为0   必须全部是数字  总共6位   加^  $  首尾严格匹配
+	 var re=/^([1-9][\d]{5})$/
+	 var str=238052;
+	 alert(re.test(str))   //true
+	 
+	 //2  文件 压缩包  ex: 文件名  数字 字幕 中划线 下划线 . 和 zip|7z|rar
+	 
+	 var re=/^[\w-]+\.(zip|7z|rar)$/;
+	 var str="he-12.rar";
+	 alert(re.test(str));   //true
+	 
+	 //3  替换空格   ex:全局匹配空格
+	 var re=/\s+/g;
+	 var str="111 111    222  33";
+	 alert(str.replace(re,''));    //11111122233
+	 
+	 //4  仅仅替换 首尾空格    利用分组模式和惰性匹配 
+	 
+	 var re=/^\s+(.*?)\s+$/g;
+	 var str="     qiansi  min     ";
+	 alert(str.replace(re,'$1')+"|");   //qiansimin  min成功的去除了首尾的空格 利用$1即使 第一个括号分组匹配的特性
+</script>
+</head>
+
+<body>
+</body>
+</html>
