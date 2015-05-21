@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>背景跟随鼠标移动</title>
+	<style>
+		.wrap {position: absolute;left: 0;top:0;height: 100%;width: 100%;overflow: hidden;}
+		.bg {background: url(caizhi.png) no-repeat center center;height: 100%;}
+	</style>
+
+</head>
+<body>
+	<div class='wrap'>
+		<div class="bg">
+			
+		</div>
+	</div>
+	<script>
+
+
+				var wrap = document.querySelector('.wrap'),
+
+					bg = wrap.firstElementChild || wrap.firstChild,
+
+					w = wrap.offsetWidth || screen.availHeight;
+
+					h = wrap.offsetHeight || screen.availHeight;
+
+
+					var onePix = 100 ;  //综合考虑设置为100 作为位移量比较合适好看
+
+					wrap.onmousemove = function (ev) {
+
+						var e = ev || window.event,
+
+							x= e.clientX,
+
+							y = e.clientY;
+
+							var movex = (w/2-x)/w*onePix,     //以div的中心点来计算鼠标移到两边的距离 从而使得背景图合理的位移
+
+								movey = (h/2-y)/h*onePix;
+
+							bg.style.transform = bg.style['-webkit-transform'] = "translate3d("+movex+"px,"+movey+"px,0)";
+
+					}
+
+	</script>
+</body>
+</html>
