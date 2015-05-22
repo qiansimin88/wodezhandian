@@ -12,17 +12,19 @@
 	<script>
 
 	//实例化一个方法
+	$(function () {
+
 
 	var demo = new progress({
 
 		resourceArr : [
-		'http://p2.qhimg.com/t01ed1438874f940dc0.jpg',
-		'http://p9.qhimg.com/t01b4ff03b72c7dc6c7.jpg',
-		'http://p2.qhimg.com/t01dd90dfbec92074d0.jpg',
-		'http://p7.qhimg.com/t01cfec6d87cde457c5.jpg',
-		'http://p9.qhimg.com/t01943ced462da67833.jpg',
-		'http://p0.qhimg.com/t01943ced462da67833.jpg',
-		'http://p6.qhimg.com/t01aa15a7ba7ccb49a7.jpg',
+		'http://www.dianchuifeng.net/img/aHR0cDovL2ltZy5kYXBpeGllLmNvbS91cGxvYWRzL2FsbGltZy8xMDEwMjEvY28xMDEwMjExMTQ2MDgtMi5qcGc=.jpg',
+		'http://www.aomy.com/attach/2013-08/1377649164zAgr.jpg',
+		'http://img4.duitang.com/uploads/blog/201407/14/20140714125351_fJyjK.jpeg',
+		'http://img2.imgtn.bdimg.com/it/u=788307952,1026224254&fm=23&gp=0.jpg',
+		'http://cdn.duitang.com/uploads/item/201401/10/20140110234635_4cnEX.jpeg',
+		'http://cdn.duitang.com/uploads/item/201401/10/20140110234635_4cnEX.jpeg',
+		'http://fa.topit.me/a/e9/05/11511770229a005e9ao.jpg',
 		'http://p8.qhimg.com/t010f1e8badf1134376.jpg',
 		'http://p8.qhimg.com/t01cf37ea915533a032.jpg',
 		'http://p3.qhimg.com/t0193d8a3963e1803e9.jpg',
@@ -39,9 +41,9 @@
 
 		var obj = $('.progress');
 
-		var widths = (n/i*100);
+		var widths = (n/i*100)+'%';
 
-		obj.css('width',widths+'%')
+		obj.css('width',widths)
 
 	},
 
@@ -58,6 +60,8 @@
 
 	demo.start();
 
+
+	})
 
 	</script>
 </head>
