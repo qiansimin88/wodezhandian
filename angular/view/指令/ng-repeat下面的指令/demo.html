@@ -1,0 +1,48 @@
+<!doctype html >
+<html lang="en" ng-app='myApp1'>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="/wodezhandian/js/angularv1.3.js"></script>
+	<style>
+		.odd {background: red}
+		.even {background: green}
+	</style>
+	<script>
+		
+		var m1 = angular.module('myApp1',[]);
+					
+		
+			m1.controller('Aaa',['$scope','$filter',function ($scope,$filter) {
+
+					$scope.color = ['asd','dfgdf','zxczxc','q2eqwe']
+
+			}]);
+
+
+			// $index  打印index
+			// $first  第一项为true 其余为false
+			// $middle 首尾为false 中间项为true
+			// $last    最后一项
+			// $even   奇数为true
+
+
+	</script>
+</head>
+<body>										
+	<div ng-controller='Aaa' >
+	<ul >
+		<!--表达式也可以这样写哦-->
+		<li class="{{$even ? 'even' : 'odd' }}" ng-repeat='i in color'>{{$first}}</li>
+	</ul>	
+	
+
+		<!--同辈的循环-->
+		<div ng-repeat-start="i in color">{{i}}</div>
+		<div ng-repeat-end>{{i}}</div>
+
+	</div>
+
+	
+</body>
+</html>

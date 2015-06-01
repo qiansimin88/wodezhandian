@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../../js/angular.1.3.0v.js"></script>
+	<script>
+		//angular.module(模块名，[依赖的模块名,没有就是空数组])  angular模块化的方法
+		var m1 = angular.module('myApp1',[]);
+		var m2 = angular.module('myApp2',[]);
+			//m1下面的控制器  Aaa  [缓存$scope,function () {}]
+			m1.controller('Aaa',['$scope',function ($scope) {
+
+				$scope.name = 'qian';
+
+			}]);
+
+			m2.controller('Bbb',['$scope',function ($scope) {
+
+				$scope.age = '18';
+
+			}]);
+
+
+		//bootstrap angular的动态初始化模型 
+
+		//比如点击页面在  初始化angular程序
+
+			document.onclick = function () {
+
+				//angular.bootstrap(绑定的DOM对象,[模型名])  
+
+				//angular无法直接在 一个页面 同时初始化两个模型  只有通过bootstrap才可以
+
+				var div = document.getElementsByTagName('div');
+
+				angular.bootstrap(div[0],['myApp1']);
+
+				angular.bootstrap(div[1],['myApp2']);
+
+
+			};
+
+	</script>
+</head>
+<body>
+	<div ng-controller="Aaa">
+		<p>{{name}}</p>
+	</div>
+	<div ng-controller='Bbb'>
+		{{age}}
+	</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../js/angular.1.3.0v.js"></script>
+	<script>
+
+	//控制器
+		function shopping ($scope) {
+
+			$scope.iphone = {
+
+				num : 1,
+
+				price :3,
+
+				Freight : 13
+
+			};
+
+			$scope.getPrice = function () {
+
+				return  $scope.iphone.num * $scope.iphone.price ;
+
+			};
+
+			//$watch(str||function,callback(newV,oldV),true||false);
+
+			// param1:接受一个字符串或者一个函数
+			// param2:回调函数(改变后的值，改变前的值)
+			// param3:可选 是否监听所有对象的变化 默认是监听单个值的变化
+
+				//demo 1 监听字符串
+
+			// $scope.$watch('iphone.num',function (n,o) {
+
+			// 	console.log('1')
+
+			// });
+
+				//demo 2 监听函数
+			// $scope.$watch($scope.getPrice,function (n,o) {
+
+			// 	console.log(n);
+
+			// 	console.log(o);
+
+			// });
+
+			// 需求  当价格 超过100块钱 运费为0
+
+			$scope.$watch($scope.getPrice,function (n,o) {
+
+
+				var newFreight = n > 100 ? 0 : 13;   //判断的结果
+
+				$scope.iphone.Freight = newFreight;   //赋值给控制器   控制器和视图是相互绑定的
+
+			});
+	
+
+		};
+	</script>
+</head>
+<body>
+	<div ng-controller='shopping'>
+		<h2>购物车</h2>
+		<!--模型-->
+		<p>数量<input type="text" ng-model="iphone.num"/></p>
+		<p>单价<input type="text" ng-model="iphone.price"/></p>
+		<!--表达式 way1-->
+		<!-- <p>总价<span>{{iphone.num*iphone.price | currency:'人民币'}}</span></p> -->
+		<p>货物费用:<span>{{ getPrice() | currency:'人民币'}}</span></p>
+		<p>运费:<sapn>{{iphone.Freight | currency :'人民币'}}</sapn></p>
+		<p>总价格:<span>{{getPrice()+iphone.Freight | currency:'人民币'}}</span></p>
+	</div>
+</body>
+</html>

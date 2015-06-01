@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" ng-app='myApp1'>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../../js/angular.1.3.0v.js"></script>
+	<script>
+		//angular.module(模块名，[依赖的模块名,没有就是空数组])  angular模块化的方法
+		var m1 = angular.module('myApp1',[]);
+
+			m1.controller('money',['$scope',function ($s) {
+
+				$s.money = [
+
+					{'color' : 'yellow' ,'age' : '50' },
+					{'color' : 'red' ,'age' : '19 '},
+					{'color' : 'green' ,'age' : '16' },
+					{'color' : 'orange' ,'age' : '21' }
+
+				]
+
+			}]);
+	</script>
+</head>
+<body>
+	<div ng-controller='money'>
+		<!-- <p>{{money | currency }}</p> -->
+
+
+		<!--order : 可以把数组中的JSON 按照某个Key进行排序 , 第二个参数 true 就是 从大到小 不写就是从小到大-->
+		<pre>
+				<p>{{money | orderBy : 'age': false | json }}</p>
+		</pre>
+	</div>
+
+</body>
+</html>

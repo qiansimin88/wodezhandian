@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../js/angular.1.3.0v.js"></script>
+	<script>
+
+		//数据绑定  数据变化 视图也变化 $timeoout代表setTimeout的意思
+		function Aaa ($scope,$timeout) {
+			$scope.name = 'JAY';	
+		};
+
+		
+	</script>
+</head>
+<body>
+	<div ng-controller='Aaa'>
+		<input type="text" ng-model="name">
+		<p>{{name}}</p>
+	</div>
+</body>
+</html>
