@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" ng-app='myApp1'>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../../js/angular.1.3.0v.js"></script>
+	<script>
+		//angular.module(模块名，[依赖的模块名,没有就是空数组])  angular模块化的方法
+		var m1 = angular.module('myApp1',[]);
+
+			m1.controller('money',['$scope',function ($s) {
+
+				$s.money = {'name':'qiansimin','age':'20'};
+
+			}]);
+	</script>
+</head>
+<body>
+	<div ng-controller='money'>
+		<!-- <p>{{money | currency }}</p> -->
+		
+		
+		<pre>
+		<!--注意 pre标签可以控制换行  json过滤器 可以得到 清晰的json格式-->
+		<p>{{money | json }}</p>
+
+		</pre>
+	</div>
+
+	<!--
+	{
+ 	 "name": "qiansimin",
+ 	 "age": "20"
+	}
+		
+	-->
+</body>
+</html>

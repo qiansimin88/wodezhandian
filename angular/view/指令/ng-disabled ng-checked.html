@@ -1,0 +1,62 @@
+<!doctype html >
+<html lang="en" ng-app='myApp1'>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../../js/angular.1.3.0v.js"></script>
+	<script>
+		
+		var m1 = angular.module('myApp1',[]);
+	
+				
+			//假如直接在JS里面使用过滤器就必须要用$filter来过滤
+
+								// $scope和$interval 都是angular的服务 都需要提前挂载
+			m1.controller('Aaa',['$scope','$interval',function ($scope,$interval) {
+
+				var showTime = 5;
+
+				$scope.time =showTime+'s可点击';
+
+				$scope.isDisabled = true;
+
+
+				var timer = $interval(function () {
+
+					showTime --;
+
+					$scope.time =showTime+'s可点击';
+
+					if(showTime == 0)  {
+
+						//$interval.cancer是angular取消定时器的方法
+
+						$interval.cancel(timer);
+
+						$scope.time = '可以发送';
+
+						$scope.isDisabled = false;
+
+					}
+
+				},1000)	
+
+			}]);
+
+	
+
+	</script>
+</head>
+<body>
+	<div ng-controller="Aaa">
+		<input type="button" value="{{time}}" ng-disabled='isDisabled'/>
+		<!--不可输入-->
+		<input type="text" value="{{time}}" ng-readonly='isDisabled'/>
+
+		<!--复选框-->
+		<input type="checkbox" value="{{time}}" ng-checked='isDisabled'/>
+
+	</div>
+	
+</body>
+</html>

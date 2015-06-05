@@ -1,0 +1,34 @@
+<!doctype html >
+<html lang="en" ng-app='myApp1'>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../../js/angular.1.3.0v.js"></script>
+	<script>
+		
+		var m1 = angular.module('myApp1',[]);
+	
+				
+			//假如直接在JS里面使用过滤器就必须要用$filter来过滤
+
+			m1.controller('Aaa',['$scope','$filter',function ($scope,$filter) {
+
+				// $scope.name = $filter('uppercase')('adsasdasd')
+
+				// $scope.name = $filter('limitTo')('adsasdasd',2)
+
+				//等等
+
+			}]);
+
+	
+
+	</script>
+</head>
+<body>
+	<div ng-controller="Aaa">
+		<p>{{name}}</p>
+	</div>
+	
+</body>
+</html>
