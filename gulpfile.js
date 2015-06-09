@@ -25,7 +25,7 @@ var pathOption = {
     // 'localjs': './data/skin/ilongre/minjs/*.js',
 
 
-    'distcss': './dist/css'
+    'distcss': './data/skin/mall_dist/css/'
 
     // 'distjs': './dist/js'
 
@@ -41,26 +41,30 @@ var pathOption = {
 
             .pipe(changed(pathOption.distcss))
 
-            .pipe(sourcemaps.init())
 
             .pipe(less())
 
-            .pipe(autoprefixer({
-
-                browsers:['last 3 versions','iOS 7'],
-                cascade: true  //美化：自动空格
-
-            }))
-
-            .pipe(sourcemaps.write('/'))
-
-            .pipe(mincss({
+             .pipe(mincss({
 
                 advanced:false,   //合并选择器
                 compatibility:'ie7',//兼容IE7
-                keepBreaks:true //保留换行
+                keepBreaks:false //保留换行
 
             }))
+
+            .pipe(sourcemaps.init())
+
+
+            // .pipe(autoprefixer({
+
+            //     browsers:['last 3 versions','iOS 7'],
+            //     cascade: true  //美化：自动空格
+
+            // }))
+
+            .pipe(sourcemaps.write('./map'))
+
+           
 
             .pipe(gulp.dest(pathOption.distcss));
 
