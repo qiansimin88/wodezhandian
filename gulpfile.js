@@ -46,9 +46,8 @@ var pathOption = {
 
              .pipe(mincss({
 
-                advanced:false,   //合并选择器
-                compatibility:'ie7',//兼容IE7
-                keepBreaks:false //保留换行
+                advanced:true,   //合并选择器
+                compatibility:'ie7'//兼容IE7
 
             }))
 
