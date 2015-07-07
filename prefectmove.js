@@ -11,7 +11,7 @@ function getStyle(obj,name)			//这个函数是为了获取行间样式的。
 		{
 			return getComputedStyle(obj,false)[name];	
 		}	
-	}
+}
 function move(obj,json,fnEnd)  //运动框架
 {
 		clearInterval(obj.timer);
