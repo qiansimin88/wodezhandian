@@ -1,5 +1,11 @@
 //组件hello world 
 
+
+var style = {
+	color: 'red',
+	border : '1px solid #000'
+}
+
 var Helloworld = React.createClass({displayName: "Helloworld",
 
 	render : function () {
@@ -11,7 +17,7 @@ var Helloworld = React.createClass({displayName: "Helloworld",
 });
 
 	React.render(
-
-		React.createElement(Helloworld, null),	
+		//引用样式
+		React.createElement("div", {style: style}, React.createElement(Helloworld, null)),	
 		document.body
 	)

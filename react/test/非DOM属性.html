@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	
+</head>
+<body>
+	<script src="../build/react.js"></script>
+	<script src="../build/JSXTransformer.js"></script>
+	<script type="text/jsx">
+
+//必须是对象形式
+	var rawHTML = {
+
+		__html : "<h1>FHG</h1>"   //必须是两个下划线
+
+	}
+
+	React.render(
+
+		<div dangerouslySetInnerHTML={rawHTML}></div>,
+
+		document.body
+
+	)
+
+	</script>
+</body>
+</html>

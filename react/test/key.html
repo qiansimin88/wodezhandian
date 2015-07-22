@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	
+</head>
+<body>
+	<script src="../build/react.js"></script>
+	<script src="../build/JSXTransformer.js"></script>
+	<script type="text/jsx">
+
+//必须是对象形式 
+
+	//key 适合用在列表的子元素  KEY不能冲突
+
+	var Keyshow = React.createClass({
+
+		render : function () {
+
+			return <ul>
+					<li key="1">1</li>
+					<li key="2">2</li>
+					<li key="8">3</li>
+					<li key="4">4</li>
+				   </ul>
+
+		}
+
+	}); 
+	
+	React.render(
+
+		<Keyshow/>,
+		document.body
+	)
+
+	</script>
+</body>
+</html>

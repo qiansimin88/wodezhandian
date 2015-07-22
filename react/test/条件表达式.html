@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	
+</head>
+<body>
+	<script src="../build/react.js"></script>
+	<script src="../build/JSXTransformer.js"></script>
+	<script type="text/jsx">
+
+		//条件表达式的几种用法   
+		var Helloworld = React.createClass({
+
+			//1.运算符
+			// render : function () {
+			// 					//子节点只能用表达式 而不能用语句
+			// 	return <p>Hello,{this.props.name || 'world'}</p>
+
+			// }
+
+			//2.三元运算发
+			// render : function () {
+							
+			// 	return <p>Hello,{this.props.name ? this.props.name : 'world'}</p>
+
+			// }
+
+			//3.函数声明
+			// showName : function () {
+
+			// 	if(this.props.name) {
+
+			// 		return this.props.name
+
+			// 	}else {
+
+			// 		return 'world';
+
+			// 	}
+
+			// },
+			// render : function () {
+				
+			// 	var name = this.showName();		
+
+			// 	return <p>Hello,{name}</p>
+
+			// }
+
+			//直接函数声明   立即执行的匿名函数 不是函数声明 而是函数表达式
+
+			render : function () {
+			
+				return <p>Hello,{(function (obj) {
+
+					if(obj.props.name) {
+
+						return obj.props.name
+
+					}else {
+
+						return 'world';
+
+					}
+
+				})(this)}</p>
+
+			}
+
+		});
+
+		React.render(<Helloworld name="小王"/>,document.body)
+	</script>
+</body>
+</html>
