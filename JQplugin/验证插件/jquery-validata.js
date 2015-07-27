@@ -28,7 +28,9 @@ function publicValidata(o,arg) {
 
 				},
 
-				ajaxfun:null    //ajax提交
+				ajaxfun:null,    //ajax提交
+
+				submitBefore:null		//在验证之前的行为   必须要返回一个布尔值 true运行 false return
 
 			},arg||{});
 
@@ -123,6 +125,16 @@ function publicValidata(o,arg) {
 			this.$ele.on('click',function (e) {
 
 				e.preventDefault();
+
+				if(_this.config['submitBefore'] && typeof _this.config['submitBefore'] === 'function') {
+
+					if(!_this.config['submitBefore']()) {
+
+						return false;
+
+					}
+ 
+				}
 
 				_this.validataRequire();
 
