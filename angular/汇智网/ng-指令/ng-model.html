@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ng-init</title>
+	<script src="../../js/angular.min.js"></script>
+</head>
+<body>
+<!-- 在AngularJS中，只需要使用ng-model指令就可以把应用程序数据绑定到HTML元素，实现model和view的双向绑定。 -->
+<div ng-app="">
+	<p>输入值：<input type="text" ng-model="name"></p>
+	<p>你输入的值是：{{name}}</p>
+</div>
+<!-- ng-model把相关处理事件绑定到指定标签上，这样我们就可以不用在手工处理相关事件(比如change等)的条件下完成对数据的展现需求。
+
+以上介绍了ng-model的单向绑定(view->model)后面控制器我们会用到它的双向绑定功能，好，参照以上代码，赶快试试数据绑定的效果吧！ -->
+</body>
+</html>

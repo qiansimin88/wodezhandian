@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ng-init</title>
+	<script src="../../js/angular.min.js"></script>
+</head>
+<body>
+	<!-- ng-init指令初始化应用程序数据，也就是为AngularJS应用程序定义初始值，通常情况下，我们会使用一个控制器或模块来代替它，后面我们会介绍有关控制器和模块的知识。 -->
+
+
+<!-- 我们不仅可以赋值字符串，也可以赋值为数字、数组、对象，而且可以为多个变量赋初始值，如下所示： -->
+<div ng-app="" ng-init="quantity=1;price=5">
+  <p>总价： {{ quantity * price }}</p>
+</div>
+
+<div ng-app="" ng-init="names=['Tom','Jerry','Gaffey']">
+ 
+</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ng-init</title>
+	<script src="../../js/angular.min.js"></script>
+</head>
+<body>
+<!-- 	指令ng-bind和AngularJS表达式{{}}有异曲同工之妙，但不同之处就在于ng-bind是在angular解析渲染完毕后才将数据显示出来的。
+
+	如下使用ng-bind指令绑定把应用程序数据。 -->
+	<div ng-app="">
+		<p>您的输入值：<input type="text" ng-model="name"></p>
+		<p>您输入的值是: <span ng-bind="name"></span></p>
+	</div>
+	<!-- PS：使用花括号语法时，因为浏览器需要首先加载页面，渲染它，然后AngularJS才能把它解析成你期望看到的内容，所以对于首个页面中的数据绑定操作，建议采用ng-bind，以避免其未被渲染的模板被用户看到。 -->
+</body>
+</html>

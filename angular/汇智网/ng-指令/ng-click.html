@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ng-init</title>
+	<script src="../../js/angular.min.js"></script>
+</head>	
+<body>
+	<!--init 就相当于变量的意思-->
+	<!-- AngularJS也有自己的HTML事件指令,比如说通过ng-click定义一个AngularJS单击事件。
+
+	对按钮、链接等，我们都可以用ng-click指令属性来实现绑定，如下简单示例： -->
+
+	<div ng-app="" ng-init="show=flase">
+		<button ng-click="show=!show">显示/隐藏的按钮</button>
+		<div ng-hide="show">
+			<p>输入值<input type="text" ng-model="name"/></p>
+			<p>您输入的值是：<span ng-bind="name"></span></p>
+		</div>
+	</div>
+
+	<!-- PS：ng-hide="true"，设置HTML元素不可见。
+
+	ng-click指令将DOM元素的鼠标点击事件(即mousedown)绑定到一个方法上，当浏览器在该DOM元素上鼠标触发点击事件时，Angular就会调用相应的方法，是不是很简单方便呢！ -->
+</body>
+</html>
