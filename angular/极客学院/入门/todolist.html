@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" ng-app="todolist">
+<head>
+	<meta charset="UTF-8">
+	<title>todolist</title>
+	<link rel="stylesheet" href="../../js/bootstrap.min.css">
+	<script src="../../js/angular.min.js"></script>
+</head>
+<body style="padding:10px;" ng-controller='taskCtrl'>
+	<div class="input-group">
+							<!--这个model绑定了控制器的model属性-->
+		<input type="text" ng-model='task' class="form-control"/>
+		<span class="input-group-btn">
+			<button class="btn btn-default" ng-click="addList()">提交</button>
+		</span>
+	</div>
+	<h4 ng-if="taskList.length>0">任务列表</h4>
+	<ul class="list-group">
+											<!--track by $index 就是加小标解决数组不能push重复项的问题-->
+			<li class="list-group-item" ng-repeat="i in taskList track by $index">{{i}}
+				<a href="javascript:void(0);" ng-click="taskList.splice($index,1)">删除当前</a>
+			</li>	
+	</ul>	
+<script>
+		
+	angular.module('todolist',[])
+	.controller('taskCtrl',['$scope',function ($s) {
+
+		$s.task = '';
+
+		$s.taskList = [];
+
+		$s.addList = function () {
+
+			$s.taskList.push($s.task);
+
+		}
+
+	}])	
+
+</script>
+</body>
+</html>

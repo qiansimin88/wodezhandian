@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ng-init</title>
+	<link rel="stylesheet" href="../../js/bootstrap.min.css">
+	<script src="../../js/angular.1.3.0v.js"></script>
+</head>
+<body ng-app="myapp">
+
+	<!-- !!! ng-controller 绑定在某个DOM上 那么那个DOM从头到尾就是一个作用域和其他的DOM不会互相影响 -->
+
+	<div ng-controller='firstCtrl'>
+		<input type="text" ng-model="msg">
+		<div ng-bind="msg"></div>
+	</div>
+	<div ng-controller='secondCtrl'>
+		<div ng-bind="msg"></div>
+	</div>
+<script>
+	angular.module('myapp',[])
+
+	.controller('firstCtrl',['$scope',function ($scope) {
+
+		$scope.msg = 'hellp world';
+
+	}])
+
+	.controller('secondCtrl',['$scope',function ($scope) {
+
+		$scope.msg = 'hellp qiansimin';
+
+	}])
+</script>
+</body>
+</html>
