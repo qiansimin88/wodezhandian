@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ng-init</title>
+	   <script src="../../js/angular.1.3.0v.js"></script>
+</head>
+<body ng-app="showadd" ng-init="dataJson={'name':'qiansimin','age':20}">
+	<!-- $watch(watchExpression, listener, [objectEquality]); -->
+<!-- 
+	$watch方法要求传入三个参数：
+	
+	watchExpression - 要监听的表达式，比如："sb"
+	listener - 变化发生时的回调函数，AngularJS将向这个函数传入新值和旧值
+	objectEquality - 如果监听表达式的值是一个对象，应当将这个参数置为true。
+	 -->
+
+	<!-- <h1>数据到视图的单向绑定</h1> -->
+	<ez-showaddfun data="dataJson"></ez-showaddfun>
+
+	<script>
+
+	angular.module('showadd',[])
+
+	.directive('ezShowaddfun',function () {
+
+		return {
+
+			restrict:'E',
+			template:'<div class="addBox">',
+			replace:true,
+			link:function (s,e,a) {
+
+				e.append('<div class="name"><span class="hehe"></span></div>')
+				.append('<div class="age"><span class="hehe"></span></div>')
+
+
+				s.$watch(a.data,function(newV,oldV) {
+
+					var sonObj = e.find('span');
+
+					sonObj[0].textContent = newV.name;
+
+					sonObj[1].textContent = newV.age;
+
+				},true);
+
+				setInterval(function () {
+
+					s.$apply('dataJson.age=dataJson.age+1;')
+
+				},1000)
+
+			}
+
+		}
+
+	})
+
+	</script>
+
+</body>
+</html>

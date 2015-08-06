@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ng-init</title>
+	   <script src="../../js/angular.1.3.0v.js"></script>
+	
+</head>
+<body ng-app="ezstuff">
+	<ez-hehe></ez-hehe>
+	   <script>
+	   		var sb = {
+
+	   			name : 'somebody',
+
+	   			gender: 'male',
+
+	   			age : 18
+
+	   		};
+
+	    	angular.module("ezstuff",[])
+
+	   		.directive('ezHehe',function () {
+
+	   			return {
+
+	   				restrict : 'E',
+
+	   				template : '<div class="____">',
+
+	   				replace: true,
+
+	   				link : function (s,e,a){
+	   					e.append('<div>name:?</div>')
+	   					.append('<div>gender:?</div>')
+	   					.append('<div>age:?</div>')
+	   				}
+
+	   			}
+
+	   		})
+	   </script>
+</body>
+</html>

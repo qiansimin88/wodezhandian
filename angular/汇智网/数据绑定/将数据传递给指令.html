@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ng-init</title>
+	   <script src="../../js/angular.1.3.0v.js"></script>
+</head>
+<body ng-app="demo" ng-init="sb={name:'somebody',gender:'male',age:28}">
+
+	<ez-demodata data="sb"></ez-demodata>
+	<script>
+	angular.module('demo',[])
+
+	.directive('ezDemodata',function (){
+
+		return {
+
+			restrict:'E',
+			template:'<div class="demoshow"></div>',
+			replace:true,
+			link:function (s,e,a) {
+
+				var sbData = s.$eval(a.data);
+
+				e.append('<div>name：'+sbData.name+'</div>')
+				  .append('<div>gender:'+sbData.gender+'</div>')
+				  .append('<div>age:'+sbData.age+'</div>')
+			}
+
+		}
+
+	})
+	</script>
+
+</body>
+</html>
