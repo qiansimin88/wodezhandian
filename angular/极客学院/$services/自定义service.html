@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ng-init</title>
+	   <script src="../../js/angular.1.3.0v.js"></script>
+</head>
+<body ng-app='app' style="padding：20px;">
+	<div ng-controller='show'>
+		<h1>{{msg}}</h1>
+		<h2>{{relname}}</h2>
+		<h3 ng-bind='http'></h3>
+		<h4>{{data.msg}}</h4>
+		<h5>{{username}}</h5>
+	</div>
+	<script>
+	angular.module('app',[])
+	.value('relname','qiansimin')   //value相当于变量 可以改变   形式都是key value的形式
+	.value('relname','caoyarong')
+
+	.constant('http','www.baidu.com')   //常量 是不可以改变的
+	.constant('http','www.wangyi.com')
+
+	.factory('data',function () {			//factory(key,function () { return {} });
+		return {						//始终返回一个对象
+			msg : 'hehe',		
+			setMsg: function () {
+				this.msg  = 'qiansimin'
+			}
+		}
+	})
+
+	.service('user',function () {			//service(key,function)
+		this.firstName = 'zhou';
+		this.lastName='jielun';
+		this.name = function () {
+			return (this.firstName+this.lastName).toString();
+		}
+	})
+	
+	.controller('show',function ($scope,relname,http,data,user) {
+		$scope.msg = '你好';
+		$scope.relname = relname;
+		$scope.http = http;
+		$scope.data=data;
+		data.setMsg();
+		$scope.username = user.name();
+	})
+	</script>
+</body>
+</html>

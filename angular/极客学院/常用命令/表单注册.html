@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ng-init</title>
+	   <script src="../../js/angular.1.3.0v.js"></script>
+		<link rel="stylesheet" href="../../js/bootstrap.min.css">
+		
+	   <style>
+:;{width:50px;height: 50px;margin-bottom: 10px;margin-left: 80px;}
+	   </style>
+</head>
+<body style="padding:10px;" ng-app="app">
+<div ng-controller="UserCtrl">
+	<form action="">
+		<fileldset>
+			<legend>基本信息</legend>
+			<div>
+				<input type="text" placeholder="用户名">
+				<input type="password" placeholder="密码">
+				职位：<select name="" id="">
+					<option value="">请选择</option>
+					<option value="1">JS</option>
+					<option value="2">.net</option>
+				</select>
+				性别：
+				<input type="radio" name="sex">男
+				<input type="radio" name="sex">女
+			</div>
+		</fileldset>
+		<fileldset>
+			<legend>爱好</legend>
+			<div>
+				<input type="checkbox">篮球
+				<input type="checkbox">足球
+				<input type="checkbox">排球
+			</div>
+		</fileldset>
+		<input type="submit">
+	</form>
+</div>	
+</body>
+</html>
