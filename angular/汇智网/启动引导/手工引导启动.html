@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ng-init</title>
+	   <script src="../../js/angular.1.3.0v.js"></script>
+</head>
+<body>
+<!-- 在大多数情况下，我们都使用ng-app指令来进行自动引导启动，但是如果一个HTML文件中 有多个ng-app，AngularJS只会自动引导启动它找到的第一个ng-app应用，这是需要手工引导 的一个应用场景。
+
+我们可以利用angular.bootstrap()方法进行手动引导:
+
+angular.bootstrap(element, [modules], [config]); -->
+
+<!-- bootstrap方法有三个参数：
+
+element ： 一个DOM元素，以这个元素为Angular应用的根，等同自动引导时ng-app所在 的元素。这个参数是必须的。比如：document、document.body等。
+modules ： 引导时需要载入的模块数组。比如：[]、["ezstuff"]等。由于我们的HTML中引用 了ezstuff模块中定义的ez-duang指令，所以，我们需要指定载入ezstuff模块。
+config ：引导配置项，可选。我们先忽略。 -->
+
+<button id="showImgButton">点击</button>
+
+<ez-show></ez-show>
+
+<script>
+
+	angular.element(document).ready(function () {
+
+		var e = document.getElementById('showImgButton');
+
+			angular.element(e).on('click',function () {
+
+				angular.bootstrap(document,['app'])
+
+			})
+
+	})
+
+	angular.module('app',[])
+	.directive('ezShow',function () {
+
+		return {
+
+			restrict:'E',
+
+			template:"<img src='http://ww4.sinaimg.cn/bmiddle/757eb2ffjw1eptcr4qobjg209205dthh.gif'>"
+
+		}
+
+	})
+</script>
+
+
+</body>
+</html>
