@@ -3,6 +3,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
+<script>
+	var a = '123^^^^^^^^^^^^asd';
+
+	var re= /(\d+)\^+([a-z]+)/
+
+	a=a.replace(re,'$2')
+	console.log(a)
+</script>
 </head>
 
 <body>
