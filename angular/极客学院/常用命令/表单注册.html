@@ -12,16 +12,16 @@
 </head>
 <body style="padding:10px;" ng-app="app">
 <div ng-controller="UserCtrl">
-	<form action="">
+	<form action="" name="f" ng-submit="regsiter(user)">	<!-- 绑定一个方法传入scope下面的user对象 -->
 		<fileldset>
 			<legend>基本信息</legend>
 			<img ng-show="{{user.isShowImg}}" ng-src="{{user.icon}}" alt="" ng-class="{'tx':user.showIcon}">
 			<div>
-				<input type="text" placeholder="用户名">
-				<input type="password" placeholder="密码">
-				职位：<select name="" id="">
+				<input type="text" placeholder="用户名" ng-model="user.name" required>
+				<input type="password" placeholder="密码" ng-model="user.pass" required>
+				职位：<select name="" id="" ng-disabled='true'>		<!-- ng-disabled=true 不可选 -->
 					<option value="">请选择</option>
-					<option value="1">JS</option>
+					<option value="1"  ng-selected="true">JS</option>   <!-- ng-XX = true 或者 user.se == 1 这种表达式为true都可以 -->
 					<option value="2">.net</option>
 				</select>
 				性别：
@@ -32,12 +32,12 @@
 		<fileldset>
 			<legend>爱好</legend>
 			<div>
-				<input type="checkbox" ng-checked="{{user.checkeds}}">篮球
-				<input type="checkbox">足球
+				<input type="checkbox" ng-checked="true">篮球
+				<input type="checkbox" ng-checked="123 == 123">足球
 				<input type="checkbox">排球
 			</div>
 		</fileldset>
-		<input type="submit">
+		<button type="submit" class="btn btn-success" ng-disabled="f.$invalid">提交</button>
 	</form>
 	<script>
 	// ng-bind
@@ -49,8 +49,9 @@
 	// ng-href
 	// ng-class					用对象调用{class:true/false}
 	// ng-selected
-	// ng-submit
-
+	// ng-submit		提交表单的用
+	//ng-disabled  	   1.表单name+$invalid 来通过表单的required属性置灰提交按钮	
+					// 2.为true也可以置灰
 	angular.module('app',[])
 	.controller('UserCtrl',function ($scope) {
 
@@ -58,7 +59,14 @@
 			isShowImg:true,
 			icon:'../1.jpg',
 			showIcon:true,
-			sex:'1'
+			sex:'1',
+			name:'',
+			pass:''
+
+		};
+		$scope.regsiter = function (info) {
+
+			console.log(info)
 
 		}
 
