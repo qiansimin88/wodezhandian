@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+	var s = '12516214';
+
+		s.toString().replace(/^(\d+)(\.\d*)?(500)?$/,function (v1,v2,v3,v4,v5) {
+
+			console.log(v1,v2,v3,v4,v5)
+
+			//12516214 12516214 undefined undefined 0   
+			
+			// v1第一个匹配全局
+			// v2第二个匹配第一个分组
+			// v3,v4匹配二三分组  找不到就是undefined
+			// v5就是匹配开始的位置
+			// 如果有v6就是undefined
+
+		})
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
