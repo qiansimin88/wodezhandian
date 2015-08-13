@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>replace</title>
+</head>
+<script>
+	var  a = 'lk213lpdo923,.dsfi034'
+		 
+		a.replace(/([a-z]+)([0-9]+)/,function (v1,v2,v3,v4) {
+
+			console.log(v1,v2,v3,v4)   //lk2131   lk  2131  0  
+
+			//V1为匹配结果  v2 v3对应分时捕获分组的值  v4表示匹配到的位置   如果还有V5就为 undefined
+
+		})
+
+</script>
+<body>
+	
+</body>
+</html>
