@@ -10,17 +10,38 @@
 </head>
 <body>
 	<a href="javascript:;" class="btn">按钮</a>
+	<a href="javascript:;" class="btn1">btn1</a>
+	<a href="javascript:;" class="btn1 lplp">btn1</a>
+	<a href="javascript:;" class="q234">按钮asdasd</a>
+	
+	<div>asdasdas</div>
 	<script>
+
+	$('.btn1').tips({
+
+		customoffset : {
+
+			x : 0,
+			y:20
+
+		},
+
+		direction:'bottom',
+
+		tmpContenttext: 'asd',
+
+		randomdirection:true
+
+	})
 
 	$('.btn').tips({
 
-		ajax : function (){
+		showTime: 1000,
 
-			
-			
-		}
+		eventTrigger:'hover'
 
 	})
+
 	</script>
 </body>
 </html>
