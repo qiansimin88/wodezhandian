@@ -1,0 +1,71 @@
+<!doctype html>
+<html ng-app='app' lang="en" ng-app="todolist">
+<head>
+	<meta charset="UTF-8">
+	<title>todolist</title>
+	<link rel="stylesheet" href="../../js/bootstrap.min.css">
+	<script src="../../js/angular.min.js"></script>
+</head>
+<body style="padding:10px;" >
+	<div ng-controller='MyCtrl'>
+		<fieldset>
+			<legend>用户角色</legend>
+			<select name="" id="" ng-model='currentSelect'>
+				<option value="">--请选择--</option>
+				<option ng-repeat="i in roles" value="{{i.id}}">{{i.rolename}}</option>
+			</select>
+			<span>{{currentSelect}}</span>
+		</fieldset>
+		<fieldset>
+			<legend>权限列表</legend>
+			<span ng-repeat="right in rights">
+				<input type="checkbox" ng-checked='right.checked'>{{right.rightsname}}
+			</span>
+		</fieldset>
+	</div>
+<script>
+	angular.module('app',[])
+	.controller('MyCtrl',function ($scope,$http){
+
+		$scope.roles = [];
+		$scope.rights=[];
+		$scope.currentSelect = ''
+		function init () {
+			//查询所有的用户列表 通告ng-repeat来输出DOM
+			$http.get('http://www.baidu.com')
+			.success(function (resp) {
+				$scope.roles = resp
+			})
+			//查询所有的用户相应的权限 通告ng-repeat来输出DOM
+			$http.get('http://www.baidu.quan.com')
+			.success(function (hehe) {
+				$scope.right = hehe;
+			})
+		};
+
+		init();
+		//监听这个model  change就刷新
+		$scope.$watch('currentSelect',function () {
+
+			refrsh();
+
+		})
+
+		function refrsh () {
+
+			$http.post('baidu.com',{rightsid:$scope.currentSelect})
+			.success(function (data) {
+
+				///这里操作对比 
+				//。。。。
+				//if() {}
+				//$scope.rights[i].checked = true
+
+			})
+
+		}
+
+	})
+</script>
+</body>
+</html>

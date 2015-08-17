@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../../js/angular.1.3.0v.js"></script>
+    <link rel="stylesheet" href="../../js/bootstrap.min.css">
+</head>
+
+<body ng-app="app">
+    <div ng-controller="MyCtrl">
+        <input type="text" ng-model="name">
+        <input type="text" ng-model="id">
+        <span ng-bind="id"></span>
+        <button class="btn succ" ng-click="adduser()">添加数据</button>
+    </div>
+    <script>
+    angular.module('app', [])
+        .controller('MyCtrl', function($scope, $http) {
+
+            $scope.name = '';
+            $scope.id="";
+            $scope.adduser = function() {
+
+              	$http.post('https://www.baidu.com/hehe',{id:$scope.id,name:$scope.name})
+                .success(function(resp) {
+
+                    console.log(resp)
+
+                })
+
+                .error(function() {
+
+                    alert('出现错误')
+                })
+
+            }
+
+        })
+    </script>
+</body>
+
+</html>
