@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../../js/angular.min.js"></script>
+</head>
+<body>
+	
+	<div ng-app='app'>
+		<hello></hello>
+		<div atteibute></div>
+		<div class="classname"></div>
+	</div>
+
+	<script>
+	var createElement = angular.module('app',[]);
+
+		createElement.directive('hello',function () {		//hello 是组件名称
+
+			return {
+
+				restrict : 'E',   //代表自定义html组件   就是可以在HTML中使用自定义的组件  A代表写属性 C表示写CLass
+				replace : 'true',  //默认false  true就是删除掉自定义的模板标签
+				template: '<div>hello angular!</div>'
+
+			}
+
+		})
+
+		createElement.directive('atteibute',function () {		//hello 是组件名称
+
+			return {
+
+				restrict : 'A',   //代表自定义html组件   就是可以在HTML中使用自定义的组件  A代表写属性 C表示写CLass
+				link : function () {
+
+					alert('我是通过属性来添加的')
+
+				}  
+			
+
+			}
+
+		})
+
+		createElement.directive('classname',function () {		//hello 是组件名称
+
+			return {
+
+				restrict : 'C',   //代表自定义html组件   就是可以在HTML中使用自定义的组件  A代表写属性 C表示写CLass
+				link : function () {
+
+					alert('我是通过class来添加的')
+
+				}  
+			
+
+			}
+
+		})
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../../js/angular.min.js"></script>
+</head>
+<body>
+	
+	<div ng-app='app'>
+			
+		<div ng-controller="hehe">
+			<div showInfomodule='loadMoreInfo()'>click here</div>
+		</div>	
+
+	</div>
+
+	<script>
+
+	var app = angular.module('app',[]);
+
+		app.controller('hehe',function ($scope) {
+
+			$scope.loadMoreInfo = function () {
+
+				alert('正在加载...')
+
+			}
+
+		});
+
+		app.directive('showInfomodule',function () {
+
+			return function (scope,element,attrs) {
+
+				element.bind('mouseenter',function () {
+
+					scope.$apply(attrs.showInfomodule)
+
+				})
+
+			}
+
+		})
+
+	</script>
+</body>
+</html>
