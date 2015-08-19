@@ -10,7 +10,7 @@
 <script src="arttemplate.js"></script>
 <script>
 	var data = {
-		'cook' : false,
+		'cook' : 21,
 		'title' : '今天是个好日子',
 		'datajson': [{'name':'zhoujielun','age':12},{'name':'sm','age':12}]
 	}
@@ -21,7 +21,7 @@
    		<script id="arttmp" type="text/html">
    			<h1>{{title}}</h1>
    			<ul>
-   				{{ if cook }}		//条件语句
+   				{{ if cook == 21 }}		//条件语句
 	   				{{ each datajson as value i }}
 	   					<li>{{ i+1 }} : {{value.name}} </li>	//循环语句
 	   				{{/each}}
