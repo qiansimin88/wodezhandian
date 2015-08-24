@@ -8,11 +8,9 @@
 <body>
 	
 	<div ng-app='app'>
-			
 		<div ng-controller="hehe">
-			<div showInfomodule='loadMoreInfo()'>click here</div>
+			<div loadinfo="deleDate()">click here</div>
 		</div>	
-
 	</div>
 
 	<script>
@@ -27,19 +25,31 @@
 
 			}
 
-		});
+			$scope.deleDate = function () {
 
-		app.directive('showInfomodule',function () {
-
-			return function (scope,element,attrs) {
-
-				element.bind('mouseenter',function () {
-
-					scope.$apply(attrs.showInfomodule)
-
-				})
+				alert('删除数据')
 
 			}
+
+		})
+
+		app.directive('loadinfo',function () {
+
+			return {
+
+				restrict : 'A',
+
+				link: function (scope,element,attrs) {
+
+					element.bind('click',function () {		//绑定事件
+
+						scope.$apply(attrs.loadinfo)
+
+					})
+
+				}
+
+			} 
 
 		})
 
