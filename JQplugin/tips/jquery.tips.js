@@ -177,7 +177,7 @@
 				alert('网络出错');
 
 				window.location.reload();
-
+.
 			})
 
 		};

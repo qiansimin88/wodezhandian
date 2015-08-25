@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>velocity.js的使用</title>
+	<link rel="stylesheet" href="js/demo.css">
+	<script src="../js/jquery-1.7.2.min.js"></script>
+	<script src="js/velocity.js"></script>
+	<script src="js/velocityui.js"></script>
+</head>
+<body>
+	<div class="demo"></div>
+	<div class="demo2"></div>
+	<div class="demo3"></div>
+	<script>
+
+			//自定义动画
+	$.Velocity.RegisterEffect('QSM.donghua',{			//动画名, {参数和方法}
+
+		defaultDuration : 3000,
+
+		calls : [
+
+			[{rotateY: 130},0.2],		//前面是动画  后面的是时间的百分比
+			[{scaleX:5},0.8]
+
+		]
+
+	})
+
+		var paidui = [					//数组形式
+
+			{
+				elements : $('.demo'),		//jquery对象
+				properties: {'width':'200px'},	//动画对象
+				options : {duration:2000}    //配置
+			},			
+			{
+				elements : $('.demo2'),		//jquery对象
+				properties: {'width':'200px'},	//动画对象
+				options : {duration:2000,
+
+					delay:1000     //延迟
+				}    //配置
+			},{
+
+				elements : $('.demo3'),		//jquery对象
+				properties: 'QSM.donghua',	//动画对象				采用自定义动画
+				options : {duration:2000,
+
+					sequenceQueue:false			//与之前的保持同步执行 默认是true队列执行
+				}    //配置
+
+			}			
+
+		];
+
+		$.Velocity.RunSequence(paidui);
+
+	</script>
+</body>
+</html>

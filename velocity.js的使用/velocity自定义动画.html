@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>velocity.js的使用</title>
+	<link rel="stylesheet" href="js/demo.css">
+	<script src="../js/jquery-1.7.2.min.js"></script>
+	<script src="js/velocity.js"></script>
+	<script src="js/velocityui.js"></script>
+</head>
+<body>
+	<div class="demo"></div>
+	<div class="demo2"></div>
+	<script>
+	//内置动画
+	$('.demo').on('mouseover',function () {
+
+		$(this).velocity('callout.shake');   //callout.shake 是内置动画  还有各种各样的动画  详情访问velocity的官网API  //http://www.julian.com/research/velocity/
+
+	});
+
+	//自定义动画
+	$.Velocity.RegisterEffect('QSM.donghua',{			//动画名, {参数和方法}
+
+		defaultDuration : 3000,
+
+		calls : [
+
+			[{rotateY: 130},0.2],		//前面是动画  后面的是时间的百分比
+			[{scaleX:5},0.8]
+
+		]
+
+	});
+
+	$('.demo2').on('mouseover',function (){
+
+		$(this).velocity('QSM.donghua');
+
+	})
+	</script>
+</body>
+</html>

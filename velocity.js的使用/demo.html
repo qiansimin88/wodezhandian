@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>velocity.js的使用</title>
+	<link rel="stylesheet" href="js/demo.css">
+	<script src="../js/jquery-1.7.2.min.js"></script>
+	<script src="js/velocity.js"></script>
+	<script src="js/velocityui.js"></script>
+</head>
+<body>
+	<div class="demo"></div>
+	<div class="demo2"></div>
+	<script>
+		$('.demo').velocity({
+			'width':300,
+			height:'300px'
+		},
+		{
+			duration:3000,  //时间
+			complete:function (){		//动画完成的回掉函数
+				$('.demo2').velocity({
+					height:'200px'
+				})
+			}
+		}
+		)
+	</script>
+</body>
+</html>
