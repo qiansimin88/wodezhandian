@@ -6,7 +6,7 @@ var http = require('http');
 
 		res.writeHead(200,{'Content-Type':'text/html'});
 
-		res.write('创建服务器!');
+		res.write('hello world!');
 
 		res.end('123');
 

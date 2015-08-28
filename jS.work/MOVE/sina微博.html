@@ -9,7 +9,7 @@
 #text1 {margin-left:60px;}
 
 #ul1 {width:500px;height:500px;overflow:hidden;border:1px solid black}
-#ul1 li {border-bottom:1px dashed black;list-style:none;padding:10px;overflow:hidden;opacity:0}
+#ul1 li {border-bottom:1px dashed black;list-style:none;overflow:hidden;}
 </style>
 <script src="../../js/prefectmove.js"></script>
 <script>
@@ -32,9 +32,11 @@
 			}
 			else
 			{
-				oUl.appendChild(oLi)	
+			oUl.appendChild(oLi)	
 			}
 			var iHeight=oLi.offsetHeight;
+
+			console.log(iHeight)
 			oLi.style.height=0;
 			move(oLi,{height:iHeight,opacity:100})
 			
