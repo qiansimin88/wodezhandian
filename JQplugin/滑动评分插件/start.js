@@ -3,6 +3,7 @@
  * @Author   QSM
  * @DateTime 2015-08-25T16:07:04+0800
  * QQ:348867341
+ * demo:http://www.liuband.com/mall.php/fang/apartment/apartdetail
  * @return   {[type]}                 [description]
  */
 
@@ -67,7 +68,6 @@ define(function(require, exports, module) {
 			            _this.config.cb(nowIndex);
 			        }
 			    }
-			    console.log(_this.initNum)
 			});
 		}
 		star.prototype.mouseout = function () {
