@@ -13,7 +13,7 @@ var jsonFile = {
 	] 
 };
 
-console.log(util.inspect(jsonFile,true,null,true));  //返回一个对象的字符串表现形式, 在代码调试的时候非常有用.
+console.log(util.inspect(jsonFile,false,null,true));  //返回一个对象的字符串表现形式, 在代码调试的时候非常有用.
 
 // 参数可选项
 // showHidden - 如果设为 true，那么该对象的不可枚举的属性将会被显示出来。默认为false.
