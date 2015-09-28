@@ -1,41 +1,39 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>Examples</title>
-<meta name="description" content="">
-<meta name="keywords" content="">
-<link href="" rel="stylesheet">
-<script src="arttemplate.js"></script>
-<script>
-	var data = {
-		'cook' : 21,
-		'title' : '今天是个好日子',
-		'datajson': [{'name':'zhoujielun','age':12},{'name':'sm','age':12}]
-	}
-</script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Examples</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
+    <script src="arttemplate.js"></script>
+ 
 </head>
+
 <body>
-   <div class="tem_wrap">
-   		<script id="arttmp" type="text/html">
-   			<h1>{{title}}</h1>
-   			<ul>
-   				{{ if cook == 21 }}		//条件语句
-	   				{{ each datajson as value i }}
-	   					<li>{{ i+1 }} : {{value.name}} </li>	//循环语句
-	   				{{/each}}
-	   				{{else}}
-	   				<h1>出现了问题</h1>
-	   			{{ /if }}
-   			</ul>
-   		</script>
-   </div>
+    <div id="content"></div>
+    <script id="test" type="text/javascript">
+        {{if isAdmin}}
+        	{{var a = '1'}}
+        <h1>{{title}}</h1>
+        <ul>
+            {{each list as value i}}
+            <li>索引 {{i + 1}} ：{{value}}</li>
+            {{/each}}
+        </ul>
+        {{/if}}
+    </script>
 </body>
-
 <script>
-var html = template('arttmp',data);
-
-	document.querySelector('.tem_wrap').innerHTML = html;
+var data = {
+    title: '基本例子',
+    isAdmin: true,
+    list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他']
+};
+var html = template('test', data);
+document.getElementById('content').innerHTML = html;
 </script>
+
 </html>
