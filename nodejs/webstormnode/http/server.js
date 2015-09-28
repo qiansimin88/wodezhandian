@@ -15,6 +15,7 @@ http.createServer(function (req,res) {
         var content = fs.readFileSync('./index.html');  //读取文件然后返回给客户端
         res.end(content);
     }else {
+
         res.end('404');
     }
 
