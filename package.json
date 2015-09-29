@@ -6,7 +6,9 @@
   "dependencies": {
     "gulp": "^3.9.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mime": "^1.3.4"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
