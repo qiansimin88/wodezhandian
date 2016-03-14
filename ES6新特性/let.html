@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+    "use strict";
+
+    function f1() {
+        var a = 8;
+        let n = 5;
+        if (true) {
+            let n = 10;
+            var a = 20
+        }
+        console.log(n); // 5
+        console.log(a); // 20
+    }
+    f1();
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
