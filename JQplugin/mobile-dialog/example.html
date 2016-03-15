@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>手机端弹框</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta content="telephone=no" name="format-detection">
+	<meta name="apple-touch-fullscreen" content="yes">
+	<link rel="stylesheet" href="ui-dialog.css">
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script src="mobile-dialog.js"></script>
+</head>
+<body>
+	<input type="button" value="弹框" id="button1"/>
+	<input type="button" value="弹框2" id="button2"/>
+	<div class="contentBox"></div>
+<!-- 
+	<div class="ui-dialog" id="dialog_00478080038446933" style="z-index: 10; display: block; height: 300px; width:375px;position: absolute; top: 163px; left: 0px;">
+			
+			<div class="ui-dialog-title"><span class="ui-dialog-titleact">标题</span>
+				<span class="ui-dialog-close js-dialog-close">&times;</span>
+			</div>
+			<div id="dialog-content" style="">这是内容</div>
+	</div> -->
+	<script>
+		document.getElementById('button1').addEventListener('touchstart',function(){
+			new Dialog({
+				type:'alert',
+				animate:true,
+				time:0,
+				height:"300px",
+			
+				contentCurrentTMP:'<div class="hehe">哈哈哈哈哈哈哈哈</div>\
+								<div class="hehe">哈哈哈哈哈哈哈哈</div>\
+								<div class="hehe">哈哈哈哈哈哈哈哈</div>\
+								<div class="hehe">哈哈哈哈哈哈哈哈</div>\
+								<div class="hehe">哈哈哈哈哈哈哈哈</div>\
+								<div class="hehe">哈哈哈哈哈哈哈哈</div>\
+								<div class="hehe">哈哈哈哈哈哈哈哈</div>\
+								<div class="hehe">哈哈哈哈哈哈哈哈</div>\
+								<div class="hehe">哈哈哈哈哈哈哈哈</div>\
+								<div class="hehe">哈哈哈哈哈哈哈哈</div>\
+								<h5>adadasdasdadadasssssssssssssssssssssssssssssssssssssssssssssssssssssssssasdasd</h5>\
+								<div class="hehe">哈哈哈哈哈哈哈哈</div>\
+								<div class="hehe">哈哈哈哈哈哈哈哈</div>\
+								<div class="hehe">哈哈哈哈哈哈哈哈</div>\
+								<div class="hehe">哈哈哈哈哈哈哈哈</div>\
+								<div class="hehe">哈哈哈哈哈哈哈哈</div>\
+								<div class="hehe">哈哈哈哈哈哈哈哈</div>\
+								<div class="hehe">哈哈哈哈哈哈哈哈</div>\
+								<div class="hehe">哈哈哈哈哈哈哈哈</div>\
+								<div class="hehe">哈哈哈哈哈哈哈哈</div>\
+								<div class="hehe">哈哈哈哈哈哈哈哈</div>\
+								<div class="hehe">哈哈哈哈哈哈哈哈</div>\
+								<div class="hehe">哈哈哈哈哈哈哈哈</div>\
+								<div class="hehe">哈哈哈哈哈哈哈哈</div>\
+				',
+				btn:[{"yes":'是'},
+					{"no":"否"},
+					{'submit':'提交'}],
+				btnTouchfn:function (t) {
+					if(t == 'yes') {
+						this.hide();
+						setTimeout(function () {
+							new Dialog().init()
+						},500)
+						
+					}else if (t == 'no') {
+						alert('必须选择是按钮  谢谢')
+					}
+				}
+
+			}).init();
+		})
+
+		document.getElementById('button2').addEventListener('touchstart',function(){
+			new Dialog({
+				type:'alert'
+			}).init();
+		})
+	</script>
+</body>
+</html>
