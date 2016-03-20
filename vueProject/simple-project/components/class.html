@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>              
+    <div id="app" v-bind:class="classList">
+       sdfs
+    </div>
+</body>
+<script>
+    new Vue({
+
+        el: "#app",
+
+        data: {
+            classList : {
+                classA:1,      //绑定class的时候 true显示 false就是不采用
+                classB:1
+            }
+        }
+
+    })
+</script>
+</html>

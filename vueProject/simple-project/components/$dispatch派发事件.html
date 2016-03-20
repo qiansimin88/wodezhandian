@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <template id="templated">
+        <input type="text" v-model="msg" />
+        <button v-on:click="fire">
+            click
+        </button>
+    </template>
+    <div id="parent-component">
+        <p>message:{{messages | json}}</p>
+        <child></child>
+    </div>
+</body>
+<script>
+Vue.component('child', {
+    template: '#templated',
+    data: function() {
+        return {
+            msg: 'hello'
+        }
+    },
+    methods: {
+        fire: function() {
+            if (this.msg.trim()) {
+                this.$dispatch('childdata', this.msg)
+                this.msg = ''
+            }
+        }
+    }
+});
+// 启动父组件
+// 将收到消息时将事件推入一个数组
+var parent = new Vue({
+    el: '#parent-component',
+    data: {
+        messages: []
+    },
+    // 在创建实例时 `events` 选项简单地调用 `$on`
+    events: {
+        'childdata': function(msg) {
+            // 事件回调内的 `this` 自动绑定到注册它的实例上
+            this.messages.push(msg)
+        }
+    }
+})
+</script>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>              
+    <div id="app">
+        <input type="text" v-model="changevue">
+        <ui-dialog v-bind:heheda="changevue" title="中国"></ui-dialog>
+    </div>
+</body>
+<script>
+new Vue({
+    el:'#app',
+    components:{
+        'ui-dialog':{ //组建名字
+            props:['heheda'],   
+            template:'<h2>{{heheda}}</h2>'
+        }
+    }
+})
+</script>
+</html>

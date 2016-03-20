@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <script src="../vue.js"></script>
+    <style>
+    .fade-transition {
+      transition: opacity .3s ease;
+    }
+    .fade-enter, .fade-leave {
+      opacity: 0;
+    }
+    </style>
+</head>
+
+<body>              
+<div id="transition-mode-demo" class="demo">
+      <input type="radio" value="v-a" id="a" v-model="view" name="view"><label for="a">A</label>
+      <input type="radio" value="v-b" id="b" v-model="view" name="view"><label for="b">B</label>
+        <!-- 先淡出再淡入 -->
+    <component
+      :is="view"
+      transition="fade"
+      transition-mode="out-in">
+    </component>
+</div>
+</body>
+<script>
+new Vue({
+    el:'#transition-mode-demo',
+    data : {
+        view : 'v-a'
+    },
+    components:{
+        'v-a':{
+            template:'<div>Component A</div>'
+        },
+        'v-b':{
+            template:'<div>Component B</div>'  
+        }
+    }
+})
+</script>
+</html>

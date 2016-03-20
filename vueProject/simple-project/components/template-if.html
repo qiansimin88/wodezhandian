@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div v-show="hehe">
+            <h1>1</h1>
+            <h2>2</h2>
+            <h3>3</h3>
+        </div>
+    </div>
+</body>
+<script>
+    new Vue({
+
+        el: "#app",
+
+        data: {
+            hehe: 0
+        }
+
+    })
+</script>
+</html>

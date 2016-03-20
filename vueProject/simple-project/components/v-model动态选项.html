@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+   <select v-on:change="selectfun" v-model="nowselected" name="hehe" id="hehe">
+       <option v-for="i in hehe" v-bind:value="i.value">
+           {{i.text}}
+       </option>
+
+   </select>
+<span>choose:{{nowselected}}</span>
+</body>
+<script>
+    new Vue({
+
+        el: "body",
+
+        data: {
+            nowselected:'2',
+            hehe:[
+                {text:'一年级',value:1},
+                {text:'二年级',value:2},
+                {text:'三年级',value:3}              
+            ]
+        },
+        methods:{
+            selectfun:function () {
+                alert(this.nowselected)
+            }
+        }
+
+    })
+</script>
+</html>

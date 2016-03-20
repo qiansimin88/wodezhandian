@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+       <p v-if="hehe">
+           哈哈
+       </p>
+       <h2 v-else>没有</h2>
+    </div>
+</body>
+<script>
+    new Vue({
+
+        el: "#app",
+
+        data: {
+            hehe: false
+        }
+
+    })
+</script>
+</html>

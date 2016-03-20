@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <input type="checkbox" value="1" id="hehe" v-model="hehe">
+    <label for="hehe"><span>demo1</span></label>
+    <input type="checkbox" value="2" id="hehe2" v-model="hehe">
+    <label for="hehe"><span>demo2</span></label>
+    <p>this:{{hehe | json}}</p>
+</body>
+<script>
+    new Vue({
+
+        el: "body",
+
+        data: {
+            hehe:[]
+        }
+
+    })
+</script>
+</html>
