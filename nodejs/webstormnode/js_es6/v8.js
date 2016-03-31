@@ -36,3 +36,6 @@ console.log(Object.keys(obj));    //[ 'name', 'age' ] Object.keys()接受一个对象 
     var obj2 = {name:'qioan',age:28};
     console.log(JSON.stringify(obj2));    //把JSON转化成字符串
     console.log(JSON.parse('{"name":"qiansimin","age":16}'));        //把字符串的json转化成对象
+
+
+console.log(11231232)

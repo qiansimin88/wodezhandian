@@ -10,12 +10,17 @@
 <body>
     <div id="app">
         {{age}}
-       <input v-model="age" number>
+       <input v-model="age" @click="hehe" number>
     </div>
 </body>
 <script>
     new Vue({
-        el: "#app"       
+        el: "#app",
+        methods:{
+            hehe:function () {
+                this.$set("age",10)
+            }
+        }       
     })
 </script>
 </html>
