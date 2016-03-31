@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../lib/traceur.js"></script>
+	<script src="../lib/bootstrap.js"></script>
+	<script>
+	//对象解构 主要是 key对应即可 和数组不同
+
+	let = {id=20,name,age} = {name:'qiansimin',age:52};
+
+	console.log(name,age,id);  //qiansimin  52  20  key对应 顺序不同没关系  对象也支持 默认赋值用=来赋值而不是：
+
+	//key 相同  取value
+	
+	let = {hehe:data1,xixi:data2} = {hehe:2,xixi:3};
+
+	console.log(data1,data2); //2 3  data1相当于hehe的值
+	console.log(hehe,xixi);	//报错
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

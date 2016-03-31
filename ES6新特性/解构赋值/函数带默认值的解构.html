@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../lib/traceur.js"></script>
+	<script src="../lib/bootstrap.js"></script>
+	<script>
+		
+		function add({x=20,y=40}) {
+			return [x,y]
+		}
+		console.log(add({x:10,y:20})); // [10,20]
+		console.log(add({y:20}));    //[20,20] 
+		console.log(add({}));		//[20,40]
+
+		function hehe ({x,y} = {x:0,y:0}) {
+			return [x,y]
+		};
+
+		console.log(hehe({x:10,y:10}));	//	[10,10]
+		console.log(hehe());		//[0,0]		//不传任何参数 就默认用形参的解构赋值
+		console.log(hehe({}));		// [undefined,undefined]  //参数为空 就undefined  因为有参数（即使为空） 就不会使用形参里面的解构
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

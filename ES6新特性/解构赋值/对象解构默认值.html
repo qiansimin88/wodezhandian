@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../lib/traceur.js"></script>
+	<script src="../lib/bootstrap.js"></script>
+	<script>
+		let {a = 20}  = {};   //a = 20
+		console.log(a);
+
+		var {b=2} = {b:undefined}   //a = 2    只有当属性值严格等于undefined  默认值才会生效 													否则其他的都不生效
+		console.log(b);
+
+		var {c=3} = {c:null}		//c = null
+		console.log(c);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../lib/traceur.js"></script>
+	<script src="../lib/bootstrap.js"></script>
+	<script>
+	//非遍历解构 不包括 字符串 数组 包括 数字和布尔
+	 let [a,b] = 12 ; //TypeError: undefined is not a function 
+	 console.log(a,b);
+					  //1 不是遍历结构  所以报错
+	 let [f] = null; //Cannot match against 'undefined' or 'null'.
+
+					//平常喜欢用的null也同样报错 如果不赋值可以这样写 [b] = [null];
+	let [c] = [null];	// c = null
+			
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
