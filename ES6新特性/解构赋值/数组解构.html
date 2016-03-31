@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../lib/traceur.js"></script>
+	<script src="../lib/bootstrap.js"></script>
+	<script>
+	var [a,b,c] = [1,2,3];    // a=1,b=2,c=3
+
+	let [d,[[e],f]] = [4,[[5],6]]; //d=4 e=5 f=6  位置一一对应
+
+	let [ , ,third] = [ , ,'third']; //third = third位置一一对应
+
+	let [show,...fild] = [0,1,2,3,4,5] //show=0;fild=[1,2,3,4,5] 以逗号为分割
+	var [hehe,xixi] = [1] //hehe = 1; xixi = undefined 没有赋值的就是undefined
+	
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
