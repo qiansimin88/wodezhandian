@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../lib/traceur.js"></script>
+	<script src="../lib/bootstrap.js"></script>
+	<script>
+
+	//数组解构
+		function returnshow () {
+			return [1,2,3];
+		}
+
+		let [a,b,c] = returnshow();
+
+		console.log(a,b,c)		//1 2 3 解构
+
+
+		//对象解构
+		function personInfo () {
+			return {
+				id:1,
+				name:'qiansimin',
+				age:25
+			}
+		}
+	
+		let personTaken = {
+
+			id:person_id,
+			name:person_name,
+			age:person_age
+
+		} = personInfo();
+
+		console.log(person_id,person_name,person_age);	//1 'qiansimin' 25  对象的解构赋值
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
