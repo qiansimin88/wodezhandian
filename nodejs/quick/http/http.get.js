@@ -20,10 +20,11 @@ http.createServer(function (req,res) {
 	//   path: '/date?name=qiansimin&age=21',
 	//   href: '/date?name=qiansimin&age=21' 
 	// }
+	res.write("1"); 
 	console.log('解析完成,数据是',util.inspect(params));
 	//返回数据
 	res.end(params.query.name);
-}).listen(3030);
+}).listen(3032);
 
 //客户端请求
 http.get({
