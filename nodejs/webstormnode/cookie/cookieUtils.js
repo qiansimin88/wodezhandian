@@ -36,4 +36,4 @@ exports.parse = function(str){
  return obj;
 }
 
-// console.log(exports.parse('name=zfpx; age=6;'));
+// console.log(exports.parse('name= zfpx; age=6;'));
