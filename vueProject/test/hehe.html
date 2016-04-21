@@ -43,7 +43,9 @@
 
 		<input type="text" v-model='name'>
 		<p v-text="name | uppercase"></p>
-		<lay-show id="toshow" dd="sss" v-ref:lay></lay-show>	
+		<lay-show id="toshow" dd="sss" v-ref:lay>
+			<div slot="one" style="color:red;">替换插槽</div>
+		</lay-show>	
 		<div v-for = 'i in message3 ' track-by= '$index'  transition="staggered" stagger="100">{{i}}</div>
 		<a href="javascript:void(0);" id="btn" @click = 'hehe'>{{message}}</a>
 	</div>
@@ -51,6 +53,10 @@
 		{{dd}}
 		<br/>
 		{{xixi}}
+		<!-- 		slot内的内容会被替换 -->
+		<slot name="one" style = 'background:green'>	
+			插dfgd槽
+		</slot>	
 	</div>
 
 </body>
@@ -90,7 +96,8 @@
 			this.$watch("message",function (n,o){	//message 
 				console.log(n,o);	
 			});
-
+			// console.log(this.$refs.lay);		//children包所有子组件 $refs是个对象 集合 包含所有的用refs指明的组件
+			// console.log(this.$children);
 			// this.$log('message2') 打印出data数据  2
 			 this.message3.reverse() // 触发视图更新
 		}
