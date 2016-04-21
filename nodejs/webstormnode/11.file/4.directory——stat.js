@@ -26,6 +26,7 @@
  	mtime  最后修改时间
  	ctime  创建时间
   	birthtime 出生时间
+    isFile()  是不是一个目录
   */
  fs.stat('hehe', function (err,stat){
  	console.log(stat);

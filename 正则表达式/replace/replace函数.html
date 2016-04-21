@@ -7,9 +7,15 @@
 <script>
 	var  a = 'lk2134____lpdo923,.dsfi034'
 		 
+<<<<<<< HEAD
 		a.replace(/([a-z]+)([0-9]+)/g,function (v1,v2,v3,v4) {
 
 			console.log(v1,v2)   //lk2131   lk  2131  0  
+=======
+		a.replace(/([a-z]+)([0-9]+)/,function (v1,v2,v3,v4) {
+			// return 111  就会把正则匹配到的替换呈return的值
+			console.log(v1,v2,v3,v4)   //lk2131   lk  2131  0  
+>>>>>>> 1174a4b2530df5eb5b4510f59052e17945a41e07
 
 			//V1为匹配结果  v2 v3对应分时捕获分组的值  v4表示匹配到的位置   如果还有V5就为 undefined
 

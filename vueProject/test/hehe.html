@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../simple-project/vue.js"></script>
+	<style>
+		#hehe {width:200px;height: 200px;border: 1px solid red;}
+		#layshow {width:100px;height: 100px;background: red;}
+		#fadein {width:50px;height: 50px;background: red}
+			/* 必需 */
+		
+	.expand-transition {
+	  transition: all .3s ease;
+	  height: 30px;
+	  padding: 10px;
+	  background-color: #eee;
+	  overflow: hidden;
+	}
+
+	/* .expand-enter 定义进入的开始状态 */
+	/* .expand-leave 定义离开的结束状态 */
+	.expand-enter, .expand-leave {
+	  height: 0;
+	  padding: 0 10px;
+	  opacity: 0;
+	}
+	.staggered-transition {
+    transition: all .5s ease;
+    overflow: hidden;
+    margin: 0;
+    height: 20px;
+	}
+	.staggered-enter, .staggered-leave {
+	    opacity: 0;
+	    height: 0;
+	}
+	</style>
+</head>
+<body>
+	<div id="hehe">
+		<div v-show="showBtn" id="fadein" transition="expand"></div>
+
+		<input type="text" v-model='name'>
+		<p v-text="name | uppercase"></p>
+		<lay-show id="toshow" dd="sss" v-ref:lay></lay-show>	
+		<div v-for = 'i in message3 ' track-by= '$index'  transition="staggered" stagger="100">{{i}}</div>
+		<a href="javascript:void(0);" id="btn" @click = 'hehe'>{{message}}</a>
+	</div>
+	<div id="layshow" style="display:none">
+		{{dd}}
+		<br/>
+		{{xixi}}
+	</div>
+
+</body>
+<script>
+	
+	Vue.component('lay-show',{
+		props : ['dd'],
+		data : function () {
+			return {
+				xixi : 'xixi'
+			}
+		},
+		template : '#layshow',
+		ready : function () {
+
+		}
+	})
+
+	var vm = new Vue({
+		el : '#hehe',
+		data : {
+			name :'qiansimin',
+			message : 1,
+			message2 : 2,
+			message3 : ['a','b','c'],
+			showBtn : false
+		},
+		methods : {
+			hehe : function () {
+				this.message += 1;
+				this.message3.push(this.message)
+				this.showBtn = true
+			}
+		},
+		ready : function () {
+			//观察数据（data）变化触发
+			this.$watch("message",function (n,o){	//message 
+				console.log(n,o);	
+			});
+
+			// this.$log('message2') 打印出data数据  2
+			 this.message3.reverse() // 触发视图更新
+		}
+	})
+	
+</script>
+</html>
