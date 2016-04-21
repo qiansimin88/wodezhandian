@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <script src="../vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+      <!-- <input type="text" v-model='hehe'> -->
+        <div>{{ hehe | reverse }}</div>
+    </div>
+</body>
+    <script>
+
+   new Vue({
+      el: '#app',
+      data: {
+        hehe : '天山雪莲'
+      }
+})
+    Vue.filter('reverse', function (value) {
+  return value.substring(0,2);
+})
+</script>
+</html>

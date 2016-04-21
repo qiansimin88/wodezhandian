@@ -52,13 +52,13 @@
 
 			page3.style.top = '100%';
 
-			setTimeout(function(){
+			// setTimeout(function(){
 
-				page2.className = 'page fadeOut';
+			// 	page2.className = 'page fadeOut';
 
-				page3.className = 'page fadeIn';
+			// 	page3.className = 'page fadeIn';
 
-			},5500)
+			// },5500)
 
 		},false);
 

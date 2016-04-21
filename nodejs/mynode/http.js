@@ -8,9 +8,9 @@ var http = require('http');
 
 		res.writeHead(200,{'Content-Type':'text/html'});
 
-		res.write('hello world!');
+		res.write('');
 
-		res.end('123');
+		res.end('');
 
 	}).listen(4000);
 
