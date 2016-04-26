@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		 .v-ring-container {
+		    height: 6rem;
+		    width: 6rem;
+		    position: absolute;
+		    top: 0;
+		    right: 0;
+		    left: 0;
+		    bottom: 0;
+		    margin: auto
+	}
+	.v-ring  {
+		    height: 6rem;
+		    width: 6rem;
+		    border: 4px solid #5dc596;
+		    opacity: 1;
+		    border-radius: 100%;
+		    position: absolute;
+		    left: 0;top:0;
+	}
+	.v-ring-1 {
+		-webkit-animation:v-ringRightRotate 2s 0s infinite linear;
+		animation:v-ringRightRotate 2s 0s infinite linear;
+	}
+	.v-ring-2 {
+		-webkit-animation:v-ringLeftRotate 2s 0s infinite linear;
+		animation:v-ringLeftRotate 2s 0s infinite linear;
+	}
+
+@-webkit-keyframes v-ringRightRotate {
+    0% {
+        -webkit-transform: rotateX(0deg) rotateY(0deg) rotate(0deg);
+        transform: rotateX(0deg) rotateY(0deg) rotate(0deg)
+    }
+
+    to {
+        -webkit-transform: rotateX(180deg) rotateY(1turn) rotate(1turn);
+        transform: rotateX(180deg) rotateY(1turn) rotate(1turn)
+    }
+}
+
+@keyframes v-ringRightRotate {
+    0% {
+        -webkit-transform: rotateX(0deg) rotateY(0deg) rotate(0deg);
+        transform: rotateX(0deg) rotateY(0deg) rotate(0deg)
+    }
+
+    to {
+        -webkit-transform: rotateX(180deg) rotateY(1turn) rotate(1turn);
+        transform: rotateX(180deg) rotateY(1turn) rotate(1turn)
+    }
+}
+
+
+@-webkit-keyframes v-ringLeftRotate {
+    0% {
+        -webkit-transform: rotateX(0deg) rotateY(0deg) rotate(0deg);
+        transform: rotateX(0deg) rotateY(0deg) rotate(0deg)
+    }
+
+    to {
+        -webkit-transform: rotateX(1turn) rotateY(180deg) rotate(1turn);
+        transform: rotateX(1turn) rotateY(180deg) rotate(1turn)
+    }
+}
+
+@keyframes v-ringLeftRotate {
+    0% {
+        -webkit-transform: rotateX(0deg) rotateY(0deg) rotate(0deg);
+        transform: rotateX(0deg) rotateY(0deg) rotate(0deg)
+    }
+
+    to {
+        -webkit-transform: rotateX(1turn) rotateY(180deg) rotate(1turn);
+        transform: rotateX(1turn) rotateY(180deg) rotate(1turn)
+    }
+}
+
+	</style>
+</head>
+<body>
+	<div class="v-ring-container">
+		<section class="v-ring v-ring-1"></section>
+		<section class="v-ring v-ring-2"></section>
+	</div>
+</body>
+</html>

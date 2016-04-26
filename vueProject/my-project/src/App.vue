@@ -1,31 +1,38 @@
 <template>
-  <div id="app">
-    <img class="logo" src="./assets/logo.png">
-    <hello></hello>
-    <p>
-      Welcome to your Vue.js app. To get started, take a look at the
-      <a href="https://github.com/vuejs-templates/webpack#folder-structure" target="_blank">README</a>
-      of this template. If you have any issues with the setup, please file an issue at this template's repository.
-    </p>
-    <p>
-      For advanced configurations, checkout the docs for
-      <a href="http://webpack.github.io/" target="_blank">Webpack</a> and
-      <a href="http://vuejs.github.io/vue-loader/" target="_blank">vue-loader</a>.
-    </p>
-    <p>
-      You may also want to checkout
-      <a href="https://github.com/vuejs/vue-router/" target="_blank">vue-router</a> for routing and
-      <a href="https://github.com/vuejs/vuex/" target="_blank">vuex</a> for state management.
-    </p>
-  </div>
+    <d></d>
+    <input type="text" v-model='msg'>
+    <div id="demo" v-demo:hello.a.b="msg"></div>
 </template>
 
 <script>
-import Hello from './components/Hello'
+import Hello from './components/Hello.vue';
+import d from './components/d.vue';
+import Vue from 'vue';
+
+Vue.directive('demo', {
+  bind: function () {
+    console.log('demo bound!')
+  },
+  update: function (value,old) {
+    console.log(this);
+    this.el.innerHTML =
+      'name - '       + this.name + '<br>' +
+      'expression - ' + this.expression + '<br>' +
+      'argument - '   + this.arg + '<br>' +
+      'modifiers - '  + JSON.stringify(this.modifiers) + '<br>' +
+      'value - '      + value
+  }
+})
+
 
 export default {
-  components: {
-    Hello
+  data () {
+    return {
+       msg : 'hello'
+    } 
+  },
+  components:{
+    d,Hello
   }
 }
 </script>
@@ -36,10 +43,7 @@ html {
 }
 
 body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+  
 }
 
 #app {

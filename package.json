@@ -4,6 +4,7 @@
   "description": "learning",
   "main": "Shadowbox.js",
   "dependencies": {
+    "express-session": "^1.13.0",
     "gulp": "^3.9.0"
   },
   "devDependencies": {
