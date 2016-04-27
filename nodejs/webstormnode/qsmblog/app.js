@@ -45,7 +45,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 //指定路由
 app.use('/', routes);
-app.use('/users', users);
+// app.use('/users', users);
 app.use('/articles', articles);
 //捕获404错误并转发到错误处理中间件
 app.use(function(req, res, next) {
