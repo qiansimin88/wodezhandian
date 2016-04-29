@@ -1,0 +1,97 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var app = require('../app');
+//日志记录器 通过修改DEBUG的环境变量
+var debug = require('debug')('qsmblog:server');
+var http = require('http');
+
+/**
+ * Get port from environment and store in Express.
+ * 从环境变量中获取端口号 并保存到express中
+ */
+
+var port = normalizePort(process.env.PORT || '3000');
+//设置APP的私有属性
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+//传入回调
+var server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    //没有权限 在linux用户不能使用1000以下的端口
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      //退出进程 （1） 智能退出
+      process.exit(1);
+      break;
+    //端口被占用 error address in use 
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  //先获取到绑定的地址
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}

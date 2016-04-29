@@ -1,0 +1,21 @@
+{
+  "name": "qsmblog",
+  "description": "",
+  "main": "",
+  "authors": [
+    "qiansimin88 <348867341@qq.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}
