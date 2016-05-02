@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+ <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.css">
+    <script src="../../../angular/js/angular.min.js"></script>
+</head>
+<body >
+<div ng-controller="bookCtrl" class="container">
+    <table class="table table-responsive">
+        <tr>
+            <td colspan="3">过滤 <input type="text" ng-model="search.$"></td>
+        </tr>
+        <tr>
+            <td colspan="3">显示条数 <input type="text" ng-model="limit"></td>
+        </tr>
+        <tr>
+            <td colspan="3">排序
+                <select ng-model="order" id="">
+                    <option value="name">按名称正序</option>
+                    <option value="-name">按名称倒序</option>
+                </select>
+            </td>
+
+
+        </tr>
+        <tr>
+            <td>ID</td>
+            <td>名称</td>
+            <td>操作</td>
+        </tr>
+        <tr ng-repeat="book in books|filter:search|orderBy:order|limitTo:limit">
+            <td>{{book.id}}</td>
+            <td>{{book.name}}</td>
+            <td><button class="btn btn-warning" ng-click="update(book)">更新</button><button class="btn btn-danger" ng-click="delete(book)">删除</button></td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>
+                <input type="text" class="form-control" ng-model="book.name">
+            </td>
+            <td>
+                <button class="btn btn-default" ng-click="save()">保存</button>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+
+<script src="/angular-resource.js"></script>
+<script>
+    angular.module('zfpxMod',['ngResource']);
+    //定义一个服务，它可以与后端的接口进行交互
+    angular.module('zfpxMod').factory('bookService',function($resource){
+        return $resource('/books/:id',
+                //表示ID从传入的对象的哪个属性上取值
+                {id:'@id'},
+                //自定义方法
+                {
+                    update:{
+                        method:'PUT'
+                    }
+                });
+    });
+    //定义控制器，注入这个服务
+    angular.module('zfpxMod').controller('bookCtrl',function($scope,bookService){
+
+        //当调用query的时候 其实是通过$http 向后端的 接口 /books 发起请求，然后把响应结果赋给$scope.books
+        $scope.book  = {};
+        $scope.books = bookService.query();
+        $scope.save = function(){
+            var id = $scope.book.id;
+            if(id){
+                bookService.update($scope.book).$promise.then(function(result){
+                    $scope.books = $scope.books.map(function(current){
+                        if(current.id == $scope.book.id){
+                            return $scope.book;
+                        }else{
+                            return current;
+                        }
+                    });
+                    $scope.book  = {};
+                });
+            }else{
+                bookService.save($scope.book).$promise.then(function(result){
+                    $scope.books.push(result);
+                    $scope.book  = {};
+                });
+            }
+
+        }
+        $scope.delete = function(book){
+            bookService.delete(book).$promise.then(function(result){
+                $scope.books = $scope.books.filter(function(current){
+                    return current != book;
+                });
+            });
+        }
+        $scope.update = function(book){
+            bookService.get(book).$promise.then(function(result){
+                $scope.book = result;
+            });
+
+        }
+    });
+
+</script>
+</html>

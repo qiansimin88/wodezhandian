@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.css">
+    <script src="../../../angular/js/angular.min.js"></script>
+</head>
+<body>
+<!-- 指令 可以是属性 -->
+<div ng-controller="zfpxCtrl">
+  <table class="table table-responsive">
+      <tr><td>商品名称</td><td>商品价格</td><td>商品数量</td><td>商品金额</td><td>操作</td></tr>
+      <tr ng-repeat="item in items"><td>{{item.name}}</td><td>{{item.price}}</td><td><input type="text" ng-model="item.amount"></td><td>{{item.price * item.amount}}</td><td>
+          <button ng-click="remove(item)">删除</button>
+      </td></tr>
+      <tr><td>总金额:{{total()}}</td><td><input type="text" ng-model="discount"></td><td>折后金额:{{total()*(discount?discount:1)}}</td></tr>
+  </table>
+
+</div>
+</body>
+<!-- 引入JS脚本 -->
+<script>
+//当引入JS脚本之后会在window下挂一个 angular属性
+  //一切从模块开始，要先定义一个模块 模块的名称和依赖的模块
+  angular.module('zfpxMod',[]);
+  angular.module('zfpxMod').factory('ItemService',function(){
+      var items =[{
+          "name":"iphone7",
+          "price":5000,
+          "amount":1
+      },{
+          "name":"华为P9",
+          "price":3800,
+          "amount":1
+      },{
+          "name":"小牛电动M1",
+          "price":3300,
+          "amount":1
+      }];
+      return {
+          list:function(){
+              return items;
+          },
+          remove:function(item){
+              items = items.filter(function(current){
+                  return current != item;
+              });
+              return items;
+          }
+      }
+
+
+  });
+ //一个参数表示获取这个模块
+ //通过模块的 controller方法定义一个控制器，名字叫zfpxCtrl
+ //当定义一个控制的时候，angular 会买一送一，送你一个$scope
+ //scope其实是一个空的JS对象 {}
+//依赖注入 我们定义控制器的时候只需要在参数列表里声明$scope即可，
+//声明之后就可以在函数中使用。它由容器也就是angular容器帮我们实例化
+//控制器
+angular.module('zfpxMod').controller('zfpxCtrl',function($scope,ItemService){
+      //控制器的作用就是为$scope初始化属性
+      //$sopce 类似于数据模型 MODEL
+    // $http == $.ajax
+    $scope.items = ItemService.list();
+    $scope.total = function(){
+        return $scope.items.reduce(function(result,item){
+           return result+item.price*item.amount;
+        },0);
+    }
+    $scope.remove = function(item){
+        $scope.items = ItemService.remove(item);
+    }
+  });
+
+</script>
+</html>

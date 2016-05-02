@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../../bootstrap/css/bootstrap.css">
+    <script src="../../../angular/js/angular.min.js"></script>
+
+</head>
+<body>
+<!-- 指令 可以是属性 -->
+<div ng-controller="zfpxCtrl" class="container">
+    <form name="userform">
+        <div class="control-group" ng-class="{'has-error':userform.username.$invalid && userform.username.$dirty,'has-success':userform.username.$valid}">
+            <div class="control-label">用户名</div>
+            <input ng-minlength="3" ng-maxlength="6" ng-required="true" ng-pattern="reg" name="username" type="text" class="form-control" ng-model="user.username">
+            <p class="help-block" ng-show="userform.username.$error.minlength">
+                最小长度不够3位
+            </p>
+            <p class="help-block" ng-show="userform.username.$error.maxlength">
+                最大长度不能超过6位
+            </p>
+            <p class="help-block" ng-show="userform.username.$error.pattern">
+                只能包含数字
+            </p>
+        </div>
+        <div class="control-group">
+            <div class="control-label">邮箱</div>
+            <input  name="email"  type="email" class="form-control" ng-model="user.email">
+        </div>
+        <div class="control-group">
+            <button class="btn btn-default" ng-click="reg()"  >注册</button>
+            <button class="btn btn-danger" ng-click="reset()"  >重置</button>
+        </div>
+
+    </form>
+</div>
+</body>
+<!-- 引入JS脚本 -->
+
+<script>
+//当引入JS脚本之后会在window下挂一个 angular属性
+  //一切从模块开始，要先定义一个模块 模块的名称和依赖的模块
+  angular.module('zfpxMod',[]);
+ //一个参数表示获取这个模块
+ //通过模块的 controller方法定义一个控制器，名字叫zfpxCtrl
+ //当定义一个控制的时候，angular 会买一送一，送你一个$scope
+ //scope其实是一个空的JS对象 {}
+//依赖注入 我们定义控制器的时候只需要在参数列表里声明$scope即可，
+//声明之后就可以在函数中使用。它由容器也就是angular容器帮我们实例化
+//控制器
+angular.module('zfpxMod').controller('zfpxCtrl',function($scope){
+      //控制器的作用就是为$scope初始化属性
+      //$sopce 类似于数据模型 MODEL
+      $scope.user  ={};
+        $scope.reg = function(){
+            console.log($scope.user);
+        }
+    $scope.reg = /^\d+$/;
+    $scope.reset = function(){
+        $scope.user  ={};
+    }
+  });
+//1.当用户输入正确时变绿，不正确时变红
+  //1. 在input上定义一些校验规则
+  //2. 修改样式
+//2. 当用户输入错误时提示错误的原因
+</script>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "webpack-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qiansimin88"
+  },
+  "keywords": [
+    "webpack"
+  ],
+  "author": "qsm",
+  "license": "ISC"
+}
