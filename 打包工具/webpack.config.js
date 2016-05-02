@@ -2,6 +2,7 @@
 //2 entry入口文件如果是对象的多入口文件的模式  那么 output写成[name].js就可以生成相应的文件了
 var webpack = require('webpack')
 var path = require('path')
+var fs = require('fs')
 
 module.exports = {
 	entry : {
@@ -31,6 +32,7 @@ module.exports = {
 		new webpack.optimize.CommonsChunkPlugin({
 			name : ['jquery','boostrap'],  //公共模块提取
 			minChunks : Infinity  //提取所有entyr共同依赖的模块
-		})    
+		})
+		
 	]
 }
