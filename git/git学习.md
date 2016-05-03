@@ -1,6 +1,7 @@
 # 一 回退
 ```
 1.有用的命令  假如我在分支 进行某个文件的操作(hehe.js)   写了很多代码 但是发现不想用了 ,  想用之前head里最新的代码覆盖当前的文件  那么就  git checkout [filename] 即可 复原之前一次add或者commit的代码
+checkout --[filename] 还原没提交之前的
 -------------
 2.	这里的回退 是 之前分支已经  commit的版本  可以通过  git log 查看版本号 以及 之前所有提交的 message的信息
 	git reset --hard HEAD^ 回退上一个版本，

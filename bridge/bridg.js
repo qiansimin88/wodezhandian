@@ -67,6 +67,10 @@
 	var bridge = function (pa) {
 		return new Bridge(pa);
 	};
+	console.log(new Bridge({methodName:'qweqwe',callback:'haha',param : {
+		user :'qians',
+		age : "20"
+	}}));
 	//全局注册
 	window.bridge = bridge;
 
