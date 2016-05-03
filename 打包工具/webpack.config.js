@@ -16,9 +16,17 @@ module.exports = {
 	module : {			//loader的模块集合
 		loaders : [
 			{
-				test : /\.css$/,loader: 'style!css'
+				test : /\.css$/,loader: 'style!css'		
+			}
+			,
+			{ 
+				test: /\.(png|jpg)$/,loader: 'url-loader?limit=10000'   //图片base64
 			}
 		]
+	},
+	//外部资源  以后可以使用require(jquery)  并且不会把代码构建进去
+	externals: {
+     "jquery": "jQuery"
 	},
 	//可以省略后缀名
 	resolve: {
@@ -28,9 +36,9 @@ module.exports = {
 		//为输出的文件头部加上自定义的注释
 		new webpack.BannerPlugin('这是钱思敏的webpack练手项目通过插件BannerPlugin做到的'),
 		//提取公共的文件
-		new webpack.optimize.CommonsChunkPlugin({
-			name : ['jquery','boostrap'],  //公共模块提取
-			minChunks : Infinity  //提取所有entyr共同依赖的模块
-		})    
+		// new webpack.optimize.CommonsChunkPlugin({
+		// 	name : ['jquery','boostrap'],  //公共模块提取
+		// 	minChunks : Infinity  //提取所有entyr共同依赖的模块
+		// })    
 	]
 }
