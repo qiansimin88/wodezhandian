@@ -1,11 +1,53 @@
 /*! 这是钱思敏的webpack练手项目通过插件BannerPlugin做到的 */
-webpackJsonp([1],[
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(1)  //载入style.css     cssloader复制读取文件  style-loader负责把文件写进 html 的head里面
 	document.write('it works');
-	document.write(__webpack_require__(5))
+	document.write(__webpack_require__(6))
 
 /***/ },
 /* 1 */
@@ -17,7 +59,7 @@ webpackJsonp([1],[
 	var content = __webpack_require__(2);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(4)(content, {});
+	var update = __webpack_require__(5)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -42,7 +84,7 @@ webpackJsonp([1],[
 
 
 	// module
-	exports.push([module.id, "body {background: red;}", ""]);
+	exports.push([module.id, "body {background: red;background: url(" + __webpack_require__(4) + ");}", ""]);
 
 	// exports
 
@@ -105,6 +147,12 @@ webpackJsonp([1],[
 
 /***/ },
 /* 4 */
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,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"
+
+/***/ },
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -356,11 +404,11 @@ webpackJsonp([1],[
 
 
 /***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports) {
 
 	//moduel.js
 	module.exports = 'it works from module.js';
 
 /***/ }
-]);
+/******/ ]);

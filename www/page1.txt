@@ -1,1 +1,0 @@
-﻿[{user:'aassda',pass:'asdsvad'},{user:'aaszxcdd',pass:'asasddvas'},{user:'asbvvcgdasd',pass:'adjhjavbsd'}]

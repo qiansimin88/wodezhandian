@@ -3,6 +3,7 @@
 /react/src/.module-cache
 /nodejs/quick/express/nodework/node_modules
 /nodejs/quick/express/nodeitem/node_modules
+/打包工具/node_modules
 /nodejs/webstormnode/qsmblog/node_modules
 bower_components\angular
 /webpack/webpack-demo/npm-debug.log
