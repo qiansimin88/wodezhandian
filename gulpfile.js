@@ -1,31 +1,31 @@
 var gulp = require('gulp'),
     
-    less = require('gulp-less'),           //编译less
+    less = require('gulp-less');           //编译less
 
-    mincss = require('gulp-minify-css'),   //压缩CSS
+    // mincss = require('gulp-minify-css'),   //压缩CSS
 
-    sourcemaps = require('gulp-sourcemaps'),   //生成maps文件
+    // sourcemaps = require('gulp-sourcemaps'),   //生成maps文件
 
-    uglify  = require('gulp-uglify'),      //JS压缩
+    // uglify  = require('gulp-uglify'),      //JS压缩
 
-    changed = require('gulp-changed'),
+    // changed = require('gulp-changed'),
 
-    plumber = require('gulp-plumber'),
+    // plumber = require('gulp-plumber'),
 
-    notify = require('gulp-notify'),
+    // notify = require('gulp-notify'),
 
-    autoprefixer = require('gulp-autoprefixer');   //css自动补全
+    // autoprefixer = require('gulp-autoprefixer');   //css自动补全
 
 
 
 var pathOption = {
 
-    'localcss' : './data/skin/ilongre/less/*.less',
+    'localcss' : './less/lib/less/*.less',
 
     // 'localjs': './data/skin/ilongre/minjs/*.js',
 
 
-    'distcss': './data/skin/mall_dist/css/'
+    'distcss': './less/dist/css'
 
     // 'distjs': './dist/js'
 
@@ -37,21 +37,21 @@ var pathOption = {
 
     return gulp.src(pathOption.localcss)
 
-            .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
+            // .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
 
-            .pipe(changed(pathOption.distcss))
+            // .pipe(changed(pathOption.distcss))
 
 
             .pipe(less())
 
-             .pipe(mincss({
+            //  .pipe(mincss({
 
-                advanced:true,   //合并选择器
-                compatibility:'ie7'//兼容IE7
+            //     advanced:true,   //合并选择器
+            //     compatibility:'ie7'//兼容IE7
 
-            }))
+            // }))
 
-            .pipe(sourcemaps.init())
+            // .pipe(sourcemaps.init())
 
 
             // .pipe(autoprefixer({
@@ -61,7 +61,7 @@ var pathOption = {
 
             // }))
 
-            .pipe(sourcemaps.write('./map'))
+            // .pipe(sourcemaps.write('./map'))
 
            
 
@@ -89,7 +89,7 @@ var pathOption = {
 
  gulp.task('watch',function () {
 
-     gulp.watch('data/skin/ilongre/less/*.less',function (event){
+     gulp.watch(pathOption.localcss,function (event){
 
         console.log(typeof event.type);
 

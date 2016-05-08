@@ -1,0 +1,12 @@
+.hehe::-webkit-input-placeholder {
+  color: red;
+}
+.hehe:-moz-placeholder {
+  color: red;
+}
+.hehe::-moz-placeholder {
+  color: red;
+}
+.hehe:-ms-input-placeholder {
+  color: red;
+}

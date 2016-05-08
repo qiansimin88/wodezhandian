@@ -3,9 +3,30 @@
   <head>
     <meta charset="utf-8">
     <title>my-project</title>
+    <style>
+	/* 必需 */
+		.expand-transition {
+		  overflow: hidden;
+		  transition: all .3s ease;
+		  background-color: #eee;
+		  transform:translateX(0);
+		}
+		/* .expand-enter 定义进入的开始状态 */
+		/* .expand-leave 定义离开的结束状态 */
+		.expand-enter {
+		  overflow: hidden;
+		  opacity: 0;
+		  transform:translateX(100%);
+		}
+		.expand-leave {
+		  overflow: hidden;
+		  opacity: 0;
+		  transform:translateX(-100%);
+		}
+
+    </style>
   </head>
   <body>
-    <app></app>
-    <!-- built files will be auto injected -->
+  	<div id="app"></div>
   </body>
 </html>
