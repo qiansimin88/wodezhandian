@@ -1,6 +1,6 @@
 <template>
  <div>
-   <search placeholder='你好'></search>
+   <search placeholder='你好' autoFixed=false value="呵呵"></search>
   </div>
 </template>
 
