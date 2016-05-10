@@ -1,20 +1,23 @@
 <template>
- <div>
-   <search placeholder='你好' autoFixed=false value="呵呵"></search>
+
+ <div> 
+ 	<search defaultwidth="90%"></search>
   </div>
 </template>
 
 <script>
-import Group from 'vux/components/group'
-import search from 'vux/components/search'
+import search from 'vux/src/components/search'
+
 export default {
   components: {
-    Group,
     search
   }
 }
 </script>
 
 <style>
+body {
+	background: red
+}
 @import '~vux/vux.css';
 </style>
