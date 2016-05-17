@@ -9,7 +9,7 @@
     <layout-dock></layout-dock>
   </div>
 </template>
-
+ g
 <script>
 import header from "./components/header"
 import dock from './components/dock'
@@ -34,6 +34,8 @@ export default {
     headerway : function (got) {
         this.headerway = got;
     }
+  },
+  ready () {
   }
 
 }

@@ -2,7 +2,6 @@ import Vue from 'vue'
 import layout from './App'
 import Router from './router'
 import VueRouter from 'vue-router'
-
 Vue.use(VueRouter)
 
 // const state = {
@@ -31,4 +30,15 @@ var router = new VueRouter({
 
 Router(router)
 
+
 router.start(layout,'#app');
+var a = {
+	cc : function () {
+		console.log(1);
+	}
+}
+
+export let counter = 3;
+export function incCounter() {
+  counter++;
+}
