@@ -1,7 +1,9 @@
 export default {
 	state : {
-		count : 10,
-		run : false
+		count : 60,
+		run : false,
+		customerMobile: '',
+		defaultCount:60
 	},
 	custDown () {
 		this.state.run = true 
@@ -16,5 +18,6 @@ export default {
 	stop () {
 		clearInterval(this.timer)
 		this.state.run = false 
+		this.state.count = 60 
 	}
 }
