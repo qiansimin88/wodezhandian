@@ -6,6 +6,9 @@ export default function (router) {
    		 },
 		 '/list':{
        		 component: require('./components/list/list.vue')
+   		 },
+   		  '/scroll':{
+       		 component: require('./components/scroll/index.vue')
    		 }
 	})
 }

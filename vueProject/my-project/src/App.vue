@@ -14,11 +14,11 @@
 import header from "./components/header"
 import dock from './components/dock'
 //状态机
-import store from './vuex/store'
+import store from './vuex/newStore.js'
 
 export default {
   // 在根组件加入 store，让它的子组件和 store 连接
-  store ,
+  store,
   data () {
     return {
        msg : 'hello',
