@@ -3,6 +3,33 @@
 		<pull :bottom-method="loadBottom" bottom-status = 'bottomStatus'>
 			<div>aasd<br>
 			asd<br></div>
+			<div>aasd<br>
+			asd<br></div>
+			<div>aasd<br>
+			asd<br></div>
+			<div>aasd<br>
+			asd<br></div>
+			<div>aasd<br>
+			asd<br></div>
+			<div>aasd<br>
+			asd<br></div>
+			<div>aasd<br>
+			asd<br></div>
+			<div>aasd<br>
+			asd<br></div>
+			<div>aasd<br>
+			asd<br></div>
+			<div>aasd<br>
+			asd<br></div>
+			<div>aasd<br>
+			asd<br></div>
+			<div>aasd<br>
+			asd<br></div>
+
+			<div>aasd<br>
+			asd<br></div>
+			<div>aasd<br>
+			asd<br></div>
 		</pull>
 	</div>
 </template>
@@ -20,13 +47,13 @@
 		},
 		methods: {
 			loadBottom (id) {
-				console.log(id);
 			}
 		}
 	}
 </script>
 <style>
 	#page-loadmore-wrapper {
-		height: 600px; overflow: scroll;
+		height: 40rem; overflow: scroll;
+		font-size: 4rem;
 	}
 </style>
