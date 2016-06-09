@@ -13,6 +13,9 @@ export default function (router) {
    		 },
        'scrollbar': {
          component: require('./components/scrollbar/index.vue')
+       },
+       'toast': {
+         component: require('./components/toast/index.vue')
        }
 	})
 }
