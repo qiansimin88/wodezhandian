@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script>
+            //1减少全局变量的产生 闭包的使用
+
+            //求得一周加班时间的总长是多少 我们可以把每天的时间累加起来 以往我可能会设置一个全局变量  用闭包就不需要了
+            var computedAllWorkTime = function () {
+                var itemTime = [];
+                return function (...arg) {
+                    //执行
+                    if(arg.length === 0) {
+                        //返回总长
+                        return itemTime.reduce((n,p) => n+p);
+                    }else {
+                        //缓存所有的时间
+                        itemTime.push(...arg);
+                    }
+                }
+            }
+
+            var timeWork = computedAllWorkTime();
+                timeWork(1);
+                timeWork(2);
+                timeWork(3);
+                //计算总长
+                console.log(timeWork());
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

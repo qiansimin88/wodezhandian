@@ -57,7 +57,6 @@
 		     	this.startScrollTop = this.getScrollTop(this.scrollEventTarget)
 		     	//触摸开始 设定未到达顶部
 		     	this.bottomReached = false;
-
 		     },
 		     //触摸滑动
 		     handleTouchMove (event) {
@@ -148,6 +147,7 @@
 		},
 		ready () {	
 			this.init()  //执行
+			console.log(this.$el)
 		}
 	}
 </script>

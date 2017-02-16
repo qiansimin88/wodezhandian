@@ -16,6 +16,9 @@ export default function (router) {
        },
        'toast': {
          component: require('./components/toast/index.vue')
+       },
+       'touchtab': {
+        component: require('./components/touchtab/index.vue')
        }
 	})
 }
