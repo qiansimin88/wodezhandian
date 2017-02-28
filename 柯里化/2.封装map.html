@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<script>
+    //fn:  指定的回调函数  期待有返回值
+    //context: 指定的上下文
+    Array.prototype._map = function (fn, context) {
+        var len = this.length;
+        var temp = []; 
+        if(typeof fn !== 'function') {
+            throw TypeError('first parameter must be function 😑');
+        };
+        for(var i = 0; i < len; i ++) {
+            temp.push(fn.call(context, this[i], i, this));  //统一放进temp 以作返回
+        };
+        return temp;
+    };
+
+    var newArray = [1, 2, 3, 4]._map(function (o ,i) {
+        return  o + 1;
+    }); 
+    console.log(newArray);      //[2,3,4,5]
+</script>
+<body>
+    
+</body>
+</html>
