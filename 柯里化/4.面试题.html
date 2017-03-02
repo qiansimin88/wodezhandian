@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<script>
+    
+    var temp = function (a, b, c) {
+        return a + b + c;
+    };
+    //实现下面 实参 1 2，3 能输出等于 6
+    // curry(temp)(1,2)(3)   //6  
+
+    function curry (fn) {
+        //注意： 函数的length就是函数的形参的个数
+        var len = fn.length,
+            tempArray = [];  //存储作用
+
+        var curryTemp = function () {
+            var args = [].slice.call(arguments);  
+            tempArray = tempArray.concat(args);
+            if( tempArray.length === len ) {  //如果存贮的实参个数等于 提供的函数的形参个数的话  执行传进的函数 进行求职
+                return fn.apply(null, tempArray);
+            }else {
+                return curryTemp;  //不足就返回当前函数
+            } 
+        }
+        return curryTemp;  //函数第一次执行的返回值
+    }
+    console.log(curry(temp)(1)(2)(3));  //6    
+</script>
+<body>
+    
+</body>
+</html>
