@@ -5,10 +5,8 @@
 	<title>Document</title>
 	<script>
 	var str = '123465asd1234ppp';
-	var re= /(^(\d+))/g;
-
+	var re= /\d+[a-z]/g;
 	result = str.match(re);
-
 	console.log(result)
 	</script>
 </head>
