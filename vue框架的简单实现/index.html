@@ -7,12 +7,58 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="app">
-        <input type="text" name="" value="" v-model = "text">
+    <div id="app" hehe='1'>
+        <input id="input" type="text" name="" value="" v-model = "text">
         {{ text }}
     </div>
 </body>
 <script>
-    
+    var topDom = document.getElementById('app');
+
+    //节点的一些列操作
+    function fragMentDom ( node ) {
+        var flag = document.createDocumentFragment();
+        var firstChild;
+        while( firstChild = node.firstChild ) {
+            compileDom.call( this, firstChild );
+            flag.append( firstChild );
+        }
+        topDom.appendChild( flag );
+    }
+
+    //处理数据
+    function compileDom ( node ) {
+        var regexp = /\{\{(.*)\}\}/;
+        var nodeType = node.nodeType;
+        if( nodeType === 3 ) {           //文本节点
+            if( regexp.test( node.nodeValue ) ) {  //如果是{{}}这种插值
+                node.nodeValue = this.data[ RegExp.$1.trim() ];    //这里注意去空格 不然匹配不上
+            }
+        } else if ( nodeType === 1 ) {   //元素节点    2等于属性节点  属性节点的nodeValue就是属性值
+            var allAttributes = node.attributes;
+
+            for( var i = 0; i < allAttributes.length; i++ ) {   //遍历当前元素的属性节点
+                var currentAttribute = allAttributes[i];   //当前的属性
+                if( currentAttribute.nodeName === 'v-model' && node.nodeName === 'INPUT'  ) {  //属性含有v-model并且是input的元素标签
+                    node.value = this.data[ currentAttribute.nodeValue ];
+                    node.removeAttribute('v-model'); //移除这个属性  没有什么特别含义
+                }
+            }
+        }
+    }
+
+    function Vue( options ) {
+        this.el =  options.el;
+        this.data = options.data;
+        fragMentDom.call( this, document.getElementById( this.el.replace('#', '')));
+    }
+
+    var vm  = new Vue({
+        el: '#app',
+        data: {
+            text: 'hello world  333'
+        }
+    })
+
 </script>
 </html>
