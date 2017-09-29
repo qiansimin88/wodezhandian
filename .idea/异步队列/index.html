@@ -19,12 +19,12 @@
                 var cur = list[index];
                 typeof cur === 'function' && cur( next );
             };
-            //队列传承
-            function next () {
+            //队列传承  加入传参的功能
+            function next (...arg) {
                 if( index >= list.length - 1 ) return;
                 //下一个执行
-                var cur = list[index++];
-                cur( next );
+                var cur = list[++index];
+                cur( next, ...arg );
             }
             return {
                 add,
@@ -38,12 +38,13 @@
         queueItem.add( next => {
            setTimeout(function() {
                 console.log(1);
-                next();
+                next( 'hehe', 'haha' );
            }, 2000);
         });
 
         //再添加一个异步
-        queueItem.add( next => {
+        queueItem.add( (next, ...arg) => {
+            console.log(...arg);
             setTimeout(function() {
                 console.log(2);
                 next();        
