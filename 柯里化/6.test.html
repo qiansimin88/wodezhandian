@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        console.log(test(1)(2)(3)()) //6
+
+        function test(num) {
+            var temp = num ;
+            var handle = function (dd) {
+                if(dd) {
+                    temp += dd;
+                    return handle;
+                }else {
+                    return temp;
+                }   
+            }
+            return handle;
+        } 
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
