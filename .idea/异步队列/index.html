@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //异步队列
+        function queue () {
+            var list = [];  //队列
+            var index = 0; //索引
+            //添加队列任务
+            function add (...arg) {
+                list.push(...arg);
+            }   
+            //执行队列
+            function run () {
+                var cur = list[index];
+                typeof cur === 'function' && cur( next );
+            };
+            //队列传承
+            function next () {
+                if( index >= list.length - 1 ) return;
+                //下一个执行
+                var cur = list[index++];
+                cur( next );
+            }
+            return {
+                add,
+                run
+            }
+        };
+
+        var queueItem = queue();
+
+        //先添加一个异步
+        queueItem.add( next => {
+           setTimeout(function() {
+                console.log(1);
+                next();
+           }, 2000);
+        });
+
+        //再添加一个异步
+        queueItem.add( next => {
+            setTimeout(function() {
+                console.log(2);
+                next();        
+            }, 2000);
+        });
+
+        //执行所有的异步
+        queueItem.run();
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
