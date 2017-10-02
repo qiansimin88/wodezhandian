@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        var x = 0;
+        function a () {
+            x ++;
+            if( x > 3 ) return;
+            console.log( x );
+            arguments.callee();    //a ()同样可以， arguments.callee()不需要函数提供名称
+                                  //可以装逼，适合在匿名函数内使用
+        }
+        a();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
